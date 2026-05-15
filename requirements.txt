@@ -1,0 +1,84 @@
+MY MACHINE - ROG STRIX G15 (Primary inference)
+
+# Step 1: Install Anaconda (free)
+# Download from anaconda.com
+conda create -n ugaa python=3.10 -y
+conda activate ugaa
+
+# Step 2: PyTorch with CUDA 11.8
+pip install torch torchvision torchaudio \
+  --index-url https://download.pytorch.org/whl/cu118
+
+# Step 3: Core ML libraries
+pip install transformers==4.40.0
+pip install accelerate bitsandbytes
+pip install peft datasets
+pip install openai-clip
+pip install sentencepiece protobuf
+
+# Step 4: Experiment + viz tools
+pip install jupyter matplotlib seaborn
+pip install numpy pandas tqdm
+pip install scikit-learn
+
+# Step 5: Verify GPU
+python -c "import torch; print(torch.cuda.is_available())"
+# Expected: True
+
+# Step 6: Test model load (4-bit quantized)
+# Run test_load.py (see GitHub repo)
+Models to download (free)
+• Phi-3.5-Vision-Instruct: microsoft/Phi-3.5-vision-instruct (HF)
+• LLaVA-1.5-7B: llava-hf/llava-1.5-7b-hf (HF)
+• CLIP: openai/clip-vit-base-patch32 (HF)
+• All download automatically on first use via HF cache
+
+
+
+FRIEND'S MACHINE — HP Pavilion (Data + eval pipeline)
+
+# Step 1: Same conda setup
+conda create -n ugaa-eval python=3.10 -y
+conda activate ugaa-eval
+
+# Step 2: No heavy GPU libs needed
+pip install torch torchvision --index-url \
+  https://download.pytorch.org/whl/cpu
+
+# Step 3: Data pipeline focus
+pip install pandas numpy matplotlib
+pip install datasets huggingface_hub
+pip install scikit-learn jupyter
+pip install nltk rouge-score
+pip install Pillow requests tqdm
+
+# Step 4: API tools
+# SKIP: pip install openai   (costs money per call)
+# SKIP: pip install google-generativeai  (has free tier but limited)
+
+# Instead install these FREE alternatives:
+pip install rouge-score
+pip install nltk
+pip install bert-score
+pip install evaluate        # HuggingFace evaluate — free, local metrics
+
+Gemini API does have a free tier (15 requests/minute, 1500/day) which is enough for your evaluation. If Karthi wants to use it: go to aistudio.google.com → Get API Key → it's completely free there (not the paid Google Cloud version). That's the one to use.
+
+
+# Step 5: Dataset download scripts
+# POPE: github.com/AoiDragon/POPE
+# VSR: github.com/cambridgeltl/visual-spatial-reasoning
+# GQA: cs.stanford.edu/people/dorarad/gqa/download.html
+
+# SKIP: pip install openai   (costs money per call)
+# SKIP: pip install google-generativeai  (has free tier but limited)
+
+# Instead install these FREE alternatives:
+pip install rouge-score
+pip install nltk
+pip install bert-score
+pip install evaluate        # HuggingFace evaluate — free, local metrics
+
+This machine does NOT run models
+4GB VRAM = data processing only. All inference runs on your ROG or Kaggle. Friend's machine handles: dataset prep, metric calculation (ROUGE, BLEU, F1), result aggregation, paper tables.
+
