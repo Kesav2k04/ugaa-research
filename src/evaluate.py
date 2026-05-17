@@ -64,6 +64,28 @@ def evaluate_predictions(pred_file, pope_file):
     print(f"Results: {results}")
     return results
 
+def compute_accuracy(predictions: list, ground_truths: list) -> dict:
+    """
+    For VSR: predictions are 'yes'/'no', ground_truths are True/False or 'yes'/'no'
+    """
+    # Normalize ground truths
+    normalized = []
+    for g in ground_truths:
+        if isinstance(g, bool):
+            normalized.append('yes' if g else 'no')
+        else:
+            normalized.append(str(g).lower().strip())
+    
+    correct = sum(1 for p, g in zip(predictions, normalized) 
+                  if p.lower().strip() == g)
+    accuracy = correct / len(predictions) if predictions else 0
+    return {
+        'accuracy': round(accuracy, 4),
+        'correct': correct,
+        'total': len(predictions)
+    }
+
+
 # Test with dummy data to verify the logic works
 # To this:
 if __name__ == "__main__":
