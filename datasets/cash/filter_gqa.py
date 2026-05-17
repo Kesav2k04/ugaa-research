@@ -22,8 +22,12 @@ for qid, q in all_questions.items():
         spatial.append({'id': qid, 'question': q['question'],
                         'answer': q['answer'], 'category': 'spatial'})
     
-    # Counting
-    elif qtext.startswith('how many') or qtext.startswith('how much'):
+    # Counting — NOTE: GQA val_balanced has NO counting/numeric questions.
+    # All answers are text-based (yes/no, colors, objects, directions).
+    # TODO: Source counting questions from VQAv2 or another dataset.
+    elif q['answer'].isdigit() or q['answer'].lower() in [
+            'zero', 'one', 'two', 'three', 'four', 'five',
+            'six', 'seven', 'eight', 'nine', 'ten']:
         counting.append({'id': qid, 'question': q['question'],
                          'answer': q['answer'], 'category': 'counting'})
     
