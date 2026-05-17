@@ -23,8 +23,7 @@ for qid, q in all_questions.items():
                         'answer': q['answer'], 'category': 'spatial'})
     
     # Counting
-    elif types == 'query' and any(w in qtext 
-         for w in ['how many', 'count']):
+    elif qtext.startswith('how many') or qtext.startswith('how much'):
         counting.append({'id': qid, 'question': q['question'],
                          'answer': q['answer'], 'category': 'counting'})
     
