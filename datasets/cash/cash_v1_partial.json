@@ -1,0 +1,1802 @@
+[
+  {
+    "id": "14778715",
+    "question": "Are there napkins under the utensil to the left of the rice?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "14778714",
+    "question": "What is under the utensil on the left?",
+    "answer": "napkin",
+    "category": "spatial"
+  },
+  {
+    "id": "19486857",
+    "question": "What is the woman in front of?",
+    "answer": "statue",
+    "category": "spatial"
+  },
+  {
+    "id": "13663260",
+    "question": "Is the curtain on the right side or on the left of the picture?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "16130590",
+    "question": "Does the person to the left of the man appear to be sitting?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "11615428",
+    "question": "Is there any surfboard to the right of the man the people are standing by?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "17267240",
+    "question": "Are there shelves to the left of the books behind the man?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "101024942",
+    "question": "What vegetable is to the right of the tomato?",
+    "answer": "lettuce",
+    "category": "spatial"
+  },
+  {
+    "id": "13571728",
+    "question": "The woman to the left of the man is wearing what?",
+    "answer": "dress",
+    "category": "spatial"
+  },
+  {
+    "id": "0328071",
+    "question": "Does the boat to the left of the flag look small or large?",
+    "answer": "small",
+    "category": "spatial"
+  },
+  {
+    "id": "03739128",
+    "question": "Which kind of furniture is right of the drawers?",
+    "answer": "shelves",
+    "category": "spatial"
+  },
+  {
+    "id": "06645355",
+    "question": "Who is in front of the gray building?",
+    "answer": "passengers",
+    "category": "spatial"
+  },
+  {
+    "id": "06645358",
+    "question": "What are the passengers in front of?",
+    "answer": "building",
+    "category": "spatial"
+  },
+  {
+    "id": "13112324",
+    "question": "Is the person to the left of the frisbee wearing a glove?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "0364186",
+    "question": "Is the chair to the left of a pillow?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "08164591",
+    "question": "On which side of the photo is the towel, the left or the right?",
+    "answer": "left",
+    "category": "spatial"
+  },
+  {
+    "id": "1942734",
+    "question": "What type of vehicle is to the left of the boy that is wearing a shirt?",
+    "answer": "van",
+    "category": "spatial"
+  },
+  {
+    "id": "031007945",
+    "question": "What is the fruit that is covered by the fruit that the banana is to the left of called?",
+    "answer": "apple",
+    "category": "spatial"
+  },
+  {
+    "id": "13515212",
+    "question": "Is the surfer to the left or to the right of the surfboard?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "10889906",
+    "question": "Does the knife next to the fork look black?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "13368729",
+    "question": "Are there any books near the device on the right?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "151015980",
+    "question": "Is the woman to the left or to the right of the man that is wearing trousers?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "0090767",
+    "question": "Does the remote control to the left of the other remote control look black?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "06134756",
+    "question": "Is the tennis player to the left or to the right of the ball on the left?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "04819662",
+    "question": "What kind of furniture is to the right of the bed?",
+    "answer": "cabinet",
+    "category": "spatial"
+  },
+  {
+    "id": "11563995",
+    "question": "What kind of furniture is to the right of the freezer that is on the left of the picture?",
+    "answer": "drawers",
+    "category": "spatial"
+  },
+  {
+    "id": "03260227",
+    "question": "Is the boat on the right of the picture?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "16542238",
+    "question": "Is the bed to the left or to the right of the drawers on the left?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "08203407",
+    "question": "Are the curtains to the right or to the left of the red pillow?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "00805479",
+    "question": "The sidewalk is in front of what?",
+    "answer": "street light",
+    "category": "spatial"
+  },
+  {
+    "id": "18175193",
+    "question": "What weapon is to the left of the purse?",
+    "answer": "sword",
+    "category": "spatial"
+  },
+  {
+    "id": "13168814",
+    "question": "The man that is to the left of the horse is walking where?",
+    "answer": "street",
+    "category": "spatial"
+  },
+  {
+    "id": "18283096",
+    "question": "Is the bottle to the left or to the right of the chair that is in the middle of the image?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "111015885",
+    "question": "Is the mobile phone on the left side?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "01532381",
+    "question": "What is the man to the left of the boats wearing?",
+    "answer": "wetsuit",
+    "category": "spatial"
+  },
+  {
+    "id": "02106577",
+    "question": "Is the man to the left of the backpack wearing a coat?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "16791660",
+    "question": "Is the faucet to the right or to the left of the toilet?",
+    "answer": "left",
+    "category": "spatial"
+  },
+  {
+    "id": "02247621",
+    "question": "Who is in front of the building that is made out of brick?",
+    "answer": "people",
+    "category": "spatial"
+  },
+  {
+    "id": "02247623",
+    "question": "Who is in front of the building?",
+    "answer": "people",
+    "category": "spatial"
+  },
+  {
+    "id": "15871248",
+    "question": "Which kind of vehicle is to the left of the backpack?",
+    "answer": "tractor",
+    "category": "spatial"
+  },
+  {
+    "id": "00297942",
+    "question": "What's the fence in front of?",
+    "answer": "bushes",
+    "category": "spatial"
+  },
+  {
+    "id": "00297941",
+    "question": "What is the fence in front of?",
+    "answer": "bushes",
+    "category": "spatial"
+  },
+  {
+    "id": "00297940",
+    "question": "What is in front of the bushes?",
+    "answer": "fence",
+    "category": "spatial"
+  },
+  {
+    "id": "14311593",
+    "question": "Are the letters on the bag on the left?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "09207863",
+    "question": "Do you see a chair to the left of the pillow?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "15858851",
+    "question": "Is the bowl on the right side or on the left?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "07241856",
+    "question": "What kind of vegetable is to the right of the cups on the counter?",
+    "answer": "onions",
+    "category": "spatial"
+  },
+  {
+    "id": "12227132",
+    "question": "Is the white vehicle to the right or to the left of the vehicle the vehicle is to the left of?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "13708543",
+    "question": "Which direction is the woman to the left of the chair looking at?",
+    "answer": "behind",
+    "category": "spatial"
+  },
+  {
+    "id": "121037755",
+    "question": "Is the rope on the left?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "041000077",
+    "question": "Is the person to the right of the man wearing a boot?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "00880780",
+    "question": "Is the man to the right of the hammer wearing eye glasses?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "15841623",
+    "question": "Are there any cups to the left of the cupcake that is in the middle?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "14889408",
+    "question": "Is the chair on the right of the photo?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "03126814",
+    "question": "Are there any men to the right of the person that is holding the tennis racket?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "0111303",
+    "question": "Is the cabinet to the right of the table?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "05684159",
+    "question": "Is the player to the left or to the right of the umpire that wears a belt?",
+    "answer": "left",
+    "category": "spatial"
+  },
+  {
+    "id": "10464328",
+    "question": "Are there any bags to the right of the man in the middle of the image?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "03795448",
+    "question": "Which kind of animal is to the left of the truck?",
+    "answer": "bull",
+    "category": "spatial"
+  },
+  {
+    "id": "1860944",
+    "question": "What is the name of the appliance behind the guy?",
+    "answer": "refrigerator",
+    "category": "spatial"
+  },
+  {
+    "id": "08621661",
+    "question": "What color is the device on the right?",
+    "answer": "black",
+    "category": "spatial"
+  },
+  {
+    "id": "15667729",
+    "question": "Is the white lamp to the left or to the right of the white curtain?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "11215445",
+    "question": "What kind of food is to the left of the toast?",
+    "answer": "sandwich",
+    "category": "spatial"
+  },
+  {
+    "id": "19606703",
+    "question": "What is the animal that is to the left of the brown object that is to the left of the speaker called?",
+    "answer": "cat",
+    "category": "spatial"
+  },
+  {
+    "id": "02516755",
+    "question": "Is the boat on the left or on the right?",
+    "answer": "left",
+    "category": "spatial"
+  },
+  {
+    "id": "101001503",
+    "question": "Are there spoons to the left of the vegetable on the right?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "14202809",
+    "question": "Are there men to the left of the dark brown horse?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "14202805",
+    "question": "What is the man to the left of the woman wearing?",
+    "answer": "coat",
+    "category": "spatial"
+  },
+  {
+    "id": "1463548",
+    "question": "Does the animal that is to the right of the umbrella seem to be off?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "00947223",
+    "question": "Is there a soccer ball above the basket?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "00681430",
+    "question": "Is the ball to the right or to the left of the person that is wearing a jersey?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "06438181",
+    "question": "Is the animal to the left of the old vehicle?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "0056771",
+    "question": "What type of appliance is to the right of the woman's glasses?",
+    "answer": "dishwasher",
+    "category": "spatial"
+  },
+  {
+    "id": "07900409",
+    "question": "Does the person to the right of the bed wear a scarf?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "18783554",
+    "question": "Is the giraffe in front of the fence?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "15705095",
+    "question": "Is the melon on the left of the picture?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "01343904",
+    "question": "What is the size of the banana to the right of the other banana?",
+    "answer": "small",
+    "category": "spatial"
+  },
+  {
+    "id": "08223793",
+    "question": "What is the appliance to the right of the bowl?",
+    "answer": "radiator",
+    "category": "spatial"
+  },
+  {
+    "id": "16800885",
+    "question": "Are there any surfers to the right of the surfboard in the center of the image?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "00461466",
+    "question": "Is the plastic chair to the left or to the right of the man that is watching the game?",
+    "answer": "left",
+    "category": "spatial"
+  },
+  {
+    "id": "00461461",
+    "question": "Is there a chair to the left of the man that is watching the game?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "05672549",
+    "question": "What is the name of the drink to the right of the plate?",
+    "answer": "beer",
+    "category": "spatial"
+  },
+  {
+    "id": "05304738",
+    "question": "Is the fork to the right or to the left of the bowl the sauce is in?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "0648000",
+    "question": "Is the chicken breast on the right?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "15675504",
+    "question": "What is in front of the screen that is to the left of the computer?",
+    "answer": "chair",
+    "category": "spatial"
+  },
+  {
+    "id": "17397396",
+    "question": "Which kind of furniture is to the left of the desk?",
+    "answer": "beds",
+    "category": "spatial"
+  },
+  {
+    "id": "00816476",
+    "question": "Is the fence to the right or to the left of the old car?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "091057558",
+    "question": "Is the towel to the right or to the left of the faucet?",
+    "answer": "left",
+    "category": "spatial"
+  },
+  {
+    "id": "19222090",
+    "question": "What appliance is to the left of the toaster that is on the countertop?",
+    "answer": "refrigerator",
+    "category": "spatial"
+  },
+  {
+    "id": "14937594",
+    "question": "Is the white curtain to the right or to the left of the picture on the shelf?",
+    "answer": "left",
+    "category": "spatial"
+  },
+  {
+    "id": "07411217",
+    "question": "Is the empty bowl to the right or to the left of the man that wears glasses?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "06790515",
+    "question": "Are there any computers to the left of the glasses?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "10361470",
+    "question": "Is the stove to the right of a book?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "02964695",
+    "question": "Are there traffic lights in front of the mountains?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "02964692",
+    "question": "What is the fire hydrant in front of?",
+    "answer": "mountains",
+    "category": "spatial"
+  },
+  {
+    "id": "02964690",
+    "question": "What is in front of the mountains?",
+    "answer": "fire hydrant",
+    "category": "spatial"
+  },
+  {
+    "id": "10274399",
+    "question": "Is the catcher to the left or to the right of the man on the right?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "04605330",
+    "question": "Is the man that is to the left of the plate holding a frisbee?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "18330260",
+    "question": "Is the sky above the trees open and clear?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "18814087",
+    "question": "Do you see fences to the right of the cow that is eating grass?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "09427199",
+    "question": "How real is the counter made of granite?",
+    "answer": "real",
+    "category": "counting"
+  },
+  {
+    "id": "01873947",
+    "question": "What is the appliance that is on the countertop called?",
+    "answer": "coffee maker",
+    "category": "counting"
+  },
+  {
+    "id": "01873948",
+    "question": "What appliance is on the countertop?",
+    "answer": "coffee maker",
+    "category": "counting"
+  },
+  {
+    "id": "10421625",
+    "question": "Which color is the bag on the counter?",
+    "answer": "brown",
+    "category": "counting"
+  },
+  {
+    "id": "04784950",
+    "question": "What vegetable is on the counter?",
+    "answer": "tomato",
+    "category": "counting"
+  },
+  {
+    "id": "14389678",
+    "question": "What is the counter made of?",
+    "answer": "brick",
+    "category": "counting"
+  },
+  {
+    "id": "16353665",
+    "question": "What color is the counter?",
+    "answer": "white",
+    "category": "counting"
+  },
+  {
+    "id": "06632259",
+    "question": "What is the food that is on the counter?",
+    "answer": "cereal",
+    "category": "counting"
+  },
+  {
+    "id": "08481482",
+    "question": "Which color does the counter made of wood have?",
+    "answer": "dark",
+    "category": "counting"
+  },
+  {
+    "id": "1860769",
+    "question": "What is the device on the counter called?",
+    "answer": "laptop",
+    "category": "counting"
+  },
+  {
+    "id": "19540103",
+    "question": "What color is the countertop?",
+    "answer": "gray",
+    "category": "counting"
+  },
+  {
+    "id": "1830005",
+    "question": "What is in the bag on top of the counter?",
+    "answer": "tomatoes",
+    "category": "counting"
+  },
+  {
+    "id": "1830008",
+    "question": "What are the vegetables in the bag on top of the counter?",
+    "answer": "tomatoes",
+    "category": "counting"
+  },
+  {
+    "id": "12378183",
+    "question": "What kind of cooking utensil is on the countertop?",
+    "answer": "tea kettle",
+    "category": "counting"
+  },
+  {
+    "id": "12378181",
+    "question": "What kind of cooking utensil is on the countertop?",
+    "answer": "tea kettle",
+    "category": "counting"
+  },
+  {
+    "id": "04987078",
+    "question": "What kind of furniture is made of the same material as the counter top?",
+    "answer": "table",
+    "category": "counting"
+  },
+  {
+    "id": "15569542",
+    "question": "How large is the dispenser that sits on the counter?",
+    "answer": "small",
+    "category": "counting"
+  },
+  {
+    "id": "06435749",
+    "question": "What is the food on top of the metal counter?",
+    "answer": "hot dog",
+    "category": "counting"
+  },
+  {
+    "id": "18300363",
+    "question": "What cooking utensil is on the countertop?",
+    "answer": "cutting board",
+    "category": "counting"
+  },
+  {
+    "id": "03519934",
+    "question": "What kind of furniture is under the counter?",
+    "answer": "cabinet",
+    "category": "counting"
+  },
+  {
+    "id": "15569573",
+    "question": "What is sitting on the counter?",
+    "answer": "dispenser",
+    "category": "counting"
+  },
+  {
+    "id": "07394509",
+    "question": "What color do you think the countertop is?",
+    "answer": "black",
+    "category": "counting"
+  },
+  {
+    "id": "17845553",
+    "question": "What is sitting on the counter?",
+    "answer": "bowl",
+    "category": "counting"
+  },
+  {
+    "id": "13376208",
+    "question": "The counter top that is not short has which color?",
+    "answer": "blue",
+    "category": "counting"
+  },
+  {
+    "id": "1420506",
+    "question": "What is the countertop made of?",
+    "answer": "brick",
+    "category": "counting"
+  },
+  {
+    "id": "19222156",
+    "question": "What appliance is on the countertop?",
+    "answer": "toaster",
+    "category": "counting"
+  },
+  {
+    "id": "19222155",
+    "question": "What is the appliance on the countertop?",
+    "answer": "toaster",
+    "category": "counting"
+  },
+  {
+    "id": "04780712",
+    "question": "What appliance is on top of the counter?",
+    "answer": "blender",
+    "category": "counting"
+  },
+  {
+    "id": "05177140",
+    "question": "What appliance is on top of the counter?",
+    "answer": "toaster",
+    "category": "counting"
+  },
+  {
+    "id": "03966243",
+    "question": "What's on the counter?",
+    "answer": "toothbrush",
+    "category": "counting"
+  },
+  {
+    "id": "01297758",
+    "question": "What cooking utensil is on the counter?",
+    "answer": "pan",
+    "category": "counting"
+  },
+  {
+    "id": "02584514",
+    "question": "What is sitting on the counter?",
+    "answer": "pitcher",
+    "category": "counting"
+  },
+  {
+    "id": "03450247",
+    "question": "What kind of appliance is under the countertop?",
+    "answer": "dishwasher",
+    "category": "counting"
+  },
+  {
+    "id": "10361604",
+    "question": "What is the appliance on the counter?",
+    "answer": "coffee maker",
+    "category": "counting"
+  },
+  {
+    "id": "03193399",
+    "question": "What color is the counter that the pizza is on?",
+    "answer": "tan",
+    "category": "counting"
+  },
+  {
+    "id": "01343796",
+    "question": "What is the color of the counter the sink is on?",
+    "answer": "black",
+    "category": "counting"
+  },
+  {
+    "id": "01314932",
+    "question": "What is the man at the counter wearing?",
+    "answer": "pants",
+    "category": "counting"
+  },
+  {
+    "id": "18584290",
+    "question": "Who is looking at the counter?",
+    "answer": "chef",
+    "category": "counting"
+  },
+  {
+    "id": "19555549",
+    "question": "What color is the countertop the knives are on?",
+    "answer": "gray",
+    "category": "counting"
+  },
+  {
+    "id": "03520017",
+    "question": "What is under the counter the glass is on?",
+    "answer": "cabinet",
+    "category": "counting"
+  },
+  {
+    "id": "03520018",
+    "question": "What is under the counter?",
+    "answer": "cabinet",
+    "category": "counting"
+  },
+  {
+    "id": "03223358",
+    "question": "What kind of device is on the counter?",
+    "answer": "remote control",
+    "category": "counting"
+  },
+  {
+    "id": "10459949",
+    "question": "Which kind of bag is on the countertop?",
+    "answer": "purse",
+    "category": "counting"
+  },
+  {
+    "id": "07339383",
+    "question": "What is the counter inside of?",
+    "answer": "bathroom",
+    "category": "counting"
+  },
+  {
+    "id": "07339382",
+    "question": "The counter is inside what?",
+    "answer": "bathroom",
+    "category": "counting"
+  },
+  {
+    "id": "08855828",
+    "question": "Where is the counter?",
+    "answer": "kitchen",
+    "category": "counting"
+  },
+  {
+    "id": "07358236",
+    "question": "What hangs over the counter the chair sits at?",
+    "answer": "chandelier",
+    "category": "counting"
+  },
+  {
+    "id": "00856570",
+    "question": "How do you think is the food on the counter top called?",
+    "answer": "pizza",
+    "category": "counting"
+  },
+  {
+    "id": "08134880",
+    "question": "What color is the counter top that the salt shaker is on?",
+    "answer": "dark",
+    "category": "counting"
+  },
+  {
+    "id": "13330746",
+    "question": "What kind of device has the same color as the laptop computer on the counter?",
+    "answer": "speaker",
+    "category": "counting"
+  },
+  {
+    "id": "1086012",
+    "question": "What appliance has the same color as the countertop?",
+    "answer": "stove",
+    "category": "counting"
+  },
+  {
+    "id": "04784947",
+    "question": "What is on the counter?",
+    "answer": "tomato",
+    "category": "counting"
+  },
+  {
+    "id": "04784949",
+    "question": "What is the vegetable on the counter?",
+    "answer": "tomato",
+    "category": "counting"
+  },
+  {
+    "id": "07925251",
+    "question": "What color is the counter that is made of metal?",
+    "answer": "gray",
+    "category": "counting"
+  },
+  {
+    "id": "01948977",
+    "question": "What is in the basket on the countertop?",
+    "answer": "bottles",
+    "category": "counting"
+  },
+  {
+    "id": "171049256",
+    "question": "What is under the counter?",
+    "answer": "drawer",
+    "category": "counting"
+  },
+  {
+    "id": "03466249",
+    "question": "Who is sitting at the countertop?",
+    "answer": "man",
+    "category": "counting"
+  },
+  {
+    "id": "11169614",
+    "question": "What is under the counter?",
+    "answer": "dryer",
+    "category": "counting"
+  },
+  {
+    "id": "11169616",
+    "question": "What appliance is under the counter?",
+    "answer": "dryer",
+    "category": "counting"
+  },
+  {
+    "id": "09397289",
+    "question": "What color do you think that counter top is?",
+    "answer": "gray",
+    "category": "counting"
+  },
+  {
+    "id": "1860227",
+    "question": "What appliance is the same color as the counter?",
+    "answer": "refrigerator",
+    "category": "counting"
+  },
+  {
+    "id": "01297525",
+    "question": "What kind of fast food is on the counter?",
+    "answer": "pizza",
+    "category": "counting"
+  },
+  {
+    "id": "06435750",
+    "question": "Which kind of fast food is on top of the counter?",
+    "answer": "hot dog",
+    "category": "counting"
+  },
+  {
+    "id": "16208191",
+    "question": "What type of appliance is on the counter?",
+    "answer": "microwave",
+    "category": "counting"
+  },
+  {
+    "id": "09427150",
+    "question": "What is on the sink that is on the counter?",
+    "answer": "glass",
+    "category": "counting"
+  },
+  {
+    "id": "10970652",
+    "question": "What food do you think is on the counter that looks white?",
+    "answer": "cat food",
+    "category": "counting"
+  },
+  {
+    "id": "18182420",
+    "question": "What is sitting on the counter made of granite?",
+    "answer": "bowl",
+    "category": "counting"
+  },
+  {
+    "id": "06385762",
+    "question": "What color is the counter?",
+    "answer": "white",
+    "category": "counting"
+  },
+  {
+    "id": "18547915",
+    "question": "What food is on the counter?",
+    "answer": "hot dog",
+    "category": "counting"
+  },
+  {
+    "id": "18547913",
+    "question": "What is on the counter?",
+    "answer": "hot dog",
+    "category": "counting"
+  },
+  {
+    "id": "11356169",
+    "question": "What vegetable is on the counter?",
+    "answer": "onion",
+    "category": "counting"
+  },
+  {
+    "id": "11356168",
+    "question": "What is the vegetable on the counter called?",
+    "answer": "onion",
+    "category": "counting"
+  },
+  {
+    "id": "13749208",
+    "question": "What color is the countertop?",
+    "answer": "white",
+    "category": "counting"
+  },
+  {
+    "id": "009996",
+    "question": "What is on the counter?",
+    "answer": "microwave",
+    "category": "counting"
+  },
+  {
+    "id": "11355930",
+    "question": "What do you think that counter is made of?",
+    "answer": "metal",
+    "category": "counting"
+  },
+  {
+    "id": "041000704",
+    "question": "What material was used to make the cutting board on the counter?",
+    "answer": "wood",
+    "category": "counting"
+  },
+  {
+    "id": "041000708",
+    "question": "What kind of cooking utensil is on the counter?",
+    "answer": "cutting board",
+    "category": "counting"
+  },
+  {
+    "id": "12171118",
+    "question": "What is under the counter?",
+    "answer": "dishwasher",
+    "category": "counting"
+  },
+  {
+    "id": "03466309",
+    "question": "What color do you think is the granite countertop?",
+    "answer": "green",
+    "category": "counting"
+  },
+  {
+    "id": "041053330",
+    "question": "Who is sitting on the counter?",
+    "answer": "man",
+    "category": "counting"
+  },
+  {
+    "id": "07730793",
+    "question": "Who is before the counter?",
+    "answer": "people",
+    "category": "counting"
+  },
+  {
+    "id": "09851579",
+    "question": "Which kind of appliance is on the counter?",
+    "answer": "mixer",
+    "category": "counting"
+  },
+  {
+    "id": "09851578",
+    "question": "What is the appliance that is on the counter?",
+    "answer": "mixer",
+    "category": "counting"
+  },
+  {
+    "id": "04780710",
+    "question": "What appliance is on top of the counter made of granite?",
+    "answer": "blender",
+    "category": "counting"
+  },
+  {
+    "id": "0172460",
+    "question": "What is facing the animal that is sitting on the counter?",
+    "answer": "mirror",
+    "category": "counting"
+  },
+  {
+    "id": "12103641",
+    "question": "What is beneath the countertop?",
+    "answer": "cabinets",
+    "category": "counting"
+  },
+  {
+    "id": "12103643",
+    "question": "What items of furniture are beneath the countertop?",
+    "answer": "cabinets",
+    "category": "counting"
+  },
+  {
+    "id": "12103642",
+    "question": "What are the items of furniture beneath the countertop the wine bottle is on?",
+    "answer": "cabinets",
+    "category": "counting"
+  },
+  {
+    "id": "00690755",
+    "question": "Which kind of appliance is on the counter?",
+    "answer": "toaster",
+    "category": "counting"
+  },
+  {
+    "id": "00690754",
+    "question": "What is the appliance on the counter called?",
+    "answer": "toaster",
+    "category": "counting"
+  },
+  {
+    "id": "13441972",
+    "question": "What is resting on the counter?",
+    "answer": "glove",
+    "category": "counting"
+  },
+  {
+    "id": "00612991",
+    "question": "Which color is the counter that the soap is on top of?",
+    "answer": "black",
+    "category": "counting"
+  },
+  {
+    "id": "18803223",
+    "question": "What is sitting on the counter made of plastic?",
+    "answer": "apple",
+    "category": "counting"
+  },
+  {
+    "id": "18485879",
+    "question": "What color is the counter?",
+    "answer": "gray",
+    "category": "counting"
+  },
+  {
+    "id": "0172322",
+    "question": "What animal sits on the counter?",
+    "answer": "cat",
+    "category": "counting"
+  },
+  {
+    "id": "15705076",
+    "question": "What fruit is on the counter?",
+    "answer": "banana",
+    "category": "counting"
+  },
+  {
+    "id": "05177139",
+    "question": "What is the appliance on top of the counter?",
+    "answer": "toaster",
+    "category": "counting"
+  },
+  {
+    "id": "171049368",
+    "question": "Of what color is the container that is on the counter?",
+    "answer": "brown",
+    "category": "counting"
+  },
+  {
+    "id": "011020529",
+    "question": "What type of baked good is on the counter top?",
+    "answer": "donut",
+    "category": "counting"
+  },
+  {
+    "id": "01297333",
+    "question": "What vegetables are on the food that is on the counter?",
+    "answer": "peppers",
+    "category": "counting"
+  },
+  {
+    "id": "17197213",
+    "question": "What color is the helmet in the middle of the image?",
+    "answer": "light blue",
+    "category": "attribute"
+  },
+  {
+    "id": "08321209",
+    "question": "What color is the jersey the boy is wearing?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "08185114",
+    "question": "What is the woman holding?",
+    "answer": "skis",
+    "category": "attribute"
+  },
+  {
+    "id": "04285321",
+    "question": "What is the color of the fence made of metal?",
+    "answer": "green",
+    "category": "attribute"
+  },
+  {
+    "id": "0464558",
+    "question": "What is the book on?",
+    "answer": "coffee table",
+    "category": "attribute"
+  },
+  {
+    "id": "17284203",
+    "question": "Is the cap different in color than the sign?",
+    "answer": "no",
+    "category": "attribute"
+  },
+  {
+    "id": "06435607",
+    "question": "What is the name of the food that is not white?",
+    "answer": "hot dog",
+    "category": "attribute"
+  },
+  {
+    "id": "09143711",
+    "question": "Which color are the trousers?",
+    "answer": "purple",
+    "category": "attribute"
+  },
+  {
+    "id": "16718827",
+    "question": "What is the animal that is walking on the ground?",
+    "answer": "giraffe",
+    "category": "attribute"
+  },
+  {
+    "id": "1958363",
+    "question": "What is the sidewalk made of?",
+    "answer": "brick",
+    "category": "attribute"
+  },
+  {
+    "id": "1425112",
+    "question": "What is the chair made of?",
+    "answer": "wood",
+    "category": "attribute"
+  },
+  {
+    "id": "18435808",
+    "question": "Does the cap have pink color?",
+    "answer": "no",
+    "category": "attribute"
+  },
+  {
+    "id": "01125115",
+    "question": "What is the color of the large umbrella?",
+    "answer": "orange",
+    "category": "attribute"
+  },
+  {
+    "id": "08185119",
+    "question": "What is the woman wearing?",
+    "answer": "goggles",
+    "category": "attribute"
+  },
+  {
+    "id": "18167294",
+    "question": "What is the vegetable on the bun?",
+    "answer": "lettuce",
+    "category": "attribute"
+  },
+  {
+    "id": "02717873",
+    "question": "What is the man doing?",
+    "answer": "skiing",
+    "category": "attribute"
+  },
+  {
+    "id": "151001058",
+    "question": "What is the color of the trousers?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "19779818",
+    "question": "What is the piece of furniture that the book is on?",
+    "answer": "bed",
+    "category": "attribute"
+  },
+  {
+    "id": "16802826",
+    "question": "Is the color of the pillow different than the color of the counter?",
+    "answer": "yes",
+    "category": "attribute"
+  },
+  {
+    "id": "1131746",
+    "question": "What is the pipe on?",
+    "answer": "scooter",
+    "category": "attribute"
+  },
+  {
+    "id": "09982001",
+    "question": "Is the pot made of the same material as the container?",
+    "answer": "yes",
+    "category": "attribute"
+  },
+  {
+    "id": "13598461",
+    "question": "What is the device that is not on called?",
+    "answer": "remote control",
+    "category": "attribute"
+  },
+  {
+    "id": "10768721",
+    "question": "What is the man carrying?",
+    "answer": "backpack",
+    "category": "attribute"
+  },
+  {
+    "id": "14806825",
+    "question": "What size is the white mane, small or large?",
+    "answer": "small",
+    "category": "attribute"
+  },
+  {
+    "id": "16644202",
+    "question": "What is the color of the elephants the man is riding on?",
+    "answer": "brown",
+    "category": "attribute"
+  },
+  {
+    "id": "13515709",
+    "question": "What is the round clock sitting on?",
+    "answer": "wall",
+    "category": "attribute"
+  },
+  {
+    "id": "19388466",
+    "question": "What color is that shirt, brown or white?",
+    "answer": "brown",
+    "category": "attribute"
+  },
+  {
+    "id": "08749240",
+    "question": "What is the door made of?",
+    "answer": "metal",
+    "category": "attribute"
+  },
+  {
+    "id": "18265883",
+    "question": "Do the seat and the cart have the same color?",
+    "answer": "no",
+    "category": "attribute"
+  },
+  {
+    "id": "02655551",
+    "question": "What color do you think the t-shirt is?",
+    "answer": "green",
+    "category": "attribute"
+  },
+  {
+    "id": "10972110",
+    "question": "Which color is the vest?",
+    "answer": "cream colored",
+    "category": "attribute"
+  },
+  {
+    "id": "16614293",
+    "question": "What color is the floor?",
+    "answer": "tan",
+    "category": "attribute"
+  },
+  {
+    "id": "1295575",
+    "question": "Does the hair have white color?",
+    "answer": "no",
+    "category": "attribute"
+  },
+  {
+    "id": "00927569",
+    "question": "What is the animal in the grass?",
+    "answer": "giraffe",
+    "category": "attribute"
+  },
+  {
+    "id": "18717754",
+    "question": "What is the table made of?",
+    "answer": "glass",
+    "category": "attribute"
+  },
+  {
+    "id": "16403211",
+    "question": "What is the color of the clothes of the man?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "1946661",
+    "question": "Is the logo different in color than the sweatshirt?",
+    "answer": "yes",
+    "category": "attribute"
+  },
+  {
+    "id": "00171614",
+    "question": "What is the man on?",
+    "answer": "bench",
+    "category": "attribute"
+  },
+  {
+    "id": "03150113",
+    "question": "What color is the flag on the pole?",
+    "answer": "yellow",
+    "category": "attribute"
+  },
+  {
+    "id": "10956782",
+    "question": "What is the box made of?",
+    "answer": "plastic",
+    "category": "attribute"
+  },
+  {
+    "id": "17922184",
+    "question": "What color is the sky?",
+    "answer": "gray",
+    "category": "attribute"
+  },
+  {
+    "id": "04243640",
+    "question": "What color is the sky?",
+    "answer": "white",
+    "category": "attribute"
+  },
+  {
+    "id": "02198843",
+    "question": "Do the hat and the bucket have the same color?",
+    "answer": "yes",
+    "category": "attribute"
+  },
+  {
+    "id": "10590269",
+    "question": "What color is the tablecloth?",
+    "answer": "blue",
+    "category": "attribute"
+  },
+  {
+    "id": "16535014",
+    "question": "What is the motorcyclist wearing?",
+    "answer": "outfit",
+    "category": "attribute"
+  },
+  {
+    "id": "16713312",
+    "question": "What is the chandelier hanging on?",
+    "answer": "ceiling",
+    "category": "attribute"
+  },
+  {
+    "id": "0526849",
+    "question": "What is the fluffy animal called?",
+    "answer": "bear",
+    "category": "attribute"
+  },
+  {
+    "id": "1525059",
+    "question": "What is the vegetable on top of the pizza?",
+    "answer": "artichoke",
+    "category": "attribute"
+  },
+  {
+    "id": "13795770",
+    "question": "What is the dog standing on?",
+    "answer": "bike",
+    "category": "attribute"
+  },
+  {
+    "id": "16822728",
+    "question": "What is the photo showing?",
+    "answer": "sidewalk",
+    "category": "attribute"
+  },
+  {
+    "id": "1913154",
+    "question": "What color is the food truck that the menu is on?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "09693113",
+    "question": "What color is the vegetable on top of the lettuce?",
+    "answer": "orange",
+    "category": "attribute"
+  },
+  {
+    "id": "08724906",
+    "question": "What color are the sneakers?",
+    "answer": "orange",
+    "category": "attribute"
+  },
+  {
+    "id": "01420935",
+    "question": "What is the person holding?",
+    "answer": "pole",
+    "category": "attribute"
+  },
+  {
+    "id": "0459333",
+    "question": "What is the name of the item of furniture that is not wooden?",
+    "answer": "table",
+    "category": "attribute"
+  },
+  {
+    "id": "16351521",
+    "question": "Of which color is the shirt he is wearing?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "02785224",
+    "question": "What is the man on the beach holding?",
+    "answer": "surfboard",
+    "category": "attribute"
+  },
+  {
+    "id": "08858510",
+    "question": "What is the brown food?",
+    "answer": "pancakes",
+    "category": "attribute"
+  },
+  {
+    "id": "17954994",
+    "question": "The shirt has what color?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "19321685",
+    "question": "What color is the jersey the number is on?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "11737559",
+    "question": "Which material are the bags by the woman made of, paper or plastic?",
+    "answer": "paper",
+    "category": "attribute"
+  },
+  {
+    "id": "06983075",
+    "question": "Which color is the hair?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "101017947",
+    "question": "Does the stroller have red color?",
+    "answer": "yes",
+    "category": "attribute"
+  },
+  {
+    "id": "18192074",
+    "question": "What is the color of the trousers?",
+    "answer": "khaki",
+    "category": "attribute"
+  },
+  {
+    "id": "19900780",
+    "question": "Do the cellphone and the star have the same color?",
+    "answer": "no",
+    "category": "attribute"
+  },
+  {
+    "id": "1775646",
+    "question": "Does the shirt have a different color than the kite?",
+    "answer": "no",
+    "category": "attribute"
+  },
+  {
+    "id": "191039531",
+    "question": "Which color is the woman's hair?",
+    "answer": "brown",
+    "category": "attribute"
+  },
+  {
+    "id": "05907205",
+    "question": "What is the bowl on?",
+    "answer": "coffee table",
+    "category": "attribute"
+  },
+  {
+    "id": "05907206",
+    "question": "What is the item of furniture that that bowl is on?",
+    "answer": "coffee table",
+    "category": "attribute"
+  },
+  {
+    "id": "02269831",
+    "question": "What is the spatula in?",
+    "answer": "oven",
+    "category": "attribute"
+  },
+  {
+    "id": "11430774",
+    "question": "Which color is the car?",
+    "answer": "silver",
+    "category": "attribute"
+  },
+  {
+    "id": "12164489",
+    "question": "What is the towel on?",
+    "answer": "wall",
+    "category": "attribute"
+  },
+  {
+    "id": "19191329",
+    "question": "Is the color of the book the same as the bag?",
+    "answer": "yes",
+    "category": "attribute"
+  },
+  {
+    "id": "00277761",
+    "question": "What is the girl sitting on?",
+    "answer": "bike",
+    "category": "attribute"
+  },
+  {
+    "id": "00963387",
+    "question": "What is the woman in?",
+    "answer": "bed",
+    "category": "attribute"
+  },
+  {
+    "id": "00963388",
+    "question": "What is the item of furniture that the woman is in?",
+    "answer": "bed",
+    "category": "attribute"
+  },
+  {
+    "id": "08643674",
+    "question": "What is the picture showing?",
+    "answer": "road",
+    "category": "attribute"
+  },
+  {
+    "id": "08643677",
+    "question": "Does the street lamp have a different color than the cloud?",
+    "answer": "yes",
+    "category": "attribute"
+  },
+  {
+    "id": "15483046",
+    "question": "What is the color of the bag the woman is holding?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "131047890",
+    "question": "What is the name of the appliance that is the same color as the plate?",
+    "answer": "stove",
+    "category": "attribute"
+  },
+  {
+    "id": "12826707",
+    "question": "What color is that cap?",
+    "answer": "yellow",
+    "category": "attribute"
+  },
+  {
+    "id": "00143871",
+    "question": "Is the color of the cloud the same as the fence?",
+    "answer": "no",
+    "category": "attribute"
+  },
+  {
+    "id": "19474896",
+    "question": "What is the girl holding?",
+    "answer": "pole",
+    "category": "attribute"
+  },
+  {
+    "id": "01944993",
+    "question": "Is the door open and cream colored?",
+    "answer": "yes",
+    "category": "attribute"
+  },
+  {
+    "id": "11577041",
+    "question": "What is the device that the young person looks at?",
+    "answer": "laptop",
+    "category": "attribute"
+  },
+  {
+    "id": "16753814",
+    "question": "What is the name of that animals?",
+    "answer": "cats",
+    "category": "attribute"
+  },
+  {
+    "id": "0331768",
+    "question": "Are the toilet and the radiator the same color?",
+    "answer": "no",
+    "category": "attribute"
+  },
+  {
+    "id": "15599995",
+    "question": "What color is the tank top?",
+    "answer": "white",
+    "category": "attribute"
+  },
+  {
+    "id": "14775102",
+    "question": "What is the girl on?",
+    "answer": "bed",
+    "category": "attribute"
+  },
+  {
+    "id": "18529783",
+    "question": "Do the plant and the shower curtain have the same color?",
+    "answer": "no",
+    "category": "attribute"
+  },
+  {
+    "id": "13834746",
+    "question": "What is the person on the motorcycle wearing?",
+    "answer": "helmet",
+    "category": "attribute"
+  },
+  {
+    "id": "19220203",
+    "question": "What is the man wearing?",
+    "answer": "wetsuit",
+    "category": "attribute"
+  },
+  {
+    "id": "01994233",
+    "question": "What is the man wearing?",
+    "answer": "pants",
+    "category": "attribute"
+  },
+  {
+    "id": "12451157",
+    "question": "What is the person wearing?",
+    "answer": "uniform",
+    "category": "attribute"
+  },
+  {
+    "id": "12451158",
+    "question": "What is the player wearing?",
+    "answer": "uniform",
+    "category": "attribute"
+  },
+  {
+    "id": "01189709",
+    "question": "What is the animal on the sea shore in the scene?",
+    "answer": "elephant",
+    "category": "attribute"
+  },
+  {
+    "id": "11719760",
+    "question": "What is the fence made of?",
+    "answer": "wood",
+    "category": "attribute"
+  },
+  {
+    "id": "04367846",
+    "question": "What is the animal in the window?",
+    "answer": "dog",
+    "category": "attribute"
+  },
+  {
+    "id": "0127240",
+    "question": "What vehicle has the same color as the door?",
+    "answer": "train",
+    "category": "attribute"
+  },
+  {
+    "id": "131059183",
+    "question": "What is the woman on?",
+    "answer": "bench",
+    "category": "attribute"
+  }
+]
