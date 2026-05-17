@@ -1,51 +1,70 @@
-# datasets/cash/filter_gqa.py
-# KARTHIGEYAN — filter GQA questions by semantic category
-import json
-import os
+# Fixed: spatial+attribute from GQA, counting from VQAv2
+import json, os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-input_path = os.path.join(script_dir, '..', 'gqa', 'questions', 'val_balanced_questions.json')
 
-with open(input_path, encoding='utf-8') as f:
-    all_questions = json.load(f)
+# ── SPATIAL + ATTRIBUTE from GQA ──────────────────────────
+gqa_path = os.path.join(script_dir, '..', 'gqa', 'questions',
+                        'val_balanced_questions.json')
+with open(gqa_path, encoding='utf-8') as f:
+    gqa_q = json.load(f)
 
-spatial, counting, attribute = [], [], []
-
-for qid, q in all_questions.items():
-    qtext = q['question'].lower()
-    types = q.get('types', {}).get('structural', '')
-    
-    # Spatial relations
-    spatial_words = ['left', 'right', 'above', 'below', 
-                     'behind', 'front', 'next to', 'between']
-    if any(w in qtext for w in spatial_words):
+spatial, attribute = [], []
+for qid, q in gqa_q.items():
+    text = q['question'].lower()
+    if any(w in text for w in ['left of','right of','above','below',
+                                'behind','in front','next to','between']):
         spatial.append({'id': qid, 'question': q['question'],
                         'answer': q['answer'], 'category': 'spatial'})
-    
-    # Counting — NOTE: GQA val_balanced has NO counting/numeric questions.
-    # All answers are text-based (yes/no, colors, objects, directions).
-    # TODO: Source counting questions from VQAv2 or another dataset.
-    elif q['answer'].isdigit() or q['answer'].lower() in [
-            'zero', 'one', 'two', 'three', 'four', 'five',
-            'six', 'seven', 'eight', 'nine', 'ten']:
-        counting.append({'id': qid, 'question': q['question'],
-                         'answer': q['answer'], 'category': 'counting'})
-    
-    # Attribute binding
-    elif any(w in qtext for w in ['color', 'size', 'shape', 
-                                   'material', 'what is the']):
+    elif any(w in text for w in ['what color','what is the color',
+                                  'what shape','what material','what size']):
         attribute.append({'id': qid, 'question': q['question'],
                           'answer': q['answer'], 'category': 'attribute'})
+    if len(spatial) >= 100 and len(attribute) >= 100:
+        break
 
-# Take 100 from each category
-cash_data = spatial[:100] + counting[:100] + attribute[:100]
+# ── COUNTING from VQAv2 ───────────────────────────────────
+vqa_ann_path  = os.path.join(script_dir, '..', 'gqa', 'questions',
+                             'v2_mscoco_train2014_annotations.json')
+vqa_ques_path = os.path.join(script_dir, '..', 'gqa', 'questions',
+                             'v2_OpenEnded_mscoco_train2014_questions.json')
 
-output_path = os.path.join(script_dir, 'cash_v1_partial.json')
+with open(vqa_ann_path,  encoding='utf-8') as f:
+    vqa_ann = json.load(f)
+with open(vqa_ques_path, encoding='utf-8') as f:
+    vqa_ques = json.load(f)
 
-with open(output_path, 'w', encoding='utf-8') as f:
-    json.dump(cash_data, f, indent=2)
+# Build question_id → question text map
+qid_to_text = {q['question_id']: q['question']
+               for q in vqa_ques['questions']}
 
-print(f"Spatial: {len(spatial[:100])}")
-print(f"Counting: {len(counting[:100])}")
+numeric_answers = {'0','1','2','3','4','5','6','7','8','9','10',
+                   'zero','one','two','three','four','five',
+                   'six','seven','eight','nine','ten'}
+
+counting = []
+for ann in vqa_ann['annotations']:
+    ans = ann['multiple_choice_answer'].lower().strip()
+    if ans in numeric_answers:
+        qtext = qid_to_text.get(ann['question_id'], '')
+        if 'how many' in qtext.lower():
+            counting.append({
+                'id':       str(ann['question_id']),
+                'question': qtext,
+                'answer':   ans,
+                'category': 'counting'
+            })
+    if len(counting) >= 100:
+        break
+
+# ── SAVE ──────────────────────────────────────────────────
+cash = spatial[:100] + counting[:100] + attribute[:100]
+out = os.path.join(script_dir, 'cash_v1_partial.json')
+with open(out, 'w', encoding='utf-8') as f:
+    json.dump(cash, f, indent=2)
+
+print(f"Spatial:   {len(spatial[:100])}")
+print(f"Counting:  {len(counting[:100])}")
 print(f"Attribute: {len(attribute[:100])}")
-print(f"Total saved: {len(cash_data)} questions")
+print(f"Total:     {len(cash)}")
+print(f"\nSample counting: {counting[0]}")

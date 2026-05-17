@@ -6,12 +6,6 @@
     "category": "spatial"
   },
   {
-    "id": "14778714",
-    "question": "What is under the utensil on the left?",
-    "answer": "napkin",
-    "category": "spatial"
-  },
-  {
     "id": "19486857",
     "question": "What is the woman in front of?",
     "answer": "statue",
@@ -90,12 +84,6 @@
     "category": "spatial"
   },
   {
-    "id": "08164591",
-    "question": "On which side of the photo is the towel, the left or the right?",
-    "answer": "left",
-    "category": "spatial"
-  },
-  {
     "id": "1942734",
     "question": "What type of vehicle is to the left of the boy that is wearing a shirt?",
     "answer": "van",
@@ -117,12 +105,6 @@
     "id": "10889906",
     "question": "Does the knife next to the fork look black?",
     "answer": "no",
-    "category": "spatial"
-  },
-  {
-    "id": "13368729",
-    "question": "Are there any books near the device on the right?",
-    "answer": "yes",
     "category": "spatial"
   },
   {
@@ -198,12 +180,6 @@
     "category": "spatial"
   },
   {
-    "id": "111015885",
-    "question": "Is the mobile phone on the left side?",
-    "answer": "yes",
-    "category": "spatial"
-  },
-  {
     "id": "01532381",
     "question": "What is the man to the left of the boats wearing?",
     "answer": "wetsuit",
@@ -258,21 +234,9 @@
     "category": "spatial"
   },
   {
-    "id": "14311593",
-    "question": "Are the letters on the bag on the left?",
-    "answer": "yes",
-    "category": "spatial"
-  },
-  {
     "id": "09207863",
     "question": "Do you see a chair to the left of the pillow?",
     "answer": "no",
-    "category": "spatial"
-  },
-  {
-    "id": "15858851",
-    "question": "Is the bowl on the right side or on the left?",
-    "answer": "right",
     "category": "spatial"
   },
   {
@@ -291,12 +255,6 @@
     "id": "13708543",
     "question": "Which direction is the woman to the left of the chair looking at?",
     "answer": "behind",
-    "category": "spatial"
-  },
-  {
-    "id": "121037755",
-    "question": "Is the rope on the left?",
-    "answer": "yes",
     "category": "spatial"
   },
   {
@@ -360,12 +318,6 @@
     "category": "spatial"
   },
   {
-    "id": "08621661",
-    "question": "What color is the device on the right?",
-    "answer": "black",
-    "category": "spatial"
-  },
-  {
     "id": "15667729",
     "question": "Is the white lamp to the left or to the right of the white curtain?",
     "answer": "right",
@@ -381,12 +333,6 @@
     "id": "19606703",
     "question": "What is the animal that is to the left of the brown object that is to the left of the speaker called?",
     "answer": "cat",
-    "category": "spatial"
-  },
-  {
-    "id": "02516755",
-    "question": "Is the boat on the left or on the right?",
-    "answer": "left",
     "category": "spatial"
   },
   {
@@ -498,12 +444,6 @@
     "category": "spatial"
   },
   {
-    "id": "0648000",
-    "question": "Is the chicken breast on the right?",
-    "answer": "no",
-    "category": "spatial"
-  },
-  {
     "id": "15675504",
     "question": "What is in front of the screen that is to the left of the computer?",
     "answer": "chair",
@@ -600,6 +540,666 @@
     "category": "spatial"
   },
   {
+    "id": "1525055",
+    "question": "Do you see artichokes to the right of the tablecloth on the left?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "0647948",
+    "question": "Is the green vegetable to the right of the beef?",
+    "answer": "yes",
+    "category": "spatial"
+  },
+  {
+    "id": "07810304",
+    "question": "Are there drawers to the left of the bed that is in front of the curtains?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "00374751",
+    "question": "Is the man to the left or to the right of the flags?",
+    "answer": "left",
+    "category": "spatial"
+  },
+  {
+    "id": "03713669",
+    "question": "Is the fence behind the trees?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "03713661",
+    "question": "What is in front of the trees?",
+    "answer": "fence",
+    "category": "spatial"
+  },
+  {
+    "id": "09662508",
+    "question": "Are there any chairs to the right of the lady?",
+    "answer": "no",
+    "category": "spatial"
+  },
+  {
+    "id": "02689605",
+    "question": "What vegetable is to the right of the beef?",
+    "answer": "cucumber",
+    "category": "spatial"
+  },
+  {
+    "id": "15814189",
+    "question": "Is the trash can to the left or to the right of the toilet?",
+    "answer": "right",
+    "category": "spatial"
+  },
+  {
+    "id": "10682118",
+    "question": "Which kind of vegetable is to the right of the rice?",
+    "answer": "pepper",
+    "category": "spatial"
+  },
+  {
+    "id": "393227002",
+    "question": "How many tattoos can be seen on this man's body?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "131074001",
+    "question": "How many pieces of furniture which are used for sleeping are featured in this picture?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "393230001",
+    "question": "How many people are in this image?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "131093002",
+    "question": "How many sheeps are this?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "25015",
+    "question": "How many giraffes are there?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "25017",
+    "question": "How many animals are in this photo?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "262171000",
+    "question": "How many people are on the boat?",
+    "answer": "5",
+    "category": "counting"
+  },
+  {
+    "id": "524325000",
+    "question": "How many people are wearing shorts in the forefront of this photo?",
+    "answer": "4",
+    "category": "counting"
+  },
+  {
+    "id": "131118001",
+    "question": "How many planes are in the picture?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "524338000",
+    "question": "How many trees are in this photo?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "131128002",
+    "question": "How many flowers are painted on the vase?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "370986001",
+    "question": "How many elephants are in the water?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "370986002",
+    "question": "How many tails can you see in this picture?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "262204000",
+    "question": "How many tusks are visible?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "458763001",
+    "question": "How many trees on the table?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "458763002",
+    "question": "How many horns are in the picture?",
+    "answer": "0",
+    "category": "counting"
+  },
+  {
+    "id": "72000",
+    "question": "How many Giraffes are in this image?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "393290002",
+    "question": "How many stairs are there?",
+    "answer": "6",
+    "category": "counting"
+  },
+  {
+    "id": "393291007",
+    "question": "How many windows are there?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "393292002",
+    "question": "How many birds are in the sink?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "262221002",
+    "question": "How many tennis players are in the photo?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "524375003",
+    "question": "How many black sheep are there?",
+    "answer": "10",
+    "category": "counting"
+  },
+  {
+    "id": "524377002",
+    "question": "How many lunches is this?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "524377019",
+    "question": "How many hot dogs are shown?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "524377022",
+    "question": "How many pickle spears are there?",
+    "answer": "0",
+    "category": "counting"
+  },
+  {
+    "id": "524377024",
+    "question": "How many people are eating this hotdog?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "524377027",
+    "question": "How many sauces are there?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "524377051",
+    "question": "How many kinds of meat products are here?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "262159002",
+    "question": "How many rolls of toilet paper are on the toilet tank?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "92000",
+    "question": "How many layers are in this cake?",
+    "answer": "7",
+    "category": "counting"
+  },
+  {
+    "id": "92002",
+    "question": "How many people can eat this cake?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "94002",
+    "question": "How many vehicles are shown?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "524386004",
+    "question": "How many lamps are there?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "524386007",
+    "question": "How many lamps are in the room?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "524386011",
+    "question": "How many pictures on the wall?",
+    "answer": "4",
+    "category": "counting"
+  },
+  {
+    "id": "524386013",
+    "question": "How many TVs are on?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "524386015",
+    "question": "How many pictures are on the wall?",
+    "answer": "4",
+    "category": "counting"
+  },
+  {
+    "id": "131172000",
+    "question": "How many men in the picture are wearing sunglasses?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "393317007",
+    "question": "How many people can be seen?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "393317014",
+    "question": "How many green lights are there?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "131174000",
+    "question": "How many lights does the plane have?",
+    "answer": "5",
+    "category": "counting"
+  },
+  {
+    "id": "131174001",
+    "question": "How many planes are in this photo?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "546151002",
+    "question": "How many people are standing in this image?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "21826001",
+    "question": "How many poles is the person holding?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "109001",
+    "question": "How many bodies of water are in this scene?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "109002",
+    "question": "How many light post is there?",
+    "answer": "4",
+    "category": "counting"
+  },
+  {
+    "id": "113000",
+    "question": "How many people are in the picture?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "262260001",
+    "question": "How many pigeons are there?",
+    "answer": "6",
+    "category": "counting"
+  },
+  {
+    "id": "131190010",
+    "question": "How many bells are there?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "131190013",
+    "question": "How many clock faces does this building have?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "131190022",
+    "question": "How many flags are by the building's entrance?",
+    "answer": "0",
+    "category": "counting"
+  },
+  {
+    "id": "131190028",
+    "question": "How many windows are shown?",
+    "answer": "5",
+    "category": "counting"
+  },
+  {
+    "id": "131190029",
+    "question": "How many windows are pictured?",
+    "answer": "4",
+    "category": "counting"
+  },
+  {
+    "id": "131197003",
+    "question": "How many sheep can you see?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "262273005",
+    "question": "How many people are there?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "262273008",
+    "question": "How many people are in the image?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "436929002",
+    "question": "How many birds are there?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "284012004",
+    "question": "How many men are playing baseball?",
+    "answer": "5",
+    "category": "counting"
+  },
+  {
+    "id": "138000",
+    "question": "How many pots are hanging under the shelf?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "154001",
+    "question": "How many zebras can you see eating?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "154002",
+    "question": "How many kinds of animals are in this photo?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "154004",
+    "question": "How many different types of animals are in this scene?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "154009",
+    "question": "How many animals are there?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "393242000",
+    "question": "How many arrows can be seen?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "393242001",
+    "question": "How many stripes are at the bottom of the picture?",
+    "answer": "5",
+    "category": "counting"
+  },
+  {
+    "id": "415089000",
+    "question": "How many potted plants do you see?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "415089001",
+    "question": "How many chairs are there?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "393384001",
+    "question": "How many kids in this photo?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "393386000",
+    "question": "How many animals?",
+    "answer": "5",
+    "category": "counting"
+  },
+  {
+    "id": "137918001",
+    "question": "How many laptops are on the coffee table?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "524471005",
+    "question": "How many knobs are there?",
+    "answer": "4",
+    "category": "counting"
+  },
+  {
+    "id": "393403000",
+    "question": "How many buses are there?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "393403007",
+    "question": "How many decks does this bus have?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "257513003",
+    "question": "How many steps does it take to get to the top?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "201001",
+    "question": "How many ski boards are in the picture?",
+    "answer": "5",
+    "category": "counting"
+  },
+  {
+    "id": "131279004",
+    "question": "How many babies are in this photo?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "554301001",
+    "question": "How many balls are on the ground?",
+    "answer": "6",
+    "category": "counting"
+  },
+  {
+    "id": "262359006",
+    "question": "How many glasses are there?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "524508000",
+    "question": "How many horses are on the picture?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "524508001",
+    "question": "How many horses are in the picture?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "393438000",
+    "question": "How many kids?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "393442002",
+    "question": "How many black umbrellas?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "131299002",
+    "question": "How many skis are on the ground?",
+    "answer": "4",
+    "category": "counting"
+  },
+  {
+    "id": "524522003",
+    "question": "How many water jugs are visible?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "524525001",
+    "question": "How many trains are there?",
+    "answer": "3",
+    "category": "counting"
+  },
+  {
+    "id": "393464001",
+    "question": "How many kids are there?",
+    "answer": "5",
+    "category": "counting"
+  },
+  {
+    "id": "262393000",
+    "question": "How many rocks?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "262393003",
+    "question": "How many zebras are there?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "131339006",
+    "question": "How many people are surfing?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "524557003",
+    "question": "How many kids are wearing black and white?",
+    "answer": "5",
+    "category": "counting"
+  },
+  {
+    "id": "131342000",
+    "question": "How many men are wearing hats?",
+    "answer": "0",
+    "category": "counting"
+  },
+  {
+    "id": "393489006",
+    "question": "How many holes are on the phone case?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "393489016",
+    "question": "How many phones do you see?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "9000",
+    "question": "How many cookies can be seen?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "393493001",
+    "question": "How many girls are visible?",
+    "answer": "2",
+    "category": "counting"
+  },
+  {
+    "id": "131351001",
+    "question": "How many colors are in the tile?",
+    "answer": "1",
+    "category": "counting"
+  },
+  {
+    "id": "131366000",
+    "question": "How many people are standing next to each other?",
+    "answer": "4",
+    "category": "counting"
+  },
+  {
+    "id": "131366003",
+    "question": "How many rackets?",
+    "answer": "8",
+    "category": "counting"
+  },
+  {
+    "id": "131366004",
+    "question": "How many people are in this photo?",
+    "answer": "4",
+    "category": "counting"
+  },
+  {
+    "id": "131366009",
+    "question": "How many girls are in the picture?",
+    "answer": "4",
+    "category": "counting"
+  },
+  {
     "id": "17197213",
     "question": "What color is the helmet in the middle of the image?",
     "answer": "light blue",
@@ -612,63 +1212,9 @@
     "category": "attribute"
   },
   {
-    "id": "08185114",
-    "question": "What is the woman holding?",
-    "answer": "skis",
-    "category": "attribute"
-  },
-  {
     "id": "04285321",
     "question": "What is the color of the fence made of metal?",
     "answer": "green",
-    "category": "attribute"
-  },
-  {
-    "id": "0464558",
-    "question": "What is the book on?",
-    "answer": "coffee table",
-    "category": "attribute"
-  },
-  {
-    "id": "17284203",
-    "question": "Is the cap different in color than the sign?",
-    "answer": "no",
-    "category": "attribute"
-  },
-  {
-    "id": "06435607",
-    "question": "What is the name of the food that is not white?",
-    "answer": "hot dog",
-    "category": "attribute"
-  },
-  {
-    "id": "09143711",
-    "question": "Which color are the trousers?",
-    "answer": "purple",
-    "category": "attribute"
-  },
-  {
-    "id": "16718827",
-    "question": "What is the animal that is walking on the ground?",
-    "answer": "giraffe",
-    "category": "attribute"
-  },
-  {
-    "id": "1958363",
-    "question": "What is the sidewalk made of?",
-    "answer": "brick",
-    "category": "attribute"
-  },
-  {
-    "id": "1425112",
-    "question": "What is the chair made of?",
-    "answer": "wood",
-    "category": "attribute"
-  },
-  {
-    "id": "18435808",
-    "question": "Does the cap have pink color?",
-    "answer": "no",
     "category": "attribute"
   },
   {
@@ -678,63 +1224,15 @@
     "category": "attribute"
   },
   {
-    "id": "08185119",
-    "question": "What is the woman wearing?",
-    "answer": "goggles",
-    "category": "attribute"
-  },
-  {
-    "id": "18167294",
-    "question": "What is the vegetable on the bun?",
-    "answer": "lettuce",
-    "category": "attribute"
-  },
-  {
-    "id": "02717873",
-    "question": "What is the man doing?",
-    "answer": "skiing",
-    "category": "attribute"
-  },
-  {
     "id": "151001058",
     "question": "What is the color of the trousers?",
     "answer": "black",
     "category": "attribute"
   },
   {
-    "id": "19779818",
-    "question": "What is the piece of furniture that the book is on?",
-    "answer": "bed",
-    "category": "attribute"
-  },
-  {
-    "id": "16802826",
-    "question": "Is the color of the pillow different than the color of the counter?",
-    "answer": "yes",
-    "category": "attribute"
-  },
-  {
-    "id": "1131746",
-    "question": "What is the pipe on?",
-    "answer": "scooter",
-    "category": "attribute"
-  },
-  {
-    "id": "09982001",
-    "question": "Is the pot made of the same material as the container?",
-    "answer": "yes",
-    "category": "attribute"
-  },
-  {
-    "id": "13598461",
-    "question": "What is the device that is not on called?",
-    "answer": "remote control",
-    "category": "attribute"
-  },
-  {
-    "id": "10768721",
-    "question": "What is the man carrying?",
-    "answer": "backpack",
+    "id": "08621661",
+    "question": "What color is the device on the right?",
+    "answer": "black",
     "category": "attribute"
   },
   {
@@ -750,27 +1248,9 @@
     "category": "attribute"
   },
   {
-    "id": "13515709",
-    "question": "What is the round clock sitting on?",
-    "answer": "wall",
-    "category": "attribute"
-  },
-  {
     "id": "19388466",
     "question": "What color is that shirt, brown or white?",
     "answer": "brown",
-    "category": "attribute"
-  },
-  {
-    "id": "08749240",
-    "question": "What is the door made of?",
-    "answer": "metal",
-    "category": "attribute"
-  },
-  {
-    "id": "18265883",
-    "question": "Do the seat and the cart have the same color?",
-    "answer": "no",
     "category": "attribute"
   },
   {
@@ -780,33 +1260,9 @@
     "category": "attribute"
   },
   {
-    "id": "10972110",
-    "question": "Which color is the vest?",
-    "answer": "cream colored",
-    "category": "attribute"
-  },
-  {
     "id": "16614293",
     "question": "What color is the floor?",
     "answer": "tan",
-    "category": "attribute"
-  },
-  {
-    "id": "1295575",
-    "question": "Does the hair have white color?",
-    "answer": "no",
-    "category": "attribute"
-  },
-  {
-    "id": "00927569",
-    "question": "What is the animal in the grass?",
-    "answer": "giraffe",
-    "category": "attribute"
-  },
-  {
-    "id": "18717754",
-    "question": "What is the table made of?",
-    "answer": "glass",
     "category": "attribute"
   },
   {
@@ -816,27 +1272,9 @@
     "category": "attribute"
   },
   {
-    "id": "1946661",
-    "question": "Is the logo different in color than the sweatshirt?",
-    "answer": "yes",
-    "category": "attribute"
-  },
-  {
-    "id": "00171614",
-    "question": "What is the man on?",
-    "answer": "bench",
-    "category": "attribute"
-  },
-  {
     "id": "03150113",
     "question": "What color is the flag on the pole?",
     "answer": "yellow",
-    "category": "attribute"
-  },
-  {
-    "id": "10956782",
-    "question": "What is the box made of?",
-    "answer": "plastic",
     "category": "attribute"
   },
   {
@@ -852,51 +1290,9 @@
     "category": "attribute"
   },
   {
-    "id": "02198843",
-    "question": "Do the hat and the bucket have the same color?",
-    "answer": "yes",
-    "category": "attribute"
-  },
-  {
     "id": "10590269",
     "question": "What color is the tablecloth?",
     "answer": "blue",
-    "category": "attribute"
-  },
-  {
-    "id": "16535014",
-    "question": "What is the motorcyclist wearing?",
-    "answer": "outfit",
-    "category": "attribute"
-  },
-  {
-    "id": "16713312",
-    "question": "What is the chandelier hanging on?",
-    "answer": "ceiling",
-    "category": "attribute"
-  },
-  {
-    "id": "0526849",
-    "question": "What is the fluffy animal called?",
-    "answer": "bear",
-    "category": "attribute"
-  },
-  {
-    "id": "1525059",
-    "question": "What is the vegetable on top of the pizza?",
-    "answer": "artichoke",
-    "category": "attribute"
-  },
-  {
-    "id": "13795770",
-    "question": "What is the dog standing on?",
-    "answer": "bike",
-    "category": "attribute"
-  },
-  {
-    "id": "16822728",
-    "question": "What is the photo showing?",
-    "answer": "sidewalk",
     "category": "attribute"
   },
   {
@@ -918,36 +1314,6 @@
     "category": "attribute"
   },
   {
-    "id": "01420935",
-    "question": "What is the person holding?",
-    "answer": "pole",
-    "category": "attribute"
-  },
-  {
-    "id": "0459333",
-    "question": "What is the name of the item of furniture that is not wooden?",
-    "answer": "table",
-    "category": "attribute"
-  },
-  {
-    "id": "16351521",
-    "question": "Of which color is the shirt he is wearing?",
-    "answer": "black",
-    "category": "attribute"
-  },
-  {
-    "id": "02785224",
-    "question": "What is the man on the beach holding?",
-    "answer": "surfboard",
-    "category": "attribute"
-  },
-  {
-    "id": "08858510",
-    "question": "What is the brown food?",
-    "answer": "pancakes",
-    "category": "attribute"
-  },
-  {
     "id": "17954994",
     "question": "The shirt has what color?",
     "answer": "black",
@@ -960,111 +1326,9 @@
     "category": "attribute"
   },
   {
-    "id": "11737559",
-    "question": "Which material are the bags by the woman made of, paper or plastic?",
-    "answer": "paper",
-    "category": "attribute"
-  },
-  {
-    "id": "06983075",
-    "question": "Which color is the hair?",
-    "answer": "black",
-    "category": "attribute"
-  },
-  {
-    "id": "101017947",
-    "question": "Does the stroller have red color?",
-    "answer": "yes",
-    "category": "attribute"
-  },
-  {
     "id": "18192074",
     "question": "What is the color of the trousers?",
     "answer": "khaki",
-    "category": "attribute"
-  },
-  {
-    "id": "19900780",
-    "question": "Do the cellphone and the star have the same color?",
-    "answer": "no",
-    "category": "attribute"
-  },
-  {
-    "id": "1775646",
-    "question": "Does the shirt have a different color than the kite?",
-    "answer": "no",
-    "category": "attribute"
-  },
-  {
-    "id": "191039531",
-    "question": "Which color is the woman's hair?",
-    "answer": "brown",
-    "category": "attribute"
-  },
-  {
-    "id": "05907205",
-    "question": "What is the bowl on?",
-    "answer": "coffee table",
-    "category": "attribute"
-  },
-  {
-    "id": "05907206",
-    "question": "What is the item of furniture that that bowl is on?",
-    "answer": "coffee table",
-    "category": "attribute"
-  },
-  {
-    "id": "02269831",
-    "question": "What is the spatula in?",
-    "answer": "oven",
-    "category": "attribute"
-  },
-  {
-    "id": "11430774",
-    "question": "Which color is the car?",
-    "answer": "silver",
-    "category": "attribute"
-  },
-  {
-    "id": "12164489",
-    "question": "What is the towel on?",
-    "answer": "wall",
-    "category": "attribute"
-  },
-  {
-    "id": "19191329",
-    "question": "Is the color of the book the same as the bag?",
-    "answer": "yes",
-    "category": "attribute"
-  },
-  {
-    "id": "00277761",
-    "question": "What is the girl sitting on?",
-    "answer": "bike",
-    "category": "attribute"
-  },
-  {
-    "id": "00963387",
-    "question": "What is the woman in?",
-    "answer": "bed",
-    "category": "attribute"
-  },
-  {
-    "id": "00963388",
-    "question": "What is the item of furniture that the woman is in?",
-    "answer": "bed",
-    "category": "attribute"
-  },
-  {
-    "id": "08643674",
-    "question": "What is the picture showing?",
-    "answer": "road",
-    "category": "attribute"
-  },
-  {
-    "id": "08643677",
-    "question": "Does the street lamp have a different color than the cloud?",
-    "answer": "yes",
     "category": "attribute"
   },
   {
@@ -1074,51 +1338,9 @@
     "category": "attribute"
   },
   {
-    "id": "131047890",
-    "question": "What is the name of the appliance that is the same color as the plate?",
-    "answer": "stove",
-    "category": "attribute"
-  },
-  {
     "id": "12826707",
     "question": "What color is that cap?",
     "answer": "yellow",
-    "category": "attribute"
-  },
-  {
-    "id": "00143871",
-    "question": "Is the color of the cloud the same as the fence?",
-    "answer": "no",
-    "category": "attribute"
-  },
-  {
-    "id": "19474896",
-    "question": "What is the girl holding?",
-    "answer": "pole",
-    "category": "attribute"
-  },
-  {
-    "id": "01944993",
-    "question": "Is the door open and cream colored?",
-    "answer": "yes",
-    "category": "attribute"
-  },
-  {
-    "id": "11577041",
-    "question": "What is the device that the young person looks at?",
-    "answer": "laptop",
-    "category": "attribute"
-  },
-  {
-    "id": "16753814",
-    "question": "What is the name of that animals?",
-    "answer": "cats",
-    "category": "attribute"
-  },
-  {
-    "id": "0331768",
-    "question": "Are the toilet and the radiator the same color?",
-    "answer": "no",
     "category": "attribute"
   },
   {
@@ -1128,75 +1350,453 @@
     "category": "attribute"
   },
   {
-    "id": "14775102",
-    "question": "What is the girl on?",
-    "answer": "bed",
+    "id": "09725865",
+    "question": "What is the color of the floor that the desk is on top of?",
+    "answer": "blue",
     "category": "attribute"
   },
   {
-    "id": "18529783",
-    "question": "Do the plant and the shower curtain have the same color?",
-    "answer": "no",
+    "id": "00311920",
+    "question": "What is the color of the grass that is not short?",
+    "answer": "brown",
     "category": "attribute"
   },
   {
-    "id": "13834746",
-    "question": "What is the person on the motorcycle wearing?",
-    "answer": "helmet",
+    "id": "14262986",
+    "question": "What color is the hair?",
+    "answer": "dark brown",
     "category": "attribute"
   },
   {
-    "id": "19220203",
-    "question": "What is the man wearing?",
-    "answer": "wetsuit",
+    "id": "13151561",
+    "question": "What color is the hair that is not small?",
+    "answer": "white",
     "category": "attribute"
   },
   {
-    "id": "01994233",
-    "question": "What is the man wearing?",
-    "answer": "pants",
+    "id": "0624104",
+    "question": "What color is the couch the pillow is on?",
+    "answer": "black",
     "category": "attribute"
   },
   {
-    "id": "12451157",
-    "question": "What is the person wearing?",
-    "answer": "uniform",
+    "id": "081005615",
+    "question": "What color is the frisbee in the top of the picture?",
+    "answer": "purple",
     "category": "attribute"
   },
   {
-    "id": "12451158",
-    "question": "What is the player wearing?",
-    "answer": "uniform",
+    "id": "09270717",
+    "question": "What color is the coat the child is wearing?",
+    "answer": "red",
     "category": "attribute"
   },
   {
-    "id": "01189709",
-    "question": "What is the animal on the sea shore in the scene?",
-    "answer": "elephant",
+    "id": "10961743",
+    "question": "What color are the tracks?",
+    "answer": "black",
     "category": "attribute"
   },
   {
-    "id": "11719760",
-    "question": "What is the fence made of?",
-    "answer": "wood",
+    "id": "10324248",
+    "question": "What color is the helmet?",
+    "answer": "red",
     "category": "attribute"
   },
   {
-    "id": "04367846",
-    "question": "What is the animal in the window?",
-    "answer": "dog",
+    "id": "001058210",
+    "question": "What color is the hair?",
+    "answer": "dark",
     "category": "attribute"
   },
   {
-    "id": "0127240",
-    "question": "What vehicle has the same color as the door?",
-    "answer": "train",
+    "id": "18591076",
+    "question": "What is the color of the shirt?",
+    "answer": "black",
     "category": "attribute"
   },
   {
-    "id": "131059183",
-    "question": "What is the woman on?",
-    "answer": "bench",
+    "id": "16819806",
+    "question": "What color is the blanket, blue or tan?",
+    "answer": "blue",
+    "category": "attribute"
+  },
+  {
+    "id": "13764265",
+    "question": "What is the color of the lamp?",
+    "answer": "gold",
+    "category": "attribute"
+  },
+  {
+    "id": "11661712",
+    "question": "What color is the sweater?",
+    "answer": "blue",
+    "category": "attribute"
+  },
+  {
+    "id": "00805634",
+    "question": "What color do you think the bus is?",
+    "answer": "white",
+    "category": "attribute"
+  },
+  {
+    "id": "18281934",
+    "question": "What color is the headboard?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "1468971",
+    "question": "The skateboard the man is with has what color?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "061042514",
+    "question": "What is the color of the shirt?",
+    "answer": "orange",
+    "category": "attribute"
+  },
+  {
+    "id": "03495642",
+    "question": "What color is that jacket?",
+    "answer": "gray",
+    "category": "attribute"
+  },
+  {
+    "id": "041025394",
+    "question": "What is the color of the shoe the woman is wearing?",
+    "answer": "white",
+    "category": "attribute"
+  },
+  {
+    "id": "14869908",
+    "question": "What color is the road?",
+    "answer": "tan",
+    "category": "attribute"
+  },
+  {
+    "id": "07568858",
+    "question": "What is the color of that sky?",
+    "answer": "light blue",
+    "category": "attribute"
+  },
+  {
+    "id": "17922117",
+    "question": "The letters on the side of the airplane have what color?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "09354190",
+    "question": "What color is the crosswalk?",
+    "answer": "red",
+    "category": "attribute"
+  },
+  {
+    "id": "02228038",
+    "question": "The shirt has what color?",
+    "answer": "green",
+    "category": "attribute"
+  },
+  {
+    "id": "04450569",
+    "question": "What color is the plate on the table?",
+    "answer": "silver",
+    "category": "attribute"
+  },
+  {
+    "id": "04104534",
+    "question": "What color does the dress have?",
+    "answer": "white",
+    "category": "attribute"
+  },
+  {
+    "id": "13221527",
+    "question": "What color are the stormy clouds?",
+    "answer": "dark",
+    "category": "attribute"
+  },
+  {
+    "id": "10302229",
+    "question": "What color is the bookshelf on the left?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "19702140",
+    "question": "What color is the bird in the top part of the picture?",
+    "answer": "brown",
+    "category": "attribute"
+  },
+  {
+    "id": "02931698",
+    "question": "What color is the kite on the right side?",
+    "answer": "blue",
+    "category": "attribute"
+  },
+  {
+    "id": "15339557",
+    "question": "What is the color of the buses in the middle of the picture?",
+    "answer": "green",
+    "category": "attribute"
+  },
+  {
+    "id": "01125189",
+    "question": "What is the color of the building in the bottom part of the picture?",
+    "answer": "white",
+    "category": "attribute"
+  },
+  {
+    "id": "14864549",
+    "question": "What color is the logo?",
+    "answer": "gold",
+    "category": "attribute"
+  },
+  {
+    "id": "11281275",
+    "question": "What color is the clock on the wall?",
+    "answer": "white",
+    "category": "attribute"
+  },
+  {
+    "id": "19693877",
+    "question": "What color is the ground that the man is on?",
+    "answer": "brown",
+    "category": "attribute"
+  },
+  {
+    "id": "03686217",
+    "question": "That newspaper is of what color?",
+    "answer": "gray",
+    "category": "attribute"
+  },
+  {
+    "id": "1616401",
+    "question": "What is the color of the cake?",
+    "answer": "white",
+    "category": "attribute"
+  },
+  {
+    "id": "01530371",
+    "question": "What material is the fence made of?",
+    "answer": "metal",
+    "category": "attribute"
+  },
+  {
+    "id": "12525299",
+    "question": "What color is the shirt the man is wearing?",
+    "answer": "green",
+    "category": "attribute"
+  },
+  {
+    "id": "00804694",
+    "question": "The plate is of what color?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "19272302",
+    "question": "What color does the cow that is standing in the mud have?",
+    "answer": "white",
+    "category": "attribute"
+  },
+  {
+    "id": "09199446",
+    "question": "What is the color of the pan of the pizza?",
+    "answer": "silver",
+    "category": "attribute"
+  },
+  {
+    "id": "0688840",
+    "question": "What color is the can?",
+    "answer": "silver",
+    "category": "attribute"
+  },
+  {
+    "id": "01151986",
+    "question": "What color is the plate on the left?",
+    "answer": "blue",
+    "category": "attribute"
+  },
+  {
+    "id": "02962495",
+    "question": "What is the color of the shirt the lady is wearing?",
+    "answer": "pink",
+    "category": "attribute"
+  },
+  {
+    "id": "03716175",
+    "question": "What is the color of the jacket?",
+    "answer": "gray",
+    "category": "attribute"
+  },
+  {
+    "id": "07624096",
+    "question": "What is the color of the trunks that are not dry?",
+    "answer": "gray",
+    "category": "attribute"
+  },
+  {
+    "id": "10423700",
+    "question": "What color is the grass?",
+    "answer": "green",
+    "category": "attribute"
+  },
+  {
+    "id": "06805699",
+    "question": "What is the color of the shirt?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "07722454",
+    "question": "What color is the long grass?",
+    "answer": "brown",
+    "category": "attribute"
+  },
+  {
+    "id": "04468135",
+    "question": "What color is that chair?",
+    "answer": "dark",
+    "category": "attribute"
+  },
+  {
+    "id": "09587280",
+    "question": "What is the color of the apples the knife is cutting?",
+    "answer": "green",
+    "category": "attribute"
+  },
+  {
+    "id": "13356863",
+    "question": "What is the color of that chair?",
+    "answer": "gray",
+    "category": "attribute"
+  },
+  {
+    "id": "17134462",
+    "question": "What is the color of the fruit in the middle?",
+    "answer": "purple",
+    "category": "attribute"
+  },
+  {
+    "id": "17853042",
+    "question": "What color is the mane?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "07641604",
+    "question": "What color does the suit the man wears have?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "16901298",
+    "question": "What color is the mane?",
+    "answer": "red",
+    "category": "attribute"
+  },
+  {
+    "id": "00255101",
+    "question": "What color is the small hat?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "05957406",
+    "question": "Of what color is the shirt?",
+    "answer": "white",
+    "category": "attribute"
+  },
+  {
+    "id": "14279290",
+    "question": "What color is the logo?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "063245",
+    "question": "What is the color of the cap?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "00748370",
+    "question": "What color do you think the table cloth is?",
+    "answer": "gray",
+    "category": "attribute"
+  },
+  {
+    "id": "14754587",
+    "question": "What color is the logo on the backpack, white or orange?",
+    "answer": "white",
+    "category": "attribute"
+  },
+  {
+    "id": "14376200",
+    "question": "What is the color of the water?",
+    "answer": "dark",
+    "category": "attribute"
+  },
+  {
+    "id": "17444087",
+    "question": "The shirt has what color?",
+    "answer": "tan",
+    "category": "attribute"
+  },
+  {
+    "id": "1351295",
+    "question": "What color is the skirt the girl is wearing?",
+    "answer": "red",
+    "category": "attribute"
+  },
+  {
+    "id": "13483094",
+    "question": "What color are the shorts, black or white?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "111055030",
+    "question": "What color do you think the curtains on the right side are?",
+    "answer": "beige",
+    "category": "attribute"
+  },
+  {
+    "id": "13777351",
+    "question": "What color is the platter that is made of wood?",
+    "answer": "brown",
+    "category": "attribute"
+  },
+  {
+    "id": "08237593",
+    "question": "What color do the trousers have?",
+    "answer": "black",
+    "category": "attribute"
+  },
+  {
+    "id": "01924202",
+    "question": "What color is the shirt the man is in?",
+    "answer": "gray",
+    "category": "attribute"
+  },
+  {
+    "id": "15225192",
+    "question": "What color is the hat?",
+    "answer": "red",
+    "category": "attribute"
+  },
+  {
+    "id": "00665966",
+    "question": "What is the color of that table?",
+    "answer": "beige",
+    "category": "attribute"
+  },
+  {
+    "id": "1335430",
+    "question": "What color are the trunks the man is wearing?",
+    "answer": "white",
     "category": "attribute"
   }
 ]
