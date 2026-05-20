@@ -1,0 +1,2102 @@
+[
+  {
+    "question_id": "14778715",
+    "category": "spatial",
+    "question": "Are there napkins under the utensil to the left of the rice?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "19486857",
+    "category": "spatial",
+    "question": "What is the woman in front of?",
+    "label": "statue",
+    "prediction": "statue"
+  },
+  {
+    "question_id": "13663260",
+    "category": "spatial",
+    "question": "Is the curtain on the right side or on the left of the picture?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "16130590",
+    "category": "spatial",
+    "question": "Does the person to the left of the man appear to be sitting?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "11615428",
+    "category": "spatial",
+    "question": "Is there any surfboard to the right of the man the people are standing by?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "17267240",
+    "category": "spatial",
+    "question": "Are there shelves to the left of the books behind the man?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "101024942",
+    "category": "spatial",
+    "question": "What vegetable is to the right of the tomato?",
+    "label": "lettuce",
+    "prediction": "lettuce"
+  },
+  {
+    "question_id": "13571728",
+    "category": "spatial",
+    "question": "The woman to the left of the man is wearing what?",
+    "label": "dress",
+    "prediction": "dress"
+  },
+  {
+    "question_id": "0328071",
+    "category": "spatial",
+    "question": "Does the boat to the left of the flag look small or large?",
+    "label": "small",
+    "prediction": "small"
+  },
+  {
+    "question_id": "03739128",
+    "category": "spatial",
+    "question": "Which kind of furniture is right of the drawers?",
+    "label": "shelves",
+    "prediction": "shelves"
+  },
+  {
+    "question_id": "06645355",
+    "category": "spatial",
+    "question": "Who is in front of the gray building?",
+    "label": "passengers",
+    "prediction": "passengers"
+  },
+  {
+    "question_id": "06645358",
+    "category": "spatial",
+    "question": "What are the passengers in front of?",
+    "label": "building",
+    "prediction": "building"
+  },
+  {
+    "question_id": "13112324",
+    "category": "spatial",
+    "question": "Is the person to the left of the frisbee wearing a glove?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "0364186",
+    "category": "spatial",
+    "question": "Is the chair to the left of a pillow?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "1942734",
+    "category": "spatial",
+    "question": "What type of vehicle is to the left of the boy that is wearing a shirt?",
+    "label": "van",
+    "prediction": "van"
+  },
+  {
+    "question_id": "031007945",
+    "category": "spatial",
+    "question": "What is the fruit that is covered by the fruit that the banana is to the left of called?",
+    "label": "apple",
+    "prediction": "apple"
+  },
+  {
+    "question_id": "13515212",
+    "category": "spatial",
+    "question": "Is the surfer to the left or to the right of the surfboard?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "10889906",
+    "category": "spatial",
+    "question": "Does the knife next to the fork look black?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "151015980",
+    "category": "spatial",
+    "question": "Is the woman to the left or to the right of the man that is wearing trousers?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "0090767",
+    "category": "spatial",
+    "question": "Does the remote control to the left of the other remote control look black?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "06134756",
+    "category": "spatial",
+    "question": "Is the tennis player to the left or to the right of the ball on the left?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "04819662",
+    "category": "spatial",
+    "question": "What kind of furniture is to the right of the bed?",
+    "label": "cabinet",
+    "prediction": "cabinet"
+  },
+  {
+    "question_id": "11563995",
+    "category": "spatial",
+    "question": "What kind of furniture is to the right of the freezer that is on the left of the picture?",
+    "label": "drawers",
+    "prediction": "drawers"
+  },
+  {
+    "question_id": "03260227",
+    "category": "spatial",
+    "question": "Is the boat on the right of the picture?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "16542238",
+    "category": "spatial",
+    "question": "Is the bed to the left or to the right of the drawers on the left?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "08203407",
+    "category": "spatial",
+    "question": "Are the curtains to the right or to the left of the red pillow?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "00805479",
+    "category": "spatial",
+    "question": "The sidewalk is in front of what?",
+    "label": "street light",
+    "prediction": "street light"
+  },
+  {
+    "question_id": "18175193",
+    "category": "spatial",
+    "question": "What weapon is to the left of the purse?",
+    "label": "sword",
+    "prediction": "sword"
+  },
+  {
+    "question_id": "13168814",
+    "category": "spatial",
+    "question": "The man that is to the left of the horse is walking where?",
+    "label": "street",
+    "prediction": "street"
+  },
+  {
+    "question_id": "18283096",
+    "category": "spatial",
+    "question": "Is the bottle to the left or to the right of the chair that is in the middle of the image?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "01532381",
+    "category": "spatial",
+    "question": "What is the man to the left of the boats wearing?",
+    "label": "wetsuit",
+    "prediction": "wetsuit"
+  },
+  {
+    "question_id": "02106577",
+    "category": "spatial",
+    "question": "Is the man to the left of the backpack wearing a coat?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "16791660",
+    "category": "spatial",
+    "question": "Is the faucet to the right or to the left of the toilet?",
+    "label": "left",
+    "prediction": "left"
+  },
+  {
+    "question_id": "02247621",
+    "category": "spatial",
+    "question": "Who is in front of the building that is made out of brick?",
+    "label": "people",
+    "prediction": "people"
+  },
+  {
+    "question_id": "02247623",
+    "category": "spatial",
+    "question": "Who is in front of the building?",
+    "label": "people",
+    "prediction": "people"
+  },
+  {
+    "question_id": "15871248",
+    "category": "spatial",
+    "question": "Which kind of vehicle is to the left of the backpack?",
+    "label": "tractor",
+    "prediction": "tractor"
+  },
+  {
+    "question_id": "00297942",
+    "category": "spatial",
+    "question": "What's the fence in front of?",
+    "label": "bushes",
+    "prediction": "bushes"
+  },
+  {
+    "question_id": "00297941",
+    "category": "spatial",
+    "question": "What is the fence in front of?",
+    "label": "bushes",
+    "prediction": "bushes"
+  },
+  {
+    "question_id": "00297940",
+    "category": "spatial",
+    "question": "What is in front of the bushes?",
+    "label": "fence",
+    "prediction": "fence"
+  },
+  {
+    "question_id": "09207863",
+    "category": "spatial",
+    "question": "Do you see a chair to the left of the pillow?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "07241856",
+    "category": "spatial",
+    "question": "What kind of vegetable is to the right of the cups on the counter?",
+    "label": "onions",
+    "prediction": "onions"
+  },
+  {
+    "question_id": "12227132",
+    "category": "spatial",
+    "question": "Is the white vehicle to the right or to the left of the vehicle the vehicle is to the left of?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "13708543",
+    "category": "spatial",
+    "question": "Which direction is the woman to the left of the chair looking at?",
+    "label": "behind",
+    "prediction": "behind"
+  },
+  {
+    "question_id": "041000077",
+    "category": "spatial",
+    "question": "Is the person to the right of the man wearing a boot?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "00880780",
+    "category": "spatial",
+    "question": "Is the man to the right of the hammer wearing eye glasses?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "15841623",
+    "category": "spatial",
+    "question": "Are there any cups to the left of the cupcake that is in the middle?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "14889408",
+    "category": "spatial",
+    "question": "Is the chair on the right of the photo?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "03126814",
+    "category": "spatial",
+    "question": "Are there any men to the right of the person that is holding the tennis racket?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "0111303",
+    "category": "spatial",
+    "question": "Is the cabinet to the right of the table?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "05684159",
+    "category": "spatial",
+    "question": "Is the player to the left or to the right of the umpire that wears a belt?",
+    "label": "left",
+    "prediction": "left"
+  },
+  {
+    "question_id": "10464328",
+    "category": "spatial",
+    "question": "Are there any bags to the right of the man in the middle of the image?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "03795448",
+    "category": "spatial",
+    "question": "Which kind of animal is to the left of the truck?",
+    "label": "bull",
+    "prediction": "bull"
+  },
+  {
+    "question_id": "1860944",
+    "category": "spatial",
+    "question": "What is the name of the appliance behind the guy?",
+    "label": "refrigerator",
+    "prediction": "refrigerator"
+  },
+  {
+    "question_id": "15667729",
+    "category": "spatial",
+    "question": "Is the white lamp to the left or to the right of the white curtain?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "11215445",
+    "category": "spatial",
+    "question": "What kind of food is to the left of the toast?",
+    "label": "sandwich",
+    "prediction": "sandwich"
+  },
+  {
+    "question_id": "19606703",
+    "category": "spatial",
+    "question": "What is the animal that is to the left of the brown object that is to the left of the speaker called?",
+    "label": "cat",
+    "prediction": "cat"
+  },
+  {
+    "question_id": "101001503",
+    "category": "spatial",
+    "question": "Are there spoons to the left of the vegetable on the right?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "14202809",
+    "category": "spatial",
+    "question": "Are there men to the left of the dark brown horse?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "14202805",
+    "category": "spatial",
+    "question": "What is the man to the left of the woman wearing?",
+    "label": "coat",
+    "prediction": "coat"
+  },
+  {
+    "question_id": "1463548",
+    "category": "spatial",
+    "question": "Does the animal that is to the right of the umbrella seem to be off?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "00947223",
+    "category": "spatial",
+    "question": "Is there a soccer ball above the basket?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "00681430",
+    "category": "spatial",
+    "question": "Is the ball to the right or to the left of the person that is wearing a jersey?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "06438181",
+    "category": "spatial",
+    "question": "Is the animal to the left of the old vehicle?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "0056771",
+    "category": "spatial",
+    "question": "What type of appliance is to the right of the woman's glasses?",
+    "label": "dishwasher",
+    "prediction": "dishwasher"
+  },
+  {
+    "question_id": "07900409",
+    "category": "spatial",
+    "question": "Does the person to the right of the bed wear a scarf?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "18783554",
+    "category": "spatial",
+    "question": "Is the giraffe in front of the fence?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "15705095",
+    "category": "spatial",
+    "question": "Is the melon on the left of the picture?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "01343904",
+    "category": "spatial",
+    "question": "What is the size of the banana to the right of the other banana?",
+    "label": "small",
+    "prediction": "small"
+  },
+  {
+    "question_id": "08223793",
+    "category": "spatial",
+    "question": "What is the appliance to the right of the bowl?",
+    "label": "radiator",
+    "prediction": "radiator"
+  },
+  {
+    "question_id": "16800885",
+    "category": "spatial",
+    "question": "Are there any surfers to the right of the surfboard in the center of the image?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "00461466",
+    "category": "spatial",
+    "question": "Is the plastic chair to the left or to the right of the man that is watching the game?",
+    "label": "left",
+    "prediction": "left"
+  },
+  {
+    "question_id": "00461461",
+    "category": "spatial",
+    "question": "Is there a chair to the left of the man that is watching the game?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "05672549",
+    "category": "spatial",
+    "question": "What is the name of the drink to the right of the plate?",
+    "label": "beer",
+    "prediction": "beer"
+  },
+  {
+    "question_id": "05304738",
+    "category": "spatial",
+    "question": "Is the fork to the right or to the left of the bowl the sauce is in?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "15675504",
+    "category": "spatial",
+    "question": "What is in front of the screen that is to the left of the computer?",
+    "label": "chair",
+    "prediction": "chair"
+  },
+  {
+    "question_id": "17397396",
+    "category": "spatial",
+    "question": "Which kind of furniture is to the left of the desk?",
+    "label": "beds",
+    "prediction": "beds"
+  },
+  {
+    "question_id": "00816476",
+    "category": "spatial",
+    "question": "Is the fence to the right or to the left of the old car?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "091057558",
+    "category": "spatial",
+    "question": "Is the towel to the right or to the left of the faucet?",
+    "label": "left",
+    "prediction": "left"
+  },
+  {
+    "question_id": "19222090",
+    "category": "spatial",
+    "question": "What appliance is to the left of the toaster that is on the countertop?",
+    "label": "refrigerator",
+    "prediction": "refrigerator"
+  },
+  {
+    "question_id": "14937594",
+    "category": "spatial",
+    "question": "Is the white curtain to the right or to the left of the picture on the shelf?",
+    "label": "left",
+    "prediction": "left"
+  },
+  {
+    "question_id": "07411217",
+    "category": "spatial",
+    "question": "Is the empty bowl to the right or to the left of the man that wears glasses?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "06790515",
+    "category": "spatial",
+    "question": "Are there any computers to the left of the glasses?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "10361470",
+    "category": "spatial",
+    "question": "Is the stove to the right of a book?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "02964695",
+    "category": "spatial",
+    "question": "Are there traffic lights in front of the mountains?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "02964692",
+    "category": "spatial",
+    "question": "What is the fire hydrant in front of?",
+    "label": "mountains",
+    "prediction": "mountains"
+  },
+  {
+    "question_id": "02964690",
+    "category": "spatial",
+    "question": "What is in front of the mountains?",
+    "label": "fire hydrant",
+    "prediction": "fire hydrant"
+  },
+  {
+    "question_id": "10274399",
+    "category": "spatial",
+    "question": "Is the catcher to the left or to the right of the man on the right?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "04605330",
+    "category": "spatial",
+    "question": "Is the man that is to the left of the plate holding a frisbee?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "18330260",
+    "category": "spatial",
+    "question": "Is the sky above the trees open and clear?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "18814087",
+    "category": "spatial",
+    "question": "Do you see fences to the right of the cow that is eating grass?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "1525055",
+    "category": "spatial",
+    "question": "Do you see artichokes to the right of the tablecloth on the left?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "0647948",
+    "category": "spatial",
+    "question": "Is the green vegetable to the right of the beef?",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question_id": "07810304",
+    "category": "spatial",
+    "question": "Are there drawers to the left of the bed that is in front of the curtains?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "00374751",
+    "category": "spatial",
+    "question": "Is the man to the left or to the right of the flags?",
+    "label": "left",
+    "prediction": "left"
+  },
+  {
+    "question_id": "03713669",
+    "category": "spatial",
+    "question": "Is the fence behind the trees?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "03713661",
+    "category": "spatial",
+    "question": "What is in front of the trees?",
+    "label": "fence",
+    "prediction": "fence"
+  },
+  {
+    "question_id": "09662508",
+    "category": "spatial",
+    "question": "Are there any chairs to the right of the lady?",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question_id": "02689605",
+    "category": "spatial",
+    "question": "What vegetable is to the right of the beef?",
+    "label": "cucumber",
+    "prediction": "cucumber"
+  },
+  {
+    "question_id": "15814189",
+    "category": "spatial",
+    "question": "Is the trash can to the left or to the right of the toilet?",
+    "label": "right",
+    "prediction": "right"
+  },
+  {
+    "question_id": "10682118",
+    "category": "spatial",
+    "question": "Which kind of vegetable is to the right of the rice?",
+    "label": "pepper",
+    "prediction": "pepper"
+  },
+  {
+    "question_id": "393227002",
+    "category": "counting",
+    "question": "How many tattoos can be seen on this man's body?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "131074001",
+    "category": "counting",
+    "question": "How many pieces of furniture which are used for sleeping are featured in this picture?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "393230001",
+    "category": "counting",
+    "question": "How many people are in this image?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "131093002",
+    "category": "counting",
+    "question": "How many sheeps are this?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "25015",
+    "category": "counting",
+    "question": "How many giraffes are there?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "25017",
+    "category": "counting",
+    "question": "How many animals are in this photo?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "262171000",
+    "category": "counting",
+    "question": "How many people are on the boat?",
+    "label": "5",
+    "prediction": "5"
+  },
+  {
+    "question_id": "524325000",
+    "category": "counting",
+    "question": "How many people are wearing shorts in the forefront of this photo?",
+    "label": "4",
+    "prediction": "4"
+  },
+  {
+    "question_id": "131118001",
+    "category": "counting",
+    "question": "How many planes are in the picture?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "524338000",
+    "category": "counting",
+    "question": "How many trees are in this photo?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "131128002",
+    "category": "counting",
+    "question": "How many flowers are painted on the vase?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "370986001",
+    "category": "counting",
+    "question": "How many elephants are in the water?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "370986002",
+    "category": "counting",
+    "question": "How many tails can you see in this picture?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "262204000",
+    "category": "counting",
+    "question": "How many tusks are visible?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "458763001",
+    "category": "counting",
+    "question": "How many trees on the table?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "458763002",
+    "category": "counting",
+    "question": "How many horns are in the picture?",
+    "label": "0",
+    "prediction": "0"
+  },
+  {
+    "question_id": "72000",
+    "category": "counting",
+    "question": "How many Giraffes are in this image?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "393290002",
+    "category": "counting",
+    "question": "How many stairs are there?",
+    "label": "6",
+    "prediction": "6"
+  },
+  {
+    "question_id": "393291007",
+    "category": "counting",
+    "question": "How many windows are there?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "393292002",
+    "category": "counting",
+    "question": "How many birds are in the sink?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "262221002",
+    "category": "counting",
+    "question": "How many tennis players are in the photo?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "524375003",
+    "category": "counting",
+    "question": "How many black sheep are there?",
+    "label": "10",
+    "prediction": "10"
+  },
+  {
+    "question_id": "524377002",
+    "category": "counting",
+    "question": "How many lunches is this?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "524377019",
+    "category": "counting",
+    "question": "How many hot dogs are shown?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "524377022",
+    "category": "counting",
+    "question": "How many pickle spears are there?",
+    "label": "0",
+    "prediction": "0"
+  },
+  {
+    "question_id": "524377024",
+    "category": "counting",
+    "question": "How many people are eating this hotdog?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "524377027",
+    "category": "counting",
+    "question": "How many sauces are there?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "524377051",
+    "category": "counting",
+    "question": "How many kinds of meat products are here?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "262159002",
+    "category": "counting",
+    "question": "How many rolls of toilet paper are on the toilet tank?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "92000",
+    "category": "counting",
+    "question": "How many layers are in this cake?",
+    "label": "7",
+    "prediction": "7"
+  },
+  {
+    "question_id": "92002",
+    "category": "counting",
+    "question": "How many people can eat this cake?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "94002",
+    "category": "counting",
+    "question": "How many vehicles are shown?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "524386004",
+    "category": "counting",
+    "question": "How many lamps are there?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "524386007",
+    "category": "counting",
+    "question": "How many lamps are in the room?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "524386011",
+    "category": "counting",
+    "question": "How many pictures on the wall?",
+    "label": "4",
+    "prediction": "4"
+  },
+  {
+    "question_id": "524386013",
+    "category": "counting",
+    "question": "How many TVs are on?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "524386015",
+    "category": "counting",
+    "question": "How many pictures are on the wall?",
+    "label": "4",
+    "prediction": "4"
+  },
+  {
+    "question_id": "131172000",
+    "category": "counting",
+    "question": "How many men in the picture are wearing sunglasses?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "393317007",
+    "category": "counting",
+    "question": "How many people can be seen?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "393317014",
+    "category": "counting",
+    "question": "How many green lights are there?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "131174000",
+    "category": "counting",
+    "question": "How many lights does the plane have?",
+    "label": "5",
+    "prediction": "5"
+  },
+  {
+    "question_id": "131174001",
+    "category": "counting",
+    "question": "How many planes are in this photo?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "546151002",
+    "category": "counting",
+    "question": "How many people are standing in this image?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "21826001",
+    "category": "counting",
+    "question": "How many poles is the person holding?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "109001",
+    "category": "counting",
+    "question": "How many bodies of water are in this scene?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "109002",
+    "category": "counting",
+    "question": "How many light post is there?",
+    "label": "4",
+    "prediction": "4"
+  },
+  {
+    "question_id": "113000",
+    "category": "counting",
+    "question": "How many people are in the picture?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "262260001",
+    "category": "counting",
+    "question": "How many pigeons are there?",
+    "label": "6",
+    "prediction": "6"
+  },
+  {
+    "question_id": "131190010",
+    "category": "counting",
+    "question": "How many bells are there?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "131190013",
+    "category": "counting",
+    "question": "How many clock faces does this building have?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "131190022",
+    "category": "counting",
+    "question": "How many flags are by the building's entrance?",
+    "label": "0",
+    "prediction": "0"
+  },
+  {
+    "question_id": "131190028",
+    "category": "counting",
+    "question": "How many windows are shown?",
+    "label": "5",
+    "prediction": "5"
+  },
+  {
+    "question_id": "131190029",
+    "category": "counting",
+    "question": "How many windows are pictured?",
+    "label": "4",
+    "prediction": "4"
+  },
+  {
+    "question_id": "131197003",
+    "category": "counting",
+    "question": "How many sheep can you see?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "262273005",
+    "category": "counting",
+    "question": "How many people are there?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "262273008",
+    "category": "counting",
+    "question": "How many people are in the image?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "436929002",
+    "category": "counting",
+    "question": "How many birds are there?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "284012004",
+    "category": "counting",
+    "question": "How many men are playing baseball?",
+    "label": "5",
+    "prediction": "5"
+  },
+  {
+    "question_id": "138000",
+    "category": "counting",
+    "question": "How many pots are hanging under the shelf?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "154001",
+    "category": "counting",
+    "question": "How many zebras can you see eating?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "154002",
+    "category": "counting",
+    "question": "How many kinds of animals are in this photo?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "154004",
+    "category": "counting",
+    "question": "How many different types of animals are in this scene?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "154009",
+    "category": "counting",
+    "question": "How many animals are there?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "393242000",
+    "category": "counting",
+    "question": "How many arrows can be seen?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "393242001",
+    "category": "counting",
+    "question": "How many stripes are at the bottom of the picture?",
+    "label": "5",
+    "prediction": "5"
+  },
+  {
+    "question_id": "415089000",
+    "category": "counting",
+    "question": "How many potted plants do you see?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "415089001",
+    "category": "counting",
+    "question": "How many chairs are there?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "393384001",
+    "category": "counting",
+    "question": "How many kids in this photo?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "393386000",
+    "category": "counting",
+    "question": "How many animals?",
+    "label": "5",
+    "prediction": "5"
+  },
+  {
+    "question_id": "137918001",
+    "category": "counting",
+    "question": "How many laptops are on the coffee table?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "524471005",
+    "category": "counting",
+    "question": "How many knobs are there?",
+    "label": "4",
+    "prediction": "4"
+  },
+  {
+    "question_id": "393403000",
+    "category": "counting",
+    "question": "How many buses are there?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "393403007",
+    "category": "counting",
+    "question": "How many decks does this bus have?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "257513003",
+    "category": "counting",
+    "question": "How many steps does it take to get to the top?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "201001",
+    "category": "counting",
+    "question": "How many ski boards are in the picture?",
+    "label": "5",
+    "prediction": "5"
+  },
+  {
+    "question_id": "131279004",
+    "category": "counting",
+    "question": "How many babies are in this photo?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "554301001",
+    "category": "counting",
+    "question": "How many balls are on the ground?",
+    "label": "6",
+    "prediction": "6"
+  },
+  {
+    "question_id": "262359006",
+    "category": "counting",
+    "question": "How many glasses are there?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "524508000",
+    "category": "counting",
+    "question": "How many horses are on the picture?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "524508001",
+    "category": "counting",
+    "question": "How many horses are in the picture?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "393438000",
+    "category": "counting",
+    "question": "How many kids?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "393442002",
+    "category": "counting",
+    "question": "How many black umbrellas?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "131299002",
+    "category": "counting",
+    "question": "How many skis are on the ground?",
+    "label": "4",
+    "prediction": "4"
+  },
+  {
+    "question_id": "524522003",
+    "category": "counting",
+    "question": "How many water jugs are visible?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "524525001",
+    "category": "counting",
+    "question": "How many trains are there?",
+    "label": "3",
+    "prediction": "3"
+  },
+  {
+    "question_id": "393464001",
+    "category": "counting",
+    "question": "How many kids are there?",
+    "label": "5",
+    "prediction": "5"
+  },
+  {
+    "question_id": "262393000",
+    "category": "counting",
+    "question": "How many rocks?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "262393003",
+    "category": "counting",
+    "question": "How many zebras are there?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "131339006",
+    "category": "counting",
+    "question": "How many people are surfing?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "524557003",
+    "category": "counting",
+    "question": "How many kids are wearing black and white?",
+    "label": "5",
+    "prediction": "5"
+  },
+  {
+    "question_id": "131342000",
+    "category": "counting",
+    "question": "How many men are wearing hats?",
+    "label": "0",
+    "prediction": "0"
+  },
+  {
+    "question_id": "393489006",
+    "category": "counting",
+    "question": "How many holes are on the phone case?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "393489016",
+    "category": "counting",
+    "question": "How many phones do you see?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "9000",
+    "category": "counting",
+    "question": "How many cookies can be seen?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "393493001",
+    "category": "counting",
+    "question": "How many girls are visible?",
+    "label": "2",
+    "prediction": "2"
+  },
+  {
+    "question_id": "131351001",
+    "category": "counting",
+    "question": "How many colors are in the tile?",
+    "label": "1",
+    "prediction": "1"
+  },
+  {
+    "question_id": "131366000",
+    "category": "counting",
+    "question": "How many people are standing next to each other?",
+    "label": "4",
+    "prediction": "4"
+  },
+  {
+    "question_id": "131366003",
+    "category": "counting",
+    "question": "How many rackets?",
+    "label": "8",
+    "prediction": "8"
+  },
+  {
+    "question_id": "131366004",
+    "category": "counting",
+    "question": "How many people are in this photo?",
+    "label": "4",
+    "prediction": "4"
+  },
+  {
+    "question_id": "131366009",
+    "category": "counting",
+    "question": "How many girls are in the picture?",
+    "label": "4",
+    "prediction": "4"
+  },
+  {
+    "question_id": "17197213",
+    "category": "attribute",
+    "question": "What color is the helmet in the middle of the image?",
+    "label": "light blue",
+    "prediction": "light blue"
+  },
+  {
+    "question_id": "08321209",
+    "category": "attribute",
+    "question": "What color is the jersey the boy is wearing?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "04285321",
+    "category": "attribute",
+    "question": "What is the color of the fence made of metal?",
+    "label": "green",
+    "prediction": "green"
+  },
+  {
+    "question_id": "01125115",
+    "category": "attribute",
+    "question": "What is the color of the large umbrella?",
+    "label": "orange",
+    "prediction": "orange"
+  },
+  {
+    "question_id": "151001058",
+    "category": "attribute",
+    "question": "What is the color of the trousers?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "08621661",
+    "category": "attribute",
+    "question": "What color is the device on the right?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "14806825",
+    "category": "attribute",
+    "question": "What size is the white mane, small or large?",
+    "label": "small",
+    "prediction": "small"
+  },
+  {
+    "question_id": "16644202",
+    "category": "attribute",
+    "question": "What is the color of the elephants the man is riding on?",
+    "label": "brown",
+    "prediction": "brown"
+  },
+  {
+    "question_id": "19388466",
+    "category": "attribute",
+    "question": "What color is that shirt, brown or white?",
+    "label": "brown",
+    "prediction": "brown"
+  },
+  {
+    "question_id": "02655551",
+    "category": "attribute",
+    "question": "What color do you think the t-shirt is?",
+    "label": "green",
+    "prediction": "green"
+  },
+  {
+    "question_id": "16614293",
+    "category": "attribute",
+    "question": "What color is the floor?",
+    "label": "tan",
+    "prediction": "tan"
+  },
+  {
+    "question_id": "16403211",
+    "category": "attribute",
+    "question": "What is the color of the clothes of the man?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "03150113",
+    "category": "attribute",
+    "question": "What color is the flag on the pole?",
+    "label": "yellow",
+    "prediction": "yellow"
+  },
+  {
+    "question_id": "17922184",
+    "category": "attribute",
+    "question": "What color is the sky?",
+    "label": "gray",
+    "prediction": "gray"
+  },
+  {
+    "question_id": "04243640",
+    "category": "attribute",
+    "question": "What color is the sky?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "10590269",
+    "category": "attribute",
+    "question": "What color is the tablecloth?",
+    "label": "blue",
+    "prediction": "blue"
+  },
+  {
+    "question_id": "1913154",
+    "category": "attribute",
+    "question": "What color is the food truck that the menu is on?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "09693113",
+    "category": "attribute",
+    "question": "What color is the vegetable on top of the lettuce?",
+    "label": "orange",
+    "prediction": "orange"
+  },
+  {
+    "question_id": "08724906",
+    "category": "attribute",
+    "question": "What color are the sneakers?",
+    "label": "orange",
+    "prediction": "orange"
+  },
+  {
+    "question_id": "17954994",
+    "category": "attribute",
+    "question": "The shirt has what color?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "19321685",
+    "category": "attribute",
+    "question": "What color is the jersey the number is on?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "18192074",
+    "category": "attribute",
+    "question": "What is the color of the trousers?",
+    "label": "khaki",
+    "prediction": "khaki"
+  },
+  {
+    "question_id": "15483046",
+    "category": "attribute",
+    "question": "What is the color of the bag the woman is holding?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "12826707",
+    "category": "attribute",
+    "question": "What color is that cap?",
+    "label": "yellow",
+    "prediction": "yellow"
+  },
+  {
+    "question_id": "15599995",
+    "category": "attribute",
+    "question": "What color is the tank top?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "09725865",
+    "category": "attribute",
+    "question": "What is the color of the floor that the desk is on top of?",
+    "label": "blue",
+    "prediction": "blue"
+  },
+  {
+    "question_id": "00311920",
+    "category": "attribute",
+    "question": "What is the color of the grass that is not short?",
+    "label": "brown",
+    "prediction": "brown"
+  },
+  {
+    "question_id": "14262986",
+    "category": "attribute",
+    "question": "What color is the hair?",
+    "label": "dark brown",
+    "prediction": "dark brown"
+  },
+  {
+    "question_id": "13151561",
+    "category": "attribute",
+    "question": "What color is the hair that is not small?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "0624104",
+    "category": "attribute",
+    "question": "What color is the couch the pillow is on?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "081005615",
+    "category": "attribute",
+    "question": "What color is the frisbee in the top of the picture?",
+    "label": "purple",
+    "prediction": "purple"
+  },
+  {
+    "question_id": "09270717",
+    "category": "attribute",
+    "question": "What color is the coat the child is wearing?",
+    "label": "red",
+    "prediction": "red"
+  },
+  {
+    "question_id": "10961743",
+    "category": "attribute",
+    "question": "What color are the tracks?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "10324248",
+    "category": "attribute",
+    "question": "What color is the helmet?",
+    "label": "red",
+    "prediction": "red"
+  },
+  {
+    "question_id": "001058210",
+    "category": "attribute",
+    "question": "What color is the hair?",
+    "label": "dark",
+    "prediction": "dark"
+  },
+  {
+    "question_id": "18591076",
+    "category": "attribute",
+    "question": "What is the color of the shirt?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "16819806",
+    "category": "attribute",
+    "question": "What color is the blanket, blue or tan?",
+    "label": "blue",
+    "prediction": "blue"
+  },
+  {
+    "question_id": "13764265",
+    "category": "attribute",
+    "question": "What is the color of the lamp?",
+    "label": "gold",
+    "prediction": "gold"
+  },
+  {
+    "question_id": "11661712",
+    "category": "attribute",
+    "question": "What color is the sweater?",
+    "label": "blue",
+    "prediction": "blue"
+  },
+  {
+    "question_id": "00805634",
+    "category": "attribute",
+    "question": "What color do you think the bus is?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "18281934",
+    "category": "attribute",
+    "question": "What color is the headboard?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "1468971",
+    "category": "attribute",
+    "question": "The skateboard the man is with has what color?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "061042514",
+    "category": "attribute",
+    "question": "What is the color of the shirt?",
+    "label": "orange",
+    "prediction": "orange"
+  },
+  {
+    "question_id": "03495642",
+    "category": "attribute",
+    "question": "What color is that jacket?",
+    "label": "gray",
+    "prediction": "gray"
+  },
+  {
+    "question_id": "041025394",
+    "category": "attribute",
+    "question": "What is the color of the shoe the woman is wearing?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "14869908",
+    "category": "attribute",
+    "question": "What color is the road?",
+    "label": "tan",
+    "prediction": "tan"
+  },
+  {
+    "question_id": "07568858",
+    "category": "attribute",
+    "question": "What is the color of that sky?",
+    "label": "light blue",
+    "prediction": "light blue"
+  },
+  {
+    "question_id": "17922117",
+    "category": "attribute",
+    "question": "The letters on the side of the airplane have what color?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "09354190",
+    "category": "attribute",
+    "question": "What color is the crosswalk?",
+    "label": "red",
+    "prediction": "red"
+  },
+  {
+    "question_id": "02228038",
+    "category": "attribute",
+    "question": "The shirt has what color?",
+    "label": "green",
+    "prediction": "green"
+  },
+  {
+    "question_id": "04450569",
+    "category": "attribute",
+    "question": "What color is the plate on the table?",
+    "label": "silver",
+    "prediction": "silver"
+  },
+  {
+    "question_id": "04104534",
+    "category": "attribute",
+    "question": "What color does the dress have?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "13221527",
+    "category": "attribute",
+    "question": "What color are the stormy clouds?",
+    "label": "dark",
+    "prediction": "dark"
+  },
+  {
+    "question_id": "10302229",
+    "category": "attribute",
+    "question": "What color is the bookshelf on the left?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "19702140",
+    "category": "attribute",
+    "question": "What color is the bird in the top part of the picture?",
+    "label": "brown",
+    "prediction": "brown"
+  },
+  {
+    "question_id": "02931698",
+    "category": "attribute",
+    "question": "What color is the kite on the right side?",
+    "label": "blue",
+    "prediction": "blue"
+  },
+  {
+    "question_id": "15339557",
+    "category": "attribute",
+    "question": "What is the color of the buses in the middle of the picture?",
+    "label": "green",
+    "prediction": "green"
+  },
+  {
+    "question_id": "01125189",
+    "category": "attribute",
+    "question": "What is the color of the building in the bottom part of the picture?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "14864549",
+    "category": "attribute",
+    "question": "What color is the logo?",
+    "label": "gold",
+    "prediction": "gold"
+  },
+  {
+    "question_id": "11281275",
+    "category": "attribute",
+    "question": "What color is the clock on the wall?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "19693877",
+    "category": "attribute",
+    "question": "What color is the ground that the man is on?",
+    "label": "brown",
+    "prediction": "brown"
+  },
+  {
+    "question_id": "03686217",
+    "category": "attribute",
+    "question": "That newspaper is of what color?",
+    "label": "gray",
+    "prediction": "gray"
+  },
+  {
+    "question_id": "1616401",
+    "category": "attribute",
+    "question": "What is the color of the cake?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "01530371",
+    "category": "attribute",
+    "question": "What material is the fence made of?",
+    "label": "metal",
+    "prediction": "metal"
+  },
+  {
+    "question_id": "12525299",
+    "category": "attribute",
+    "question": "What color is the shirt the man is wearing?",
+    "label": "green",
+    "prediction": "green"
+  },
+  {
+    "question_id": "00804694",
+    "category": "attribute",
+    "question": "The plate is of what color?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "19272302",
+    "category": "attribute",
+    "question": "What color does the cow that is standing in the mud have?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "09199446",
+    "category": "attribute",
+    "question": "What is the color of the pan of the pizza?",
+    "label": "silver",
+    "prediction": "silver"
+  },
+  {
+    "question_id": "0688840",
+    "category": "attribute",
+    "question": "What color is the can?",
+    "label": "silver",
+    "prediction": "silver"
+  },
+  {
+    "question_id": "01151986",
+    "category": "attribute",
+    "question": "What color is the plate on the left?",
+    "label": "blue",
+    "prediction": "blue"
+  },
+  {
+    "question_id": "02962495",
+    "category": "attribute",
+    "question": "What is the color of the shirt the lady is wearing?",
+    "label": "pink",
+    "prediction": "pink"
+  },
+  {
+    "question_id": "03716175",
+    "category": "attribute",
+    "question": "What is the color of the jacket?",
+    "label": "gray",
+    "prediction": "gray"
+  },
+  {
+    "question_id": "07624096",
+    "category": "attribute",
+    "question": "What is the color of the trunks that are not dry?",
+    "label": "gray",
+    "prediction": "gray"
+  },
+  {
+    "question_id": "10423700",
+    "category": "attribute",
+    "question": "What color is the grass?",
+    "label": "green",
+    "prediction": "green"
+  },
+  {
+    "question_id": "06805699",
+    "category": "attribute",
+    "question": "What is the color of the shirt?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "07722454",
+    "category": "attribute",
+    "question": "What color is the long grass?",
+    "label": "brown",
+    "prediction": "brown"
+  },
+  {
+    "question_id": "04468135",
+    "category": "attribute",
+    "question": "What color is that chair?",
+    "label": "dark",
+    "prediction": "dark"
+  },
+  {
+    "question_id": "09587280",
+    "category": "attribute",
+    "question": "What is the color of the apples the knife is cutting?",
+    "label": "green",
+    "prediction": "green"
+  },
+  {
+    "question_id": "13356863",
+    "category": "attribute",
+    "question": "What is the color of that chair?",
+    "label": "gray",
+    "prediction": "gray"
+  },
+  {
+    "question_id": "17134462",
+    "category": "attribute",
+    "question": "What is the color of the fruit in the middle?",
+    "label": "purple",
+    "prediction": "purple"
+  },
+  {
+    "question_id": "17853042",
+    "category": "attribute",
+    "question": "What color is the mane?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "07641604",
+    "category": "attribute",
+    "question": "What color does the suit the man wears have?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "16901298",
+    "category": "attribute",
+    "question": "What color is the mane?",
+    "label": "red",
+    "prediction": "red"
+  },
+  {
+    "question_id": "00255101",
+    "category": "attribute",
+    "question": "What color is the small hat?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "05957406",
+    "category": "attribute",
+    "question": "Of what color is the shirt?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "14279290",
+    "category": "attribute",
+    "question": "What color is the logo?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "063245",
+    "category": "attribute",
+    "question": "What is the color of the cap?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "00748370",
+    "category": "attribute",
+    "question": "What color do you think the table cloth is?",
+    "label": "gray",
+    "prediction": "gray"
+  },
+  {
+    "question_id": "14754587",
+    "category": "attribute",
+    "question": "What color is the logo on the backpack, white or orange?",
+    "label": "white",
+    "prediction": "white"
+  },
+  {
+    "question_id": "14376200",
+    "category": "attribute",
+    "question": "What is the color of the water?",
+    "label": "dark",
+    "prediction": "dark"
+  },
+  {
+    "question_id": "17444087",
+    "category": "attribute",
+    "question": "The shirt has what color?",
+    "label": "tan",
+    "prediction": "tan"
+  },
+  {
+    "question_id": "1351295",
+    "category": "attribute",
+    "question": "What color is the skirt the girl is wearing?",
+    "label": "red",
+    "prediction": "red"
+  },
+  {
+    "question_id": "13483094",
+    "category": "attribute",
+    "question": "What color are the shorts, black or white?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "111055030",
+    "category": "attribute",
+    "question": "What color do you think the curtains on the right side are?",
+    "label": "beige",
+    "prediction": "beige"
+  },
+  {
+    "question_id": "13777351",
+    "category": "attribute",
+    "question": "What color is the platter that is made of wood?",
+    "label": "brown",
+    "prediction": "brown"
+  },
+  {
+    "question_id": "08237593",
+    "category": "attribute",
+    "question": "What color do the trousers have?",
+    "label": "black",
+    "prediction": "black"
+  },
+  {
+    "question_id": "01924202",
+    "category": "attribute",
+    "question": "What color is the shirt the man is in?",
+    "label": "gray",
+    "prediction": "gray"
+  },
+  {
+    "question_id": "15225192",
+    "category": "attribute",
+    "question": "What color is the hat?",
+    "label": "red",
+    "prediction": "red"
+  },
+  {
+    "question_id": "00665966",
+    "category": "attribute",
+    "question": "What is the color of that table?",
+    "label": "beige",
+    "prediction": "beige"
+  },
+  {
+    "question_id": "1335430",
+    "category": "attribute",
+    "question": "What color are the trunks the man is wearing?",
+    "label": "white",
+    "prediction": "white"
+  }
+]

@@ -1,0 +1,702 @@
+[
+  {
+    "question_id": "14778715",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/1339.jpg",
+    "question": "Are there napkins under the utensil to the left of the rice?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "19486857",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2385322.jpg",
+    "question": "What is the woman in front of?",
+    "label": "statue",
+    "category": "spatial"
+  },
+  {
+    "question_id": "13663260",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2333016.jpg",
+    "question": "Is the curtain on the right side or on the left of the picture?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "16130590",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2317756.jpg",
+    "question": "Does the person to the left of the man appear to be sitting?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "11615428",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2366513.jpg",
+    "question": "Is there any surfboard to the right of the man the people are standing by?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "17267240",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/930.jpg",
+    "question": "Are there shelves to the left of the books behind the man?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "101024942",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2371845.jpg",
+    "question": "What vegetable is to the right of the tomato?",
+    "label": "lettuce",
+    "category": "spatial"
+  },
+  {
+    "question_id": "13571728",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2330230.jpg",
+    "question": "The woman to the left of the man is wearing what?",
+    "label": "dress",
+    "category": "spatial"
+  },
+  {
+    "question_id": "0328071",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2339443.jpg",
+    "question": "Does the boat to the left of the flag look small or large?",
+    "label": "small",
+    "category": "spatial"
+  },
+  {
+    "question_id": "03739128",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2359844.jpg",
+    "question": "Which kind of furniture is right of the drawers?",
+    "label": "shelves",
+    "category": "spatial"
+  },
+  {
+    "question_id": "06645355",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2372224.jpg",
+    "question": "Who is in front of the gray building?",
+    "label": "passengers",
+    "category": "spatial"
+  },
+  {
+    "question_id": "06645358",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2372224.jpg",
+    "question": "What are the passengers in front of?",
+    "label": "building",
+    "category": "spatial"
+  },
+  {
+    "question_id": "13112324",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2408005.jpg",
+    "question": "Is the person to the left of the frisbee wearing a glove?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "0364186",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2334847.jpg",
+    "question": "Is the chair to the left of a pillow?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "1942734",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2371012.jpg",
+    "question": "What type of vehicle is to the left of the boy that is wearing a shirt?",
+    "label": "van",
+    "category": "spatial"
+  },
+  {
+    "question_id": "031007945",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2320373.jpg",
+    "question": "What is the fruit that is covered by the fruit that the banana is to the left of called?",
+    "label": "apple",
+    "category": "spatial"
+  },
+  {
+    "question_id": "13515212",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2397985.jpg",
+    "question": "Is the surfer to the left or to the right of the surfboard?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "10889906",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2378087.jpg",
+    "question": "Does the knife next to the fork look black?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "151015980",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2251.jpg",
+    "question": "Is the woman to the left or to the right of the man that is wearing trousers?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "0090767",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2357332.jpg",
+    "question": "Does the remote control to the left of the other remote control look black?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "06134756",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2327760.jpg",
+    "question": "Is the tennis player to the left or to the right of the ball on the left?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "04819662",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/4912.jpg",
+    "question": "What kind of furniture is to the right of the bed?",
+    "label": "cabinet",
+    "category": "spatial"
+  },
+  {
+    "question_id": "11563995",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2317536.jpg",
+    "question": "What kind of furniture is to the right of the freezer that is on the left of the picture?",
+    "label": "drawers",
+    "category": "spatial"
+  },
+  {
+    "question_id": "03260227",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2335519.jpg",
+    "question": "Is the boat on the right of the picture?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "16542238",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2395353.jpg",
+    "question": "Is the bed to the left or to the right of the drawers on the left?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "08203407",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2403669.jpg",
+    "question": "Are the curtains to the right or to the left of the red pillow?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "00805479",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2381239.jpg",
+    "question": "The sidewalk is in front of what?",
+    "label": "street light",
+    "category": "spatial"
+  },
+  {
+    "question_id": "18175193",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2382716.jpg",
+    "question": "What weapon is to the left of the purse?",
+    "label": "sword",
+    "category": "spatial"
+  },
+  {
+    "question_id": "13168814",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2324119.jpg",
+    "question": "The man that is to the left of the horse is walking where?",
+    "label": "street",
+    "category": "spatial"
+  },
+  {
+    "question_id": "18283096",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2328576.jpg",
+    "question": "Is the bottle to the left or to the right of the chair that is in the middle of the image?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "01532381",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2405043.jpg",
+    "question": "What is the man to the left of the boats wearing?",
+    "label": "wetsuit",
+    "category": "spatial"
+  },
+  {
+    "question_id": "02106577",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/1592132.jpg",
+    "question": "Is the man to the left of the backpack wearing a coat?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "16791660",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2359040.jpg",
+    "question": "Is the faucet to the right or to the left of the toilet?",
+    "label": "left",
+    "category": "spatial"
+  },
+  {
+    "question_id": "02247621",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2386019.jpg",
+    "question": "Who is in front of the building that is made out of brick?",
+    "label": "people",
+    "category": "spatial"
+  },
+  {
+    "question_id": "02247623",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2386019.jpg",
+    "question": "Who is in front of the building?",
+    "label": "people",
+    "category": "spatial"
+  },
+  {
+    "question_id": "15871248",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2382163.jpg",
+    "question": "Which kind of vehicle is to the left of the backpack?",
+    "label": "tractor",
+    "category": "spatial"
+  },
+  {
+    "question_id": "00297942",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2325166.jpg",
+    "question": "What's the fence in front of?",
+    "label": "bushes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "00297941",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2325166.jpg",
+    "question": "What is the fence in front of?",
+    "label": "bushes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "00297940",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2325166.jpg",
+    "question": "What is in front of the bushes?",
+    "label": "fence",
+    "category": "spatial"
+  },
+  {
+    "question_id": "09207863",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2322371.jpg",
+    "question": "Do you see a chair to the left of the pillow?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "07241856",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2402321.jpg",
+    "question": "What kind of vegetable is to the right of the cups on the counter?",
+    "label": "onions",
+    "category": "spatial"
+  },
+  {
+    "question_id": "12227132",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/737.jpg",
+    "question": "Is the white vehicle to the right or to the left of the vehicle the vehicle is to the left of?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "13708543",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2384558.jpg",
+    "question": "Which direction is the woman to the left of the chair looking at?",
+    "label": "behind",
+    "category": "spatial"
+  },
+  {
+    "question_id": "041000077",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2416722.jpg",
+    "question": "Is the person to the right of the man wearing a boot?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "00880780",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2362193.jpg",
+    "question": "Is the man to the right of the hammer wearing eye glasses?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "15841623",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2368660.jpg",
+    "question": "Are there any cups to the left of the cupcake that is in the middle?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "14889408",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2374981.jpg",
+    "question": "Is the chair on the right of the photo?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "03126814",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2400784.jpg",
+    "question": "Are there any men to the right of the person that is holding the tennis racket?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "0111303",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/347.jpg",
+    "question": "Is the cabinet to the right of the table?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "05684159",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2362327.jpg",
+    "question": "Is the player to the left or to the right of the umpire that wears a belt?",
+    "label": "left",
+    "category": "spatial"
+  },
+  {
+    "question_id": "10464328",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2360651.jpg",
+    "question": "Are there any bags to the right of the man in the middle of the image?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "03795448",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2374412.jpg",
+    "question": "Which kind of animal is to the left of the truck?",
+    "label": "bull",
+    "category": "spatial"
+  },
+  {
+    "question_id": "1860944",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2403460.jpg",
+    "question": "What is the name of the appliance behind the guy?",
+    "label": "refrigerator",
+    "category": "spatial"
+  },
+  {
+    "question_id": "15667729",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2391999.jpg",
+    "question": "Is the white lamp to the left or to the right of the white curtain?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "11215445",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2411832.jpg",
+    "question": "What kind of food is to the left of the toast?",
+    "label": "sandwich",
+    "category": "spatial"
+  },
+  {
+    "question_id": "19606703",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2370859.jpg",
+    "question": "What is the animal that is to the left of the brown object that is to the left of the speaker called?",
+    "label": "cat",
+    "category": "spatial"
+  },
+  {
+    "question_id": "101001503",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2339853.jpg",
+    "question": "Are there spoons to the left of the vegetable on the right?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "14202809",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2345598.jpg",
+    "question": "Are there men to the left of the dark brown horse?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "14202805",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2345598.jpg",
+    "question": "What is the man to the left of the woman wearing?",
+    "label": "coat",
+    "category": "spatial"
+  },
+  {
+    "question_id": "1463548",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2360429.jpg",
+    "question": "Does the animal that is to the right of the umbrella seem to be off?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "00947223",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2391360.jpg",
+    "question": "Is there a soccer ball above the basket?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "00681430",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2319126.jpg",
+    "question": "Is the ball to the right or to the left of the person that is wearing a jersey?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "06438181",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2377551.jpg",
+    "question": "Is the animal to the left of the old vehicle?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "0056771",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2394852.jpg",
+    "question": "What type of appliance is to the right of the woman's glasses?",
+    "label": "dishwasher",
+    "category": "spatial"
+  },
+  {
+    "question_id": "07900409",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2404338.jpg",
+    "question": "Does the person to the right of the bed wear a scarf?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "18783554",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2373686.jpg",
+    "question": "Is the giraffe in front of the fence?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "15705095",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2345287.jpg",
+    "question": "Is the melon on the left of the picture?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "01343904",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2410128.jpg",
+    "question": "What is the size of the banana to the right of the other banana?",
+    "label": "small",
+    "category": "spatial"
+  },
+  {
+    "question_id": "08223793",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2400861.jpg",
+    "question": "What is the appliance to the right of the bowl?",
+    "label": "radiator",
+    "category": "spatial"
+  },
+  {
+    "question_id": "16800885",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2410986.jpg",
+    "question": "Are there any surfers to the right of the surfboard in the center of the image?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "00461466",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2372555.jpg",
+    "question": "Is the plastic chair to the left or to the right of the man that is watching the game?",
+    "label": "left",
+    "category": "spatial"
+  },
+  {
+    "question_id": "00461461",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2372555.jpg",
+    "question": "Is there a chair to the left of the man that is watching the game?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "05672549",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2373095.jpg",
+    "question": "What is the name of the drink to the right of the plate?",
+    "label": "beer",
+    "category": "spatial"
+  },
+  {
+    "question_id": "05304738",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2371405.jpg",
+    "question": "Is the fork to the right or to the left of the bowl the sauce is in?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "15675504",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2356182.jpg",
+    "question": "What is in front of the screen that is to the left of the computer?",
+    "label": "chair",
+    "category": "spatial"
+  },
+  {
+    "question_id": "17397396",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2343353.jpg",
+    "question": "Which kind of furniture is to the left of the desk?",
+    "label": "beds",
+    "category": "spatial"
+  },
+  {
+    "question_id": "00816476",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2385697.jpg",
+    "question": "Is the fence to the right or to the left of the old car?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "091057558",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2391218.jpg",
+    "question": "Is the towel to the right or to the left of the faucet?",
+    "label": "left",
+    "category": "spatial"
+  },
+  {
+    "question_id": "19222090",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2411607.jpg",
+    "question": "What appliance is to the left of the toaster that is on the countertop?",
+    "label": "refrigerator",
+    "category": "spatial"
+  },
+  {
+    "question_id": "14937594",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/1592581.jpg",
+    "question": "Is the white curtain to the right or to the left of the picture on the shelf?",
+    "label": "left",
+    "category": "spatial"
+  },
+  {
+    "question_id": "07411217",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2411476.jpg",
+    "question": "Is the empty bowl to the right or to the left of the man that wears glasses?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "06790515",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2357448.jpg",
+    "question": "Are there any computers to the left of the glasses?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "10361470",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/515.jpg",
+    "question": "Is the stove to the right of a book?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "02964695",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2397904.jpg",
+    "question": "Are there traffic lights in front of the mountains?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "02964692",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2397904.jpg",
+    "question": "What is the fire hydrant in front of?",
+    "label": "mountains",
+    "category": "spatial"
+  },
+  {
+    "question_id": "02964690",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2397904.jpg",
+    "question": "What is in front of the mountains?",
+    "label": "fire hydrant",
+    "category": "spatial"
+  },
+  {
+    "question_id": "10274399",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2395567.jpg",
+    "question": "Is the catcher to the left or to the right of the man on the right?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "04605330",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2344801.jpg",
+    "question": "Is the man that is to the left of the plate holding a frisbee?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "18330260",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2392331.jpg",
+    "question": "Is the sky above the trees open and clear?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "18814087",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2359142.jpg",
+    "question": "Do you see fences to the right of the cow that is eating grass?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "1525055",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2363859.jpg",
+    "question": "Do you see artichokes to the right of the tablecloth on the left?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "0647948",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2366265.jpg",
+    "question": "Is the green vegetable to the right of the beef?",
+    "label": "yes",
+    "category": "spatial"
+  },
+  {
+    "question_id": "07810304",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2377712.jpg",
+    "question": "Are there drawers to the left of the bed that is in front of the curtains?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "00374751",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2345716.jpg",
+    "question": "Is the man to the left or to the right of the flags?",
+    "label": "left",
+    "category": "spatial"
+  },
+  {
+    "question_id": "03713669",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2396017.jpg",
+    "question": "Is the fence behind the trees?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "03713661",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2396017.jpg",
+    "question": "What is in front of the trees?",
+    "label": "fence",
+    "category": "spatial"
+  },
+  {
+    "question_id": "09662508",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2347053.jpg",
+    "question": "Are there any chairs to the right of the lady?",
+    "label": "no",
+    "category": "spatial"
+  },
+  {
+    "question_id": "02689605",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2410897.jpg",
+    "question": "What vegetable is to the right of the beef?",
+    "label": "cucumber",
+    "category": "spatial"
+  },
+  {
+    "question_id": "15814189",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2353354.jpg",
+    "question": "Is the trash can to the left or to the right of the toilet?",
+    "label": "right",
+    "category": "spatial"
+  },
+  {
+    "question_id": "10682118",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2412363.jpg",
+    "question": "Which kind of vegetable is to the right of the rice?",
+    "label": "pepper",
+    "category": "spatial"
+  }
+]

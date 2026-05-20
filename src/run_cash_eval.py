@@ -174,14 +174,9 @@ def evaluate_cash(questions: list, mappings: dict, model, processor, is_mock: bo
     results = []
     
     if is_mock:
-        print("Mock mode enabled: processing 5 samples per category to verify URLs and image loading...")
-        categories = ["spatial", "counting", "attribute"]
-        selected_questions = []
-        for cat in categories:
-            cat_qs = [q for q in questions if q["category"] == cat][:5]
-            selected_questions.extend(cat_qs)
-    else:
-        selected_questions = questions
+        print("Mock mode enabled: processing all samples to verify URLs and image loading...")
+    
+    selected_questions = questions
 
     for i, item in enumerate(selected_questions):
         qid = item["id"]
