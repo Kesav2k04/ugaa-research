@@ -1,0 +1,17 @@
+[
+  {
+    "caption": "The pizza is above the couch.",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "caption": "There is a cat on the bed.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "caption": "The remote is under the cat.",
+    "label": "no",
+    "prediction": "yes"
+  }
+]
