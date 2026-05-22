@@ -1,283 +1,173 @@
+# src/run_whatsup_eval.py — KESAV
+# What'sUp spatial benchmark baseline.
+#
+# Dataset: coco_qa_two_obj.json
+#   Each entry: [image_id, correct_caption, wrong_caption]
+#   caption_a is ALWAYS the correct spatial description.
+#   caption_b is the spatial opposite (e.g. "left" ↔ "right").
+#
+# Why independent scoring (not forced-choice A/B):
+#   LLaVA has a strong position bias toward option A in forced-choice
+#   prompts — it always outputs "Option A", giving 100% trivially since
+#   the label is always A.  We instead score each caption independently
+#   and predict whichever caption the model assigns a higher yes-logit.
+#   This is bias-free and directly comparable to POPE/VSR.
+#
+# Usage:
+#   python src/run_whatsup_eval.py [--samples N]
+
+import argparse
 import json
-import random
 import os
-from io import BytesIO
+import random
+import sys
 
 import requests
 import torch
 from PIL import Image
+from io import BytesIO
 from transformers import (
     AutoProcessor,
     BitsAndBytesConfig,
     LlavaForConditionalGeneration,
 )
 
-# =========================
-# CONFIG
-# =========================
+sys.path.insert(0, os.path.dirname(__file__))
+from ugaa_hook import YES_TOKEN_IDS, NO_TOKEN_IDS
 
 MODEL_PATH = "D:/models/llava-1.5-7b"
 DATA_PATH = "datasets/whatsup/coco_qa_two_obj.json"
 OUTPUT_PATH = "experiments/whatsup_predictions.json"
-
-MAX_SAMPLES = 100
-MAX_NEW_TOKENS = 10
 SEED = 42
-
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-
-# =========================
-# MODEL LOADING
-# =========================
 
 
 def load_model():
-    """
-    Load quantized LLaVA model + processor.
-    """
-    print("Loading quantized LLaVA model...")
-
-    bnb_config = BitsAndBytesConfig(
+    bnb = BitsAndBytesConfig(
         load_in_4bit=True,
         bnb_4bit_compute_dtype=torch.float16,
         bnb_4bit_quant_type="nf4",
-        llm_int8_enable_fp32_cpu_offload=True,
     )
-
     model = LlavaForConditionalGeneration.from_pretrained(
-        pretrained_model_name_or_path=MODEL_PATH,
-        quantization_config=bnb_config,
-        device_map="auto",
-        torch_dtype=torch.float16,
+        MODEL_PATH, quantization_config=bnb, device_map="auto"
     )
-
     processor = AutoProcessor.from_pretrained(MODEL_PATH)
-
-    print("Model loaded successfully.\n")
     return model, processor
 
 
-# =========================
-# IMAGE LOADING
-# =========================
-
-
-def load_image(img_src):
-    """
-    Load an image from a web URL or a local path.
-    """
-    if img_src.startswith(("http://", "https://")):
-        response = requests.get(img_src, timeout=15)
-        response.raise_for_status()
-        image = Image.open(BytesIO(response.content)).convert("RGB")
-    else:
-        image = Image.open(img_src).convert("RGB")
-    return image
-
-
-# =========================
-# PROMPT + INFERENCE
-# =========================
-
-
-def build_prompt(option_a, option_b):
-    """
-    Construct the precise visual prompt formatting for LLaVA.
-    """
-    question = (
-        "Which statement accurately describes the image?\n\n"
-        f"Option A: {option_a}\n"
-        f"Option B: {option_b}\n\n"
-        "Answer ONLY with 'Option A' or 'Option B'."
-    )
-    return f"USER: <image>\n{question}\nASSISTANT:"
-
-
-def parse_prediction(answer_text):
-    """
-    Parse model text generation tokens into evaluation labels.
-    """
-    cleaned = answer_text.lower().strip()
-    if "option a" in cleaned or cleaned == "a":
-        return "A"
-    if "option b" in cleaned or cleaned == "b":
-        return "B"
-    return "INVALID"
+def load_image(url):
+    resp = requests.get(url, timeout=15)
+    resp.raise_for_status()
+    return Image.open(BytesIO(resp.content)).convert("RGB")
 
 
 @torch.no_grad()
-def run_inference(model, processor, image, option_a, option_b):
+def score_caption(model, processor, image, caption: str) -> float:
     """
-    Execute a forward pass tensor generation.
+    Returns the yes-logit minus no-logit for the question
+    'Does this image show: [caption]?'
+    Uses the same 8-token set as POPE/VSR for consistency.
     """
-    prompt = build_prompt(option_a, option_b)
+    question = f"Does this image show: {caption}? Answer yes or no only."
+    prompt = f"USER: <image>\n{question}\nASSISTANT:"
     inputs = processor(text=prompt, images=image, return_tensors="pt")
-    inputs = {
-        key: value.to(model.device) if hasattr(value, "to") else value
-        for key, value in inputs.items()
-    }
+    inputs = {k: v.to(model.device) if hasattr(v, "to") else v for k, v in inputs.items()}
 
-    output = model.generate(
+    out = model.generate(
         **inputs,
-        max_new_tokens=MAX_NEW_TOKENS,
-        do_sample=False,
+        max_new_tokens=1,
+        return_dict_in_generate=True,
+        output_scores=True,
     )
-
-    decoded = processor.decode(output[0], skip_special_tokens=True)
-    answer = decoded.split("ASSISTANT:")[-1].strip()
-    return parse_prediction(answer)
-
-
-# =========================
-# DATASET LOADING
-# =========================
+    logits = out.scores[0][0].float()
+    yes_score = max(logits[i].item() for i in YES_TOKEN_IDS)
+    no_score = max(logits[i].item() for i in NO_TOKEN_IDS)
+    return yes_score - no_score
 
 
-def load_whatsup_dataset():
-    """
-    Parse, shuffle, sample, and map structural COCO image ID data.
-    """
-    with open(DATA_PATH, "r", encoding="utf-8") as file:
-        raw_data = json.load(file)
-
-    print(f"Loaded raw dataset with {len(raw_data)} entries")
+def load_dataset(max_samples: int):
+    with open(DATA_PATH, encoding="utf-8") as f:
+        raw = json.load(f)
     random.seed(SEED)
-    sample_data = random.sample(raw_data, min(MAX_SAMPLES, len(raw_data)))
-    samples = []
-
-    for idx, entry in enumerate(sample_data):
+    sample = random.sample(raw, min(max_samples, len(raw)))
+    items = []
+    for idx, entry in enumerate(sample):
         image_id = int(entry[0])
-        caption_a = entry[1]
-        caption_b = entry[2]
-        image_url = f"http://images.cocodataset.org/val2017/{image_id:012d}.jpg"
-
-        sample = {
+        items.append({
             "question_id": idx,
             "image_id": image_id,
-            "image_url": image_url,
-            "caption_a": caption_a,
-            "caption_b": caption_b,
-            "correct_label": "A",
-        }
-        samples.append(sample)
-
-    print(f"Prepared {len(samples)} sampled questions.\n")
-    return samples
-
-
-# =========================
-# EVALUATION
-# =========================
-
-
-def evaluate(model, processor, samples):
-    """
-    Run prediction batch evaluations over full dataset target indices.
-    """
-    results = []
-    total = len(samples)
-
-    for idx, item in enumerate(samples, start=1):
-        option_a = item["caption_a"]
-        option_b = item["caption_b"]
-        correct_label = item["correct_label"]
-
-        print(
-            f"[{idx}/{total}] Evaluating:\n  A: {option_a[:60]}\n  B: {option_b[:60]}"
-        )
-
-        try:
-            image = load_image(item["image_url"])
-            prediction = run_inference(
-                model=model,
-                processor=processor,
-                image=image,
-                option_a=option_a,
-                option_b=option_b,
-            )
-            print(f"  Prediction: {prediction}\n")
-        except Exception as error:
-            prediction = "ERROR"
-            print(f"  ERROR: {error}\n")
-
-        results.append(
-            {
-                "question_id": item["question_id"],
-                "option_a": option_a,
-                "option_b": option_b,
-                "label": correct_label,
-                "prediction": prediction,
-            }
-        )
-    return results
-
-
-# =========================
-# METRICS
-# =========================
-
-
-def compute_metrics(results):
-    """
-    Calculate mathematical performance benchmarks over parsing targets.
-    """
-    valid_results = [result for result in results if result["prediction"] in ["A", "B"]]
-    if not valid_results:
-        print("\nNo valid predictions generated.")
-        return
-
-    correct = sum(
-        1 for result in valid_results if result["prediction"] == result["label"]
-    )
-    accuracy = (correct / len(valid_results)) * 100
-
-    metrics = {
-        "accuracy": f"{accuracy:.2f}%",
-        "correct": correct,
-        "valid_evals": len(valid_results),
-        "total_samples": len(results),
-    }
-
-    print("\n========== RESULTS ==========")
-    print(json.dumps(metrics, indent=2))
-
-
-# =========================
-# SAVE RESULTS
-# =========================
-
-
-def save_results(results):
-    """
-    Export the records into JSON structural output tracking files.
-    """
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
-    with open(OUTPUT_PATH, "w", encoding="utf-8") as file:
-        json.dump(results, file, indent=2)
-    print(f"\nPredictions saved to:\n{OUTPUT_PATH}")
-
-
-# =========================
-# MAIN
-# =========================
+            "image_url": f"http://images.cocodataset.org/val2017/{image_id:012d}.jpg",
+            "correct_caption": entry[1],
+            "wrong_caption": entry[2],
+        })
+    return items
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--samples", type=int, default=100)
+    args = parser.parse_args()
+
     print("=" * 50)
-    print("What'sUp Spatial Evaluation")
+    print("What'sUp Spatial Evaluation (independent scoring)")
     print("=" * 50)
 
-    samples = load_whatsup_dataset()
+    items = load_dataset(args.samples)
+    print(f"Loaded {len(items)} questions from {DATA_PATH}")
+
+    print("\nLoading LLaVA...")
     model, processor = load_model()
+    print("Model loaded.\n")
 
-    results = evaluate(
-        model=model,
-        processor=processor,
-        samples=samples,
-    )
+    results = []
+    correct = 0
 
-    save_results(results)
-    compute_metrics(results)
+    for i, item in enumerate(items):
+        try:
+            image = load_image(item["image_url"])
+        except Exception as e:
+            print(f"[{i+1}/{len(items)}] image fetch failed: {e}")
+            results.append({**item, "prediction": "ERROR", "correct": False})
+            continue
+
+        score_correct = score_caption(model, processor, image, item["correct_caption"])
+        score_wrong = score_caption(model, processor, image, item["wrong_caption"])
+        pred = "correct" if score_correct > score_wrong else "wrong"
+        is_correct = pred == "correct"
+        if is_correct:
+            correct += 1
+
+        print(
+            f"[{i+1}/{len(items)}] {pred.upper()} | "
+            f"correct={score_correct:.2f} wrong={score_wrong:.2f} | "
+            f"{item['correct_caption'][:50]}"
+        )
+
+        results.append({
+            "question_id": item["question_id"],
+            "image_id": item["image_id"],
+            "correct_caption": item["correct_caption"],
+            "wrong_caption": item["wrong_caption"],
+            "score_correct": score_correct,
+            "score_wrong": score_wrong,
+            "prediction": pred,
+            "correct": is_correct,
+        })
+
+    os.makedirs("experiments", exist_ok=True)
+    with open(OUTPUT_PATH, "w") as f:
+        json.dump(results, f, indent=2)
+
+    valid = [r for r in results if r["prediction"] != "ERROR"]
+    acc = correct / len(valid) if valid else 0.0
+    print(f"\n========== RESULTS ==========")
+    print(json.dumps({
+        "accuracy": round(acc, 4),
+        "correct": correct,
+        "valid": len(valid),
+        "total": len(results),
+        "note": "Baseline (no UGAA). chance=0.50",
+    }, indent=2))
+    print(f"\nPredictions saved to {OUTPUT_PATH}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,18 @@
+{
+  "split": "adversarial",
+  "mode": "UGAA beta=1.0",
+  "n_total": 3000,
+  "n_valid": 3000,
+  "n_errors": 0,
+  "f1": 0.8164,
+  "precision": 0.9023,
+  "recall": 0.7453,
+  "tp": 1118,
+  "tn": 1379,
+  "fp": 121,
+  "fn": 382,
+  "baseline_f1_100sample_ref": 0.8041,
+  "delta_f1_vs_100sample_ref": 0.0123,
+  "total_time_min": 61.8,
+  "sec_per_question": 1.24
+}

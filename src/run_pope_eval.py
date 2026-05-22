@@ -2,11 +2,15 @@
 # Runs LLaVA inference on POPE-format questions, saves predictions to JSON
 
 import json
+import os
+import sys
 import torch
 import requests
 from PIL import Image
 from io import BytesIO
 from transformers import LlavaForConditionalGeneration, AutoProcessor, BitsAndBytesConfig
+
+sys.path.insert(0, os.path.dirname(__file__))
 
 MODEL_PATH = "D:/models/llava-1.5-7b"
 
@@ -62,31 +66,28 @@ def evaluate_pope(questions: list, model, processor) -> list:
     return results
 
 if __name__ == "__main__":
-    # MOCK sample — replace with real POPE data from Karthigeyan later
-    sample_questions = [
-        {
-            "question_id": 1,
-            "image_url": "http://images.cocodataset.org/val2017/000000039769.jpg",
-            "question": "Is there a cat in the image?",
-            "label": "yes"
-        },
-        {
-            "question_id": 2,
-            "image_url": "http://images.cocodataset.org/val2017/000000039769.jpg",
-            "question": "Is there a dog in the image?",
-            "label": "no"
-        }
-    ]
+    # Load real POPE data from Karthigeyan's exported file
+    data_path = "datasets/pope/pope_sample_100.json"
+    with open(data_path, "r") as f:
+        sample_questions = json.load(f)
 
+    print(f"Loaded {len(sample_questions)} real POPE questions")
     print("Loading model...")
     model, processor = load_model()
-    print("Model loaded. Running POPE eval...\n")
+    print("Model loaded. Running POPE baseline eval (no UGAA)...\n")
 
     results = evaluate_pope(sample_questions, model, processor)
 
     output_path = "experiments/pope_predictions.json"
+    os.makedirs("experiments", exist_ok=True)
     with open(output_path, "w") as f:
         json.dump(results, f, indent=2)
 
     print(f"\nSaved {len(results)} predictions to {output_path}")
-    print("Sample:", results)
+
+    from evaluate import compute_f1
+    preds = [r["prediction"] for r in results]
+    labels = [r["label"] for r in results]
+    score = compute_f1(preds, labels)
+    print("\n=== REAL POPE BASELINE SCORES ===")
+    print(json.dumps(score, indent=2))

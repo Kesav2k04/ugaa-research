@@ -1,0 +1,1002 @@
+[
+  {
+    "question_id": 0,
+    "image_id": 139077,
+    "correct_caption": "A photo of a tv to the right of a person",
+    "wrong_caption": "A photo of a tv to the left of a person",
+    "score_correct": 0.625,
+    "score_wrong": 0.09375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 1,
+    "image_id": 571313,
+    "correct_caption": "A photo of a bed to the right of a chair",
+    "wrong_caption": "A photo of a bed to the left of a chair",
+    "score_correct": -0.4375,
+    "score_wrong": -0.421875,
+    "prediction": "wrong",
+    "correct": false
+  },
+  {
+    "question_id": 2,
+    "image_id": 524456,
+    "correct_caption": "A photo of a laptop above a mouse",
+    "wrong_caption": "A photo of a laptop below a mouse",
+    "score_correct": 1.234375,
+    "score_wrong": 1.15625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 3,
+    "image_id": 183965,
+    "correct_caption": "A photo of a cup to the left of a hot dog",
+    "wrong_caption": "A photo of a cup to the right of a hot dog",
+    "score_correct": 1.65625,
+    "score_wrong": 0.625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 4,
+    "image_id": 1503,
+    "correct_caption": "A photo of a keyboard below a tv",
+    "wrong_caption": "A photo of a keyboard above a tv",
+    "score_correct": 0.796875,
+    "score_wrong": 0.359375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 5,
+    "image_id": 82696,
+    "correct_caption": "A photo of a bird below a person",
+    "wrong_caption": "A photo of a bird above a person",
+    "score_correct": -0.609375,
+    "score_wrong": -1.125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 6,
+    "image_id": 35279,
+    "correct_caption": "A photo of a person to the left of a tennis racket",
+    "wrong_caption": "A photo of a person to the right of a tennis racket",
+    "score_correct": 0.09375,
+    "score_wrong": -0.09375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 7,
+    "image_id": 156643,
+    "correct_caption": "A photo of a cake below a teddy bear",
+    "wrong_caption": "A photo of a cake above a teddy bear",
+    "score_correct": 1.578125,
+    "score_wrong": 1.09375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 8,
+    "image_id": 476787,
+    "correct_caption": "A photo of a bowl above a pizza",
+    "wrong_caption": "A photo of a bowl below a pizza",
+    "score_correct": 1.4375,
+    "score_wrong": 1.03125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 9,
+    "image_id": 571313,
+    "correct_caption": "A photo of a refrigerator to the left of a bed",
+    "wrong_caption": "A photo of a refrigerator to the right of a bed",
+    "score_correct": 1.09375,
+    "score_wrong": -0.125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 10,
+    "image_id": 114770,
+    "correct_caption": "A photo of a motorcycle below a airplane",
+    "wrong_caption": "A photo of a motorcycle above a airplane",
+    "score_correct": 1.421875,
+    "score_wrong": 0.765625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 11,
+    "image_id": 33759,
+    "correct_caption": "A photo of a person to the left of a truck",
+    "wrong_caption": "A photo of a person to the right of a truck",
+    "score_correct": 1.015625,
+    "score_wrong": 0.65625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 12,
+    "image_id": 496954,
+    "correct_caption": "A photo of a fork to the left of a orange",
+    "wrong_caption": "A photo of a fork to the right of a orange",
+    "score_correct": 1.5625,
+    "score_wrong": 1.046875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 13,
+    "image_id": 138819,
+    "correct_caption": "A photo of a toilet below a sink",
+    "wrong_caption": "A photo of a toilet above a sink",
+    "score_correct": 0.828125,
+    "score_wrong": 0.59375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 14,
+    "image_id": 407825,
+    "correct_caption": "A photo of a clock below a potted plant",
+    "wrong_caption": "A photo of a clock above a potted plant",
+    "score_correct": 1.0625,
+    "score_wrong": 0.546875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 15,
+    "image_id": 407614,
+    "correct_caption": "A photo of a refrigerator to the left of a surfboard",
+    "wrong_caption": "A photo of a refrigerator to the right of a surfboard",
+    "score_correct": -0.203125,
+    "score_wrong": -0.25,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 16,
+    "image_id": 127182,
+    "correct_caption": "A photo of a microwave to the left of a refrigerator",
+    "wrong_caption": "A photo of a microwave to the right of a refrigerator",
+    "score_correct": 1.390625,
+    "score_wrong": 0.25,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 17,
+    "image_id": 127182,
+    "correct_caption": "A photo of a microwave above a oven",
+    "wrong_caption": "A photo of a microwave below a oven",
+    "score_correct": 1.09375,
+    "score_wrong": 0.90625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 18,
+    "image_id": 36936,
+    "correct_caption": "A photo of a potted plant below a tv",
+    "wrong_caption": "A photo of a potted plant above a tv",
+    "score_correct": 1.015625,
+    "score_wrong": 0.71875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 19,
+    "image_id": 1425,
+    "correct_caption": "A photo of a sandwich to the left of a bowl",
+    "wrong_caption": "A photo of a sandwich to the right of a bowl",
+    "score_correct": 1.703125,
+    "score_wrong": 0.84375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 20,
+    "image_id": 35279,
+    "correct_caption": "A photo of a laptop to the left of a bottle",
+    "wrong_caption": "A photo of a laptop to the right of a bottle",
+    "score_correct": 2.0625,
+    "score_wrong": 0.859375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 21,
+    "image_id": 227399,
+    "correct_caption": "A photo of a motorcycle to the right of a train",
+    "wrong_caption": "A photo of a motorcycle to the left of a train",
+    "score_correct": 0.421875,
+    "score_wrong": 0.40625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 22,
+    "image_id": 515077,
+    "correct_caption": "A photo of a person to the left of a couch",
+    "wrong_caption": "A photo of a person to the right of a couch",
+    "score_correct": 0.359375,
+    "score_wrong": -0.109375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 23,
+    "image_id": 524456,
+    "correct_caption": "A photo of a mouse to the right of a keyboard",
+    "wrong_caption": "A photo of a mouse to the left of a keyboard",
+    "score_correct": 1.421875,
+    "score_wrong": 0.671875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 24,
+    "image_id": 431140,
+    "correct_caption": "A photo of a toilet to the left of a sink",
+    "wrong_caption": "A photo of a toilet to the right of a sink",
+    "score_correct": 1.828125,
+    "score_wrong": 0.703125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 25,
+    "image_id": 346638,
+    "correct_caption": "A photo of a tv to the right of a mouse",
+    "wrong_caption": "A photo of a tv to the left of a mouse",
+    "score_correct": 0.0,
+    "score_wrong": 0.34375,
+    "prediction": "wrong",
+    "correct": false
+  },
+  {
+    "question_id": 26,
+    "image_id": 446206,
+    "correct_caption": "A photo of a bus below a train",
+    "wrong_caption": "A photo of a bus above a train",
+    "score_correct": 1.140625,
+    "score_wrong": 0.28125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 27,
+    "image_id": 150224,
+    "correct_caption": "A photo of a umbrella to the left of a chair",
+    "wrong_caption": "A photo of a umbrella to the right of a chair",
+    "score_correct": 1.140625,
+    "score_wrong": 0.40625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 28,
+    "image_id": 485424,
+    "correct_caption": "A photo of a suitcase above a oven",
+    "wrong_caption": "A photo of a suitcase below a oven",
+    "score_correct": 0.0,
+    "score_wrong": 0.046875,
+    "prediction": "wrong",
+    "correct": false
+  },
+  {
+    "question_id": 29,
+    "image_id": 562059,
+    "correct_caption": "A photo of a cup to the left of a spoon",
+    "wrong_caption": "A photo of a cup to the right of a spoon",
+    "score_correct": 0.859375,
+    "score_wrong": -0.015625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 30,
+    "image_id": 305609,
+    "correct_caption": "A photo of a dining table below a person",
+    "wrong_caption": "A photo of a dining table above a person",
+    "score_correct": 0.390625,
+    "score_wrong": 0.171875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 31,
+    "image_id": 40757,
+    "correct_caption": "A photo of a person below a tv",
+    "wrong_caption": "A photo of a person above a tv",
+    "score_correct": 0.21875,
+    "score_wrong": -0.515625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 32,
+    "image_id": 542776,
+    "correct_caption": "A photo of a bird to the left of a bed",
+    "wrong_caption": "A photo of a bird to the right of a bed",
+    "score_correct": 0.84375,
+    "score_wrong": 0.34375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 33,
+    "image_id": 353051,
+    "correct_caption": "A photo of a horse to the right of a person",
+    "wrong_caption": "A photo of a horse to the left of a person",
+    "score_correct": 0.75,
+    "score_wrong": -0.4375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 34,
+    "image_id": 52996,
+    "correct_caption": "A photo of a refrigerator to the right of a dining table",
+    "wrong_caption": "A photo of a refrigerator to the left of a dining table",
+    "score_correct": 0.859375,
+    "score_wrong": 0.640625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 35,
+    "image_id": 491497,
+    "correct_caption": "A photo of a tv to the left of a chair",
+    "wrong_caption": "A photo of a tv to the right of a chair",
+    "score_correct": 1.125,
+    "score_wrong": 0.0,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 36,
+    "image_id": 81061,
+    "correct_caption": "A photo of a chair to the left of a suitcase",
+    "wrong_caption": "A photo of a chair to the right of a suitcase",
+    "score_correct": 2.0,
+    "score_wrong": 1.0,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 37,
+    "image_id": 26465,
+    "correct_caption": "A photo of a chair to the right of a person",
+    "wrong_caption": "A photo of a chair to the left of a person",
+    "score_correct": -1.0,
+    "score_wrong": -0.9375,
+    "prediction": "wrong",
+    "correct": false
+  },
+  {
+    "question_id": 38,
+    "image_id": 158744,
+    "correct_caption": "A photo of a couch to the left of a person",
+    "wrong_caption": "A photo of a couch to the right of a person",
+    "score_correct": 1.703125,
+    "score_wrong": 0.171875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 39,
+    "image_id": 13177,
+    "correct_caption": "A photo of a bicycle to the right of a motorcycle",
+    "wrong_caption": "A photo of a bicycle to the left of a motorcycle",
+    "score_correct": 1.09375,
+    "score_wrong": 0.546875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 40,
+    "image_id": 495146,
+    "correct_caption": "A photo of a car below a train",
+    "wrong_caption": "A photo of a car above a train",
+    "score_correct": 0.734375,
+    "score_wrong": 0.1875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 41,
+    "image_id": 216277,
+    "correct_caption": "A photo of a apple to the left of a person",
+    "wrong_caption": "A photo of a apple to the right of a person",
+    "score_correct": 0.453125,
+    "score_wrong": -0.171875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 42,
+    "image_id": 533206,
+    "correct_caption": "A photo of a bottle to the left of a bowl",
+    "wrong_caption": "A photo of a bottle to the right of a bowl",
+    "score_correct": 1.21875,
+    "score_wrong": 0.53125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 43,
+    "image_id": 567825,
+    "correct_caption": "A photo of a bottle to the left of a wine glass",
+    "wrong_caption": "A photo of a bottle to the right of a wine glass",
+    "score_correct": 2.234375,
+    "score_wrong": 0.484375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 44,
+    "image_id": 110999,
+    "correct_caption": "A photo of a cup to the right of a person",
+    "wrong_caption": "A photo of a cup to the left of a person",
+    "score_correct": 0.015625,
+    "score_wrong": 0.078125,
+    "prediction": "wrong",
+    "correct": false
+  },
+  {
+    "question_id": 45,
+    "image_id": 91615,
+    "correct_caption": "A photo of a sink to the left of a microwave",
+    "wrong_caption": "A photo of a sink to the right of a microwave",
+    "score_correct": 1.40625,
+    "score_wrong": 0.609375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 46,
+    "image_id": 116206,
+    "correct_caption": "A photo of a knife below a cup",
+    "wrong_caption": "A photo of a knife above a cup",
+    "score_correct": -0.171875,
+    "score_wrong": -0.15625,
+    "prediction": "wrong",
+    "correct": false
+  },
+  {
+    "question_id": 47,
+    "image_id": 318114,
+    "correct_caption": "A photo of a cup to the left of a cake",
+    "wrong_caption": "A photo of a cup to the right of a cake",
+    "score_correct": 1.890625,
+    "score_wrong": 1.203125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 48,
+    "image_id": 488166,
+    "correct_caption": "A photo of a pizza to the left of a cup",
+    "wrong_caption": "A photo of a pizza to the right of a cup",
+    "score_correct": -0.796875,
+    "score_wrong": -0.953125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 49,
+    "image_id": 50326,
+    "correct_caption": "A photo of a person to the left of a chair",
+    "wrong_caption": "A photo of a person to the right of a chair",
+    "score_correct": 1.078125,
+    "score_wrong": 0.578125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 50,
+    "image_id": 169076,
+    "correct_caption": "A photo of a tv above a cat",
+    "wrong_caption": "A photo of a tv below a cat",
+    "score_correct": 1.578125,
+    "score_wrong": 1.578125,
+    "prediction": "wrong",
+    "correct": false
+  },
+  {
+    "question_id": 51,
+    "image_id": 528399,
+    "correct_caption": "A photo of a sandwich above a dining table",
+    "wrong_caption": "A photo of a sandwich below a dining table",
+    "score_correct": 1.078125,
+    "score_wrong": 0.703125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 52,
+    "image_id": 515077,
+    "correct_caption": "A photo of a tv above a couch",
+    "wrong_caption": "A photo of a tv below a couch",
+    "score_correct": 0.5625,
+    "score_wrong": 0.390625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 53,
+    "image_id": 78823,
+    "correct_caption": "A photo of a dog to the right of a potted plant",
+    "wrong_caption": "A photo of a dog to the left of a potted plant",
+    "score_correct": 1.40625,
+    "score_wrong": 0.0,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 54,
+    "image_id": 177015,
+    "correct_caption": "A photo of a cat to the right of a refrigerator",
+    "wrong_caption": "A photo of a cat to the left of a refrigerator",
+    "score_correct": -0.421875,
+    "score_wrong": -0.515625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 55,
+    "image_id": 532761,
+    "correct_caption": "A photo of a tv to the right of a chair",
+    "wrong_caption": "A photo of a tv to the left of a chair",
+    "score_correct": 0.6875,
+    "score_wrong": 0.46875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 56,
+    "image_id": 255912,
+    "correct_caption": "A photo of a broccoli below a bottle",
+    "wrong_caption": "A photo of a broccoli above a bottle",
+    "score_correct": -2.34375,
+    "score_wrong": -2.40625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 57,
+    "image_id": 78420,
+    "correct_caption": "A photo of a cat below a chair",
+    "wrong_caption": "A photo of a cat above a chair",
+    "score_correct": 0.9375,
+    "score_wrong": 0.46875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 58,
+    "image_id": 573094,
+    "correct_caption": "A photo of a couch to the left of a bicycle",
+    "wrong_caption": "A photo of a couch to the right of a bicycle",
+    "score_correct": 0.984375,
+    "score_wrong": 0.203125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 59,
+    "image_id": 488166,
+    "correct_caption": "A photo of a person above a sandwich",
+    "wrong_caption": "A photo of a person below a sandwich",
+    "score_correct": 0.359375,
+    "score_wrong": -0.34375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 60,
+    "image_id": 261116,
+    "correct_caption": "A photo of a bench below a dining table",
+    "wrong_caption": "A photo of a bench above a dining table",
+    "score_correct": 1.265625,
+    "score_wrong": 1.109375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 61,
+    "image_id": 246308,
+    "correct_caption": "A photo of a tv above a keyboard",
+    "wrong_caption": "A photo of a tv below a keyboard",
+    "score_correct": 0.34375,
+    "score_wrong": 0.4375,
+    "prediction": "wrong",
+    "correct": false
+  },
+  {
+    "question_id": 62,
+    "image_id": 193926,
+    "correct_caption": "A photo of a bicycle to the right of a bowl",
+    "wrong_caption": "A photo of a bicycle to the left of a bowl",
+    "score_correct": 0.859375,
+    "score_wrong": 0.703125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 63,
+    "image_id": 96001,
+    "correct_caption": "A photo of a book to the right of a bowl",
+    "wrong_caption": "A photo of a book to the left of a bowl",
+    "score_correct": 1.4375,
+    "score_wrong": 0.859375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 64,
+    "image_id": 404484,
+    "correct_caption": "A photo of a dog to the left of a person",
+    "wrong_caption": "A photo of a dog to the right of a person",
+    "score_correct": 1.15625,
+    "score_wrong": -0.125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 65,
+    "image_id": 198489,
+    "correct_caption": "A photo of a potted plant above a umbrella",
+    "wrong_caption": "A photo of a potted plant below a umbrella",
+    "score_correct": 1.65625,
+    "score_wrong": 0.796875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 66,
+    "image_id": 37740,
+    "correct_caption": "A photo of a potted plant to the right of a couch",
+    "wrong_caption": "A photo of a potted plant to the left of a couch",
+    "score_correct": 0.28125,
+    "score_wrong": -0.296875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 67,
+    "image_id": 163611,
+    "correct_caption": "A photo of a cup above a fork",
+    "wrong_caption": "A photo of a cup below a fork",
+    "score_correct": 1.140625,
+    "score_wrong": 0.921875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 68,
+    "image_id": 22192,
+    "correct_caption": "A photo of a dog to the left of a handbag",
+    "wrong_caption": "A photo of a dog to the right of a handbag",
+    "score_correct": 1.9375,
+    "score_wrong": 1.234375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 69,
+    "image_id": 482917,
+    "correct_caption": "A photo of a dog below a tv",
+    "wrong_caption": "A photo of a dog above a tv",
+    "score_correct": 2.03125,
+    "score_wrong": 1.171875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 70,
+    "image_id": 21503,
+    "correct_caption": "A photo of a mouse to the right of a keyboard",
+    "wrong_caption": "A photo of a mouse to the left of a keyboard",
+    "score_correct": -0.734375,
+    "score_wrong": -0.6875,
+    "prediction": "wrong",
+    "correct": false
+  },
+  {
+    "question_id": 71,
+    "image_id": 368335,
+    "correct_caption": "A photo of a horse to the right of a truck",
+    "wrong_caption": "A photo of a horse to the left of a truck",
+    "score_correct": 1.453125,
+    "score_wrong": 0.703125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 72,
+    "image_id": 35279,
+    "correct_caption": "A photo of a person below a handbag",
+    "wrong_caption": "A photo of a person above a handbag",
+    "score_correct": -0.75,
+    "score_wrong": -0.546875,
+    "prediction": "wrong",
+    "correct": false
+  },
+  {
+    "question_id": 73,
+    "image_id": 232649,
+    "correct_caption": "A photo of a sink below a person",
+    "wrong_caption": "A photo of a sink above a person",
+    "score_correct": 0.53125,
+    "score_wrong": 0.359375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 74,
+    "image_id": 562059,
+    "correct_caption": "A photo of a cup above a spoon",
+    "wrong_caption": "A photo of a cup below a spoon",
+    "score_correct": 0.625,
+    "score_wrong": 0.296875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 75,
+    "image_id": 318114,
+    "correct_caption": "A photo of a fork to the left of a orange",
+    "wrong_caption": "A photo of a fork to the right of a orange",
+    "score_correct": 2.046875,
+    "score_wrong": 1.515625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 76,
+    "image_id": 569917,
+    "correct_caption": "A photo of a toilet to the left of a sink",
+    "wrong_caption": "A photo of a toilet to the right of a sink",
+    "score_correct": 0.125,
+    "score_wrong": -0.46875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 77,
+    "image_id": 110999,
+    "correct_caption": "A photo of a cup below a person",
+    "wrong_caption": "A photo of a cup above a person",
+    "score_correct": -0.375,
+    "score_wrong": -0.6875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 78,
+    "image_id": 458255,
+    "correct_caption": "A photo of a cat to the right of a person",
+    "wrong_caption": "A photo of a cat to the left of a person",
+    "score_correct": 1.25,
+    "score_wrong": 0.34375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 79,
+    "image_id": 370478,
+    "correct_caption": "A photo of a bed to the left of a suitcase",
+    "wrong_caption": "A photo of a bed to the right of a suitcase",
+    "score_correct": 0.453125,
+    "score_wrong": 0.125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 80,
+    "image_id": 241326,
+    "correct_caption": "A photo of a dog to the right of a cat",
+    "wrong_caption": "A photo of a dog to the left of a cat",
+    "score_correct": 0.953125,
+    "score_wrong": 0.03125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 81,
+    "image_id": 198489,
+    "correct_caption": "A photo of a car above a umbrella",
+    "wrong_caption": "A photo of a car below a umbrella",
+    "score_correct": 1.15625,
+    "score_wrong": 0.96875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 82,
+    "image_id": 429011,
+    "correct_caption": "A photo of a car to the right of a truck",
+    "wrong_caption": "A photo of a car to the left of a truck",
+    "score_correct": 0.328125,
+    "score_wrong": 0.078125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 83,
+    "image_id": 450100,
+    "correct_caption": "A photo of a spoon below a cup",
+    "wrong_caption": "A photo of a spoon above a cup",
+    "score_correct": 0.453125,
+    "score_wrong": 0.359375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 84,
+    "image_id": 37670,
+    "correct_caption": "A photo of a person to the right of a toilet",
+    "wrong_caption": "A photo of a person to the left of a toilet",
+    "score_correct": 0.015625,
+    "score_wrong": -0.453125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 85,
+    "image_id": 110884,
+    "correct_caption": "A photo of a toilet to the right of a sink",
+    "wrong_caption": "A photo of a toilet to the left of a sink",
+    "score_correct": 1.859375,
+    "score_wrong": 1.34375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 86,
+    "image_id": 147415,
+    "correct_caption": "A photo of a chair to the left of a person",
+    "wrong_caption": "A photo of a chair to the right of a person",
+    "score_correct": 0.546875,
+    "score_wrong": -0.390625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 87,
+    "image_id": 203580,
+    "correct_caption": "A photo of a umbrella above a bench",
+    "wrong_caption": "A photo of a umbrella below a bench",
+    "score_correct": 2.109375,
+    "score_wrong": 1.609375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 88,
+    "image_id": 425361,
+    "correct_caption": "A photo of a chair to the left of a laptop",
+    "wrong_caption": "A photo of a chair to the right of a laptop",
+    "score_correct": 0.65625,
+    "score_wrong": 0.4375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 89,
+    "image_id": 463618,
+    "correct_caption": "A photo of a tv to the left of a couch",
+    "wrong_caption": "A photo of a tv to the right of a couch",
+    "score_correct": 0.546875,
+    "score_wrong": -0.015625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 90,
+    "image_id": 482917,
+    "correct_caption": "A photo of a tv above a person",
+    "wrong_caption": "A photo of a tv below a person",
+    "score_correct": 0.3125,
+    "score_wrong": 0.015625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 91,
+    "image_id": 146489,
+    "correct_caption": "A photo of a bottle to the left of a pizza",
+    "wrong_caption": "A photo of a bottle to the right of a pizza",
+    "score_correct": 2.359375,
+    "score_wrong": 1.46875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 92,
+    "image_id": 304984,
+    "correct_caption": "A photo of a cake to the left of a wine glass",
+    "wrong_caption": "A photo of a cake to the right of a wine glass",
+    "score_correct": -1.25,
+    "score_wrong": -1.421875,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 93,
+    "image_id": 442323,
+    "correct_caption": "A photo of a tv above a bed",
+    "wrong_caption": "A photo of a tv below a bed",
+    "score_correct": -0.78125,
+    "score_wrong": -0.453125,
+    "prediction": "wrong",
+    "correct": false
+  },
+  {
+    "question_id": 94,
+    "image_id": 520531,
+    "correct_caption": "A photo of a cat to the right of a chair",
+    "wrong_caption": "A photo of a cat to the left of a chair",
+    "score_correct": 1.8125,
+    "score_wrong": 0.703125,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 95,
+    "image_id": 456143,
+    "correct_caption": "A photo of a sandwich to the right of a bowl",
+    "wrong_caption": "A photo of a sandwich to the left of a bowl",
+    "score_correct": 1.328125,
+    "score_wrong": 0.9375,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 96,
+    "image_id": 528705,
+    "correct_caption": "A photo of a teddy bear to the left of a person",
+    "wrong_caption": "A photo of a teddy bear to the right of a person",
+    "score_correct": 1.03125,
+    "score_wrong": 0.625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 97,
+    "image_id": 569059,
+    "correct_caption": "A photo of a tv above a chair",
+    "wrong_caption": "A photo of a tv below a chair",
+    "score_correct": -0.40625,
+    "score_wrong": -0.75,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 98,
+    "image_id": 253452,
+    "correct_caption": "A photo of a cup below a cake",
+    "wrong_caption": "A photo of a cup above a cake",
+    "score_correct": 0.203125,
+    "score_wrong": -0.140625,
+    "prediction": "correct",
+    "correct": true
+  },
+  {
+    "question_id": 99,
+    "image_id": 47769,
+    "correct_caption": "A photo of a tv to the right of a couch",
+    "wrong_caption": "A photo of a tv to the left of a couch",
+    "score_correct": 0.84375,
+    "score_wrong": 0.25,
+    "prediction": "correct",
+    "correct": true
+  }
+]

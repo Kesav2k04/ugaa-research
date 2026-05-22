@@ -1,0 +1,502 @@
+[
+  {
+    "question": "The bench is at the right side of the train.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The train contains the laptop.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bowl is at the left side of the banana.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cat is under the motorcycle.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bicycle is near the tv.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is ahead of the cow.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The hair drier is in front of the person.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The giraffe is on the bench.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bed is below the sheep.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is touching the handbag.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bed is on top of the dog.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bus is in front of the horse.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is touching the cake.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cell phone is at the right side of the bowl.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cat is on top of the laptop.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cat is at the right side of the laptop.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The dog is above the laptop.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The motorcycle is ahead of the truck.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The laptop is below the person.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The horse is on the bed.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The tv is beside the cat.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The horse is on the bus.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The handbag is touching the umbrella.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The teddy bear is part of the cake.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cow is behind the sheep.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cup is far away from the bus.",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question": "The teddy bear is touching the bench.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cow is past the person.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The zebra is touching the person.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is touching the teddy bear.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The dog is part of the vase.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The potted plant is next to the cat.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cake is far from the airplane.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The horse is at the back of the truck.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The parking meter is behind the car.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cat is at the back of the toilet.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The sandwich is in the middle of the bowl.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is touching the bed.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bowl is in front of the sandwich.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The pizza is connected to the bicycle.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The hot dog is at the side of the dining table.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is on top of the horse.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The boat is on the train.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The sheep is beneath the person.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cat is touching the umbrella.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The apple is behind the cake.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The teddy bear is in front of the dining table.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The sheep is on top of the chair.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is touching the pizza.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is touching the couch.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The dining table is under the train.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The umbrella is over the person.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bus is far away from the potted plant.",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question": "The bowl is away from the hot dog.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cat is on top of the pizza.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cup is at the right side of the cat.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cake is in the oven.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is facing away from the pizza.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The car is parallel to the train.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The couch is behind the skateboard.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The truck is on the couch.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cup is behind the cake.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The couch is under the cat.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The backpack is on the cat.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The tennis racket is below the person.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bed is under the umbrella.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bed is right of the potted plant.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is on top of the bed.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The hot dog is at the right side of the person.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The giraffe is touching the person.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The book is at the right side of the teddy bear.",
+    "label": "no",
+    "prediction": "no"
+  },
+  {
+    "question": "The dining table is under the train.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bench is under the hot dog.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cat is touching the dining table.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The refrigerator is behind the person.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The teddy bear is on the bed.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The car is in front of the bus.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The apple is on top of the banana.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cat is touching the keyboard.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cat is on top of the laptop.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is touching the pizza.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The tv is at the left side of the person.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The motorcycle is parallel to the bus.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The teddy bear is on top of the person.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bicycle is in front of the cat.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is at the left side of the umbrella.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The handbag is beneath the cat.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The oven is at the left side of the person.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is at the right side of the laptop.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is connected to the sheep.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The sandwich is at the edge of the bowl.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cake is in front of the teddy bear.",
+    "label": "yes",
+    "prediction": "yes"
+  },
+  {
+    "question": "The backpack is beside the cat.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The bus is beside the train.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The person is left of the cow.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The dog is out of the car.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The couch is behind the skateboard.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The dog is in front of the motorcycle.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The cat is at the edge of the sink.",
+    "label": "no",
+    "prediction": "yes"
+  },
+  {
+    "question": "The laptop is under the cat.",
+    "label": "yes",
+    "prediction": "yes"
+  }
+]

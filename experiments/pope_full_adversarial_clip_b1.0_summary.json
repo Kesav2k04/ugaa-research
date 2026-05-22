@@ -1,0 +1,18 @@
+{
+  "split": "adversarial",
+  "mode": "clip_certainty beta=1.0",
+  "n_total": 3000,
+  "n_valid": 3000,
+  "n_errors": 0,
+  "f1": 0.8171,
+  "precision": 0.9072,
+  "recall": 0.7433,
+  "tp": 1115,
+  "tn": 1386,
+  "fp": 114,
+  "fn": 385,
+  "baseline_f1_100sample_ref": 0.8041,
+  "delta_f1_vs_100sample_ref": 0.013,
+  "total_time_min": 32.8,
+  "sec_per_question": 0.66
+}

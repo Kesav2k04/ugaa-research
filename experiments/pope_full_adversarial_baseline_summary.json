@@ -1,0 +1,18 @@
+{
+  "split": "adversarial",
+  "mode": "baseline (no UGAA)",
+  "n_total": 3000,
+  "n_valid": 3000,
+  "n_errors": 0,
+  "f1": 0.8221,
+  "precision": 0.8658,
+  "recall": 0.7827,
+  "tp": 1174,
+  "tn": 1318,
+  "fp": 182,
+  "fn": 326,
+  "baseline_f1_100sample_ref": 0.8041,
+  "delta_f1_vs_100sample_ref": 0.018,
+  "total_time_min": 31.9,
+  "sec_per_question": 0.64
+}

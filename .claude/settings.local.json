@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude update *)",
+      "Read(//d//**)"
+    ]
+  }
+}

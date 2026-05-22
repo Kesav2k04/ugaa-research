@@ -459,7 +459,7 @@
     "question_id": 77,
     "question": "Is there a chair in the image?",
     "label": "yes",
-    "prediction": "yes"
+    "prediction": "no"
   },
   {
     "question_id": 78,
