@@ -238,465 +238,465 @@
     "category": "spatial"
   },
   {
-    "question_id": "02247623",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2386019.jpg",
-    "question": "Who is in front of the building?",
-    "label": "people",
-    "category": "spatial"
+    "question_id": "393227002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000393227.jpg",
+    "question": "How many tattoos can be seen on this man's body?",
+    "label": "1",
+    "category": "counting"
   },
   {
-    "question_id": "15871248",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2382163.jpg",
-    "question": "Which kind of vehicle is to the left of the backpack?",
-    "label": "tractor",
-    "category": "spatial"
+    "question_id": "131074001",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000131074.jpg",
+    "question": "How many pieces of furniture which are used for sleeping are featured in this picture?",
+    "label": "2",
+    "category": "counting"
   },
   {
-    "question_id": "00297942",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2325166.jpg",
-    "question": "What's the fence in front of?",
-    "label": "bushes",
-    "category": "spatial"
+    "question_id": "393230001",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000393230.jpg",
+    "question": "How many people are in this image?",
+    "label": "1",
+    "category": "counting"
   },
   {
-    "question_id": "00297941",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2325166.jpg",
-    "question": "What is the fence in front of?",
-    "label": "bushes",
-    "category": "spatial"
+    "question_id": "131093002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000131093.jpg",
+    "question": "How many sheeps are this?",
+    "label": "3",
+    "category": "counting"
   },
   {
-    "question_id": "00297940",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2325166.jpg",
-    "question": "What is in front of the bushes?",
-    "label": "fence",
-    "category": "spatial"
+    "question_id": "25015",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000000025.jpg",
+    "question": "How many giraffes are there?",
+    "label": "2",
+    "category": "counting"
   },
   {
-    "question_id": "09207863",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2322371.jpg",
-    "question": "Do you see a chair to the left of the pillow?",
-    "label": "no",
-    "category": "spatial"
+    "question_id": "25017",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000000025.jpg",
+    "question": "How many animals are in this photo?",
+    "label": "2",
+    "category": "counting"
   },
   {
-    "question_id": "07241856",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2402321.jpg",
-    "question": "What kind of vegetable is to the right of the cups on the counter?",
-    "label": "onions",
-    "category": "spatial"
+    "question_id": "262171000",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000262171.jpg",
+    "question": "How many people are on the boat?",
+    "label": "5",
+    "category": "counting"
   },
   {
-    "question_id": "12227132",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/737.jpg",
-    "question": "Is the white vehicle to the right or to the left of the vehicle the vehicle is to the left of?",
-    "label": "right",
-    "category": "spatial"
+    "question_id": "524325000",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000524325.jpg",
+    "question": "How many people are wearing shorts in the forefront of this photo?",
+    "label": "4",
+    "category": "counting"
   },
   {
-    "question_id": "13708543",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2384558.jpg",
-    "question": "Which direction is the woman to the left of the chair looking at?",
-    "label": "behind",
-    "category": "spatial"
+    "question_id": "131118001",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000131118.jpg",
+    "question": "How many planes are in the picture?",
+    "label": "2",
+    "category": "counting"
   },
   {
-    "question_id": "041000077",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2416722.jpg",
-    "question": "Is the person to the right of the man wearing a boot?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "524338000",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000524338.jpg",
+    "question": "How many trees are in this photo?",
+    "label": "3",
+    "category": "counting"
   },
   {
-    "question_id": "00880780",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2362193.jpg",
-    "question": "Is the man to the right of the hammer wearing eye glasses?",
-    "label": "no",
-    "category": "spatial"
+    "question_id": "131128002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000131128.jpg",
+    "question": "How many flowers are painted on the vase?",
+    "label": "3",
+    "category": "counting"
   },
   {
-    "question_id": "15841623",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2368660.jpg",
-    "question": "Are there any cups to the left of the cupcake that is in the middle?",
-    "label": "no",
-    "category": "spatial"
+    "question_id": "370986001",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000370986.jpg",
+    "question": "How many elephants are in the water?",
+    "label": "2",
+    "category": "counting"
   },
   {
-    "question_id": "14889408",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2374981.jpg",
-    "question": "Is the chair on the right of the photo?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "370986002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000370986.jpg",
+    "question": "How many tails can you see in this picture?",
+    "label": "3",
+    "category": "counting"
   },
   {
-    "question_id": "03126814",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2400784.jpg",
-    "question": "Are there any men to the right of the person that is holding the tennis racket?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "262204000",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000262204.jpg",
+    "question": "How many tusks are visible?",
+    "label": "2",
+    "category": "counting"
   },
   {
-    "question_id": "0111303",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/347.jpg",
-    "question": "Is the cabinet to the right of the table?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "458763001",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000458763.jpg",
+    "question": "How many trees on the table?",
+    "label": "3",
+    "category": "counting"
   },
   {
-    "question_id": "05684159",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2362327.jpg",
-    "question": "Is the player to the left or to the right of the umpire that wears a belt?",
-    "label": "left",
-    "category": "spatial"
+    "question_id": "458763002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000458763.jpg",
+    "question": "How many horns are in the picture?",
+    "label": "0",
+    "category": "counting"
   },
   {
-    "question_id": "10464328",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2360651.jpg",
-    "question": "Are there any bags to the right of the man in the middle of the image?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "72000",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000000072.jpg",
+    "question": "How many Giraffes are in this image?",
+    "label": "2",
+    "category": "counting"
   },
   {
-    "question_id": "03795448",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2374412.jpg",
-    "question": "Which kind of animal is to the left of the truck?",
-    "label": "bull",
-    "category": "spatial"
+    "question_id": "393290002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000393290.jpg",
+    "question": "How many stairs are there?",
+    "label": "6",
+    "category": "counting"
   },
   {
-    "question_id": "1860944",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2403460.jpg",
-    "question": "What is the name of the appliance behind the guy?",
-    "label": "refrigerator",
-    "category": "spatial"
+    "question_id": "393291007",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000393291.jpg",
+    "question": "How many windows are there?",
+    "label": "3",
+    "category": "counting"
   },
   {
-    "question_id": "15667729",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2391999.jpg",
-    "question": "Is the white lamp to the left or to the right of the white curtain?",
-    "label": "right",
-    "category": "spatial"
+    "question_id": "393292002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000393292.jpg",
+    "question": "How many birds are in the sink?",
+    "label": "2",
+    "category": "counting"
   },
   {
-    "question_id": "11215445",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2411832.jpg",
-    "question": "What kind of food is to the left of the toast?",
-    "label": "sandwich",
-    "category": "spatial"
+    "question_id": "262221002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000262221.jpg",
+    "question": "How many tennis players are in the photo?",
+    "label": "1",
+    "category": "counting"
   },
   {
-    "question_id": "19606703",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2370859.jpg",
-    "question": "What is the animal that is to the left of the brown object that is to the left of the speaker called?",
-    "label": "cat",
-    "category": "spatial"
+    "question_id": "524375003",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000524375.jpg",
+    "question": "How many black sheep are there?",
+    "label": "10",
+    "category": "counting"
   },
   {
-    "question_id": "101001503",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2339853.jpg",
-    "question": "Are there spoons to the left of the vegetable on the right?",
-    "label": "no",
-    "category": "spatial"
+    "question_id": "524377002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg",
+    "question": "How many lunches is this?",
+    "label": "1",
+    "category": "counting"
   },
   {
-    "question_id": "14202809",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2345598.jpg",
-    "question": "Are there men to the left of the dark brown horse?",
-    "label": "no",
-    "category": "spatial"
+    "question_id": "524377019",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg",
+    "question": "How many hot dogs are shown?",
+    "label": "1",
+    "category": "counting"
   },
   {
-    "question_id": "14202805",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2345598.jpg",
-    "question": "What is the man to the left of the woman wearing?",
-    "label": "coat",
-    "category": "spatial"
+    "question_id": "524377022",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg",
+    "question": "How many pickle spears are there?",
+    "label": "0",
+    "category": "counting"
   },
   {
-    "question_id": "1463548",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2360429.jpg",
-    "question": "Does the animal that is to the right of the umbrella seem to be off?",
-    "label": "no",
-    "category": "spatial"
+    "question_id": "524377024",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg",
+    "question": "How many people are eating this hotdog?",
+    "label": "1",
+    "category": "counting"
   },
   {
-    "question_id": "00947223",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2391360.jpg",
-    "question": "Is there a soccer ball above the basket?",
-    "label": "no",
-    "category": "spatial"
+    "question_id": "524377027",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg",
+    "question": "How many sauces are there?",
+    "label": "1",
+    "category": "counting"
   },
   {
-    "question_id": "00681430",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2319126.jpg",
-    "question": "Is the ball to the right or to the left of the person that is wearing a jersey?",
-    "label": "right",
-    "category": "spatial"
+    "question_id": "524377051",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000524377.jpg",
+    "question": "How many kinds of meat products are here?",
+    "label": "1",
+    "category": "counting"
   },
   {
-    "question_id": "06438181",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2377551.jpg",
-    "question": "Is the animal to the left of the old vehicle?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "262159002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000262159.jpg",
+    "question": "How many rolls of toilet paper are on the toilet tank?",
+    "label": "2",
+    "category": "counting"
   },
   {
-    "question_id": "0056771",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2394852.jpg",
-    "question": "What type of appliance is to the right of the woman's glasses?",
-    "label": "dishwasher",
-    "category": "spatial"
+    "question_id": "92000",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000000092.jpg",
+    "question": "How many layers are in this cake?",
+    "label": "7",
+    "category": "counting"
   },
   {
-    "question_id": "07900409",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2404338.jpg",
-    "question": "Does the person to the right of the bed wear a scarf?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "92002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000000092.jpg",
+    "question": "How many people can eat this cake?",
+    "label": "1",
+    "category": "counting"
   },
   {
-    "question_id": "18783554",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2373686.jpg",
-    "question": "Is the giraffe in front of the fence?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "94002",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000000094.jpg",
+    "question": "How many vehicles are shown?",
+    "label": "2",
+    "category": "counting"
   },
   {
-    "question_id": "15705095",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2345287.jpg",
-    "question": "Is the melon on the left of the picture?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "524386004",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000524386.jpg",
+    "question": "How many lamps are there?",
+    "label": "2",
+    "category": "counting"
   },
   {
-    "question_id": "01343904",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2410128.jpg",
-    "question": "What is the size of the banana to the right of the other banana?",
+    "question_id": "524386007",
+    "image_url": "http://images.cocodataset.org/train2014/COCO_train2014_000000524386.jpg",
+    "question": "How many lamps are in the room?",
+    "label": "2",
+    "category": "counting"
+  },
+  {
+    "question_id": "17197213",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2331963.jpg",
+    "question": "What color is the helmet in the middle of the image?",
+    "label": "light blue",
+    "category": "attribute"
+  },
+  {
+    "question_id": "08321209",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2349976.jpg",
+    "question": "What color is the jersey the boy is wearing?",
+    "label": "black",
+    "category": "attribute"
+  },
+  {
+    "question_id": "04285321",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2374871.jpg",
+    "question": "What is the color of the fence made of metal?",
+    "label": "green",
+    "category": "attribute"
+  },
+  {
+    "question_id": "01125115",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2383075.jpg",
+    "question": "What is the color of the large umbrella?",
+    "label": "orange",
+    "category": "attribute"
+  },
+  {
+    "question_id": "151001058",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2411612.jpg",
+    "question": "What is the color of the trousers?",
+    "label": "black",
+    "category": "attribute"
+  },
+  {
+    "question_id": "08621661",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2344819.jpg",
+    "question": "What color is the device on the right?",
+    "label": "black",
+    "category": "attribute"
+  },
+  {
+    "question_id": "14806825",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2346877.jpg",
+    "question": "What size is the white mane, small or large?",
     "label": "small",
-    "category": "spatial"
+    "category": "attribute"
   },
   {
-    "question_id": "08223793",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2400861.jpg",
-    "question": "What is the appliance to the right of the bowl?",
-    "label": "radiator",
-    "category": "spatial"
+    "question_id": "16644202",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2368283.jpg",
+    "question": "What is the color of the elephants the man is riding on?",
+    "label": "brown",
+    "category": "attribute"
   },
   {
-    "question_id": "16800885",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2410986.jpg",
-    "question": "Are there any surfers to the right of the surfboard in the center of the image?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "19388466",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2325119.jpg",
+    "question": "What color is that shirt, brown or white?",
+    "label": "brown",
+    "category": "attribute"
   },
   {
-    "question_id": "00461466",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2372555.jpg",
-    "question": "Is the plastic chair to the left or to the right of the man that is watching the game?",
-    "label": "left",
-    "category": "spatial"
+    "question_id": "02655551",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2354629.jpg",
+    "question": "What color do you think the t-shirt is?",
+    "label": "green",
+    "category": "attribute"
   },
   {
-    "question_id": "00461461",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2372555.jpg",
-    "question": "Is there a chair to the left of the man that is watching the game?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "16614293",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2408934.jpg",
+    "question": "What color is the floor?",
+    "label": "tan",
+    "category": "attribute"
   },
   {
-    "question_id": "05672549",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2373095.jpg",
-    "question": "What is the name of the drink to the right of the plate?",
-    "label": "beer",
-    "category": "spatial"
+    "question_id": "16403211",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2412845.jpg",
+    "question": "What is the color of the clothes of the man?",
+    "label": "black",
+    "category": "attribute"
   },
   {
-    "question_id": "05304738",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2371405.jpg",
-    "question": "Is the fork to the right or to the left of the bowl the sauce is in?",
-    "label": "right",
-    "category": "spatial"
+    "question_id": "03150113",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/1593172.jpg",
+    "question": "What color is the flag on the pole?",
+    "label": "yellow",
+    "category": "attribute"
   },
   {
-    "question_id": "15675504",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2356182.jpg",
-    "question": "What is in front of the screen that is to the left of the computer?",
-    "label": "chair",
-    "category": "spatial"
+    "question_id": "17922184",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2382188.jpg",
+    "question": "What color is the sky?",
+    "label": "gray",
+    "category": "attribute"
   },
   {
-    "question_id": "17397396",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2343353.jpg",
-    "question": "Which kind of furniture is to the left of the desk?",
-    "label": "beds",
-    "category": "spatial"
+    "question_id": "04243640",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/3250.jpg",
+    "question": "What color is the sky?",
+    "label": "white",
+    "category": "attribute"
   },
   {
-    "question_id": "00816476",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2385697.jpg",
-    "question": "Is the fence to the right or to the left of the old car?",
-    "label": "right",
-    "category": "spatial"
+    "question_id": "10590269",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2385222.jpg",
+    "question": "What color is the tablecloth?",
+    "label": "blue",
+    "category": "attribute"
   },
   {
-    "question_id": "091057558",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2391218.jpg",
-    "question": "Is the towel to the right or to the left of the faucet?",
-    "label": "left",
-    "category": "spatial"
+    "question_id": "1913154",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2321507.jpg",
+    "question": "What color is the food truck that the menu is on?",
+    "label": "black",
+    "category": "attribute"
   },
   {
-    "question_id": "19222090",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2411607.jpg",
-    "question": "What appliance is to the left of the toaster that is on the countertop?",
-    "label": "refrigerator",
-    "category": "spatial"
+    "question_id": "09693113",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2341527.jpg",
+    "question": "What color is the vegetable on top of the lettuce?",
+    "label": "orange",
+    "category": "attribute"
   },
   {
-    "question_id": "14937594",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/1592581.jpg",
-    "question": "Is the white curtain to the right or to the left of the picture on the shelf?",
-    "label": "left",
-    "category": "spatial"
+    "question_id": "08724906",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2317511.jpg",
+    "question": "What color are the sneakers?",
+    "label": "orange",
+    "category": "attribute"
   },
   {
-    "question_id": "07411217",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2411476.jpg",
-    "question": "Is the empty bowl to the right or to the left of the man that wears glasses?",
-    "label": "right",
-    "category": "spatial"
+    "question_id": "17954994",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2355312.jpg",
+    "question": "The shirt has what color?",
+    "label": "black",
+    "category": "attribute"
   },
   {
-    "question_id": "06790515",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2357448.jpg",
-    "question": "Are there any computers to the left of the glasses?",
-    "label": "no",
-    "category": "spatial"
+    "question_id": "19321685",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2340236.jpg",
+    "question": "What color is the jersey the number is on?",
+    "label": "black",
+    "category": "attribute"
   },
   {
-    "question_id": "10361470",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/515.jpg",
-    "question": "Is the stove to the right of a book?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "18192074",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2359926.jpg",
+    "question": "What is the color of the trousers?",
+    "label": "khaki",
+    "category": "attribute"
   },
   {
-    "question_id": "02964695",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2397904.jpg",
-    "question": "Are there traffic lights in front of the mountains?",
-    "label": "no",
-    "category": "spatial"
+    "question_id": "15483046",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2404536.jpg",
+    "question": "What is the color of the bag the woman is holding?",
+    "label": "black",
+    "category": "attribute"
   },
   {
-    "question_id": "02964692",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2397904.jpg",
-    "question": "What is the fire hydrant in front of?",
-    "label": "mountains",
-    "category": "spatial"
+    "question_id": "12826707",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2391413.jpg",
+    "question": "What color is that cap?",
+    "label": "yellow",
+    "category": "attribute"
   },
   {
-    "question_id": "02964690",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2397904.jpg",
-    "question": "What is in front of the mountains?",
-    "label": "fire hydrant",
-    "category": "spatial"
+    "question_id": "15599995",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2390229.jpg",
+    "question": "What color is the tank top?",
+    "label": "white",
+    "category": "attribute"
   },
   {
-    "question_id": "10274399",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2395567.jpg",
-    "question": "Is the catcher to the left or to the right of the man on the right?",
-    "label": "right",
-    "category": "spatial"
+    "question_id": "09725865",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/1526.jpg",
+    "question": "What is the color of the floor that the desk is on top of?",
+    "label": "blue",
+    "category": "attribute"
   },
   {
-    "question_id": "04605330",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2344801.jpg",
-    "question": "Is the man that is to the left of the plate holding a frisbee?",
-    "label": "no",
-    "category": "spatial"
+    "question_id": "00311920",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2392114.jpg",
+    "question": "What is the color of the grass that is not short?",
+    "label": "brown",
+    "category": "attribute"
   },
   {
-    "question_id": "18330260",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2392331.jpg",
-    "question": "Is the sky above the trees open and clear?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "14262986",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2402329.jpg",
+    "question": "What color is the hair?",
+    "label": "dark brown",
+    "category": "attribute"
   },
   {
-    "question_id": "18814087",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2359142.jpg",
-    "question": "Do you see fences to the right of the cow that is eating grass?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "13151561",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2410936.jpg",
+    "question": "What color is the hair that is not small?",
+    "label": "white",
+    "category": "attribute"
   },
   {
-    "question_id": "1525055",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2363859.jpg",
-    "question": "Do you see artichokes to the right of the tablecloth on the left?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "0624104",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2319836.jpg",
+    "question": "What color is the couch the pillow is on?",
+    "label": "black",
+    "category": "attribute"
   },
   {
-    "question_id": "0647948",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2366265.jpg",
-    "question": "Is the green vegetable to the right of the beef?",
-    "label": "yes",
-    "category": "spatial"
+    "question_id": "081005615",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2391197.jpg",
+    "question": "What color is the frisbee in the top of the picture?",
+    "label": "purple",
+    "category": "attribute"
   },
   {
-    "question_id": "07810304",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2377712.jpg",
-    "question": "Are there drawers to the left of the bed that is in front of the curtains?",
-    "label": "no",
-    "category": "spatial"
-  },
-  {
-    "question_id": "00374751",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2345716.jpg",
-    "question": "Is the man to the left or to the right of the flags?",
-    "label": "left",
-    "category": "spatial"
-  },
-  {
-    "question_id": "03713669",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2396017.jpg",
-    "question": "Is the fence behind the trees?",
-    "label": "no",
-    "category": "spatial"
-  },
-  {
-    "question_id": "03713661",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2396017.jpg",
-    "question": "What is in front of the trees?",
-    "label": "fence",
-    "category": "spatial"
-  },
-  {
-    "question_id": "09662508",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2347053.jpg",
-    "question": "Are there any chairs to the right of the lady?",
-    "label": "no",
-    "category": "spatial"
-  },
-  {
-    "question_id": "02689605",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2410897.jpg",
-    "question": "What vegetable is to the right of the beef?",
-    "label": "cucumber",
-    "category": "spatial"
-  },
-  {
-    "question_id": "15814189",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2353354.jpg",
-    "question": "Is the trash can to the left or to the right of the toilet?",
-    "label": "right",
-    "category": "spatial"
-  },
-  {
-    "question_id": "10682118",
-    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2412363.jpg",
-    "question": "Which kind of vegetable is to the right of the rice?",
-    "label": "pepper",
-    "category": "spatial"
+    "question_id": "09270717",
+    "image_url": "https://cs.stanford.edu/people/rak248/VG_100K_2/2367964.jpg",
+    "question": "What color is the coat the child is wearing?",
+    "label": "red",
+    "category": "attribute"
   }
 ]
