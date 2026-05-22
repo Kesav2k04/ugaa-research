@@ -1,0 +1,14 @@
+[
+  {
+    "image_url": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d",
+    "caption_a": "A sunny beach with clear blue water.",
+    "caption_b": "A snowy mountain under a clear sky.",
+    "correct_label": "A"
+  },
+  {
+    "image_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23",
+    "caption_a": "A bustling city street at night.",
+    "caption_b": "A quiet countryside road during the day.",
+    "correct_label": "B"
+  }
+]

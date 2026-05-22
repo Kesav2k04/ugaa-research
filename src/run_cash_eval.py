@@ -6,16 +6,22 @@ from PIL import Image
 from io import BytesIO
 from transformers import LlavaForConditionalGeneration, AutoProcessor, BitsAndBytesConfig
 
-MODEL_PATH       = "D:/models/llava-1.5-7b"
+MODEL_PATH       = "llava-hf/llava-1.5-7b-hf"
+CACHE_DIR        = "D:/models/hf_cache"
 CASH_PATH        = "datasets/cash/cash_v1_partial.json"
 MAPPINGS_PATH    = "datasets/cash/cash_image_mappings.json"
 OUTPUT_PATH      = "experiments/cash_predictions.json"
 
 
 def load_model():
-    bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16, bnb_4bit_quant_type="nf4")
-    model = LlavaForConditionalGeneration.from_pretrained(MODEL_PATH, quantization_config=bnb, device_map="auto")
-    processor = AutoProcessor.from_pretrained(MODEL_PATH)
+    bnb = BitsAndBytesConfig(
+        load_in_4bit=True, 
+        bnb_4bit_compute_dtype=torch.float16, 
+        bnb_4bit_quant_type="nf4",
+        llm_int8_enable_fp32_cpu_offload=True
+    )
+    model = LlavaForConditionalGeneration.from_pretrained(MODEL_PATH, quantization_config=bnb, device_map="auto", cache_dir=CACHE_DIR)
+    processor = AutoProcessor.from_pretrained(MODEL_PATH, cache_dir=CACHE_DIR)
     return model, processor
 
 
@@ -69,7 +75,8 @@ if __name__ == "__main__":
             errors += 1
             print(f"  ERROR: {e}")
 
-        results.append({"id": qid, "question": question, "label": label, "prediction": pred})
+        category = item.get("category", "unknown")
+        results.append({"id": qid, "category": category, "question": question, "label": label, "prediction": pred})
 
     os.makedirs("experiments", exist_ok=True)
     with open(OUTPUT_PATH, "w") as f:
@@ -83,3 +90,13 @@ if __name__ == "__main__":
     score  = compute_accuracy(preds, labels)
     print("\n=== CASH BASELINE SCORES ===")
     print(json.dumps(score, indent=2))
+
+from collections import defaultdict
+by_cat = defaultdict(list)
+for r in results:
+    by_cat[r.get('category')].append(r)
+print('\n=== CASH BREAKDOWN BY CATEGORY ===')
+for cat, items in by_cat.items():
+    correct = sum(1 for r in items if str(r.get('prediction')).lower().strip() == str(r.get('label')).lower().strip())
+    acc = round(correct / len(items), 4) if len(items) > 0 else 0
+    print(f'{cat}: {correct}/{len(items)} = {acc}')
