@@ -83,15 +83,69 @@ class UGAAHook:
         modified = modified / (modified.sum(dim=-1, keepdim=True) + 1e-9)
         return modified
 
-    def register(self, layer: nn.Module) -> None:
-        """Registers a forward hook on the given module."""
-        def _hook(module, input, output):
-            # Expects output to be (attn_output, attn_weights) or just attn_output
-            if isinstance(output, tuple) and len(output) >= 2:
-                return output  # hook site; user should call apply_masym separately
-            return output
+    def register(self, layer: nn.Module, dummy_logits: torch.Tensor, distance_matrix: np.ndarray) -> None:
+        """
+        Hooks multi_modal_projector.linear_2 output — the correct intervention point.
 
-        self._hook_handle = layer.register_forward_hook(_hook)
+        Visual patch tokens (576 tokens, 4096-dim each) exit linear_2 before being
+        concatenated with text tokens. We scale each patch token by its CLIP proximity
+        to the question, weighted by uncertainty. This change is irreversible by LayerNorm
+        because it's multiplicative across the full token, not a hidden-dim bias.
+
+        Args:
+            layer:            model.multi_modal_projector
+            dummy_logits:     [T, vocab_size] — proxy for question token uncertainty
+            distance_matrix:  [T, 16] CLIP distances from question tokens to 4x4 patches
+        """
+        uncertainty = self.compute_uncertainty(dummy_logits)
+        gate = self.compute_gate(uncertainty)  # [T]
+
+        dist_tensor = torch.tensor(distance_matrix, dtype=torch.float32)
+        proximity = (1.0 - dist_tensor).clamp(0.0, 1.0)  # [T, 16]
+
+        # Aggregate uncertainty across question tokens: [16] patch relevance scores
+        # Each patch gets a score = mean over tokens of (gate * proximity)
+        patch_weights = (gate.unsqueeze(1) * proximity).mean(dim=0)  # [16]
+        # Normalize to [1-gamma, 1+gamma] range so patches stay meaningful
+        w_min, w_max = patch_weights.min(), patch_weights.max()
+        if w_max > w_min:
+            patch_weights = (patch_weights - w_min) / (w_max - w_min)  # [0, 1]
+        patch_scale = 1.0 + self.gamma * patch_weights  # [16], values in [1.0, 1+gamma]
+
+        device = next(layer.parameters()).device
+        patch_scale = patch_scale.to(device=device, dtype=torch.float16)
+
+        print(f"UGAA visual hook | gate_mean={gate.mean():.4f} | "
+              f"patch_scale min={patch_scale.min():.4f} max={patch_scale.max():.4f}")
+
+        def _hook(module, input, output):
+            # output: [batch, num_visual_tokens, 4096]
+            # LLaVA-1.5 uses 336x336 / 14px patches = 24x24 = 576 visual tokens
+            # We have 16 patch weights (4x4 grid) — each covers 576/16 = 36 tokens
+            if isinstance(output, tuple):
+                feat = output[0]
+            else:
+                feat = output
+
+            batch, num_tokens, hidden = feat.shape
+            tokens_per_patch = max(1, num_tokens // 16)
+
+            scale_expanded = patch_scale.repeat_interleave(tokens_per_patch)  # [num_tokens]
+            # Handle rounding: trim or pad to exact num_tokens
+            if scale_expanded.shape[0] > num_tokens:
+                scale_expanded = scale_expanded[:num_tokens]
+            elif scale_expanded.shape[0] < num_tokens:
+                pad = torch.ones(num_tokens - scale_expanded.shape[0],
+                                 device=device, dtype=torch.float16)
+                scale_expanded = torch.cat([scale_expanded, pad])
+
+            scaled = feat * scale_expanded.unsqueeze(0).unsqueeze(-1)  # [B, T, H]
+
+            if isinstance(output, tuple):
+                return (scaled,) + output[1:]
+            return scaled
+
+        self._hook_handle = layer.linear_2.register_forward_hook(_hook)
 
     def remove(self) -> None:
         """Removes the registered hook."""
