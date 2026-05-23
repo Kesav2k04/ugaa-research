@@ -193,10 +193,3 @@ MIT, see [LICENSE](LICENSE). POPE images are used under the COCO Terms
 of Use. LLaVA-1.5 weights are used under their respective license
 (Apache 2.0). CLIP weights are used under MIT.
 
-## Acknowledgments
-
-We used Claude (Anthropic) as a coding assistant for experimental
-script development and figure rendering. All experimental design,
-analysis, and writing are our own. This work received no external
-funding and was conducted independently during the authors'
-undergraduate studies.
