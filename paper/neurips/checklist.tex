@@ -1,0 +1,288 @@
+\section*{NeurIPS Paper Checklist}
+
+\begin{enumerate}
+
+\item {\bf Claims}
+\item[] Question: Do the main claims in the abstract and introduction accurately
+reflect the paper's contributions and scope?
+\item[] Answer: \answerYes{}
+\item[] Justification: The abstract states three quantitative claims (6.13-point
+gap, 9,000 questions tested, VisFlow gain reduces to 2.14 points). All three
+are supported by the data in Tables~2, 3, and~4.
+\item[] Guidelines:
+\begin{itemize}
+    \item The answer NA means that the abstract and introduction do not include
+    the claims made in the paper.
+    \item The abstract and/or introduction should clearly state the claims made,
+    including the key metrics and datasets used.
+    \item The claims made should match theoretical and experimental results, and
+    reflect how much the results can be expected to generalize to other settings.
+    \item It is fine to include aspirational goals as motivation as long as it is
+    clear that these goals are not attained in the submitted work.
+\end{itemize}
+
+\item {\bf Limitations}
+\item[] Question: Does the paper discuss the limitations of the work?
+\item[] Answer: \answerYes{}
+\item[] Justification: Section~\ref{sec:limitations} discusses scope (tested
+only LLaVA-1.5-7B), the descriptive nature of the 100-question diagnostic,
+and the inability of inference-time methods to improve over the corrected
+adversarial baseline.
+\item[] Guidelines:
+\begin{itemize}
+    \item The answer NA means that the paper has no limitation while the answer
+    No means that the paper has limitations, but those are not discussed in
+    the paper.
+    \item The authors are encouraged to create a separate ``Limitations'' section
+    in their paper.
+    \item The paper should point out any strong assumptions and how robust the
+    results are to violations of these assumptions (e.g., independence
+    assumptions, scalability assumptions, IID assumptions, etc.).
+    \item The limitations of the work should be clearly explained.
+    \item Authors should think about how their results would be affected if the
+    assumptions were violated.
+    \item There might be papers or assumptions that are not stated in the paper
+    but are implicit in the code/experiments.
+    \item Authors should reflect on how these assumptions might be violated in
+    practice and what the consequences would be.
+    \item Authors should reflect on the scope of the claims, e.g., if the method
+    was only tested on a few datasets or with a few runs, a claim about
+    large-scale performance is unjustified.
+\end{itemize}
+
+\item {\bf Theory Assumptions and Proofs}
+\item[] Question: For each theoretical result, does the paper provide the full
+set of assumptions and a complete proof?
+\item[] Answer: \answerNA{}
+\item[] Justification: This paper makes no theoretical claims. All contributions
+are empirical.
+\item[] Guidelines:
+\begin{itemize}
+    \item The answer NA means that the paper does not include theoretical results.
+    \item All the theorems, formulas, and proofs in the paper should be clearly
+    numbered and cross-referenced.
+    \item It would be recommended to include the proof in the main paper, but
+    when the proof is lengthy, it can be included in the appendix.
+    \item Proofs of central theorems should be included in the main paper.
+    \item Note that it is acceptable to include proofs of some results outside
+    the scope of the main claim, e.g., as supporting material.
+    \item Authors should be sure to check whether they have included all the
+    necessary assumptions.
+\end{itemize}
+
+\item {\bf Experimental Result Reproducibility}
+\item[] Question: Does the paper fully disclose all the information needed to
+reproduce the main experimental results of the paper to the extent that it
+affects the main claims and/or conclusions of the paper (regardless of whether
+the code and data are provided)?
+\item[] Answer: \answerYes{}
+\item[] Justification: Section~\ref{sec:artifact} describes the model, hardware,
+quantization settings, generation parameters, and evaluation protocol in full.
+The eight token IDs and the decision rule are stated explicitly. The evaluation
+script is released on GitHub.
+\item[] Guidelines:
+\begin{itemize}
+    \item The answer NA means that the paper does not include experiments.
+    \item If the paper includes experiments, a No answer to this question will
+    not be perceived well by the reviewers.
+    \item The experimental setting should be presented in the main paper; more
+    extensive details can be provided in the appendix.
+    \item Depending on the contribution, reproducibility can be accomplished in
+    different ways.
+    \item Authors are strongly encouraged to provide source code and data.
+\end{itemize}
+
+\item {\bf Open Access to Data and Code}
+\item[] Question: Does the paper provide open access to the data and code used
+to produce the main experimental results in the paper?
+\item[] Answer: \answerYes{}
+\item[] Justification: The evaluation script, diagnostic tool, and all 9,000
+prediction records (predictions, labels, token IDs, and logits for all 16
+yes/no token IDs) are released at the GitHub repository listed in
+Section~\ref{sec:intro}. POPE uses COCO images, which are publicly available
+under the COCO Terms of Use.
+\item[] Guidelines:
+\begin{itemize}
+    \item The answer NA means that the paper does not include experiments
+    requiring code.
+    \item Please see the NeurIPS code and data submission guidelines
+    (\url{https://nips.cc/public/guides/CodeSubmissionPolicy}) for more details.
+    \item While we encourage the release of code and data, we understand that
+    this might not be possible, so ``No'' is an acceptable answer. Papers
+    cannot be rejected simply for not including code, unless this is central
+    to the paper's claims.
+    \item The instructions should contain the exact command(s) needed to run to
+    reproduce the results shown in the paper.
+    \item The authors should make sure results are reproducible from the code
+    they submit.
+    \item In the submission phase, to preserve anonymity, the authors should
+    release anonymized versions of their code and data. Once deanonymized, the
+    authors are free to release the data under the license of their choosing.
+\end{itemize}
+
+\item {\bf Experimental Setting/Details}
+\item[] Question: Does the paper specify all the training and test details
+(e.g., architecture, data splits, hyperparameters, how they were chosen)
+necessary to understand the results?
+\item[] Answer: \answerYes{}
+\item[] Justification: No training was performed. Evaluation hyperparameters
+(quantization, generation parameters) are specified in
+Section~\ref{sec:artifact}. Inference-time correction hyperparameters
+(beta values, threshold values) are listed in Section~\ref{sec:correction}.
+\item[] Guidelines:
+\begin{itemize}
+    \item The answer NA means that the paper does not include experiments.
+    \item The experimental details should be included in the paper or, if
+    lengthy, as an appendix.
+    \item They should be reported regardless of whether the algorithm is
+    included in a contribution.
+    \item Depending on the contribution, these details might include:
+    \begin{itemize}
+        \item Model and architecture details
+        \item Optimizer and training details
+        \item Dataset details
+        \item Evaluation metrics
+        \item Number of evaluation runs
+        \item Ablation study settings
+    \end{itemize}
+\end{itemize}
+
+\item {\bf Experiment Statistical Significance}
+\item[] Question: Does the paper report error bars suitably and correctly
+defined or other appropriate information about the statistical significance
+of the experiments?
+\item[] Answer: \answerNo{}
+\item[] Justification: All results use deterministic evaluation (fixed model,
+no temperature sampling, full 3,000-question splits). There is no randomness
+to characterize with error bars.
+\item[] Guidelines:
+\begin{itemize}
+    \item The answer NA means that the paper does not include computational
+    experiments.
+    \item The authors should answer ``Yes'' if the results are accompanied by
+    error bars, confidence intervals, or statistical significance tests, at
+    least for the experiments that support the main claims of the paper.
+    \item The factors of variability that the authors are expected to take into
+    account include:
+    \begin{itemize}
+        \item The random seed and/or the random selection of a subset of samples
+        used for the proof of concept.
+        \item The batch size when the gradient computation is stochastic.
+        \item The values of the hyperparameters, especially when there is a wide
+        variety of possible values for the hyperparameters.
+        \item The number of runs used to estimate the accuracy of the results.
+    \end{itemize}
+    \item A systematic description of the `degrees of freedom' in the
+    experimental setup is needed even if the paper does not include
+    error bars.
+\end{itemize}
+
+\item {\bf Experiments Compute Resources}
+\item[] Question: For each experiment, does the paper provide sufficient
+information on the compute resources (type of computinginfrastructure,
+memory, time of experiments) used to reproduce those experiments?
+\item[] Answer: \answerYes{}
+\item[] Justification: Section~\ref{sec:artifact} reports the GPU (RTX~3070~Ti,
+8~GB VRAM), quantization method, and total evaluation time (76.3 minutes for
+9,000 questions). Section~\ref{sec:discussion} compares per-question times for
+logit-based versus string-based evaluation.
+\item[] Guidelines:
+\begin{itemize}
+    \item The answer NA means that the paper does not include experiments.
+    \item The paper should indicate the type of compute workers CPU, GPU, or TPU,
+    the memory available, and the time needed to reproduce the results (in
+    combination with the other factors described above, such as
+    computation of loss and gradient).
+    \item For models trained from scratch, the paper should provide the number of
+    GPUs used, the amount of time, and the type of GPUs used, matching the
+    amount of memory available.
+    \item For pre-trained models, the paper should provide the number of GPUs used
+    and the amount of time to obtain the reported results.
+    \item For training runs, the authors should save checkpoints routinely, in
+    case of failed or interrupted experiments, and let the temporary access
+    to existing checkpoints be available to the reviewers.
+    \item Researchers comparing to this method should take into account both the
+    temporary and long-term compute savings from the reuse of pretrained
+    models.
+\end{itemize}
+
+\item {\bf Code Of Ethics}
+\item[] Question: Does the research conducted in the paper conform, in every
+way, with the NeurIPS Code of Ethics
+\url{https://neurips.cc/public/EthicsGuidelines}?
+\item[] Answer: \answerYes{}
+\item[] Justification: The paper reports an evaluation artifact in a published
+benchmark. It does not involve human subjects, private data, or dual-use
+risks.
+\item[] Guidelines:
+\begin{itemize}
+    \item The answer NA means that the authors have not reviewed the NeurIPS
+    Code of Ethics.
+    \item If the authors answer No, they should explain the special circumstances
+    that require a deviation from the Code of Ethics.
+    \item The authors should make sure to preserve anonymity (e.g., if there is
+    a special consideration due to laws or regulations in their jurisdiction).
+\end{itemize}
+
+\item {\bf Broader Impacts}
+\item[] Question: Does the paper discuss both potential positive societal impacts
+and negative societal impacts of the work performed?
+\item[] Answer: \answerNA{}
+\item[] Justification: This paper corrects a measurement error in an existing
+benchmark. It has no foreseeable negative societal impact.
+\item[] Guidelines:
+\begin{itemize}
+    \item The answer NA means that there is no societal impact of the work
+    performed.
+    \item If the authors answer NA or No, they should explain why their work
+    has no societal impact or why the paper does not address societal impact.
+    \item Examples of negative societal impacts include potential malicious or
+    unintended uses (e.g., disinformation, generating fake profiles, surveillance),
+    fairness considerations (e.g., deployment of technologies that could make
+    decisions that unfair to some groups), privacy considerations, and
+    security considerations.
+    \item The Conference does not expect papers to have a {\it comprehensive}
+    discussion of potential negative societal impacts.
+\end{itemize}
+
+\item {\bf Safeguards}
+\item[] Question: Does the paper describe safeguards that have been put in place
+for responsible release of data or models that have potential for misuse (e.g.,
+high risk data or models)?
+\item[] Answer: \answerNA{}
+\item[] Justification: We release only an evaluation script and prediction logs.
+Neither poses misuse risk.
+
+\item {\bf Licenses for Existing Assets}
+\item[] Question: Are the creators or original owners of assets (e.g., code,
+data, models) used in the paper, properly attributed and are the license terms
+respected?
+\item[] Answer: \answerYes{}
+\item[] Justification: We cite LLaVA-1.5, POPE, COCO, CLIP, and BitsAndBytes.
+COCO is used under its published Terms of Use. LLaVA-1.5 and CLIP model weights
+are used under their respective licenses (Apache 2.0 and MIT).
+
+\item {\bf New Assets}
+\item[] Question: Are new assets introduced in the paper clearly documented and
+is the documentation provided alongside the assets?
+\item[] Answer: \answerYes{}
+\item[] Justification: The evaluation script and diagnostic tool are documented
+in the repository README with example commands (see Appendix~\ref{app:diagnostic}).
+
+\item {\bf Crowdsourcing and Research with Human Subjects}
+\item[] Question: For crowdsourcing experiments and research with human subjects,
+does the paper include the working instructions, a description of the
+compensation paid to workers, and the number of annotators?
+\item[] Answer: \answerNA{}
+\item[] Justification: No human subjects or crowdsourcing was involved.
+
+\item {\bf Institutional Review Board (IRB) Approvals or Equivalent for
+Research with Human Subjects}
+\item[] Question: Does the paper describe potential risks incurred by study
+participants as well as how these risks were mitigated, and whether and how
+IRB approval (or an equivalent approval/review based on the requirements of
+your country or institution) was obtained?
+\item[] Answer: \answerNA{}
+\item[] Justification: No human subjects were involved.
+
+\end{enumerate}

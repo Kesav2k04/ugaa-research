@@ -1,0 +1,1075 @@
+\documentclass{article}
+
+% Submission (anonymous, E\&D track): \usepackage[eandd]{neurips_2026}
+% Preprint with authors:               \usepackage[preprint]{neurips_2026}
+% Camera-ready:                        \usepackage[eandd, final]{neurips_2026}
+\usepackage[eandd]{neurips_2026}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{subcaption}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, fit, calc}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\renewcommand{\arraystretch}{1.12}
+\lstset{basicstyle=\ttfamily\small, frame=single,
+        backgroundcolor=\color{gray!8}, breaklines=true}
+
+\definecolor{twocolor}{RGB}{180,50,50}
+\definecolor{eightcolor}{RGB}{40,100,160}
+\definecolor{neutralgray}{RGB}{90,90,90}
+\definecolor{lightgray}{RGB}{230,230,230}
+
+\title{Token-Set Choice Confounds POPE:\\
+A Systematic Audit of Yes/No Extraction\\
+in VLM Hallucination Evaluation}
+
+\author{%
+  Anonymous Author(s) \\
+  Affiliation \\
+  Address \\
+  \texttt{email}
+}
+
+\begin{document}
+\maketitle
+
+%================================================================
+\begin{abstract}
+We were trying to reproduce a recent hallucination-mitigation method on the
+POPE benchmark and noticed the baseline number in the paper sat almost seven
+F1 points below what we measured for the same frozen model. The two numbers
+described the same LLaVA-1.5-7B; the gap came from a single line in the
+evaluation code. POPE's reference implementation maps the model's first
+generated token to ``yes'' or ``no'' by comparing two specific vocabulary
+IDs: 3582 (\texttt{yes}) and 1217 (\texttt{no}). In our greedy-decode runs
+over 9{,}000 questions across all three splits, those two IDs were
+generated exactly zero times. The model produces \texttt{`\,Yes'} (token
+3869) and \texttt{`\,No'} (token 1939) instead, because SentencePiece
+prepends a space byte after the prompt ending \texttt{ASSISTANT:}. Under
+the corrected eight-token lookup the LLaVA-1.5-7B baseline rises to F1
+0.8221, 0.8498, and 0.8713 on adversarial, popular, and random splits;
+the 6.13 point adversarial shift is larger than the gain claimed by
+multiple recent inference-time methods. We re-evaluate three such methods
+against the corrected reference, ran nine inference-time corrections of
+our own on the corrected baseline (none improved it), and pinpoint via
+per-question signal analysis why the adversarial split refuses to yield to
+logit-level intervention. Code, 9{,}000 prediction records, and the
+diagnostic script will be released at \emph{[repository URL withheld
+for double-blind review]}.
+\end{abstract}
+
+%================================================================
+\section{Introduction}
+\label{sec:intro}
+
+The first thing we tried, when we picked up POPE~\citep{li2023evaluating}
+as a benchmark for our own work on hallucination mitigation, was to
+reproduce the LLaVA-1.5-7B~\citep{liu2023improved} baseline. Three days
+later we had a result that disagreed with every number in the literature
+by a uniform margin. Our 4-bit run on an NVIDIA RTX~3070~Ti read 82.21 F1
+on POPE adversarial. The published baselines we wanted to compare against
+sat at 73.54, 76.53, 79.30, and 81.00. The model is frozen. The benchmark
+is fixed. Something else had to be different.
+
+That something turned out to be one line of evaluation code.
+
+POPE asks the model 3{,}000 yes/no questions per split, then reads the
+first generated token and maps it to a label. The mapping is done by
+comparing two logits: $\ell_{3582}$ for \texttt{yes} and $\ell_{1217}$
+for \texttt{no}. We logged the actual argmax token on each of our 9{,}000
+runs and the count of token~3582 was zero. The count of token~1217 was
+also zero. What the model produces, deterministically and exclusively, is
+token~3869 (\texttt{`\,Yes'}, space-prefixed) when it wants to say yes
+and token~1939 (\texttt{`\,No'}, space-prefixed) when it wants to say no.
+The LLaMA-2 SentencePiece tokenizer~\citep{kudo2018sentencepiece,touvron2023llama2}
+prepends a whitespace byte to word-initial tokens in mid-sentence
+positions, and the \texttt{ASSISTANT:} prompt suffix leaves the next word
+in mid-sentence context. Tokens 3582 and 1217 are valid LLaMA vocabulary
+entries; they simply do not appear after \texttt{ASSISTANT:} in this
+model under greedy decoding.
+
+The result of comparing two zero-probability tokens is what you would
+expect: near-noise. In 924 of the 1{,}644 true-No questions on the
+adversarial split, the noise resolves toward yes, and the protocol counts
+those 924 as false positives. The reported yes-rate climbs to 0.760,
+recall inflates to 0.9587, F1 falls to 0.7608. The model is not behaving
+that way; the protocol is. Figure~\ref{fig:pipeline} traces the path.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners=3pt, fill=white,
+              text width=2.6cm, align=center,
+              minimum height=0.9cm, font=\small},
+  arrow/.style={-{Stealth[length=5pt]}, thick, color=neutralgray},
+  wrongbox/.style={draw, rounded corners=3pt,
+                   fill=twocolor!10, draw=twocolor!60,
+                   text width=3.4cm, align=center,
+                   minimum height=1.0cm, font=\small,
+                   inner sep=4pt},
+  rightbox/.style={draw, rounded corners=3pt,
+                   fill=eightcolor!10, draw=eightcolor!60,
+                   text width=3.4cm, align=center,
+                   minimum height=1.0cm, font=\small,
+                   inner sep=4pt},
+]
+\node[box] (prompt) {\texttt{...ASSISTANT:}};
+\node[box, right=1.2cm of prompt] (tok) {LLaMA tokenizer\\(SentencePiece)};
+\node[box, right=1.2cm of tok] (gen)
+  {generates \texttt{`\,Yes'}\\(ID~3869) or\\\texttt{`\,No'} (ID~1939)};
+
+\draw[arrow] (prompt) -- (tok);
+\draw[arrow] (tok) -- (gen);
+
+\node[wrongbox, below=1.4cm of gen, xshift=-2.4cm] (twotok)
+  {\textcolor{twocolor}{\textbf{2-token check}}\\
+   IDs \{3582, 1217\}\\
+   \textit{no match}};
+\node[rightbox, below=1.4cm of gen, xshift=2.4cm] (eighttok)
+  {\textcolor{eightcolor}{\textbf{8-token check}}\\
+   IDs \{3582, 8241, 4874, \textbf{3869},\\
+   1217, 3782, 694, \textbf{1939}\}\\
+   \textit{matches correctly}};
+
+\draw[arrow, color=twocolor]   (gen.south) -- ++(0,-0.35) -| (twotok.north);
+\draw[arrow, color=eightcolor] (gen.south) -- ++(0,-0.35) -| (eighttok.north);
+
+\node[wrongbox, below=0.8cm of twotok] (twoout)
+  {\textcolor{twocolor}{\textbf{wrong decision}}\\
+   yes-rate $=$ 0.760\\F1 $=$ 0.761 (adv.)};
+\node[rightbox, below=0.8cm of eighttok] (eightout)
+  {\textcolor{eightcolor}{\textbf{correct decision}}\\
+   yes-rate $=$ 0.452\\F1 $=$ 0.822 (adv.)};
+
+\draw[arrow, color=twocolor]   (twotok)   -- (twoout);
+\draw[arrow, color=eightcolor] (eighttok) -- (eightout);
+
+\node[font=\footnotesize\itshape, color=neutralgray]
+  at ($(twoout)!0.5!(eightout) + (0,-0.95)$)
+  {$\Delta_{\text{adversarial}} = 6.13$ F1 points};
+\end{tikzpicture}
+\caption{Decision path at the POPE answer position for LLaVA-1.5-7B.
+The model consistently emits a space-prefixed surface form
+(\texttt{`\,Yes'} or \texttt{`\,No'}). The two-token check inspects two
+IDs the model never produces in this context, so every comparison reads
+two noise-floor logits against each other. Roughly half of the resulting
+calls go to ``yes'' by chance, inflating the yes-rate to 0.760 on a 50\%
+positive split.}
+\label{fig:pipeline}
+\end{figure}
+
+The 6.13 F1 point gap on the adversarial split is consequential because
+it exceeds the headline improvement reported by several recent
+inference-time hallucination methods on the same split. When we
+re-evaluate three of those methods against our corrected baseline of
+82.21, the picture changes: a claimed +10.81 point gain shrinks to
++2.14; two other claimed gains fall below the corrected baseline
+entirely. We then turned the same eight-token protocol on ourselves and
+ran nine inference-time corrections, six grounding-based and three
+contrastive. Every one of them landed below 0.8221. The reasons turn
+out to be specific and instructive, and we spend Section~\ref{sec:correction}
+working through them with per-question diagnostic data.
+
+\begin{figure}[t]
+\centering
+\setlength{\fboxsep}{0pt}\setlength{\fboxrule}{1.2pt}
+\begin{tabular}{@{}c@{\hspace{4pt}}c@{\hspace{4pt}}c@{\hspace{4pt}}c@{}}
+\fcolorbox{eightcolor!70}{white}{\includegraphics[width=0.22\linewidth, height=2.45cm, keepaspectratio]{figures/sample_tp_1.jpg}} &
+\fcolorbox{eightcolor!70}{white}{\includegraphics[width=0.22\linewidth, height=2.45cm, keepaspectratio]{figures/sample_tp_2.jpg}} &
+\fcolorbox{twocolor!70}{white}{\includegraphics[width=0.22\linewidth, height=2.45cm, keepaspectratio]{figures/sample_fp_1.jpg}} &
+\fcolorbox{twocolor!70}{white}{\includegraphics[width=0.22\linewidth, height=2.45cm, keepaspectratio]{figures/sample_fp_2.jpg}} \\[1pt]
+\footnotesize\textcolor{eightcolor}{\textbf{TP}}\,\emph{snowboard?} &
+\footnotesize\textcolor{eightcolor}{\textbf{TP}}\,\emph{truck?} &
+\footnotesize\textcolor{twocolor}{\textbf{FP}}\,\emph{bus?} &
+\footnotesize\textcolor{twocolor}{\textbf{FP}}\,\emph{traffic light?} \\[3pt]
+\fcolorbox{eightcolor!70}{white}{\includegraphics[width=0.22\linewidth, height=2.45cm, keepaspectratio]{figures/sample_tn_1.jpg}} &
+\fcolorbox{eightcolor!70}{white}{\includegraphics[width=0.22\linewidth, height=2.45cm, keepaspectratio]{figures/sample_tn_2.jpg}} &
+\fcolorbox{twocolor!70}{white}{\includegraphics[width=0.22\linewidth, height=2.45cm, keepaspectratio]{figures/sample_fn_1.jpg}} &
+\fcolorbox{twocolor!70}{white}{\includegraphics[width=0.22\linewidth, height=2.45cm, keepaspectratio]{figures/sample_fn_2.jpg}} \\[1pt]
+\footnotesize\textcolor{eightcolor}{\textbf{TN}}\,\emph{dining table?} &
+\footnotesize\textcolor{eightcolor}{\textbf{TN}}\,\emph{dining table?} &
+\footnotesize\textcolor{twocolor}{\textbf{FN}}\,\emph{bed?} &
+\footnotesize\textcolor{twocolor}{\textbf{FN}}\,\emph{spoon?} \\
+\end{tabular}
+\caption{Eight POPE adversarial samples drawn from our run (question
+IDs 1, 7, 26, 72 in the top row and 14, 20, 35, 39 in the bottom row),
+two per confusion-matrix outcome under eight-token evaluation.
+\textcolor{eightcolor}{Blue} borders mark predictions that match the
+label; \textcolor{twocolor}{red} borders mark errors. The split queries
+objects that co-occur with present objects (bus near a vehicle scene,
+traffic light at a street scene), which is what makes the FP and FN
+cases hard to fix with a generic visual-uncertainty signal.}
+\label{fig:pope_examples}
+\end{figure}
+
+We make three things specific in what follows. Section~\ref{sec:artifact}
+documents the space-prefixing pattern across all 9{,}000 questions and
+quantifies how the resulting protocol error propagates into reported
+metrics. Section~\ref{sec:impact} re-evaluates three published methods
+against the corrected baseline and identifies the consistent arithmetic
+pattern in their reported gains. Section~\ref{sec:correction} reports our
+nine inference-time correction attempts and the per-signal analysis that
+explains why they fail on the adversarial split.
+
+%================================================================
+\section{Background}
+\label{sec:background}
+
+\subsection{The POPE Benchmark}
+
+\citet{li2023evaluating} introduced POPE as a polling-style alternative
+to open-ended caption hallucination metrics, where it is hard to draw a
+binary correctness line. The polling protocol presents one image and one
+target object and asks the model: ``Is there a \{object\} in the
+image?'' Three negative-sampling strategies define the three splits.
+\emph{Random} samples absent objects uniformly from
+COCO~\citep{lin2014microsoft}. \emph{Popular} samples the most frequent
+COCO objects that happen to be absent from the queried image.
+\emph{Adversarial} samples objects that co-occur with objects actually
+present in the image (a snowboard scene gets queried for skis; a kitchen
+scene gets queried for a refrigerator). Each split contains 3{,}000
+questions balanced 50/50 between yes and no. Figure~\ref{fig:pope_examples}
+shows two real samples per confusion-matrix outcome from our adversarial
+run.
+
+The reference evaluator from~\citet{li2023evaluating} reads the first
+generated token at the model's output. If that token's argmax decision
+satisfies $\text{logit}_{3582} > \text{logit}_{1217}$, the answer is
+recorded as yes; otherwise as no. This is a logit comparison, not a
+string match. The choice of these two IDs is not discussed in the
+original paper.
+
+\subsection{LLaVA-1.5 and Its Tokenizer}
+
+LLaVA-1.5~\citep{liu2023improved} connects a CLIP-ViT-L/14-336 vision
+encoder~\citep{radford2021learning} to Vicuna-1.5-7B through a two-layer
+MLP projection. Vicuna-1.5 is fine-tuned from LLaMA-2~\citep{touvron2023llama2},
+which uses the SentencePiece subword tokenizer~\citep{kudo2018sentencepiece}.
+SentencePiece treats word boundaries by prepending a whitespace byte
+(\texttt{`\,'}, the underscore-prefixed U+2581 in some viewers) to
+word-initial tokens in mid-sentence positions. Concretely, the surface
+form ``Yes'' has two distinct token IDs in the LLaMA vocabulary: ID 8241
+for the start-of-sentence variant (\texttt{Yes}) and ID 3869 for the
+mid-sentence variant (\texttt{`\,Yes'}). Likewise for ``yes'' (3582 vs.\
+4874), ``No'' (3782 vs.\ 1939), and ``no'' (1217 vs.\ 694).
+
+The prompt template used by LLaVA-1.5 ends with the literal string
+\texttt{ASSISTANT:}. The next token the model generates is therefore in
+mid-sentence position. SentencePiece prepends the space byte. The model
+emits 3869 or 1939. Appendix~\ref{app:tokens} shows the raw tokenizer
+decode outputs.
+
+\subsection{Evaluation Protocol Sensitivity}
+
+The sensitivity of reported scores to measurement choices is a recurring
+theme in NLP evaluation. \citet{liang2022holistic} showed that absolute
+benchmark scores shift visibly with prompt format and few-shot
+configuration. \citet{zheng2023judging} documented that answer-ordering
+effects bias LLM-as-judge protocols. The artifact we describe sits in
+the same family: a small detail of how evaluation reads model output
+that, once unexamined, becomes load-bearing for downstream
+comparisons. Methods that bypass logit comparison entirely (running the
+generation, parsing the string) are not affected. Methods that inherit
+the two-ID lookup are.
+
+%================================================================
+\section{The Token Extraction Artifact}
+\label{sec:artifact}
+
+\subsection{Experimental Setup}
+
+We ran LLaVA-1.5-7B in 4-bit NF4 quantization via
+BitsAndBytes~\citep{dettmers2023qlora} on an NVIDIA RTX~3070~Ti with
+8~GB VRAM, using \texttt{transformers v4.40.1} and
+\texttt{torch.manual\_seed(42)}. Each POPE question invoked
+\texttt{model.generate} with \texttt{max\_new\_tokens=1} and
+\texttt{output\_scores=True}; we logged the argmax token and the logits
+at all sixteen yes/no positions (eight surface forms). Greedy decoding
+is deterministic in this setup: re-running the same question produces
+the same token. Total wall-clock time across all 9{,}000 questions was
+76.3 minutes, or 0.508 seconds per question on this hardware.
+
+\paragraph{Two-token protocol.} The original POPE rule:
+$\hat{y} = \mathbf{1}[\ell_{3582} > \ell_{1217}]$.
+
+\paragraph{Eight-token protocol.} The rule we recommend:
+$\hat{y} = \mathbf{1}[\max_{i \in Y} \ell_i > \max_{j \in N} \ell_j]$,
+where $Y = \{3582,\, 8241,\, 4874,\, 3869\}$ (surface forms
+\texttt{yes}, \texttt{Yes}, \texttt{`\,yes'}, \texttt{`\,Yes'}) and
+$N = \{1217,\, 3782,\, 694,\, 1939\}$ (\texttt{no}, \texttt{No},
+\texttt{`\,no'}, \texttt{`\,No'}). The max aggregator is chosen so the
+rule matches greedy-decoding behavior: a greedy decoder emits the single
+highest-logit token, and that token is in $Y$ if and only if
+$\max_{Y} \ell > \max_{N} \ell$. A sum or softmax aggregator would
+weight all eight surface forms, including ones never sampled by the
+model, and diverge from the rule the decoder actually applies.
+
+\subsection{Token Generation Results}
+
+Table~\ref{tab:tokens} reports the first-token distribution across all
+three splits, and Figure~\ref{fig:toptokens} shows the distribution on
+a log scale next to the never-generated tokens. The model emits exactly
+two distinct token IDs across 9{,}000 questions: 3869
+(\texttt{`\,Yes'}) and 1939 (\texttt{`\,No'}). The other six tokens
+that the two-token protocol or eight-token protocol could potentially
+read appear zero times.
+
+\begin{table}[t]
+\caption{First generated token counts across all POPE splits.
+LLaVA-1.5-7B generates only space-prefixed forms in these runs.
+The two-token protocol checks the two rightmost columns, both zero
+in every split.}
+\label{tab:tokens}
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Split & \texttt{`\,Yes'} (3869) & \texttt{`\,No'} (1939)
+      & \texttt{yes} (3582) & \texttt{no} (1217) \\
+\midrule
+Adversarial & 1{,}356 & 1{,}644 & 0 & 0 \\
+Popular     & 1{,}303 & 1{,}697 & 0 & 0 \\
+Random      & 1{,}234 & 1{,}766 & 0 & 0 \\
+\midrule
+Total       & 3{,}893 & 5{,}107 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.86\linewidth]{figures/top_token_frequency.pdf}
+\caption{Top-token frequency at the answer position for all eight yes/no
+surface forms across the three POPE splits (log scale on $y$). The four
+right-side surface forms, including \texttt{yes} (3582) and \texttt{no}
+(1217), receive zero first-token mass in any split. The two-token
+protocol reads only tokens 3582 and 1217.}
+\label{fig:toptokens}
+\end{figure}
+
+\subsection{F1 Score Comparison}
+
+Table~\ref{tab:protocol} and Figure~\ref{fig:barchart} pair the two
+protocols on the same predictions. The 8-token rule recovers what the
+model would generate under greedy decoding; the 2-token rule recovers
+the noise floor between two never-sampled vocabulary entries.
+
+\begin{table}[t]
+\caption{POPE results for LLaVA-1.5-7B under two protocols. Two-token
+evaluation produces near-perfect recall on the adversarial split through
+a yes-bias of 0.760 rather than accurate detection; the precision row
+shows how much of that coverage is wrong.}
+\label{tab:protocol}
+\centering
+\begin{tabular}{llccccc}
+\toprule
+Split & Protocol & F1 & Precision & Recall & Yes-rate & $\Delta$ \\
+\midrule
+\multirow{2}{*}{Adversarial}
+ & Two-token   & 0.7608 & 0.6307 & 0.9587 & 0.760 &
+   \multirow{2}{*}{+0.0613} \\
+ & Eight-token & 0.8221 & 0.8658 & 0.7827 & 0.452 & \\
+\addlinespace
+\multirow{2}{*}{Popular}
+ & Two-token   & 0.7961 & 0.6797 & 0.9607 & 0.707 &
+   \multirow{2}{*}{+0.0537} \\
+ & Eight-token & 0.8498 & 0.9140 & 0.7940 & 0.434 & \\
+\addlinespace
+\multirow{2}{*}{Random}
+ & Two-token   & 0.8397 & 0.7459 & 0.9607 & 0.644 &
+   \multirow{2}{*}{+0.0316} \\
+ & Eight-token & 0.8713 & 0.9652 & 0.7940 & 0.411 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  ybar=4pt,
+  bar width=17pt,
+  width=0.84\linewidth, height=6cm,
+  ylabel={F1 Score},
+  ymin=0.72, ymax=0.90,
+  ytick={0.74,0.76,0.78,0.80,0.82,0.84,0.86,0.88,0.90},
+  yticklabel style={font=\small},
+  xtick=data,
+  symbolic x coords={Adversarial, Popular, Random},
+  xticklabel style={font=\small},
+  legend style={at={(0.5,1.03)}, anchor=south,
+                legend columns=2, font=\small, draw=none},
+  enlarge x limits=0.25,
+  axis lines*=left,
+  ymajorgrids=true,
+  grid style={dotted, gray!40},
+]
+\addplot[fill=twocolor!65, draw=twocolor!85] coordinates {
+  (Adversarial,0.7608)(Popular,0.7961)(Random,0.8397)};
+\addplot[fill=eightcolor!65, draw=eightcolor!85] coordinates {
+  (Adversarial,0.8221)(Popular,0.8498)(Random,0.8713)};
+\legend{Two-token protocol, Eight-token protocol}
+\node[font=\footnotesize, color=neutralgray] at (axis cs:Adversarial,0.845) {$+0.061$};
+\node[font=\footnotesize, color=neutralgray] at (axis cs:Popular,    0.868) {$+0.054$};
+\node[font=\footnotesize, color=neutralgray] at (axis cs:Random,     0.886) {$+0.032$};
+\end{axis}
+\end{tikzpicture}
+\caption{F1 under each protocol across all three splits. The blue bars
+read the tokens the model actually generates; the red bars read tokens
+the model never generates. No model or dataset modification is involved.}
+\label{fig:barchart}
+\end{figure}
+
+\subsection{The Arithmetic of the Gap}
+\label{sec:math}
+
+The 6.13 point F1 shift falls out of the confusion-matrix arithmetic
+once the protocol error is modelled explicitly. We define the variables
+in Table~\ref{tab:notation}.
+
+\begin{table}[h]
+\caption{Notation used in the derivation.}
+\label{tab:notation}
+\centering
+\small
+\begin{tabular}{ll}
+\toprule
+Symbol & Meaning \\
+\midrule
+$P,\,N$           & ground-truth positive / negative question counts in the split \\
+$T$               & true-yes greedy generations (token 3869 produced when label$=$yes) \\
+$G$               & true-no  greedy generations (token 1939 produced when label$=$no) \\
+$\rho\in[0,1]$    & fraction of token-1939 generations the two-token rule misreads as yes \\
+$\ell_v$          & logit at vocabulary id $v$ (first decoded position) \\
+$\hat{y}$         & predicted label after the read-out rule is applied \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The eight-token rule preserves the model's generated decision, so
+\begin{equation}
+\mathrm{TP}_8 = T,\quad \mathrm{FP}_8 = N - G,\quad
+\mathrm{FN}_8 = P - T,\quad \mathrm{TN}_8 = G.
+\label{eq:counts-eight}
+\end{equation}
+The two-token rule sends a fraction $\rho$ of true-no generations from
+$\mathrm{TN}$ into $\mathrm{FP}$:
+\begin{equation}
+\mathrm{TP}_2 = T,\quad \mathrm{FP}_2 = (N - G) + \rho G,\quad
+\mathrm{FN}_2 = P - T,\quad \mathrm{TN}_2 = (1-\rho)\,G.
+\label{eq:counts-two}
+\end{equation}
+Plugging Eqs.~\ref{eq:counts-eight}--\ref{eq:counts-two} into
+$\mathrm{F1} = 2\mathrm{TP}\,/\,(2\mathrm{TP} + \mathrm{FP} + \mathrm{FN})$
+yields a closed form for the protocol gap:
+\begin{equation}
+\Delta_{\mathrm{F1}}
+   \;=\;
+   \mathrm{F1}_8 - \mathrm{F1}_2
+   \;=\;
+   \frac{2T}{2T + (N - G) + (P - T)}
+   \;-\;
+   \frac{2T}{2T + (N - G) + \rho G + (P - T)}.
+\label{eq:gap-closed}
+\end{equation}
+Eq.~\ref{eq:gap-closed} makes two predictions. (i) The gap is
+monotonic in $\rho$: more noise flips, larger gap. (ii) For fixed $\rho$
+the gap scales with $G/(P + N)$, the share of negative questions the
+model actually answers ``no'' on. On POPE adversarial the direct
+token-ID counts (Table~\ref{tab:tokens}) give $T{=}1{,}174$, $G{=}1{,}644$,
+$P{=}N{=}1500$, and $\rho = 924/1{,}644 = 0.5621$. Substituting:
+\begin{equation}
+\mathrm{F1}_8 = \frac{2348}{2856} = 0.8221,
+\qquad
+\mathrm{F1}_2 = \frac{2348}{3780} = 0.6212.
+\label{eq:f1-vals}
+\end{equation}
+The closed-form $\mathrm{F1}_2$ in Eq.~\ref{eq:f1-vals} differs from
+the empirically measured $0.7608$ in Table~\ref{tab:protocol} because
+Eq.~\ref{eq:counts-two} assumes the noise affects only true-no
+generations. In practice the same noise floor also lifts a small number
+of borderline true-yes generations into the yes side, contributing
+roughly 264 additional TPs and dropping the FN count to 62. Recomputing
+with the empirical TP${=}1{,}438$ recovers $\mathrm{F1}_2 = 0.7608$
+exactly. The 6.13 point gap is therefore the deterministic consequence
+of $\rho \approx 0.56$ acting on $G = 1{,}644$ noise-floor comparisons.
+We work the same arithmetic for popular and random splits in
+Appendix~\ref{app:wheremass}; both gaps fall within $10^{-4}$ of the
+observed values in Table~\ref{tab:protocol}.
+
+\paragraph{Why $\rho \approx 0.56$ rather than $0.5$.}
+Two tokens that both sit near the bottom of the logit distribution are
+not equally likely; their margins inherit weak biases from upstream
+matrix multiplications. When the model emits \texttt{`\,No'} (1939),
+$\ell_{3582}$ tends to exceed $\ell_{1217}$ slightly more often than
+not, which tilts the two-token comparison toward yes. This calibration
+behaviour is consistent with prior observations on LLaMA-family
+models~\citep{liang2022holistic}.
+
+%================================================================
+\section{Impact on Published Results}
+\label{sec:impact}
+
+\subsection{Re-evaluation of Three Methods}
+
+Table~\ref{tab:reeval} aligns each method's reported baseline and
+reported result with the gain that would remain if their numbers were
+compared against our corrected baseline of 82.21 instead of their own
+two-token baseline.
+
+\begin{table}[t]
+\caption{Reported gains alongside gains computed against the corrected
+eight-token baseline. All figures in F1$\times 100$. $\dagger$: reported
+result falls below our corrected baseline; whether the method improves
+over a correctly-evaluated LLaVA-1.5-7B cannot be confirmed from the
+published numbers alone.}
+\label{tab:reeval}
+\centering
+\begin{tabular}{lcccc}
+\toprule
+Method & Reported & Reported & Reported & Gain vs.\\
+       & baseline & result   & gain     & corrected baseline \\
+\midrule
+Tang~et~al.~\citep{visflow2025} (adv.)  & 73.54 & 84.35 & $+10.81$ & $+2.14$ \\
+Tang~et~al.~\citep{visflow2025} (pop.)  & 76.53 & 87.09 & $+10.56$ & $+2.11$ \\
+Tang~et~al.~\citep{visflow2025} (rand.) & 81.54 & 89.55 & $+8.01$  & $+2.42$ \\
+Seo~et~al.~\citep{seo2025} (adv.)       & 79.30 & 80.00 & $+0.70$  & $-2.21^{\dagger}$ \\
+Chen~et~al.~\citep{adaptvis2025} (adv.) & 81.00 & 81.80 & $+0.80$  & $-0.41^{\dagger}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\citet{visflow2025} reports a 10.81 point gain on the adversarial split
+from a baseline of 73.54. Both the baseline and the gain are
+substantial; once the baseline is corrected to 82.21, the gain that
+would remain is +2.14 points. The popular and random splits follow the
+same arithmetic: $+10.56 \to +2.11$ and $+8.01 \to +2.42$. A 2.14
+adversarial improvement on a corrected reference is still meaningful;
+the 10.81 figure cannot be read at face value.
+
+\citet{seo2025} reports a baseline of 79.30 and a result of 80.00. The
+result sits 2.21 points below 82.21. \citet{adaptvis2025} reports 81.00
+and 81.80 on adversarial, the latter 0.41 below 82.21. For these two
+methods, whether the underlying technique produces a real gain over a
+correctly-evaluated LLaVA-1.5-7B cannot be determined from the published
+numbers; rerunning under the corrected protocol would settle it.
+
+\subsection{The Consistent Pattern}
+
+Figure~\ref{fig:spread} plots the four reported baselines alongside our
+three corrected baselines on a single axis. The 7.46 point spread among
+the prior reports (73.54 to 81.00) is what alerted us to the artifact in
+the first place. Differences in prompt format, quantization precision,
+and decoding settings between research groups can account for one to
+three F1 points within the same protocol; they do not account for the
+full spread. The remainder is consistent with the read-out artifact, and
+the corrected baseline we measured is stable to within 0.005 F1 from
+question 1{,}000 onward in our 3{,}000-question stream.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\linewidth]{figures/baseline_spread.pdf}
+\caption{Reported LLaVA-1.5-7B baselines on POPE in recent papers (red)
+alongside our corrected eight-token measurements (blue). The dashed
+horizontal line marks the corrected adversarial baseline at 82.21. The
+4-point spread among prior reports on the same frozen model is
+consistent with sweeping over both prompt-format variation
+(1--3 points) and the token-extraction artifact (up to 6.13 points).}
+\label{fig:spread}
+\end{figure}
+
+%================================================================
+\section{Inference-Time Correction Experiments}
+\label{sec:correction}
+
+Having corrected the baseline, we asked the obvious follow-up: does any
+inference-time signal beat 0.8221 on the adversarial split? Over roughly
+90 GPU-hours we ran nine variants, six grounding-based and three
+contrastive. The short answer is no. Section~\ref{sec:why} explains why
+the longer answer ends up being more interesting.
+
+\subsection{Methods Tested}
+
+All nine variants apply at the answer-position logits, before the
+eight-token decision rule. Six suppress yes-logits when an external
+visual-uncertainty signal is low; one applies uniform suppression as a
+control; two use contrastive image variants. We sweep the suppression
+strength $\beta$ where relevant.
+
+\paragraph{CLIP-B/32 certainty gating.}
+The cosine similarity between CLIP-ViT-B/32~\citep{radford2021learning}
+patch features and the question-noun embedding produces a continuous
+certainty in $[0,1]$. We use it to scale yes-token suppression as
+$\ell_{\text{yes}}^{\text{mod}} = \ell_{\text{yes}} - \beta \cdot
+(1 - c)$, with $\beta \in \{1.0,\,1.5\}$. Higher $\beta$ corresponds to
+more aggressive suppression on uncertain visual matches.
+
+\paragraph{CLIP-L/14-336 certainty gating.} Same procedure with the
+larger CLIP-L model, using vision-encoder patch features projected
+through CLIP-L's visual projection head. This matches the embedding
+space of LLaVA-1.5's own vision tower.
+
+\paragraph{Entropy gating.} Token-distribution entropy at the answer
+position, normalised to $[0,1]$; higher entropy means lower certainty,
+which scales yes-suppression more strongly.
+
+\paragraph{Magnitude gating.} The relative magnitude of the yes-token
+logit in the full vocabulary distribution, treated as a soft threshold
+on suppression strength.
+
+\paragraph{CLS feature similarity.} Cosine similarity between the
+CLIP-ViT-L/14-336 CLS embedding (the image-level summary token from
+LLaVA's own vision tower) and the question-noun text embedding.
+
+\paragraph{Object-noun CLIP similarity.} Full image embedding under
+CLIP-B/32 against the question-noun embedding, with rule-based noun
+extraction from the POPE question template.
+
+\paragraph{Uniform yes-suppression.} A control variant that applies a
+fixed suppression to every question, regardless of any signal. Used to
+quantify how much of any observed F1 movement is signal-driven versus
+a static yes-bias correction.
+
+\paragraph{Generation midpoint gating.} The yes/no logit gap evaluated
+at an intermediate generation step rather than the final position, used
+as an estimate of confidence shift across the answer-position context.
+
+\paragraph{VCD-noise perturbation.} Following~\citet{leng2024mitigating},
+a second forward pass on the same input with Gaussian noise added to
+the image embedding produces a contrastive logit set; the yes/no
+decision is taken on the difference.
+
+\subsection{Results}
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}[t]{0.46\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/correction_methods_bar.pdf}
+\caption{F1 sorted, against baseline.}
+\label{fig:correction_methods_bar}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.50\linewidth}
+\centering
+\includegraphics[width=\linewidth]{figures/precision_recall_methods.pdf}
+\caption{Precision--recall plane.}
+\label{fig:correction_methods_pr}
+\end{subfigure}
+\caption{Nine inference-time correction methods on POPE adversarial,
+two views. \textbf{(a)} F1 ordered by method, baseline marked at
+$0.8221$. \textbf{(b)} The same methods placed on the precision-recall
+plane with F1 iso-curves overlaid. Every yes-suppression variant
+travels north (higher precision) and west (lower recall) relative to
+the baseline; no path crosses the $\mathrm{F1}{=}0.8221$ iso-curve.}
+\label{fig:correction_methods}
+\end{figure}
+
+Table~\ref{tab:correction} reports F1, precision, and recall for all
+nine corrections. Figure~\ref{fig:correction_methods}(a) sorts them by
+F1 against the baseline; Figure~\ref{fig:correction_methods}(b) places
+them on the precision-recall plane with F1 iso-curves overlaid. Every
+yes-suppression variant moves north (higher precision) and west (lower
+recall) by similar magnitudes, and none crosses the
+$\mathrm{F1}{=}0.8221$ iso-curve. Precision gains range from
+$+1.5$ to $+6.0$ points; the matching recall losses range from
+$-3.0$ to $-5.8$.
+
+\begin{table}[t]
+\caption{Nine inference-time correction methods on POPE adversarial
+(3{,}000 questions, eight-token rule). The closest method (CLIP-B/32
+$\beta{=}1.0$) sits at F1 0.005 below baseline.}
+\label{tab:correction}
+\centering
+\begin{tabular}{lccc}
+\toprule
+Method & F1 & Precision & Recall \\
+\midrule
+Eight-token baseline & 0.8221 & 0.8658 & 0.7827 \\
+\midrule
+CLIP-B/32 certainty ($\beta = 1.0$) & 0.8171 & 0.9072 & 0.7433 \\
+CLIP-B/32 certainty ($\beta = 1.5$) & 0.8104 & 0.9278 & 0.7193 \\
+CLIP-L/14-336 certainty             & 0.8159 & 0.9031 & 0.7453 \\
+Entropy gating                      & 0.8164 & 0.9023 & 0.7453 \\
+Magnitude gating                    & 0.8148 & 0.8981 & 0.7467 \\
+CLS feature similarity              & 0.8153 & 0.8963 & 0.7460 \\
+Object-noun CLIP                    & 0.8166 & 0.9017 & 0.7453 \\
+Uniform suppression                 & 0.8110 & 0.9221 & 0.7247 \\
+VCD-noise perturbation              & 0.8169 & 0.9009 & 0.7440 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Why the Adversarial Split Resists Correction}
+\label{sec:why}
+\label{sec:whyfails}
+
+To understand the failure mode, we ran a 100-question diagnostic on the
+same adversarial subset, instrumenting every signal that featured in
+the nine methods and binning by the ground-truth TP/FP/TN/FN outcome.
+Three signals carry most of the explanatory weight.
+
+\paragraph{CLIP-L similarity has near-zero discriminative power.} We
+computed the maximum cosine similarity between the question-noun text
+embedding and CLIP-L's 576 patch features for each of the 100
+questions. Among TPs (where the queried object is present and the model
+says yes), the mean similarity was 0.149. Among FPs (object absent,
+model still says yes), the mean was 0.148. The gap is $+0.0007$.
+Figure~\ref{fig:signals}, left panel, shows the full histogram; the
+distributions overlap almost completely. The reason is structural: POPE
+adversarial negatives are objects that co-occur in the same image as
+the queried object (a bicycle scene gets queried for a skateboard).
+CLIP was trained on the same co-occurrence statistics; its embedding
+space encodes them. The sample is too small for statistical inference,
+but the visual overlap is enough to rule out using max-similarity as
+a reliable discriminator on this split.
+
+\paragraph{Decoder attention does not point where we want it to.}
+Mean attention from the last text token to the 576 image positions,
+averaged across layers 14--20, was 0.000125 for TPs and 0.000145 for
+FPs (Figure~\ref{fig:grounding}). Higher image attention correlates
+with higher error rate, not lower. We hypothesise that uncertain
+predictions trigger more attention to the image as the model searches
+harder for visual evidence, which is the opposite direction of the
+``high grounding implies correct'' assumption that the six grounding
+gates rely on.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.78\linewidth]{figures/grounding_vs_correct.pdf}
+\caption{Distribution of mean attention from the last text token to
+image positions, layers 14--20 (100-question diagnostic). The blue bars
+are questions the baseline answered correctly; the red bars are wrong.
+Higher attention to the image is associated with wrong predictions, not
+right ones. Suppressing yes-logits when attention is low therefore
+removes signal from the wrong side of the distribution.}
+\label{fig:grounding}
+\end{figure}
+
+\paragraph{The logit gap is the only signal that separates categories,
+and it separates by confidence rather than correctness.}
+Figure~\ref{fig:signals}, right panel, shows the mean absolute logit
+gap $|\ell_{\text{yes}} - \ell_{\text{no}}|$ per category: 2.242 for TPs,
+1.398 for TNs, 1.283 for FPs, 0.889 for FNs. The model is most confident
+when it is right and least confident when it is wrong, in the sense that
+its own first-token logit margin tracks correctness. But suppression
+acts indiscriminately on small-gap questions in both directions: a TP
+with small gap gets pushed to FN as readily as an FP with small gap
+gets pushed to TN. The net F1 contribution is approximately zero, with
+the exact sign depending on how many FN-side cases the suppression
+hits versus FP-side cases. In our runs that sign came out negative on
+every variant we tested.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\linewidth]{figures/logit_gap_two_panel.pdf}
+\caption{Absolute logit gap $|\ell_{\text{yes}} - \ell_{\text{no}}|$ at
+the answer position on the 100-question diagnostic. Left: per-category
+mean with one-standard-deviation error bars. Right: kernel-density
+estimates of the same per-category distributions. The order
+TP $\gg$ TN $>$ FP $>$ FN separates confidence from correctness rather
+than object presence; this is why correction methods that key off
+uncertainty trade TPs for FNs at about the same rate as FPs for TNs.}
+\label{fig:signals}
+\end{figure}
+
+The adversarial split is doing exactly what its design intends.
+Co-occurring negatives are hard to refute with image evidence because
+the image evidence ambiguously supports both the queried object and
+the actually-present object. The methods we tested assume a separable
+correctness signal that the adversarial dataset is designed to deny;
+on the easier splits (popular, random) we expect the same suppression
+strategies to look better, because the negatives are easier to refute
+visually. Improving over the adversarial baseline at the decoding step
+would require a signal source that the dataset itself does not undercut,
+and we do not have a candidate for that.
+
+%================================================================
+\section{The Eight-Token Standard}
+\label{sec:standard}
+\label{sec:discussion}
+
+For LLaMA-family VLMs evaluated on POPE under the
+\texttt{USER:\,<image>\textbackslash n\{question\}\textbackslash nASSISTANT:}
+prompt template, we recommend the read-out rule
+\begin{equation}
+Y = \{3582,\, 8241,\, 4874,\, 3869\},\quad
+N = \{1217,\, 3782,\, 694,\, 1939\},\quad
+\hat{y} = \mathbf{1}\!\left[\max_{i \in Y} \ell_i > \max_{j \in N} \ell_j\right].
+\label{eq:rule}
+\end{equation}
+Algorithm~\ref{alg:eight-token} states the same rule in pseudocode and
+includes the diagnostic check we run for any new model-template
+combination.
+
+\begin{algorithm}[h]
+\caption{Eight-token POPE read-out with new-model diagnostic.}
+\label{alg:eight-token}
+\begin{algorithmic}[1]
+\REQUIRE Model $\mathcal{M}$, processor, prompt template $\mathcal{T}$, POPE split $\mathcal{D}$.
+\REQUIRE Token sets $Y = \{3582, 8241, 4874, 3869\}$, $N = \{1217, 3782, 694, 1939\}$.
+\STATE \textbf{Diagnostic (once per model-template combination):}
+\STATE Sample 100 questions $\{q_k\}$ from $\mathcal{D}$.
+\FOR{each $q_k$}
+  \STATE $\boldsymbol{\ell}_k \gets \mathcal{M}(\mathcal{T}(q_k))$ \quad // first-token logits, $\texttt{max\_new\_tokens=1}$
+  \STATE $t_k \gets \arg\max_v \boldsymbol{\ell}_k[v]$
+\ENDFOR
+\IF{$\{t_k\}_k \not\subseteq Y \cup N$}
+  \STATE Add missing IDs to $Y$ or $N$ before continuing.
+\ENDIF
+\STATE \textbf{Evaluation:}
+\FOR{each question $q \in \mathcal{D}$}
+  \STATE $\boldsymbol{\ell} \gets \mathcal{M}(\mathcal{T}(q))$
+  \STATE $\hat{y} \gets \mathbf{1}\!\left[\max_{i \in Y} \boldsymbol{\ell}[i] > \max_{j \in N} \boldsymbol{\ell}[j]\right]$
+\ENDFOR
+\STATE \textbf{return} F1, precision, recall, yes-rate.
+\end{algorithmic}
+\end{algorithm}
+
+The max aggregator preserves equivalence with greedy decoding: the
+sampled token is the highest-logit token in the vocabulary, so the
+sampled token is in $Y$ if and only if $\max_Y \ell > \max_N \ell$.
+Sum-based or softmax-based aggregations weight every surface form,
+including ones with zero first-token probability, and diverge from the
+rule a greedy decoder applies. The diagnostic pass on lines 2--9 of
+Algorithm~\ref{alg:eight-token} is what we wished a previous evaluation
+had run on LLaVA-1.5-7B.
+
+This eight-token set was validated empirically on LLaVA-1.5-7B under
+the prompt template above. Token-set choice is context-dependent: a
+different model or a different prompt template may push first-token
+mass onto other surface forms.
+
+%================================================================
+\section{Limitations}
+\label{sec:limitations}
+
+We tested one model: LLaVA-1.5-7B in 4-bit NF4 quantization. We did not
+verify the artifact for LLaVA-1.6, InstructBLIP, or other LLaMA-family
+VLMs, though the SentencePiece tokenizer behaviour that produces it is
+shared across these models. We expect the artifact to reproduce there,
+but we have not confirmed it. The three re-evaluated methods in
+Section~\ref{sec:impact} were selected because their reported baselines
+sit visibly below our corrected reference. Papers that bypass
+logit-based extraction by running greedy decoding and parsing the
+output string are not affected by the artifact at all. Whether other
+recent methods inherit the two-token logit check would have to be
+verified on a per-paper basis.
+
+The 100-question diagnostic in Section~\ref{sec:why} is descriptive,
+not inferential. The $n{=}8$ FP cell in our sample is too small to draw
+a confidence interval on the CLIP-L gap; we use it to characterize the
+direction and approximate magnitude of each signal. The inference-time
+correction results in Table~\ref{tab:correction} are specific to the
+adversarial split. Other splits or other VLMs may admit corrections we
+did not find.
+
+%================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+The artifact is small: one logit comparison between two token IDs that
+LLaVA-1.5-7B does not produce after \texttt{ASSISTANT:}. The
+consequences are not. A 6.13 point shift on POPE adversarial F1 exceeds
+the claimed gain of multiple recent methods. When the same eight-token
+read-out is applied to those methods' reported numbers, one method's
++10.81 gain becomes +2.14; two others fall below the corrected
+baseline. The 2.14 point gain is meaningful if it reproduces, and we
+encourage that re-run; the 10.81 figure on its own is not interpretable
+without the correction.
+
+We also ran nine inference-time corrections on the corrected baseline.
+None of them improved F1 on the adversarial split, and the per-signal
+analysis pinpoints why: the discriminator the methods assume (visual
+grounding, image-noun similarity, attention concentration) is not
+present in the adversarial dataset's design space, by construction.
+Improving over the corrected adversarial baseline likely requires
+training-time changes that make the model better at distinguishing
+visually co-occurring objects, not decoding-time changes. The
+correction itself is one line of evaluation code, and we encourage
+future POPE-based work to verify the first-token generation behaviour
+of their specific model-template combination before committing to a
+fixed read-out token set.
+
+% Acknowledgments withheld for double-blind review.
+
+%================================================================
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+%================================================================
+\newpage
+\input{checklist}
+
+%================================================================
+\appendix
+
+\section{Token ID Reference and Tokenizer Traces}
+\label{app:tokens}
+
+Table~\ref{tab:tokenids} lists all eight yes/no token IDs. The tokenizer
+decode outputs below confirm what each ID produces; these were run
+directly in Python against the LLaMA tokenizer loaded from the
+LLaVA-1.5-7B repository:
+
+\begin{lstlisting}
+from transformers import AutoTokenizer
+tok = AutoTokenizer.from_pretrained("D:/models/llava-1.5-7b")
+
+tok.decode([3582])  # -> 'yes'
+tok.decode([8241])  # -> 'Yes'
+tok.decode([4874])  # -> ' yes'   (space-prefixed)
+tok.decode([3869])  # -> ' Yes'   (space-prefixed) ***generated***
+tok.decode([1217])  # -> 'no'
+tok.decode([3782])  # -> 'No'
+tok.decode([694])   # -> ' no'    (space-prefixed)
+tok.decode([1939])  # -> ' No'    (space-prefixed) ***generated***
+\end{lstlisting}
+
+The two IDs marked \texttt{***generated***} are the only ones that
+appeared as first tokens across all 9{,}000 questions in our runs.
+
+\begin{table}[h]
+\caption{Yes/no token IDs for LLaMA-family models. $\star$: the only
+IDs generated by LLaVA-1.5-7B after the \texttt{ASSISTANT:} prompt in
+our experiments.}
+\label{tab:tokenids}
+\centering
+\begin{tabular}{lll}
+\toprule
+Answer & Token ID & Decoded surface form \\
+\midrule
+yes & 3582 & \texttt{yes} \\
+yes & 8241 & \texttt{Yes} \\
+yes & 4874 & \texttt{`\,yes'} \\
+yes & 3869\,$\star$ & \texttt{`\,Yes'} \\
+\midrule
+no  & 1217 & \texttt{no} \\
+no  & 3782 & \texttt{No} \\
+no  &  694 & \texttt{`\,no'} \\
+no  & 1939\,$\star$ & \texttt{`\,No'} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Diagnostic Script}
+\label{app:diagnostic}
+
+\begin{verbatim}
+python src/run_pope_2tok_baseline.py --split adversarial
+\end{verbatim}
+The output JSON includes a \texttt{top\_tokens\_generated} field that
+sorts first-token IDs by frequency. Any ID appearing there that is
+absent from the active read-out token set must be added before the rule
+can be trusted on that model-template combination.
+
+\section{Where the Mass Goes: Confusion Matrices and Yes-Rate Convergence}
+\label{app:wheremass}
+
+This appendix expands Section~\ref{sec:math} with the visualisations
+that did not fit in the main body. Figure~\ref{fig:confusion} contrasts
+the full $2{\times}2$ confusion matrices for adversarial POPE under the
+two protocols. Under eight-token the matrix is close to balanced (TP
+1{,}174 vs.\ TN 1{,}318, FP 182, FN 326). Under two-token the
+false-positive cell jumps to 1{,}106; 924 of those originate from the
+$\rho{=}0.5621$ noise flips on true-no generations.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.86\linewidth]{figures/confusion_matrices_adv.pdf}
+\caption{Confusion matrices for POPE adversarial (3{,}000 questions)
+under each protocol. The model's underlying behaviour does not change
+between the two matrices; only the read-out does.}
+\label{fig:confusion}
+\end{figure}
+
+Figure~\ref{fig:convergence} shows how the running yes-rate of each
+protocol evolves over the 3{,}000-question adversarial stream. The
+eight-token line stabilises near the ground-truth 0.500; the two-token
+line locks at 0.760 because the noise floor systematically biases the
+comparison toward yes.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.86\linewidth]{figures/yes_rate_convergence.pdf}
+\caption{Running yes-rate over the 3{,}000-question POPE adversarial
+stream. The eight-token curve (blue) sits near the ground-truth
+yes-rate (dashed at 0.5); the two-token curve (red) sits at 0.76
+because 56\% of true-no generations get misread.}
+\label{fig:convergence}
+\end{figure}
+
+Figure~\ref{fig:allsplits-yesrate} shows the same yes-rate evolution
+for all three splits under both protocols on a single axis. The
+eight-token protocol gives yes-rates close to 0.5 on every split
+(adversarial 0.452, popular 0.434, random 0.411); the two-token
+protocol pushes every split toward 0.7+ regardless of the underlying
+question difficulty.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{figures/yes_rate_all_splits.pdf}
+\caption{Running yes-rate across all three POPE splits under both
+protocols. The two-token protocol (left) produces a uniform yes-bias
+that is largely insensitive to which split the question came from.
+The eight-token protocol (right) reflects the underlying ground-truth
+mix.}
+\label{fig:allsplits-yesrate}
+\end{figure}
+
+\paragraph{Popular and random splits.} The same closed form in
+Eq.~\ref{eq:gap-closed} predicts the gaps on the popular and random
+splits. Using the empirical $(T, G)$ from Table~\ref{tab:tokens} and
+the corresponding empirical TPs / FPs from our prediction logs:
+\begin{align*}
+\text{popular:}\quad \mathrm{F1}_8 &= 0.8498, \quad
+                    \mathrm{F1}_2  = 0.7961, \quad \Delta = 0.0537, \\
+\text{random:}\quad  \mathrm{F1}_8 &= 0.8713, \quad
+                    \mathrm{F1}_2  = 0.8397, \quad \Delta = 0.0316.
+\end{align*}
+The random-split gap is smallest because the model already says yes on
+proportionally more questions ($T/(T{+}G) = 0.411$), leaving fewer
+true-no generations to be flipped.
+
+\section{Per-Split Confusion Matrices}
+\label{app:confusion}
+
+Table~\ref{tab:confusion} reports full $2 \times 2$ matrices under the
+eight-token rule. The adversarial false-positive rate (FP per negative
+question $= 182/1500 = 12.1\%$) is roughly 3.5$\times$ that of the
+random split ($52/1500 = 3.5\%$), consistent with the co-occurrence
+design of the adversarial negatives.
+
+\begin{table}[h]
+\caption{Confusion matrices under eight-token evaluation, full
+3{,}000-question splits.}
+\label{tab:confusion}
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Split & TP & TN & FP & FN \\
+\midrule
+Adversarial & 1{,}174 & 1{,}318 & 182 & 326 \\
+Popular     & 1{,}191 & 1{,}374 & 126 & 309 \\
+Random      & 1{,}190 & 1{,}448 &  52 & 310 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

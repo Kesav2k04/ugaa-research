@@ -45,6 +45,7 @@ from ugaa_hook import (
     NO_TOKEN_IDS as NO_TOKEN_IDS_LOCAL,
     _get_yes_no_logits,
 )
+from clip_l_grounding import clip_l_certainty, load_clip_l_components
 from evaluate import compute_f1
 
 MODEL_PATH = "D:/models/llava-1.5-7b"
@@ -410,6 +411,12 @@ def infer_with_variant(model, processor, image, question, variant, beta, device)
         score = (real_yes - real_no) - beta * (1.0 - certainty)
         return "yes" if score > 0 else "no"
 
+    if variant == "clip_l":
+        certainty = clip_l_certainty(model, processor, image, question, device)
+        real_yes, real_no = _get_yes_no_logits(model, processor, image, question, device)
+        score = (real_yes - real_no) - beta * (1.0 - certainty)
+        return "yes" if score > 0 else "no"
+
     # Probe-based variants (entropy, magnitude, cls, uniform, object)
     attentions, tokens, spatial_positions = _probe_attentions(
         model, processor, image, question
@@ -421,7 +428,7 @@ def infer_with_variant(model, processor, image, question, variant, beta, device)
     return "yes" if score > 0 else "no"
 
 
-SPECIAL_VARIANTS = {"generation_mid", "vcd_noise", "clip_certainty"}
+SPECIAL_VARIANTS = {"generation_mid", "vcd_noise", "clip_certainty", "clip_l"}
 ALL_VARIANTS = list(CERTAINTY_FNS.keys()) + sorted(SPECIAL_VARIANTS)
 
 
@@ -431,6 +438,9 @@ ALL_VARIANTS = list(CERTAINTY_FNS.keys()) + sorted(SPECIAL_VARIANTS)
 
 def run_variant(variant: str, samples, images, model, processor, beta: float = DEFAULT_BETA):
     device = model.device
+    # Pre-load heavyweight components before the timed loop
+    if variant == "clip_l":
+        load_clip_l_components(str(device))
     print(f"\n{'='*50}\nVariant: {variant} | beta={beta}\n{'='*50}\n")
 
     results = []

@@ -1,0 +1,1869 @@
+{
+  "summary": {
+    "n_total": 100,
+    "n_valid": 100,
+    "n_errors": 0,
+    "gate_metrics": {
+      "precision": 0.8298,
+      "recall": 0.78,
+      "f1": 0.8041,
+      "tp": 39,
+      "fp": 8,
+      "fn": 11
+    },
+    "ungated_metrics_same_100q": {
+      "precision": 0.8298,
+      "recall": 0.78,
+      "f1": 0.8041,
+      "tp": 39,
+      "fp": 8,
+      "fn": 11
+    },
+    "baseline_f1_3000q_reference": 0.8221,
+    "delta_vs_ungated_100q": 0.0,
+    "delta_vs_baseline_3000q": -0.018,
+    "zone_counts": {
+      "CONFIDENT": 58,
+      "HIGH": 0,
+      "LOW": 0,
+      "NEUTRAL": 42
+    },
+    "flipped_total": 0,
+    "flipped_to_yes": 0,
+    "flipped_to_no": 0,
+    "flips_correct": 0,
+    "flips_wrong": 0,
+    "grounding_stats": {
+      "min": 0.0001,
+      "max": 0.0002,
+      "mean": 0.0001,
+      "median": 0.0001
+    },
+    "complexity_stats": {
+      "min": 1.0,
+      "max": 1.0,
+      "mean": 1.0
+    },
+    "logit_gap_abs_stats": {
+      "min": 0.0,
+      "max": 3.4375,
+      "mean": 1.6619,
+      "median": 1.7031
+    },
+    "gate_config": {
+      "alpha": 1.5,
+      "beta": 0.5,
+      "high_thresh": 0.015,
+      "low_thresh": 0.005,
+      "confidence_margin": 1.5,
+      "complexity_min": 0.2,
+      "complexity_max": 0.8,
+      "layers": [
+        14,
+        20
+      ]
+    }
+  },
+  "results": [
+    {
+      "question_id": "1",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00012178145906156195,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 25.3125,
+      "no_raw": 23.859375,
+      "gap_raw": 1.453125,
+      "yes_mod": 25.3125,
+      "no_mod": 23.859375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "2",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00010792988801508077,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 23.71875,
+      "no_raw": 25.203125,
+      "gap_raw": -1.484375,
+      "yes_mod": 23.71875,
+      "no_mod": 25.203125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "3",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.0001261555277908753,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.71875,
+      "no_raw": 24.0625,
+      "gap_raw": 1.65625,
+      "yes_mod": 25.71875,
+      "no_mod": 24.0625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "4",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00011075160728069022,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.421875,
+      "no_raw": 25.640625,
+      "gap_raw": -2.21875,
+      "yes_mod": 23.421875,
+      "no_mod": 25.640625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "5",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00012992409964291646,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.703125,
+      "no_raw": 23.90625,
+      "gap_raw": 0.796875,
+      "yes_mod": 24.703125,
+      "no_mod": 23.90625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "6",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00010089065160302977,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.828125,
+      "no_raw": 25.6875,
+      "gap_raw": -1.859375,
+      "yes_mod": 23.828125,
+      "no_mod": 25.6875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "7",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.0001643015826370434,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.75,
+      "no_raw": 23.875,
+      "gap_raw": 1.875,
+      "yes_mod": 25.75,
+      "no_mod": 23.875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "8",
+      "label": "no",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00016325513050625368,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.078125,
+      "no_raw": 23.484375,
+      "gap_raw": 2.59375,
+      "yes_mod": 26.078125,
+      "no_mod": 23.484375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "9",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00010496352790921395,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.25,
+      "no_raw": 24.0,
+      "gap_raw": 2.25,
+      "yes_mod": 26.25,
+      "no_mod": 24.0,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "10",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00013893320699155862,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 23.828125,
+      "no_raw": 25.078125,
+      "gap_raw": -1.25,
+      "yes_mod": 23.828125,
+      "no_mod": 25.078125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "11",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.000108420654474425,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.6875,
+      "no_raw": 22.375,
+      "gap_raw": 3.3125,
+      "yes_mod": 25.6875,
+      "no_mod": 22.375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "12",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.0001131613940482826,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.0625,
+      "no_raw": 25.03125,
+      "gap_raw": -0.96875,
+      "yes_mod": 24.0625,
+      "no_mod": 25.03125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "13",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00012625117441140383,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 25.5,
+      "no_raw": 24.046875,
+      "gap_raw": 1.453125,
+      "yes_mod": 25.5,
+      "no_mod": 24.046875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "14",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 7.4277234359345e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.34375,
+      "no_raw": 25.609375,
+      "gap_raw": -2.265625,
+      "yes_mod": 23.34375,
+      "no_mod": 25.609375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "15",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00014154265435146435,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.5,
+      "no_raw": 23.328125,
+      "gap_raw": 2.171875,
+      "yes_mod": 25.5,
+      "no_mod": 23.328125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "16",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00013152449537301436,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.21875,
+      "no_raw": 24.390625,
+      "gap_raw": -0.171875,
+      "yes_mod": 24.21875,
+      "no_mod": 24.390625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "17",
+      "label": "yes",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00012772549962392077,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.21875,
+      "no_raw": 24.578125,
+      "gap_raw": -0.359375,
+      "yes_mod": 24.21875,
+      "no_mod": 24.578125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "18",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00011357157407993717,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.203125,
+      "no_raw": 24.625,
+      "gap_raw": -0.421875,
+      "yes_mod": 24.203125,
+      "no_mod": 24.625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "19",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00010569418373052031,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.125,
+      "no_raw": 24.25,
+      "gap_raw": 1.875,
+      "yes_mod": 26.125,
+      "no_mod": 24.25,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "20",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 8.549853217638364e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.640625,
+      "no_raw": 25.546875,
+      "gap_raw": -1.90625,
+      "yes_mod": 23.640625,
+      "no_mod": 25.546875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "21",
+      "label": "yes",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00013778985885437578,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 23.96875,
+      "no_raw": 25.34375,
+      "gap_raw": -1.375,
+      "yes_mod": 23.96875,
+      "no_mod": 25.34375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "22",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 8.392098607146181e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.265625,
+      "no_raw": 25.5,
+      "gap_raw": -2.234375,
+      "yes_mod": 23.265625,
+      "no_mod": 25.5,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "23",
+      "label": "yes",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00012967163015023937,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.828125,
+      "no_raw": 25.328125,
+      "gap_raw": -1.5,
+      "yes_mod": 23.828125,
+      "no_mod": 25.328125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "24",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00011665464782189312,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 23.6875,
+      "no_raw": 25.125,
+      "gap_raw": -1.4375,
+      "yes_mod": 23.6875,
+      "no_mod": 25.125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "25",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.000141758139112166,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.0625,
+      "no_raw": 23.78125,
+      "gap_raw": 2.28125,
+      "yes_mod": 26.0625,
+      "no_mod": 23.78125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "26",
+      "label": "no",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.0001516353659098968,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 25.21875,
+      "no_raw": 24.625,
+      "gap_raw": 0.59375,
+      "yes_mod": 25.21875,
+      "no_mod": 24.625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "27",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00014165302647078143,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.265625,
+      "no_raw": 24.40625,
+      "gap_raw": 1.859375,
+      "yes_mod": 26.265625,
+      "no_mod": 24.40625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "28",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00011433838205578337,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.21875,
+      "no_raw": 25.140625,
+      "gap_raw": -1.921875,
+      "yes_mod": 23.21875,
+      "no_mod": 25.140625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "29",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.0001229376284754835,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.84375,
+      "no_raw": 23.625,
+      "gap_raw": 2.21875,
+      "yes_mod": 25.84375,
+      "no_mod": 23.625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "30",
+      "label": "no",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00012907650670967996,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.828125,
+      "no_raw": 24.109375,
+      "gap_raw": 1.71875,
+      "yes_mod": 25.828125,
+      "no_mod": 24.109375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "31",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00010167372446241123,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.375,
+      "no_raw": 22.9375,
+      "gap_raw": 3.4375,
+      "yes_mod": 26.375,
+      "no_mod": 22.9375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "32",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00012965234574429424,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.984375,
+      "no_raw": 25.578125,
+      "gap_raw": -1.59375,
+      "yes_mod": 23.984375,
+      "no_mod": 25.578125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "33",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.0001340163466271146,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.625,
+      "no_raw": 23.796875,
+      "gap_raw": 0.828125,
+      "yes_mod": 24.625,
+      "no_mod": 23.796875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "34",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.0001161998329085431,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 23.46875,
+      "no_raw": 24.9375,
+      "gap_raw": -1.46875,
+      "yes_mod": 23.46875,
+      "no_mod": 24.9375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "35",
+      "label": "yes",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00014902903681754002,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.234375,
+      "no_raw": 24.703125,
+      "gap_raw": -0.46875,
+      "yes_mod": 24.234375,
+      "no_mod": 24.703125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "36",
+      "label": "no",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00013128484507823096,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.90625,
+      "no_raw": 23.578125,
+      "gap_raw": 1.328125,
+      "yes_mod": 24.90625,
+      "no_mod": 23.578125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "37",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00012147809424537368,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.859375,
+      "no_raw": 23.453125,
+      "gap_raw": 2.40625,
+      "yes_mod": 25.859375,
+      "no_mod": 23.453125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "38",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00012165831763663196,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.75,
+      "no_raw": 25.484375,
+      "gap_raw": -1.734375,
+      "yes_mod": 23.75,
+      "no_mod": 25.484375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "39",
+      "label": "yes",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00016483798702081134,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.265625,
+      "no_raw": 25.0,
+      "gap_raw": -0.734375,
+      "yes_mod": 24.265625,
+      "no_mod": 25.0,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "40",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00016146314737852663,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 23.71875,
+      "no_raw": 24.375,
+      "gap_raw": -0.65625,
+      "yes_mod": 23.71875,
+      "no_mod": 24.375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "41",
+      "label": "yes",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00015488180880700902,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.375,
+      "no_raw": 24.71875,
+      "gap_raw": -0.34375,
+      "yes_mod": 24.375,
+      "no_mod": 24.71875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "42",
+      "label": "no",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00016527288763817132,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.6875,
+      "no_raw": 24.140625,
+      "gap_raw": 0.546875,
+      "yes_mod": 24.6875,
+      "no_mod": 24.140625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "43",
+      "label": "yes",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.0001262710606429859,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.75,
+      "no_raw": 25.78125,
+      "gap_raw": -2.03125,
+      "yes_mod": 23.75,
+      "no_mod": 25.78125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "44",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00013137438613089865,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 24.59375,
+      "no_raw": 26.25,
+      "gap_raw": -1.65625,
+      "yes_mod": 24.59375,
+      "no_mod": 26.25,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "45",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00013649865286424756,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.546875,
+      "no_raw": 24.03125,
+      "gap_raw": 1.515625,
+      "yes_mod": 25.546875,
+      "no_mod": 24.03125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "46",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00012930710363434628,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.453125,
+      "no_raw": 25.515625,
+      "gap_raw": -2.0625,
+      "yes_mod": 23.453125,
+      "no_mod": 25.515625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "47",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00012144423609632733,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.046875,
+      "no_raw": 23.84375,
+      "gap_raw": 2.203125,
+      "yes_mod": 26.046875,
+      "no_mod": 23.84375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "48",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00011509771658373731,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.34375,
+      "no_raw": 25.78125,
+      "gap_raw": -2.4375,
+      "yes_mod": 23.34375,
+      "no_mod": 25.78125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "49",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.0001232625779396455,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.046875,
+      "no_raw": 23.96875,
+      "gap_raw": 2.078125,
+      "yes_mod": 26.046875,
+      "no_mod": 23.96875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "50",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00011565475454387655,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.734375,
+      "no_raw": 24.8125,
+      "gap_raw": -0.078125,
+      "yes_mod": 24.734375,
+      "no_mod": 24.8125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "51",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 9.722018564519073e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.484375,
+      "no_raw": 23.5,
+      "gap_raw": 2.984375,
+      "yes_mod": 26.484375,
+      "no_mod": 23.5,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "52",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00010202691295749641,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.828125,
+      "no_raw": 25.828125,
+      "gap_raw": -2.0,
+      "yes_mod": 23.828125,
+      "no_mod": 25.828125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "53",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.0001381256931511286,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 25.015625,
+      "no_raw": 23.734375,
+      "gap_raw": 1.28125,
+      "yes_mod": 25.015625,
+      "no_mod": 23.734375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "54",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 9.684390533948317e-05,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.328125,
+      "no_raw": 25.125,
+      "gap_raw": -0.796875,
+      "yes_mod": 24.328125,
+      "no_mod": 25.125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "55",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00010749636827053369,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.34375,
+      "no_raw": 23.078125,
+      "gap_raw": 3.265625,
+      "yes_mod": 26.34375,
+      "no_mod": 23.078125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "56",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00010783394619855764,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.703125,
+      "no_raw": 24.859375,
+      "gap_raw": -0.15625,
+      "yes_mod": 24.703125,
+      "no_mod": 24.859375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "57",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00012918450790623735,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 25.453125,
+      "no_raw": 24.5,
+      "gap_raw": 0.953125,
+      "yes_mod": 25.453125,
+      "no_mod": 24.5,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "58",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 9.283628190002804e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.84375,
+      "no_raw": 25.53125,
+      "gap_raw": -1.6875,
+      "yes_mod": 23.84375,
+      "no_mod": 25.53125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "59",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00010935055200077062,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.9375,
+      "no_raw": 23.453125,
+      "gap_raw": 2.484375,
+      "yes_mod": 25.9375,
+      "no_mod": 23.453125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "60",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00011038421403749712,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.359375,
+      "no_raw": 24.875,
+      "gap_raw": -0.515625,
+      "yes_mod": 24.359375,
+      "no_mod": 24.875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "61",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00010130611605875726,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.421875,
+      "no_raw": 23.421875,
+      "gap_raw": 3.0,
+      "yes_mod": 26.421875,
+      "no_mod": 23.421875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "62",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 9.256915031333588e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.734375,
+      "no_raw": 25.453125,
+      "gap_raw": -1.71875,
+      "yes_mod": 23.734375,
+      "no_mod": 25.453125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "63",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00014953980332523185,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.546875,
+      "no_raw": 22.71875,
+      "gap_raw": 2.828125,
+      "yes_mod": 25.546875,
+      "no_mod": 22.71875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "64",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00011860017236488472,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 23.796875,
+      "no_raw": 24.9375,
+      "gap_raw": -1.140625,
+      "yes_mod": 23.796875,
+      "no_mod": 24.9375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "65",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.0001605785603585121,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.796875,
+      "no_raw": 23.390625,
+      "gap_raw": 1.40625,
+      "yes_mod": 24.796875,
+      "no_mod": 23.390625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "66",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.0001326216245485869,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.234375,
+      "no_raw": 24.265625,
+      "gap_raw": -0.03125,
+      "yes_mod": 24.234375,
+      "no_mod": 24.265625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "67",
+      "label": "yes",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 9.981230791059456e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.890625,
+      "no_raw": 25.453125,
+      "gap_raw": -1.5625,
+      "yes_mod": 23.890625,
+      "no_mod": 25.453125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "68",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00011460321859755953,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.5,
+      "no_raw": 25.328125,
+      "gap_raw": -1.828125,
+      "yes_mod": 23.5,
+      "no_mod": 25.328125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "69",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00012393456875413124,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.171875,
+      "no_raw": 24.171875,
+      "gap_raw": 2.0,
+      "yes_mod": 26.171875,
+      "no_mod": 24.171875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "70",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00012949629828134284,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.21875,
+      "no_raw": 25.265625,
+      "gap_raw": -1.046875,
+      "yes_mod": 24.21875,
+      "no_mod": 25.265625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "71",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00011054275923275522,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.015625,
+      "no_raw": 23.125,
+      "gap_raw": 2.890625,
+      "yes_mod": 26.015625,
+      "no_mod": 23.125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "72",
+      "label": "no",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00014539460555949648,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.453125,
+      "no_raw": 23.90625,
+      "gap_raw": 1.546875,
+      "yes_mod": 25.453125,
+      "no_mod": 23.90625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "73",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 9.854182592659657e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.515625,
+      "no_raw": 23.125,
+      "gap_raw": 3.390625,
+      "yes_mod": 26.515625,
+      "no_mod": 23.125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "74",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 8.681508396486086e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.609375,
+      "no_raw": 25.328125,
+      "gap_raw": -1.71875,
+      "yes_mod": 23.609375,
+      "no_mod": 25.328125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "75",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00011437261855462566,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 25.375,
+      "no_raw": 24.25,
+      "gap_raw": 1.125,
+      "yes_mod": 25.375,
+      "no_mod": 24.25,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "76",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00011253416908272942,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 23.796875,
+      "no_raw": 24.984375,
+      "gap_raw": -1.1875,
+      "yes_mod": 23.796875,
+      "no_mod": 24.984375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "77",
+      "label": "yes",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00012408274882805666,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.6875,
+      "no_raw": 24.6875,
+      "gap_raw": 0.0,
+      "yes_mod": 24.6875,
+      "no_mod": 24.6875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "78",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 9.87092633814817e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.71875,
+      "no_raw": 25.703125,
+      "gap_raw": -1.984375,
+      "yes_mod": 23.71875,
+      "no_mod": 25.703125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "79",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00011145721613762103,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.25,
+      "no_raw": 23.703125,
+      "gap_raw": 2.546875,
+      "yes_mod": 26.25,
+      "no_mod": 23.703125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "80",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 9.79690531884054e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.421875,
+      "no_raw": 25.421875,
+      "gap_raw": -2.0,
+      "yes_mod": 23.421875,
+      "no_mod": 25.421875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "81",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00015528015709216042,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.765625,
+      "no_raw": 23.84375,
+      "gap_raw": 1.921875,
+      "yes_mod": 25.765625,
+      "no_mod": 23.84375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "82",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.0001295585576112249,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.265625,
+      "no_raw": 24.828125,
+      "gap_raw": -0.5625,
+      "yes_mod": 24.265625,
+      "no_mod": 24.828125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "83",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00016523484165580676,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 25.921875,
+      "no_raw": 23.84375,
+      "gap_raw": 2.078125,
+      "yes_mod": 25.921875,
+      "no_mod": 23.84375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "84",
+      "label": "no",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00013759793988096395,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.828125,
+      "no_raw": 24.328125,
+      "gap_raw": 0.5,
+      "yes_mod": 24.828125,
+      "no_mod": 24.328125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "85",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00010004578507505357,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.59375,
+      "no_raw": 23.78125,
+      "gap_raw": 2.8125,
+      "yes_mod": 26.59375,
+      "no_mod": 23.78125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "86",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00010300447112448248,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.375,
+      "no_raw": 25.5625,
+      "gap_raw": -2.1875,
+      "yes_mod": 23.375,
+      "no_mod": 25.5625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "87",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00014216014304630726,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.53125,
+      "no_raw": 23.1875,
+      "gap_raw": 3.34375,
+      "yes_mod": 26.53125,
+      "no_mod": 23.1875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "88",
+      "label": "no",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00013295553487426202,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 25.53125,
+      "no_raw": 24.09375,
+      "gap_raw": 1.4375,
+      "yes_mod": 25.53125,
+      "no_mod": 24.09375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "89",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00011860219923879154,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.21875,
+      "no_raw": 23.640625,
+      "gap_raw": 2.578125,
+      "yes_mod": 26.21875,
+      "no_mod": 23.640625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "90",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 9.885329096245446e-05,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.859375,
+      "no_raw": 25.703125,
+      "gap_raw": -1.84375,
+      "yes_mod": 23.859375,
+      "no_mod": 25.703125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "91",
+      "label": "yes",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00013116748803960427,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.5,
+      "no_raw": 24.671875,
+      "gap_raw": -0.171875,
+      "yes_mod": 24.5,
+      "no_mod": 24.671875,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "92",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00011102008803780856,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 23.578125,
+      "no_raw": 25.03125,
+      "gap_raw": -1.453125,
+      "yes_mod": 23.578125,
+      "no_mod": 25.03125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "93",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00010522240336285904,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.640625,
+      "no_raw": 23.90625,
+      "gap_raw": 2.734375,
+      "yes_mod": 26.640625,
+      "no_mod": 23.90625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "94",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 9.957819981666814e-05,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 23.78125,
+      "no_raw": 25.203125,
+      "gap_raw": -1.421875,
+      "yes_mod": 23.78125,
+      "no_mod": 25.203125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "95",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00011869120187059577,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.359375,
+      "no_raw": 23.125,
+      "gap_raw": 3.234375,
+      "yes_mod": 26.359375,
+      "no_mod": 23.125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "96",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00010480267311712461,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 23.484375,
+      "no_raw": 25.34375,
+      "gap_raw": -1.859375,
+      "yes_mod": 23.484375,
+      "no_mod": 25.34375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "97",
+      "label": "yes",
+      "prediction": "yes",
+      "baseline_prediction": "yes",
+      "grounding": 0.00013805786667424918,
+      "complexity": 1.0,
+      "zone": "CONFIDENT",
+      "yes_raw": 26.0,
+      "no_raw": 23.109375,
+      "gap_raw": 2.890625,
+      "yes_mod": 26.0,
+      "no_mod": 23.109375,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "98",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.0001700324293259265,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.140625,
+      "no_raw": 25.015625,
+      "gap_raw": -0.875,
+      "yes_mod": 24.140625,
+      "no_mod": 25.015625,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "99",
+      "label": "yes",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00014632493860387643,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 23.84375,
+      "no_raw": 25.078125,
+      "gap_raw": -1.234375,
+      "yes_mod": 23.84375,
+      "no_mod": 25.078125,
+      "visual_span": [
+        4,
+        580
+      ]
+    },
+    {
+      "question_id": "100",
+      "label": "no",
+      "prediction": "no",
+      "baseline_prediction": "no",
+      "grounding": 0.00014809456583212262,
+      "complexity": 1.0,
+      "zone": "NEUTRAL",
+      "yes_raw": 24.34375,
+      "no_raw": 25.21875,
+      "gap_raw": -0.875,
+      "yes_mod": 24.34375,
+      "no_mod": 25.21875,
+      "visual_span": [
+        4,
+        580
+      ]
+    }
+  ]
+}

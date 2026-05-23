@@ -1,1 +1,73 @@
+# --- python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+.env
+.envrc
+*.egg-info/
+.eggs/
+
+# --- ML caches and weights (do not commit; download on setup) ---
+models/
+checkpoints/
+*.bin
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+.cache/
+hf_cache/
+
+# --- datasets ---
+# Keep the JSON manifests (questions + local_path), exclude the raw images.
+datasets/pope/img_*.jpg
+datasets/pope/images/
+datasets/coco/
+datasets/visual_genome/
+datasets/whatsup/images/
+datasets/vsr/images/
 datasets/gqa/
+
+# --- editor / OS noise ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.bak
+Thumbs.db
+
+# --- assistant working dirs (must not leak to public repo) ---
+.claude/
+.cursor/
+.aider*
+
+# --- build / paper artifacts (LaTeX intermediates) ---
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.run.xml
+
+# --- jupyter ---
+.ipynb_checkpoints/
+
+# --- secrets ---
+*.pem
+*.key
+*.env.local
+secrets.json
+
+# --- large outputs that can be regenerated ---
+*.tmp
+tmp/

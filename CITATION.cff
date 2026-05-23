@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+title: "Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No Extraction in VLM Hallucination Evaluation"
+message: "If you use this software or the corrected evaluation protocol, please cite the preprint."
+type: software
+authors:
+  - family-names: "Jayakumar"
+    given-names: "Kesav Kumar"
+    affiliation: "Sri Krishna College of Technology, Coimbatore"
+    email: "kesavk659@gmail.com"
+  - family-names: "Thilak"
+    given-names: "Karthikeyan"
+    affiliation: "Sri Eshwar College of Engineering, Coimbatore"
+    email: "karthik.suthraye@gmail.com"
+license: MIT
+repository-code: "https://github.com/Kesav2k04/ugaa-research"
+abstract: >
+  We document a token-extraction artifact in the reference POPE
+  evaluator: it compares logits at vocabulary IDs 3582 and 1217, which
+  LLaVA-1.5-7B never produces as the first generated token after the
+  ASSISTANT: prompt suffix. The model instead emits the
+  space-prefixed forms (IDs 3869 and 1939). Under a corrected
+  eight-token rule the LLaVA-1.5-7B baseline rises by 6.13 F1 points
+  on the POPE adversarial split, a gap larger than the headline gain
+  claimed by several recent inference-time methods. The repository
+  contains the diagnostic, the 9,000 prediction records, and a paper
+  describing the artifact and its arithmetic.
+preferred-citation:
+  type: misc
+  title: "Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No Extraction in VLM Hallucination Evaluation"
+  authors:
+    - family-names: "Jayakumar"
+      given-names: "Kesav Kumar"
+    - family-names: "Thilak"
+      given-names: "Karthikeyan"
+  year: 2026
+  notes: "Preprint."

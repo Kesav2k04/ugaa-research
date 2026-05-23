@@ -43,6 +43,7 @@ from transformers import (
 
 sys.path.insert(0, os.path.dirname(__file__))
 from ugaa_hook import UGAAHook, YES_TOKEN_IDS, NO_TOKEN_IDS, _get_yes_no_logits
+from clip_l_grounding import clip_l_certainty, load_clip_l_components
 from evaluate import compute_f1
 
 # ---------------------------------------------------------------------------
@@ -151,8 +152,16 @@ def run_baseline(model, processor, image, question: str) -> str:
 
 
 def infer_clip_certainty(model, processor, image, question, beta, device):
-    """Single inference step using CLIP certainty-modulated NO-bias."""
+    """Single inference step using CLIP-B/32 certainty-modulated NO-bias."""
     certainty = clip_certainty_for_question(image, question, device)
+    real_yes, real_no = _get_yes_no_logits(model, processor, image, question, device)
+    score = (real_yes - real_no) - beta * (1.0 - certainty)
+    return "yes" if score > 0 else "no"
+
+
+def infer_clip_l(model, processor, image, question, beta, device):
+    """Single inference step using CLIP-L/14-336 per-patch certainty (best signal)."""
+    certainty = clip_l_certainty(model, processor, image, question, device)
     real_yes, real_no = _get_yes_no_logits(model, processor, image, question, device)
     score = (real_yes - real_no) - beta * (1.0 - certainty)
     return "yes" if score > 0 else "no"
@@ -168,14 +177,16 @@ def main():
     parser.add_argument("--baseline", action="store_true",
                         help="Vanilla LLaVA, no UGAA.")
     parser.add_argument("--variant", default="ugaa",
-                        choices=["ugaa", "clip_certainty"],
-                        help="ugaa=constant NO-bias; clip_certainty=CLIP-grounded.")
+                        choices=["ugaa", "clip_certainty", "clip_l"],
+                        help="ugaa=constant; clip_certainty=CLIP-B/32; clip_l=CLIP-L/14-336 best.")
     args = parser.parse_args()
 
     if args.baseline:
         tag = "baseline"
     elif args.variant == "clip_certainty":
         tag = f"clip_b{args.beta}"
+    elif args.variant == "clip_l":
+        tag = f"clip_l_b{args.beta}"
     else:
         tag = f"beta{args.beta}"
 
@@ -195,9 +206,11 @@ def main():
     if args.baseline:
         mode = "baseline (no UGAA)"
     elif args.variant == "clip_certainty":
-        mode = f"clip_certainty beta={args.beta}"
-        # Pre-load CLIP so startup message appears before inference begins
+        mode = f"clip_certainty (CLIP-B/32) beta={args.beta}"
         _get_clip(model.device)
+    elif args.variant == "clip_l":
+        mode = f"clip_l (CLIP-L/14-336 per-patch) beta={args.beta}"
+        load_clip_l_components(str(model.device))
     else:
         mode = f"UGAA v5 constant beta={args.beta}"
     print(f"Ready. Mode: {mode}\n")
@@ -227,7 +240,13 @@ def main():
                 pred = infer_clip_certainty(
                     model, processor, image,
                     question + " Answer yes or no only.",
-                    args.beta, model.device,
+                    args.beta, str(model.device),
+                )
+            elif args.variant == "clip_l":
+                pred = infer_clip_l(
+                    model, processor, image,
+                    question + " Answer yes or no only.",
+                    args.beta, str(model.device),
                 )
             else:
                 pred = ugaa.infer(
