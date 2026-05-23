@@ -930,7 +930,7 @@ LLaVA-1.5-7B repository:
 
 \begin{lstlisting}
 from transformers import AutoTokenizer
-tok = AutoTokenizer.from_pretrained("D:/models/llava-1.5-7b")
+tok = AutoTokenizer.from_pretrained("llava-hf/llava-1.5-7b-hf")
 
 tok.decode([3582])  # -> 'yes'
 tok.decode([8241])  # -> 'Yes'

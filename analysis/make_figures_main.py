@@ -251,7 +251,7 @@ for i, (label, val, proto) in enumerate(papers):
     ax.bar(i, val, color=color, alpha=0.85, width=0.7)
     ax.text(i, val + 0.4, f"{val:.2f}", ha="center", fontsize=8, color="#333")
 ax.set_xticks(xs)
-ax.set_xticklabels([p[0] for p in papers], fontsize=7.6)
+ax.set_xticklabels([p[0] for p in papers], fontsize=7.6, rotation=30, ha="right")
 ax.set_ylim(70, 92)
 ax.set_ylabel("POPE F1 (x100)")
 ax.axhline(82.21, color=EIGHT, ls="--", lw=0.8, alpha=0.6)
@@ -261,7 +261,7 @@ red_patch  = mpatches.Patch(color=TWO,   alpha=0.85, label="Reported (two-token,
 blue_patch = mpatches.Patch(color=EIGHT, alpha=0.85, label="Our eight-token measurement")
 ax.legend(handles=[red_patch, blue_patch], loc="upper left", fontsize=8)
 ax.grid(True, axis="y", ls=":", color="gray", alpha=0.4, lw=0.5)
-fig.tight_layout()
+fig.tight_layout(rect=[0, 0.08, 1, 1])
 save_all(fig, "baseline_spread")
 plt.close(fig)
 

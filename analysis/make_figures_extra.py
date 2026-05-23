@@ -72,6 +72,18 @@ cs = ax.contour(PP, RR, F1, levels=[0.78, 0.80, 0.81, 0.8221, 0.83, 0.84],
                 colors="gray", linewidths=0.4, linestyles=":", alpha=0.6)
 ax.clabel(cs, inline=True, fontsize=6.5, fmt="F1=%.3f")
 
+label_offsets = {
+    "Baseline":            ( 0.001, -0.012),
+    "CLIP-B/32 b=1.0":    ( 0.002,  0.005),
+    "CLIP-B/32 b=1.5":    ( 0.002,  0.005),
+    "CLIP-L/14-336":      (-0.030, -0.008),
+    "Entropy gating":     (-0.038,  0.007),
+    "Magnitude gating":   (-0.040,  0.010),
+    "CLS similarity":     (-0.035, -0.010),
+    "Object-noun CLIP":   ( 0.003,  0.008),
+    "Uniform suppression":( 0.002,  0.005),
+    "VCD-noise":          (-0.015,  0.007),
+}
 for name, f1, p, r, c, mk in methods:
     is_baseline = name == "Baseline"
     ms = 100 if is_baseline else 55
@@ -79,11 +91,10 @@ for name, f1, p, r, c, mk in methods:
     lw = 1.0 if is_baseline else 0.5
     ax.scatter(p, r, marker=mk, s=ms, color=c, alpha=0.85,
                edgecolors=edge, linewidths=lw, zorder=3)
-    # Label
-    offset_y = 0.005 if not is_baseline else -0.012
-    offset_x = 0.001
-    ax.annotate(name, (p, r), xytext=(p + offset_x, r + offset_y),
-                fontsize=6.5, color=GRAY, ha="left")
+    dx, dy = label_offsets.get(name, (0.001, 0.005))
+    ha = "right" if dx < 0 else "left"
+    ax.annotate(name, (p, r), xytext=(p + dx, r + dy),
+                fontsize=7, color=GRAY, ha=ha)
 
 ax.set_xlabel("Precision (POPE adversarial, 3000 questions)")
 ax.set_ylabel("Recall (POPE adversarial)")
@@ -134,7 +145,8 @@ for ax, key, title in [
     ax.set_ylim(0.38, 0.82)
     ax.grid(True, axis="y", ls=":", color="gray", alpha=0.4, lw=0.5)
 axes[0].set_ylabel("Running yes-rate")
-axes[1].legend(loc="lower right", fontsize=8.5)
+axes[1].legend(loc="upper right", bbox_to_anchor=(1.0, 0.98),
+               fontsize=8.5, borderaxespad=0.3)
 fig.tight_layout()
 save_all(fig, "yes_rate_all_splits")
 plt.close(fig)
