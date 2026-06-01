@@ -118,37 +118,149 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+Or, with conda:
+
+```bash
+conda env create -f environment.yml
+conda activate ugaa
+```
+
+Notes on the two development machines we used are in
+[docs/local_setup_notes.md](docs/local_setup_notes.md).
+
 ### 1. Download LLaVA-1.5-7B weights
 
-We used the HuggingFace checkpoint
-`llava-hf/llava-1.5-7b-hf` quantized to 4-bit NF4 through BitsAndBytes.
-Set the local path in each script's `MODEL_PATH` constant or override
-on the command line.
+We used the HuggingFace checkpoint `llava-hf/llava-1.5-7b-hf`,
+quantized to 4-bit NF4 through BitsAndBytes. The default
+`--model-path llava-hf/llava-1.5-7b-hf` flag downloads it to the
+HuggingFace cache on first use. Use `--cache-dir <dir>` to control
+where it lives.
 
-### 2. Reproduce the protocol comparison
-
-```bash
-python src/run_pope_2tok_baseline.py --split adversarial
-python src/run_pope_2tok_baseline.py --split popular
-python src/run_pope_2tok_baseline.py --split random
-```
-
-Each call writes its own JSON to `experiments/`. The summary fields
-`eval_2token` and `eval_8token` reproduce Table 2 of the paper to four
-decimals.
-
-### 3. Reproduce the nine inference-time corrections
+### 2. Reproduce the protocol comparison (Table 2 in the paper)
 
 ```bash
-python src/run_ablation_a.py --variant all   --beta 1.0
-python src/run_ablation_a.py --variant clip_l --beta 1.0
-# ... see file header for the full menu
+python src/run_pope_2tok_baseline.py --split adversarial \
+    --model-path llava-hf/llava-1.5-7b-hf \
+    --data-dir datasets/pope --output-dir experiments
+
+python src/run_pope_2tok_baseline.py --split popular  --output-dir experiments
+python src/run_pope_2tok_baseline.py --split random   --output-dir experiments
 ```
 
-Outputs go to `experiments/ablation_a_*_predictions.json`. Aggregate
-metrics for Table 4 of the paper come from
-`experiments/pope_full_adversarial_*_summary.json` (full 3,000-question
-runs).
+Expected output files and metrics (eight-token rule, full 3,000-question splits):
+
+| File | F1 | Precision | Recall | TP | TN | FP | FN |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `experiments/pope_adversarial_2tok_vs_8tok.json` | 0.8221 | 0.8658 | 0.7827 | 1174 | 1318 | 182 | 326 |
+| `experiments/pope_popular_2tok_vs_8tok.json`     | 0.8498 | 0.9140 | 0.7940 | 1191 | 1388 | 112 | 309 |
+| `experiments/pope_random_2tok_vs_8tok.json`      | 0.8713 | 0.9652 | 0.7940 | 1191 | 1457 |  43 | 309 |
+
+### 3. Reproduce the nine inference-time corrections (Table 4)
+
+```bash
+python src/run_ablation_a.py --variant all    --beta 1.0 \
+    --model-path llava-hf/llava-1.5-7b-hf \
+    --dataset datasets/pope/pope_sample_100.json \
+    --output-dir experiments
+
+# Full 3,000-question runs for the headline correction methods:
+python src/run_pope_eval_full.py --split adversarial --baseline \
+    --output-dir experiments
+python src/run_pope_eval_full.py --split adversarial \
+    --variant clip_certainty --beta 1.0 --output-dir experiments
+python src/run_pope_eval_full.py --split adversarial \
+    --variant clip_certainty --beta 1.5 --output-dir experiments
+```
+
+Expected per-method summary files in `experiments/`:
+
+| File | F1 | Precision | Recall |
+|---|---:|---:|---:|
+| `pope_full_adversarial_baseline_summary.json`   | 0.8221 | 0.8658 | 0.7827 |
+| `pope_full_adversarial_beta1.0_summary.json`    | 0.8164 | 0.9023 | 0.7453 |
+| `pope_full_adversarial_clip_b1.0_summary.json`  | 0.8171 | 0.9072 | 0.7433 |
+| `pope_full_adversarial_clip_b1.5_summary.json`  | 0.8104 | 0.9278 | 0.7193 |
+
+### 4. Multi-model validation (four additional VLMs)
+
+To test whether the token-set confound is specific to LLaVA-1.5 or a
+property of the readout protocol itself, run the same four-readout audit
+(`legacy_2tok`, `legacy_8tok`, `dynamic_single`, `string_parse`) on
+other VLMs with `src/run_multi_model_audit.py`. Each model is run on all
+three POPE splits at the full 3,000 questions per split.
+
+```bash
+# LLaVA-1.6-Mistral (local, 4-bit) -- one split shown; repeat for popular, random
+python src/run_multi_model_audit.py --model llava16_mistral \
+    --split adversarial --samples 3000 \
+    --data-dir datasets/pope --output-dir experiments/cross_model \
+    --device cuda --quantize 4bit
+
+# InstructBLIP / mPLUG-Owl2 / Qwen2-VL run the same way on a T4 (Kaggle/Colab);
+# see notebooks/run_on_cloud.ipynb for the turnkey cloud runner.
+python src/run_multi_model_audit.py --model instructblip --split adversarial --samples 3000 --output-dir experiments/multi_model --device cuda
+python src/run_multi_model_audit.py --model mplug_owl2   --split adversarial --samples 3000 --output-dir experiments/multi_model --device cuda
+python src/run_multi_model_audit.py --model qwen2_vl     --split adversarial --samples 3000 --output-dir experiments/multi_model --device cuda --prompt-mode native_chat_template
+```
+
+Measured POPE F1 (3,000 questions per split; LLaVA-1.6 local RTX 3070 Ti,
+the other three on Kaggle T4). Bold marks the F1 a careful practitioner
+would report for each model:
+
+| Model (tokenizer) | Split | legacy_2tok | legacy_8tok | dynamic_single | string_parse |
+|---|---|---:|---:|---:|---:|
+| LLaVA-1.5-7B (LLaMA-2) | adversarial | 0.7608 | **0.8221** | 0.8221 | 0.8221 |
+| LLaVA-1.5-7B (LLaMA-2) | popular | 0.7961 | **0.8498** | 0.8498 | 0.8498 |
+| LLaVA-1.5-7B (LLaMA-2) | random | 0.8397 | **0.8713** | 0.8713 | 0.8713 |
+| LLaVA-1.6-Mistral-7B (Mistral) | adversarial | 0.6667 | 0.0000 | **0.8521** | 0.8521 |
+| LLaVA-1.6-Mistral-7B (Mistral) | popular | 0.6667 | 0.0000 | **0.8953** | 0.8953 |
+| LLaVA-1.6-Mistral-7B (Mistral) | random | 0.6667 | 0.0000 | **0.9163** | 0.9163 |
+| InstructBLIP-Vicuna-7B (LLaMA) | adversarial | 0.7074 | 0.8183 | **0.8183** | 0.6667 |
+| InstructBLIP-Vicuna-7B (LLaMA) | popular | 0.7277 | 0.8553 | **0.8553** | 0.6667 |
+| InstructBLIP-Vicuna-7B (LLaMA) | random | 0.7613 | 0.8815 | **0.8815** | 0.6667 |
+| mPLUG-Owl2-LLaMA2-7B (LLaMA-2) | adversarial | 0.7754 | 0.8001 | **0.8001** | 0.8001 |
+| mPLUG-Owl2-LLaMA2-7B (LLaMA-2) | popular | 0.8060 | 0.8312 | **0.8312** | 0.8312 |
+| mPLUG-Owl2-LLaMA2-7B (LLaMA-2) | random | 0.8466 | 0.8707 | **0.8707** | 0.8707 |
+| Qwen2-VL-7B-Instruct (Qwen) | adversarial | 0.6674 | 0.0000 | **0.8457** | 0.8457 |
+| Qwen2-VL-7B-Instruct (Qwen) | popular | 0.6671 | 0.0000 | **0.8578** | 0.8578 |
+| Qwen2-VL-7B-Instruct (Qwen) | random | 0.6667 | 0.0000 | **0.8671** | 0.8671 |
+
+Two patterns hold across every model and split. The legacy LLaVA-1.5
+eight-token readout collapses to F1 0.00 on the models with disjoint
+vocabularies (LLaVA-1.6-Mistral, Qwen2-VL), while the tokenizer-derived
+`dynamic_single` readout holds between 0.80 and 0.92 everywhere.
+`string_parse` matches `dynamic_single` on every model except
+InstructBLIP, where the free-text parse did not isolate the answer token
+and collapsed to an all-yes prediction (0.6667); the single-token logit
+readout is the robust default. Corresponding artifacts:
+
+- `experiments/cross_model/llava16_mistral_pope_{adversarial,popular,random}_3000q_paper_template_token_audit.json` (full per-question records)
+- `experiments/multi_model/multi_model_results.json` (recorded metrics for the four additional models; the three cloud runs are reproducible with `notebooks/run_on_cloud.ipynb`)
+- the original 500-question two-prompt-template comparison remains in `experiments/cross_model/llava-hf_llava-v1.6-mistral-7b-hf_pope_adversarial_500q_*_token_audit.json`
+
+For a CPU-only sanity check that just verifies the dynamic
+single-token IDs derived from the second model's tokenizer:
+
+```bash
+python src/run_cross_model_token_audit.py \
+    --model-path llava-hf/llava-v1.6-mistral-7b-hf \
+    --dry-run-tokenizer --cache-dir D:/models/hf_cache
+```
+
+See [experiments/cross_model/README.md](experiments/cross_model/README.md)
+for the full description of every JSON field and what to look at.
+
+### 5. Verify the paper's numeric claims and submission gate
+
+```bash
+python analysis/fact_audit.py        # phase 1+2 paper-claim audit, phase 3 strict gate
+python analysis/diagnostic_stats.py  # Mann-Whitney U on the 100q diagnostic
+```
+
+`fact_audit.py` exits with code 0 if every claim matches the JSON
+ground truth and the paper sources contain no placeholders, anonymous-
+author text (in the arXiv version), TODO/FIXME, em dashes, corrupted
+characters, or off-by-one Table 7 entries.
 
 ## Determinism
 
@@ -181,9 +293,9 @@ BibTeX entry below.
   title  = {Token-Set Choice Confounds {POPE}:
             A Systematic Audit of Yes/No Extraction
             in {VLM} Hallucination Evaluation},
-  author = {Jayakumar, Kesav Kumar and Thilak, Karthikeyan},
+  author = {Jayakumar, Kesav Kumar and Thilak, Karthigeyan},
   year   = {2026},
-  note   = {Preprint. arXiv:XXXX.XXXXX (to appear).}
+  note   = {Preprint, arXiv identifier to be added on submission.}
 }
 ```
 

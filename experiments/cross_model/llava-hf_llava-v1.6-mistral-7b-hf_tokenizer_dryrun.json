@@ -1,0 +1,80 @@
+{
+  "dynamic_yes_ids": [
+    5081,
+    5592
+  ],
+  "dynamic_no_ids": [
+    708,
+    1770
+  ],
+  "yes_form_to_ids": {
+    "yes": [
+      5081
+    ],
+    "Yes": [
+      5592
+    ],
+    " yes": [
+      28705,
+      5081
+    ],
+    " Yes": [
+      28705,
+      5592
+    ]
+  },
+  "no_form_to_ids": {
+    "no": [
+      708
+    ],
+    "No": [
+      1770
+    ],
+    " no": [
+      28705,
+      708
+    ],
+    " No": [
+      28705,
+      1770
+    ]
+  },
+  "multitoken_forms": [
+    {
+      "polarity": "yes",
+      "form": " yes",
+      "ids": [
+        28705,
+        5081
+      ]
+    },
+    {
+      "polarity": "yes",
+      "form": " Yes",
+      "ids": [
+        28705,
+        5592
+      ]
+    },
+    {
+      "polarity": "no",
+      "form": " no",
+      "ids": [
+        28705,
+        708
+      ]
+    },
+    {
+      "polarity": "no",
+      "form": " No",
+      "ids": [
+        28705,
+        1770
+      ]
+    }
+  ],
+  "tokenizer_class": "LlamaTokenizerFast",
+  "model_path": "llava-hf/llava-v1.6-mistral-7b-hf",
+  "samples_requested": 500,
+  "status": "tokenizer_only_dry_run"
+}

@@ -1,13 +1,13 @@
-# UGAA Paper — NeurIPS 2026 Overleaf Package
+# UGAA Paper - NeurIPS 2026 Overleaf Package
 
 This is the **NeurIPS-style** package using the `neurips_2026.sty` template.
 
 ## Files
-- `main.tex`           — full paper source (with 4-sample image figure)
-- `references.bib`     — 13 cited references, all verified
-- `checklist.tex`      — NeurIPS 2026 paper checklist
-- `neurips_2026.sty`   — NeurIPS 2026 template (provided)
-- `figures/`           — POPE sample images (sample_tp/fp/tn/fn.jpg)
+- `main.tex`           - full paper source (with 4-sample image figure)
+- `references.bib`     - 13 cited references, all verified
+- `checklist.tex`      - NeurIPS 2026 paper checklist
+- `neurips_2026.sty`   - NeurIPS 2026 template (provided)
+- `figures/`           - POPE sample images (sample_tp/fp/tn/fn.jpg)
 
 ## Upload to Overleaf
 1. Compress this entire folder (including `figures/`) into a ZIP.

@@ -1,4 +1,4 @@
-# src/run_pope_eval_full.py — KESAV
+# src/run_pope_eval_full.py - KESAV
 # Full POPE benchmark evaluation (3000 questions).
 #
 # Supports three modes:
@@ -47,7 +47,7 @@ from clip_l_grounding import clip_l_certainty, load_clip_l_components
 from evaluate import compute_f1
 
 # ---------------------------------------------------------------------------
-# CLIP certainty — same logic as run_ablation_a.py
+# CLIP certainty - same logic as run_ablation_a.py
 # ---------------------------------------------------------------------------
 CLIP_MODEL_NAME = "openai/clip-vit-base-patch32"
 CLIP_SIG_CENTER = 0.22   # CLIP-B/32 zero-shot threshold
@@ -97,28 +97,38 @@ def clip_certainty_for_question(image: Image.Image, question: str, device) -> fl
     max_sim = float((img_feats @ txt_feat.T).squeeze(-1).max())
     return float(torch.sigmoid(torch.tensor(CLIP_SIG_SCALE * (max_sim - CLIP_SIG_CENTER))))
 
-MODEL_PATH = "D:/models/llava-1.5-7b"
-DATA_DIR = "datasets/pope"
+DEFAULT_MODEL_PATH = "llava-hf/llava-1.5-7b-hf"
+DEFAULT_DATA_DIR = "datasets/pope"
+DEFAULT_OUTPUT_DIR = "experiments"
 VISUAL_START = 1
 VISUAL_END = 577
 BASELINE_F1_100 = 0.8041  # 100-sample adversarial baseline (reference)
 
 
-def load_llava():
-    bnb = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_compute_dtype=torch.float16,
-        bnb_4bit_quant_type="nf4",
-    )
-    model = LlavaForConditionalGeneration.from_pretrained(
-        MODEL_PATH, quantization_config=bnb, device_map="auto"
-    )
-    processor = AutoProcessor.from_pretrained(MODEL_PATH)
+def load_llava(model_path: str, cache_dir: str | None = None,
+               device: str = "cuda"):
+    kwargs = {}
+    if cache_dir:
+        kwargs["cache_dir"] = cache_dir
+    if device == "cuda":
+        bnb = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_quant_type="nf4",
+        )
+        model = LlavaForConditionalGeneration.from_pretrained(
+            model_path, quantization_config=bnb, device_map="auto", **kwargs,
+        )
+    else:
+        model = LlavaForConditionalGeneration.from_pretrained(
+            model_path, torch_dtype=torch.float32, **kwargs,
+        )
+    processor = AutoProcessor.from_pretrained(model_path, **kwargs)
     return model, processor
 
 
-def load_items(split: str, max_samples: int | None) -> list:
-    path = os.path.join(DATA_DIR, f"pope_{split}_full.json")
+def load_items(data_dir: str, split: str, max_samples: int | None) -> list:
+    path = os.path.join(data_dir, f"pope_{split}_full.json")
     if not os.path.exists(path):
         raise FileNotFoundError(
             f"{path} not found.\n"
@@ -178,7 +188,16 @@ def main():
                         help="Vanilla LLaVA, no UGAA.")
     parser.add_argument("--variant", default="ugaa",
                         choices=["ugaa", "clip_certainty", "clip_l"],
-                        help="ugaa=constant; clip_certainty=CLIP-B/32; clip_l=CLIP-L/14-336 best.")
+                        help="ugaa=constant; clip_certainty=CLIP-B/32; clip_l=CLIP-L/14-336.")
+    parser.add_argument("--model-path", default=DEFAULT_MODEL_PATH,
+                        help="HF repo id or local path of the VLM.")
+    parser.add_argument("--data-dir", default=DEFAULT_DATA_DIR,
+                        help="Directory containing pope_{split}_full.json.")
+    parser.add_argument("--output-dir", default=DEFAULT_OUTPUT_DIR,
+                        help="Directory for prediction and summary JSON outputs.")
+    parser.add_argument("--device", default="cuda", choices=["cuda", "cpu"])
+    parser.add_argument("--cache-dir", default=None,
+                        help="HuggingFace cache directory (e.g. D:/models/hf_cache).")
     args = parser.parse_args()
 
     if args.baseline:
@@ -190,15 +209,17 @@ def main():
     else:
         tag = f"beta{args.beta}"
 
-    out_pred = f"experiments/pope_full_{args.split}_{tag}_predictions.json"
-    out_summ = f"experiments/pope_full_{args.split}_{tag}_summary.json"
+    out_dir = args.output_dir
+    os.makedirs(out_dir, exist_ok=True)
+    out_pred = f"{out_dir}/pope_full_{args.split}_{tag}_predictions.json"
+    out_summ = f"{out_dir}/pope_full_{args.split}_{tag}_summary.json"
 
     print(f"=== Full POPE Eval | split={args.split} | {tag} ===")
-    items = load_items(args.split, args.samples)
-    print(f"Loaded {len(items)} questions from {DATA_DIR}/pope_{args.split}_full.json")
+    items = load_items(args.data_dir, args.split, args.samples)
+    print(f"Loaded {len(items)} questions from {args.data_dir}/pope_{args.split}_full.json")
 
-    print("Loading LLaVA (4-bit)...")
-    model, processor = load_llava()
+    print(f"Loading LLaVA from {args.model_path}...")
+    model, processor = load_llava(args.model_path, args.cache_dir, args.device)
     ugaa = None
     if not args.baseline and args.variant == "ugaa":
         ugaa = UGAAHook(beta=args.beta)
@@ -310,7 +331,6 @@ def main():
         "sec_per_question": round(total_time / max(len(valid), 1), 2),
     }
 
-    os.makedirs("experiments", exist_ok=True)
     with open(out_pred, "w") as f:
         json.dump(results, f, indent=2)
     with open(out_summ, "w") as f:
@@ -318,8 +338,8 @@ def main():
 
     print(f"\n=== FINAL RESULTS ({args.split}, {len(valid)}/{len(results)} valid) ===")
     print(json.dumps(summary, indent=2))
-    print(f"\nPredictions → {out_pred}")
-    print(f"Summary     → {out_summ}")
+    print(f"\nPredictions -> {out_pred}")
+    print(f"Summary     -> {out_summ}")
 
 
 if __name__ == "__main__":

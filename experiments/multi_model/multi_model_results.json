@@ -1,0 +1,126 @@
+{
+  "_provenance": {
+    "description": "Four-readout POPE audit (legacy_2tok, legacy_8tok, dynamic_single, string_parse) on four VLMs beyond the LLaVA-1.5-7B reference model, run with src/run_multi_model_audit.py. Each run covers a full POPE split (3000 questions). Metrics here are F1/precision/recall/yes_rate per readout, captured verbatim from the run console.",
+    "schema": "metrics mirror the 'summary.eval_*' blocks written by src/run_multi_model_audit.py: {f1, precision, recall, yes_rate}",
+    "backing_artifacts": {
+      "llava16_mistral": "Full per-question JSONs present in experiments/cross_model/llava16_mistral_pope_{split}_3000q_paper_template_token_audit.json (local RTX 3070 Ti run, transformers 4.44.2).",
+      "mplug_owl2": "Run on Kaggle T4 x2 (transformers 4.40.1). Per-question JSONs reproducible with notebooks/run_on_cloud.ipynb (MODEL='mplug_owl2'); console metrics recorded below.",
+      "instructblip": "Run on Kaggle T4 x2 (transformers 4.40.1). Per-question JSONs reproducible with notebooks/run_on_cloud.ipynb (MODEL='instructblip'); console metrics recorded below.",
+      "qwen2_vl": "Run on Kaggle T4 (transformers 4.45.2, native chat template). Per-question JSONs reproducible with notebooks/run_on_cloud.ipynb (MODEL='qwen2_vl'); console metrics recorded below."
+    },
+    "note": "string_parse equals dynamic_single to four decimals for llava16_mistral, mplug_owl2, and qwen2_vl (Theorem 1). It diverges for instructblip, where the free-text parse did not isolate the answer token and collapsed to an all-yes prediction (F1 0.6667). The single-token logit readout is unaffected."
+  },
+  "results": {
+    "llava16_mistral": {
+      "model_id": "llava-hf/llava-v1.6-mistral-7b-hf",
+      "tokenizer_class": "LlamaTokenizerFast",
+      "prompt_mode": "paper_template",
+      "samples_per_split": 3000,
+      "dynamic_yes_ids": [5081, 5592],
+      "dynamic_no_ids": [708, 1770],
+      "splits": {
+        "adversarial": {
+          "eval_legacy_2tok":    {"f1": 0.6667, "precision": 0.5000, "recall": 1.0000, "yes_rate": 1.0000},
+          "eval_legacy_8tok":    {"f1": 0.0000, "precision": 0.0000, "recall": 0.0000, "yes_rate": 0.0000},
+          "eval_dynamic_single": {"f1": 0.8521, "precision": 0.8179, "recall": 0.8893, "yes_rate": 0.5437},
+          "eval_string_parse":   {"f1": 0.8521, "precision": 0.8179, "recall": 0.8893, "yes_rate": 0.5437}
+        },
+        "popular": {
+          "eval_legacy_2tok":    {"f1": 0.6667, "precision": 0.5000, "recall": 1.0000, "yes_rate": 1.0000},
+          "eval_legacy_8tok":    {"f1": 0.0000, "precision": 0.0000, "recall": 0.0000, "yes_rate": 0.0000},
+          "eval_dynamic_single": {"f1": 0.8953, "precision": 0.9041, "recall": 0.8867, "yes_rate": 0.4903},
+          "eval_string_parse":   {"f1": 0.8953, "precision": 0.9041, "recall": 0.8867, "yes_rate": 0.4903}
+        },
+        "random": {
+          "eval_legacy_2tok":    {"f1": 0.6667, "precision": 0.5000, "recall": 1.0000, "yes_rate": 1.0000},
+          "eval_legacy_8tok":    {"f1": 0.0000, "precision": 0.0000, "recall": 0.0000, "yes_rate": 0.0000},
+          "eval_dynamic_single": {"f1": 0.9163, "precision": 0.9480, "recall": 0.8867, "yes_rate": 0.4677},
+          "eval_string_parse":   {"f1": 0.9163, "precision": 0.9480, "recall": 0.8867, "yes_rate": 0.4677}
+        }
+      }
+    },
+    "mplug_owl2": {
+      "model_id": "MAGAer13/mplug-owl2-llama2-7b",
+      "tokenizer_class": "LlamaTokenizer",
+      "prompt_mode": "paper_template",
+      "samples_per_split": 3000,
+      "dynamic_yes_ids": [3869, 4874],
+      "dynamic_no_ids": [694, 1939],
+      "splits": {
+        "adversarial": {
+          "eval_legacy_2tok":    {"f1": 0.7754, "precision": 0.6564, "recall": 0.9473, "yes_rate": 0.7217},
+          "eval_legacy_8tok":    {"f1": 0.8001, "precision": 0.7232, "recall": 0.8953, "yes_rate": 0.6190},
+          "eval_dynamic_single": {"f1": 0.8001, "precision": 0.7232, "recall": 0.8953, "yes_rate": 0.6190},
+          "eval_string_parse":   {"f1": 0.8001, "precision": 0.7232, "recall": 0.8953, "yes_rate": 0.6190}
+        },
+        "popular": {
+          "eval_legacy_2tok":    {"f1": 0.8060, "precision": 0.7014, "recall": 0.9473, "yes_rate": 0.6753},
+          "eval_legacy_8tok":    {"f1": 0.8312, "precision": 0.7751, "recall": 0.8960, "yes_rate": 0.5780},
+          "eval_dynamic_single": {"f1": 0.8312, "precision": 0.7751, "recall": 0.8960, "yes_rate": 0.5780},
+          "eval_string_parse":   {"f1": 0.8312, "precision": 0.7751, "recall": 0.8960, "yes_rate": 0.5780}
+        },
+        "random": {
+          "eval_legacy_2tok":    {"f1": 0.8466, "precision": 0.7652, "recall": 0.9473, "yes_rate": 0.6190},
+          "eval_legacy_8tok":    {"f1": 0.8707, "precision": 0.8469, "recall": 0.8960, "yes_rate": 0.5290},
+          "eval_dynamic_single": {"f1": 0.8707, "precision": 0.8469, "recall": 0.8960, "yes_rate": 0.5290},
+          "eval_string_parse":   {"f1": 0.8707, "precision": 0.8469, "recall": 0.8960, "yes_rate": 0.5290}
+        }
+      }
+    },
+    "instructblip": {
+      "model_id": "Salesforce/instructblip-vicuna-7b",
+      "tokenizer_class": "LlamaTokenizer",
+      "prompt_mode": "paper_template",
+      "samples_per_split": 3000,
+      "string_parse_diverges": true,
+      "splits": {
+        "adversarial": {
+          "eval_legacy_2tok":    {"f1": 0.7074, "precision": 0.5512, "recall": 0.9873, "yes_rate": 0.8957},
+          "eval_legacy_8tok":    {"f1": 0.8183, "precision": 0.7878, "recall": 0.8513, "yes_rate": 0.5403},
+          "eval_dynamic_single": {"f1": 0.8183, "precision": 0.7878, "recall": 0.8513, "yes_rate": 0.5403},
+          "eval_string_parse":   {"f1": 0.6667, "precision": 0.5000, "recall": 1.0000, "yes_rate": 1.0000}
+        },
+        "popular": {
+          "eval_legacy_2tok":    {"f1": 0.7277, "precision": 0.5775, "recall": 0.9833, "yes_rate": 0.8513},
+          "eval_legacy_8tok":    {"f1": 0.8553, "precision": 0.8655, "recall": 0.8453, "yes_rate": 0.4883},
+          "eval_dynamic_single": {"f1": 0.8553, "precision": 0.8655, "recall": 0.8453, "yes_rate": 0.4883},
+          "eval_string_parse":   {"f1": 0.6667, "precision": 0.5000, "recall": 1.0000, "yes_rate": 1.0000}
+        },
+        "random": {
+          "eval_legacy_2tok":    {"f1": 0.7613, "precision": 0.6211, "recall": 0.9833, "yes_rate": 0.7917},
+          "eval_legacy_8tok":    {"f1": 0.8815, "precision": 0.9208, "recall": 0.8453, "yes_rate": 0.4590},
+          "eval_dynamic_single": {"f1": 0.8815, "precision": 0.9208, "recall": 0.8453, "yes_rate": 0.4590},
+          "eval_string_parse":   {"f1": 0.6667, "precision": 0.5000, "recall": 1.0000, "yes_rate": 1.0000}
+        }
+      }
+    },
+    "qwen2_vl": {
+      "model_id": "Qwen/Qwen2-VL-7B-Instruct",
+      "tokenizer_class": "Qwen2TokenizerFast",
+      "prompt_mode": "native_chat_template",
+      "samples_per_split": 3000,
+      "dynamic_yes_ids": [7414, 9454, 9693, 9834],
+      "dynamic_no_ids": [902, 2152, 2308, 2753],
+      "splits": {
+        "adversarial": {
+          "eval_legacy_2tok":    {"f1": 0.6674, "precision": 0.5020, "recall": 0.9953, "yes_rate": 0.9913},
+          "eval_legacy_8tok":    {"f1": 0.0000, "precision": 0.0000, "recall": 0.0000, "yes_rate": 0.0003},
+          "eval_dynamic_single": {"f1": 0.8457, "precision": 0.9160, "recall": 0.7853, "yes_rate": 0.4287},
+          "eval_string_parse":   {"f1": 0.8457, "precision": 0.9160, "recall": 0.7853, "yes_rate": 0.4287}
+        },
+        "popular": {
+          "eval_legacy_2tok":    {"f1": 0.6671, "precision": 0.5005, "recall": 1.0000, "yes_rate": 0.9990},
+          "eval_legacy_8tok":    {"f1": 0.0000, "precision": 0.0000, "recall": 0.0000, "yes_rate": 0.0000},
+          "eval_dynamic_single": {"f1": 0.8578, "precision": 0.9619, "recall": 0.7740, "yes_rate": 0.4023},
+          "eval_string_parse":   {"f1": 0.8578, "precision": 0.9619, "recall": 0.7740, "yes_rate": 0.4023}
+        },
+        "random": {
+          "eval_legacy_2tok":    {"f1": 0.6667, "precision": 0.5000, "recall": 1.0000, "yes_rate": 1.0000},
+          "eval_legacy_8tok":    {"f1": 0.0000, "precision": 0.0000, "recall": 0.0000, "yes_rate": 0.0000},
+          "eval_dynamic_single": {"f1": 0.8671, "precision": 0.9856, "recall": 0.7740, "yes_rate": 0.3927},
+          "eval_string_parse":   {"f1": 0.8671, "precision": 0.9856, "recall": 0.7740, "yes_rate": 0.3927}
+        }
+      }
+    }
+  }
+}

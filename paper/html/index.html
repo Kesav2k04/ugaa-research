@@ -343,7 +343,7 @@ footer {
   <p class="authors">
     <a href="mailto:kesavk659@gmail.com">Kesav Kumar Jayakumar</a><sup>1</sup>
     &nbsp; and &nbsp;
-    <a href="mailto:karthik.suthraye@gmail.com">Karthikeyan Thilak</a><sup>2</sup>
+    <a href="mailto:karthik.suthraye@gmail.com">Karthigeyan Thilak</a><sup>2</sup>
   </p>
   <p class="affil">
     <sup>1</sup>Department of Information Technology, Sri Krishna College of Technology, Coimbatore, India<br>
@@ -360,67 +360,75 @@ footer {
 
 <section class="abstract">
   <h2>Abstract</h2>
-  <p>We were trying to reproduce a recent hallucination-mitigation method on
-  the POPE benchmark and noticed the baseline number in the paper sat
-  almost seven F1 points below what we measured for the same frozen model.
-  The two numbers described the same LLaVA-1.5-7B; the gap came from a
-  single line in the evaluation code. POPE&rsquo;s reference implementation
-  maps the model&rsquo;s first generated token to &ldquo;yes&rdquo; or
-  &ldquo;no&rdquo; by comparing two specific vocabulary IDs: 3582
-  (<code>yes</code>) and 1217 (<code>no</code>). In our greedy-decode runs
-  over 9,000 questions across all three splits, those two IDs were
-  generated exactly zero times. The model produces <code>&prime; Yes&prime;</code>
-  (token 3869) and <code>&prime; No&prime;</code> (token 1939) instead, because
+  <p>We reproduce a recent hallucination-mitigation method on the POPE
+  benchmark and find that the LLaVA-1.5-7B baseline we measure sits
+  almost seven F1 points above the published baseline for the same
+  frozen model. Both numbers describe the same checkpoint; the
+  discrepancy traces to one detail in the evaluation code. A two-token
+  logit extraction protocol used in several recent inference-time
+  evaluations decides yes versus no by comparing two specific
+  vocabulary IDs, 3582 (<code>yes</code>) and 1217 (<code>no</code>).
+  In our greedy-decode runs over 9,000 questions across all three
+  splits, those two IDs are generated zero times. The model produces
+  <code>&prime; Yes&prime;</code> (token 3869) and
+  <code>&prime; No&prime;</code> (token 1939) instead, because
   SentencePiece prepends a space byte after the prompt ending
-  <code>ASSISTANT:</code>. Under the corrected eight-token lookup the
-  LLaVA-1.5-7B baseline rises to F1 <span class="strong-blue">0.8221</span>,
-  0.8498, and 0.8713 on adversarial, popular, and random splits; the 6.13
-  point adversarial shift is larger than the gain claimed by multiple
-  recent inference-time methods. We re-evaluate three such methods against
-  the corrected reference, ran nine inference-time corrections of our own
-  on the corrected baseline (none improved it), and pinpoint via
-  per-question signal analysis why the adversarial split refuses to yield
-  to logit-level intervention. Code, 9,000 prediction records, and the
-  diagnostic script are at
+  <code>ASSISTANT:</code>. Under an eight-token lookup that includes
+  the space-prefixed surface forms, the LLaVA-1.5-7B baseline measures
+  F1 <span class="strong-blue">0.8221</span>, 0.8498, and 0.8713 on
+  adversarial, popular, and random splits; the 6.13 point adversarial
+  shift is larger than the gain claimed by several recent
+  inference-time methods. We re-evaluate three such methods against
+  the corrected reference, run nine inference-time corrections of our
+  own on the corrected baseline (none improved it), and report
+  per-question signal analysis that characterises why the adversarial
+  split resists logit-level intervention. To test whether the confound
+  is specific to LLaVA-1.5, we repeat the four-readout audit on four
+  additional VLMs that span three tokenizer families, 9,000 questions
+  each: transferring the LLaVA-1.5 token IDs literally drops F1 to 0.00
+  on the two models whose vocabularies are disjoint from LLaVA-1.5, while
+  a readout derived from each model's own tokenizer holds between 0.80
+  and 0.92. Code, 9,000 prediction
+  records, and the diagnostic script are at
   <a href="https://github.com/Kesav2k04/ugaa-research">github.com/Kesav2k04/ugaa-research</a>.</p>
 </section>
 
 <h2 class="section"><span class="num">1</span>Introduction</h2>
 
-<p>The first thing we tried, when we picked up POPE [<a href="#ref-li2023">1</a>]
-as a benchmark for our own work on hallucination mitigation, was to
-reproduce the LLaVA-1.5-7B [<a href="#ref-liu2023">2</a>] baseline. Three
-days later we had a result that disagreed with every number in the
-literature by a uniform margin. Our 4-bit run on an NVIDIA RTX 3070 Ti
-read 82.21 F1 on POPE adversarial. The published baselines we wanted to
-compare against sat at 73.54, 76.53, 79.30, and 81.00. The model is
-frozen. The benchmark is fixed. Something else had to be different.</p>
+<p>We adopted POPE [<a href="#ref-li2023">1</a>] as a benchmark for our
+own work on hallucination mitigation and began by reproducing the
+LLaVA-1.5-7B [<a href="#ref-liu2023">2</a>] baseline. Our 4-bit run on
+an NVIDIA RTX 3070 Ti measured 82.21 F1 on POPE adversarial. The
+published baselines we wanted to compare against sat at 73.54, 76.53,
+79.30, and 81.00. The model is frozen and the benchmark is fixed, so
+the discrepancy must originate in the evaluation protocol. We isolated
+it to one line of evaluation code, in a particular logit-readout
+pattern used by several recent inference-time methods.</p>
 
-<p>That something turned out to be one line of evaluation code.</p>
-
-<p>POPE asks the model 3,000 yes/no questions per split, then reads the
-first generated token and maps it to a label. The mapping is done by
-comparing two logits: $\ell_{3582}$ for <code>yes</code> and $\ell_{1217}$
-for <code>no</code>. We logged the actual argmax token on each of our
-9,000 runs and the count of token 3582 was zero. The count of token 1217
-was also zero. What the model produces, deterministically and
-exclusively, is token 3869 (<code>&prime; Yes&prime;</code>,
-space-prefixed) when it wants to say yes and token 1939
-(<code>&prime; No&prime;</code>, space-prefixed) when it wants to say no.
+<p>The pattern reads the first generated token, then maps it to a label
+by comparing two logits: $\ell_{3582}$ for <code>yes</code> and
+$\ell_{1217}$ for <code>no</code>. We logged the argmax token on each
+of our 9,000 runs and the count of token 3582 was zero. The count of
+token 1217 was also zero. The model produces, deterministically and
+exclusively, token 3869 (<code>&prime; Yes&prime;</code>,
+space-prefixed) when it predicts yes and token 1939
+(<code>&prime; No&prime;</code>, space-prefixed) when it predicts no.
 The LLaMA-2 SentencePiece tokenizer [<a href="#ref-kudo2018">3</a>,
 <a href="#ref-touvron2023">6</a>] prepends a whitespace byte to
 word-initial tokens in mid-sentence positions, and the
 <code>ASSISTANT:</code> prompt suffix leaves the next word in
 mid-sentence context. Tokens 3582 and 1217 are valid LLaMA vocabulary
-entries; they simply do not appear after <code>ASSISTANT:</code> in this
+entries; they do not appear after <code>ASSISTANT:</code> in this
 model under greedy decoding.</p>
 
-<p>The result of comparing two zero-probability tokens is what you would
-expect: near-noise. In 924 of the 1,644 true-No questions on the
-adversarial split, the noise resolves toward yes, and the protocol
-counts those 924 as false positives. The reported yes-rate climbs to
-0.760, recall inflates to 0.9587, F1 falls to 0.7608. The model is not
-behaving that way; the protocol is. Figure 1 traces the path.</p>
+<p>Comparing two near-zero-probability logits returns near-noise.
+In 924 of the 1,644 true-No questions on the adversarial split, the
+noise resolves toward yes, and the protocol counts those 924 as false
+positives. The reported yes-rate rises to 0.760, recall to 0.9587, and
+F1 falls to 0.7608. Figure 1 traces the path. The shift reflects
+protocol sensitivity rather than a change in model behaviour: the same
+generated tokens, read by the eight-token rule, give a different
+aggregate.</p>
 
 <div class="figure">
   <div class="pipeline">
@@ -555,12 +563,26 @@ Each split contains 3,000 questions balanced 50/50 between yes and no.
 Figure 2 shows two real samples per confusion-matrix outcome from our
 adversarial run.</p>
 
-<p>The reference evaluator from Li et al. [<a href="#ref-li2023">1</a>]
-reads the first generated token at the model&rsquo;s output. If that
-token&rsquo;s argmax decision satisfies $\text{logit}_{3582} >
-\text{logit}_{1217}$, the answer is recorded as yes; otherwise as no.
-This is a logit comparison, not a string match. The choice of these two
-IDs is not discussed in the original paper.</p>
+<p>POPE-style evaluation can be implemented in several distinct ways,
+and the distinction matters for what our finding does and does not
+claim. We separate four protocols in this paper. (i) The
+<em>official POPE benchmark</em>
+[<a href="#ref-li2023">1</a>], which we treat as the dataset and the
+metric definition (yes/no F1, precision, recall, yes-rate over the
+balanced 3,000-question splits). (ii) <em>String-parsing
+evaluation</em>, in which a generation step produces text and the
+answer is recovered by parsing for &ldquo;yes&rdquo; or &ldquo;no&rdquo;.
+This protocol is insensitive to which LLaMA token ID the model chose.
+(iii) A <em>two-token logit readout</em>, used in several recent
+inference-time evaluations, that compares the first-token logits at
+vocabulary IDs 3582 and 1217 and labels the question accordingly.
+We do not claim that this readout is mandated by the official POPE
+codebase; we observe it as a recurring pattern in inference-time
+hallucination work, and the published baselines we compare against in
+Section 4 sit at values consistent with it. (iv) Our
+<em>eight-token logit readout</em>, which adds the alternate-case and
+space-prefixed surface forms so that the comparison reads tokens the
+LLaMA tokenizer actually emits after <code>ASSISTANT:</code>.</p>
 
 <h3 class="subsection"><span class="num">2.2</span>LLaVA-1.5 and Its Tokenizer</h3>
 <p>LLaVA-1.5 [<a href="#ref-liu2023">2</a>] connects a CLIP-ViT-L/14-336
@@ -590,12 +612,17 @@ recurring theme in NLP evaluation. Liang et al.
 [<a href="#ref-liang2022">7</a>] showed that absolute benchmark scores
 shift visibly with prompt format and few-shot configuration. Zheng et al.
 [<a href="#ref-zheng2023">8</a>] documented that answer-ordering effects
-bias LLM-as-judge protocols. The artifact we describe sits in the same
-family: a small detail of how evaluation reads model output that, once
-unexamined, becomes load-bearing for downstream comparisons. Methods
-that bypass logit comparison entirely (running the generation, parsing
-the string) are not affected. Methods that inherit the two-ID lookup
-are.</p>
+bias LLM-as-judge protocols. The pattern we describe sits in the same
+family of measurement-sensitivity findings: a small detail of how
+evaluation reads model output that, when unexamined, becomes
+load-bearing for downstream comparisons. We frame our contribution as
+documenting one instance of protocol sensitivity under explicit
+conditions (LLaMA-family tokenizer, the <code>ASSISTANT:</code> prompt
+template, greedy decoding); we do not generalise the finding beyond
+what we measure. Methods that run generation and parse the output
+string are not affected by the two-token readout. Methods that inherit
+the two-ID lookup are, to a degree that depends on the share of the
+negative split the model answers &ldquo;no&rdquo; on.</p>
 
 <h2 class="section"><span class="num">3</span>The Token Extraction Artifact</h2>
 
@@ -652,6 +679,7 @@ zero times.</p>
       <tr><td class="num-l">Adversarial</td><td>1,356</td><td>1,644</td><td>0</td><td>0</td></tr>
       <tr><td class="num-l">Popular</td>    <td>1,303</td><td>1,697</td><td>0</td><td>0</td></tr>
       <tr><td class="num-l">Random</td>     <td>1,234</td><td>1,766</td><td>0</td><td>0</td></tr>
+<!-- Note: rows above are first-generated-token COUNTS, not confusion matrix. The eight-token confusion matrix is in the appendix Table at the bottom. -->
       <tr class="divider"><td class="num-l"><strong>Total</strong></td><td><strong>3,893</strong></td><td><strong>5,107</strong></td><td><strong>0</strong></td><td><strong>0</strong></td></tr>
     </tbody>
   </table>
@@ -899,10 +927,10 @@ measured is stable to within 0.005 F1 from question 1,000 onward in our
 
 <h2 class="section"><span class="num">5</span>Inference-Time Correction Experiments</h2>
 
-<p>Having corrected the baseline, we asked the obvious follow-up: does
-any inference-time signal beat 0.8221 on the adversarial split? Over
+<p>With the baseline established at 0.8221, we ask whether any
+inference-time signal can exceed it on the adversarial split. Over
 roughly 90 GPU-hours we ran nine variants, six grounding-based and
-three contrastive. The short answer is no. Section 5.3 explains why the
+three contrastive. None of the nine improved adversarial F1. Section 5.3 explains why the
 longer answer ends up being more interesting.</p>
 
 <h3 class="subsection"><span class="num">5.1</span>Methods Tested</h3>
@@ -1120,44 +1148,324 @@ different model or a different prompt template may push first-token
 mass onto other surface forms. The diagnostic script we used is
 included in our repository.</p>
 
-<h2 class="section"><span class="num">7</span>Limitations</h2>
-<p>We tested one model: LLaVA-1.5-7B in 4-bit NF4 quantization. We did
-not verify the artifact for LLaVA-1.6, InstructBLIP, or other
-LLaMA-family VLMs, though the SentencePiece tokenizer behaviour that
-produces it is shared across these models. We expect the artifact to
-reproduce there, but we have not confirmed it. The three re-evaluated
-methods in Section 4 were selected because their reported baselines sit
-visibly below our corrected reference. Papers that bypass logit-based
-extraction by running greedy decoding and parsing the output string are
-not affected at all. The 100-question diagnostic in Section 5.3 is
-descriptive, not inferential. The $n=8$ FP cell in our sample is too
-small to draw a confidence interval on the CLIP-L gap. The inference-time
-correction results in Table 4 are specific to the adversarial split.
-Other splits or other VLMs may admit corrections we did not find.</p>
+<h2 class="section"><span class="num">7</span>Multi-Model Validation</h2>
+<p>The LLaVA-1.5 audit in the preceding sections concerns one model. To
+test whether the token-set confound is a property of LLaVA-1.5 or of the
+readout protocol itself, we ran the identical four-readout audit on four
+additional vision-language models that span three tokenizer families:
+LLaVA-1.6-Mistral-7B (Mistral vocabulary), InstructBLIP-Vicuna-7B and
+mPLUG-Owl2-LLaMA2-7B (LLaMA-family vocabularies), and
+Qwen2-VL-7B-Instruct (Qwen vocabulary). Each model was evaluated on all
+three POPE splits at the full 3,000 questions per split, 9,000 questions
+per model. LLaVA-1.6-Mistral was run locally (NVIDIA RTX 3070 Ti Laptop
+GPU, 4-bit NF4, <code>transformers v4.44.2</code>); the other three were
+run on cloud T4 GPUs under the same audit script
+(<code>src/run_multi_model_audit.py</code>). The four readouts are
+computed identically across all models, so the columns of Table 5 are
+directly comparable. Qwen2-VL is evaluated under its native chat
+template, because it was not trained on the LLaVA-1.5 prompt string; the
+other three use the LLaVA-1.5 paper template.</p>
 
-<h2 class="section"><span class="num">8</span>Conclusion</h2>
-<p>The artifact is small: one logit comparison between two token IDs
-that LLaVA-1.5-7B does not produce after <code>ASSISTANT:</code>. The
-consequences are not. A 6.13 point shift on POPE adversarial F1 exceeds
-the claimed gain of multiple recent methods. When the same eight-token
-read-out is applied to those methods&rsquo; reported numbers, one
-method&rsquo;s +10.81 gain becomes +2.14; two others fall below the
-corrected baseline. The 2.14 point gain is meaningful if it reproduces,
-and we encourage that re-run; the 10.81 figure on its own is not
-interpretable without the correction.</p>
+<p>Table 5 is the headline result, and two patterns hold across every
+model and split.</p>
+<ol>
+  <li><strong>Transferring the LLaVA-1.5 token IDs literally is unsafe,
+  and the size of the failure depends on the target vocabulary.</strong>
+  The <em>legacy_8tok</em> readout, which hard-codes the LLaVA-1.5 LLaMA-2
+  token IDs, scores F1 0.00 on LLaVA-1.6-Mistral and Qwen2-VL: their
+  vocabularies do not place yes/no mass on those IDs, so the comparison
+  between two never-generated logits resolves the same way on every
+  question. On mPLUG-Owl2 and InstructBLIP, both LLaMA-family models
+  whose tokenizers share the LLaVA-1.5 IDs, the same fixed set works. The
+  failure is a vocabulary-mismatch effect, not a universal one. The
+  <em>legacy_2tok</em> readout, a strict subset, reproduces the all-yes
+  degeneracy of the main paper on every model.</li>
+  <li><strong>A readout derived from each model&rsquo;s own tokenizer is
+  robust.</strong> The <em>dynamic_single</em> readout, which compares
+  max-logits over the single-token yes/no IDs the model&rsquo;s tokenizer
+  actually produces, stays between 0.80 and 0.92 on every model and
+  split. The spread across models reflects genuine differences in model
+  accuracy on POPE, not the choice of readout.</li>
+</ol>
 
-<p>We also ran nine inference-time corrections on the corrected
-baseline. None of them improved F1 on the adversarial split, and the
-per-signal analysis pinpoints why: the discriminator the methods assume
-(visual grounding, image-noun similarity, attention concentration) is
-not present in the adversarial dataset&rsquo;s design space, by
-construction. Improving over the corrected adversarial baseline likely
-requires training-time changes that make the model better at
-distinguishing visually co-occurring objects, not decoding-time changes.
-The correction itself is one line of evaluation code, and we encourage
-future POPE-based work to verify the first-token generation behaviour
-of their specific model-template combination before committing to a
-fixed read-out token set.</p>
+<div class="tbl-wrap">
+  <table class="data">
+    <thead><tr><th class="num-l">Model (tokenizer)</th><th class="num-l">Split</th><th>legacy_2tok</th><th>legacy_8tok</th><th>dynamic_single</th><th>string_parse</th></tr></thead>
+    <tbody>
+      <tr><td class="num-l" rowspan="3">LLaVA-1.5-7B (LLaMA-2)</td><td class="num-l">adversarial</td><td>0.7608</td><td><strong>0.8221</strong></td><td>0.8221</td><td>0.8221</td></tr>
+      <tr><td class="num-l">popular</td><td>0.7961</td><td><strong>0.8498</strong></td><td>0.8498</td><td>0.8498</td></tr>
+      <tr><td class="num-l">random</td><td>0.8397</td><td><strong>0.8713</strong></td><td>0.8713</td><td>0.8713</td></tr>
+      <tr class="divider"><td class="num-l" rowspan="3">LLaVA-1.6-Mistral-7B (Mistral)</td><td class="num-l">adversarial</td><td>0.6667</td><td>0.0000</td><td><strong>0.8521</strong></td><td>0.8521</td></tr>
+      <tr><td class="num-l">popular</td><td>0.6667</td><td>0.0000</td><td><strong>0.8953</strong></td><td>0.8953</td></tr>
+      <tr><td class="num-l">random</td><td>0.6667</td><td>0.0000</td><td><strong>0.9163</strong></td><td>0.9163</td></tr>
+      <tr class="divider"><td class="num-l" rowspan="3">InstructBLIP-Vicuna-7B (LLaMA)</td><td class="num-l">adversarial</td><td>0.7074</td><td>0.8183</td><td><strong>0.8183</strong></td><td>0.6667</td></tr>
+      <tr><td class="num-l">popular</td><td>0.7277</td><td>0.8553</td><td><strong>0.8553</strong></td><td>0.6667</td></tr>
+      <tr><td class="num-l">random</td><td>0.7613</td><td>0.8815</td><td><strong>0.8815</strong></td><td>0.6667</td></tr>
+      <tr class="divider"><td class="num-l" rowspan="3">mPLUG-Owl2-LLaMA2-7B (LLaMA-2)</td><td class="num-l">adversarial</td><td>0.7754</td><td>0.8001</td><td><strong>0.8001</strong></td><td>0.8001</td></tr>
+      <tr><td class="num-l">popular</td><td>0.8060</td><td>0.8312</td><td><strong>0.8312</strong></td><td>0.8312</td></tr>
+      <tr><td class="num-l">random</td><td>0.8466</td><td>0.8707</td><td><strong>0.8707</strong></td><td>0.8707</td></tr>
+      <tr class="divider"><td class="num-l" rowspan="3">Qwen2-VL-7B-Instruct (Qwen)</td><td class="num-l">adversarial</td><td>0.6674</td><td>0.0000</td><td><strong>0.8457</strong></td><td>0.8457</td></tr>
+      <tr><td class="num-l">popular</td><td>0.6671</td><td>0.0000</td><td><strong>0.8578</strong></td><td>0.8578</td></tr>
+      <tr><td class="num-l">random</td><td>0.6667</td><td>0.0000</td><td><strong>0.8671</strong></td><td>0.8671</td></tr>
+    </tbody>
+  </table>
+  <div class="caption" style="text-align:center;"><span class="label">Table 5.</span>
+  POPE F1 under the four readouts for four VLMs beyond the LLaVA-1.5-7B
+  reference (top block). All runs use 3,000 questions per split.
+  <em>legacy_2tok</em> and <em>legacy_8tok</em> use the LLaVA-1.5 LLaMA-2
+  token IDs; <em>dynamic_single</em> re-derives the single-token yes/no
+  IDs from each model&rsquo;s own tokenizer; <em>string_parse</em> greedily
+  decodes and parses the first <code>yes</code> or <code>no</code>
+  substring. Bold marks the F1 a careful practitioner would report.</div>
+</div>
+
+<p><strong>String parsing tracks the logit readout except when it parses
+the wrong text.</strong> The <em>string_parse</em> column equals
+<em>dynamic_single</em> to four decimals on LLaVA-1.6-Mistral, mPLUG-Owl2,
+and Qwen2-VL, the empirical face of the Theorem in Section 6. On
+InstructBLIP it collapses to the 0.6667 all-yes floor on all three splits
+while <em>dynamic_single</em> stays at 0.82 to 0.88. The cause is not the
+model but the parse: the text our harness decoded for InstructBLIP did
+not begin with the answer token, so the first <code>yes</code> or
+<code>no</code> substring did not come from the model&rsquo;s answer. It
+is why we recommend the single-token logit readout, which reads the
+answer logits directly, as the default rather than free-text parsing.</p>
+
+<h3 class="subsection">Token-set divergence: the LLaVA-1.6-Mistral map</h3>
+<p>To show the mechanism behind the <em>legacy_8tok</em> = 0 result, we
+zoom in on LLaVA-1.6-Mistral, whose Mistral-style vocabulary makes the
+LLaMA-2 IDs from the main paper point at the wrong surface forms.
+Figure 10 visualises the difference at a glance, and the table below
+lists the tokenizer-derived IDs for every yes/no surface form.</p>
+
+<div class="figure">
+  <img src="cross_model_token_ids.png" alt="Token ID mismatch between LLaVA-1.5 and LLaVA-1.6">
+  <div class="caption">
+    <span class="label">Figure 10.</span>
+    Yes/no surface forms map to different token IDs under each model.
+    Blue rows are the surface forms the model actually generates as the
+    first token after <code>ASSISTANT:</code>; grey rows are valid
+    single-token IDs that never appear; orange rows on the right marked
+    multi-token correspond to space-prefixed forms that the Mistral
+    tokenizer splits into two tokens, so they cannot enter a
+    first-token logit comparison.
+  </div>
+</div>
+
+<div class="tbl-wrap">
+  <table class="data">
+    <thead><tr><th class="num-l">Form</th><th>Tokenization</th><th>In dynamic set?</th></tr></thead>
+    <tbody>
+      <tr><td class="num-l"><code>yes</code></td><td><code>[5081]</code></td><td>yes (single token)</td></tr>
+      <tr><td class="num-l"><code>Yes</code></td><td><code>[5592]</code></td><td>yes (single token)</td></tr>
+      <tr><td class="num-l"><code>&prime; yes&prime;</code></td><td><code>[28705, 5081]</code></td><td>no (multi-token)</td></tr>
+      <tr><td class="num-l"><code>&prime; Yes&prime;</code></td><td><code>[28705, 5592]</code></td><td>no (multi-token)</td></tr>
+      <tr class="divider"><td class="num-l"><code>no</code></td><td><code>[708]</code></td><td>yes (single token)</td></tr>
+      <tr><td class="num-l"><code>No</code></td><td><code>[1770]</code></td><td>yes (single token)</td></tr>
+      <tr><td class="num-l"><code>&prime; no&prime;</code></td><td><code>[28705, 708]</code></td><td>no (multi-token)</td></tr>
+      <tr><td class="num-l"><code>&prime; No&prime;</code></td><td><code>[28705, 1770]</code></td><td>no (multi-token)</td></tr>
+    </tbody>
+  </table>
+  <div class="caption" style="text-align:center;"><span class="label">Table 6.</span>
+  Tokenizer-derived single-token IDs for yes/no surface forms under
+  LLaVA-1.6-Mistral-7B. The four space-prefixed forms tokenize to two
+  tokens each and are excluded from the dynamic single-token readout.</div>
+</div>
+
+<h3 class="subsection">Prompt-template robustness</h3>
+<p>The master table fixes one prompt template per model. To check that
+the dynamic readout is stable under a change of template, rather than an
+artifact of the LLaVA-1.5 string, we ran a focused comparison on the
+first 500 POPE adversarial questions of LLaVA-1.6-Mistral under two prompt
+templates: the LLaVA-1.5 paper template and the model&rsquo;s native chat
+template via <code>processor.apply_chat_template</code>. Across all 500
+questions in each run, the only first tokens generated were id 5592
+(<code>Yes</code>) and id 1770 (<code>No</code>); the LLaMA-2 IDs from
+the main paper never appeared. Figure 11 plots the four readouts side
+by side for both prompt modes.</p>
+
+<div class="figure">
+  <img src="cross_model_readouts.png" alt="Four readouts under two prompt templates, LLaVA-1.6">
+  <div class="caption">
+    <span class="label">Figure 11.</span>
+    POPE adversarial F1 for LLaVA-1.6-Mistral-7B on the first 500
+    questions, under four readouts and two prompt templates. The
+    dynamic single-token readout and the string-parse readout agree to
+    four decimals within each prompt mode; the legacy LLaVA-1.5
+    eight-token readout collapses to zero because the LLaMA-2 IDs are
+    never the argmax token on a Mistral-vocabulary model.
+  </div>
+</div>
+
+<div class="tbl-wrap">
+  <table class="data">
+    <thead><tr><th class="num-l">Prompt</th><th class="num-l">Readout</th><th>F1</th><th>Precision</th><th>Recall</th><th>Yes-rate</th></tr></thead>
+    <tbody>
+      <tr><td class="num-l" rowspan="4">Paper template</td><td class="num-l">legacy_2tok</td><td>0.6667</td><td>0.5000</td><td>1.0000</td><td>1.000</td></tr>
+      <tr><td class="num-l">legacy_8tok</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.000</td></tr>
+      <tr><td class="num-l">dynamic_single</td><td>0.8719</td><td>0.8352</td><td>0.9120</td><td>0.546</td></tr>
+      <tr><td class="num-l">string_parse</td><td>0.8719</td><td>0.8352</td><td>0.9120</td><td>0.546</td></tr>
+      <tr class="divider"><td class="num-l" rowspan="4">Native chat template</td><td class="num-l">legacy_2tok</td><td>0.6925</td><td>0.5297</td><td>1.0000</td><td>0.944</td></tr>
+      <tr><td class="num-l">legacy_8tok</td><td>0.0000</td><td>0.0000</td><td>0.0000</td><td>0.000</td></tr>
+      <tr><td class="num-l">dynamic_single</td><td>0.8621</td><td>0.9517</td><td>0.7880</td><td>0.414</td></tr>
+      <tr><td class="num-l">string_parse</td><td>0.8621</td><td>0.9517</td><td>0.7880</td><td>0.414</td></tr>
+    </tbody>
+  </table>
+  <div class="caption" style="text-align:center;"><span class="label">Table 7.</span>
+  Four readouts on the first 500 POPE adversarial questions under
+  LLaVA-1.6-Mistral-7B. <em>legacy_2tok</em> and <em>legacy_8tok</em> use
+  the LLaMA-2 IDs from the main paper and are reported only to illustrate
+  the failure mode of an out-of-vocabulary readout. <em>dynamic_single</em>
+  compares max-logits over the tokenizer-derived single-token IDs
+  {5081, 5592} vs {708, 1770}. <em>string_parse</em> runs greedy decoding
+  for up to 6 tokens and parses the first <code>yes</code> or
+  <code>no</code> substring.</div>
+</div>
+
+<p><strong>The dynamic single-token and string-parse readouts agree
+exactly.</strong> Under either prompt template the dynamic single-token
+readout and the string-parse readout report identical F1, precision,
+recall, and yes-rate to four decimals. The agreement is expected under
+greedy decoding and useful as an internal consistency check.</p>
+
+<p><strong>Legacy LLaVA-1.5 readouts produce non-results on this
+vocabulary.</strong> The legacy eight-token readout has F1 = 0 under both
+prompt templates because none of the LLaMA-2 IDs are ever the argmax
+token; the legacy two-token readout produces an all-yes or near-all-yes
+bias for the same reason. This is the cross-model analogue of the
+LLaVA-1.5 finding, larger in magnitude because the LLaMA-2 IDs do not
+belong to the Mistral vocabulary at all rather than merely being
+out-of-template.</p>
+
+<p><strong>Absolute F1 is not directly comparable to LLaVA-1.5.</strong>
+The 500-question slice, the different vocabulary, the different prompt
+template, and the different model architecture all change the absolute
+number. The 0.8719 here is the dynamic readout on the first 500
+adversarial questions; on the full 3,000-question adversarial split
+(Table 5) the same readout gives 0.8521, the small difference reflecting
+the larger sample. The point of the cross-model run is to show that the
+four-readout framework ports cleanly to a second model when the token
+sets are re-derived from that model&rsquo;s tokenizer, and that
+transferring the LLaVA-1.5 IDs literally is unsafe.</p>
+
+<h2 class="section"><span class="num">8</span>Practitioner Recommendations</h2>
+<p>The audit reduces to a small number of operational checks that future
+POPE-style evaluations on LLaMA-family VLMs can adopt without changing
+the dataset, the model, or the metric definition.</p>
+<ol>
+  <li><strong>Log the generated token id and decoded string for every
+  question.</strong> A first-token argmax and its tokenizer-decoded surface
+  form are cheap to record and remove the need to guess at the readout
+  convention later.</li>
+  <li><strong>Verify yes/no token sets under the exact prompt template.</strong>
+  Different templates push first-token mass onto different surface
+  forms.</li>
+  <li><strong>Prefer the tokenizer-derived single-token logit readout as
+  the default.</strong> Deriving the yes/no IDs from the model&rsquo;s own
+  tokenizer and comparing their max-logits is deterministic and depends
+  only on the logit vector, not on what text a generation loop returns.
+  String parsing is equivalent (the Theorem in Section 6) when it reads
+  exactly the first generated token; parsing a multi-token free-text span
+  is not safe in general, as the InstructBLIP run in Section 7 shows,
+  where the span did not isolate the answer token and the readout
+  collapsed to all-yes.</li>
+  <li><strong>If using logits, include all tokenizer surface forms.</strong>
+  For LLaMA-family models that means at minimum the four-token yes set
+  and four-token no set; for other tokenizers the set must be derived
+  from the tokenizer itself, not transferred from a paper.</li>
+  <li><strong>Release prediction-level records.</strong> Per-question
+  question_id, label, prediction, and first-token id allow reviewers to
+  recompute any aggregate metric and to verify the token-readout
+  convention independent of summary numbers.</li>
+  <li><strong>Report prompt template, tokenizer, model revision, and
+  yes/no token ids.</strong> These four items determine whether a comparison
+  across papers reads the same protocol or a different one.</li>
+</ol>
+
+<h3 class="subsection">Drop-in code snippet</h3>
+<p>The readout we recommend derives the single-token yes/no IDs from the
+model&rsquo;s own tokenizer, generates one token, and compares the
+max-logits. It makes no assumption about which IDs a given model uses, so
+the same code runs unchanged across the five models in this paper:</p>
+
+<pre class="code">tok = processor.tokenizer
+enc = lambda s: tok.encode(s, add_special_tokens=False)
+yes_ids = [enc(s)[0] for s in [&quot;yes&quot;, &quot;Yes&quot;, &quot; yes&quot;, &quot; Yes&quot;] if len(enc(s)) == 1]
+no_ids  = [enc(s)[0] for s in [&quot;no&quot;, &quot;No&quot;, &quot; no&quot;, &quot; No&quot;]   if len(enc(s)) == 1]
+out = model.generate(**inputs, max_new_tokens=1, do_sample=False,
+                     return_dict_in_generate=True, output_scores=True)
+logit = out.scores[0][0]
+pred = &quot;yes&quot; if max(logit[i] for i in yes_ids) &gt; max(logit[j] for j in no_ids) else &quot;no&quot;</pre>
+
+<p>By the Theorem in Section 6 it produces the same predictions as a
+string-parse readout on every question whose argmax is in the
+single-token set; unlike free-text parsing it cannot be misled by text
+that precedes the answer token, which is the failure we observed on
+InstructBLIP.</p>
+
+<h3 class="subsection">Literature survey and community impact</h3>
+<p>The corresponding section in the LaTeX papers (Section 9) gives a
+strict scaffold for surveying additional papers that report a
+LLaVA-1.5-7B POPE adversarial baseline. The canonical place to add
+rows is <code>references/paper_survey.csv</code> in the repository. We
+deliberately decline to headline a number of the form &quot;N papers'
+gains evaporate&quot;: we report verifiable rows separately from
+indeterminate ones, and we invite community contributions via pull
+requests against the CSV.</p>
+
+<h2 class="section"><span class="num">9</span>Limitations</h2>
+<p>We ran the main 9,000-question audit on one model (LLaVA-1.5-7B,
+4-bit NF4) and the multi-model validation in Section 7 on four additional
+models (LLaVA-1.6-Mistral-7B, InstructBLIP-Vicuna-7B,
+mPLUG-Owl2-LLaMA2-7B, and Qwen2-VL-7B-Instruct), each on all three POPE
+splits at 3,000 questions per split. Each model was run at a single
+revision and at the precision its host GPU allowed; we did not test
+alternate checkpoints, and we did not test MiniGPT-4 or other VLMs whose
+released loaders need custom checkpoint patching. The whitespace-prefix
+behaviour that produces the LLaVA-1.5 artifact is shared across
+LLaMA-family tokenizers, but the specific token IDs and the shape of the
+multi-token surface forms differ across tokenizers, as the Mistral and
+Qwen vocabularies in Table 5 show, so the practitioner check in
+Algorithm 1 is the mechanism by which the finding generalises rather than
+the eight-token set itself. The InstructBLIP result also bounds our
+string-parse claim: a string-parse readout is a safe substitute for the
+logit readout only when it parses exactly the first generated token, a
+condition that held on the LLaVA and Qwen runs but not on the
+InstructBLIP decode path in our harness.</p>
+
+<p>The three re-evaluated methods in Section 4 were selected because
+their reported baselines sit visibly below our corrected reference.
+Papers that bypass logit-based extraction by running greedy decoding and
+parsing the output string are not affected at all. The 100-question
+diagnostic in Section 5.3 is descriptive, not inferential; the $n=8$ FP
+cell in our sample is too small to draw a confidence interval on the
+CLIP-L gap. The inference-time correction results are specific to the
+adversarial split.</p>
+
+<h2 class="section"><span class="num">10</span>Conclusion</h2>
+<p>The mismatch we report has a narrow technical surface: one logit
+comparison between two token IDs that LLaVA-1.5-7B does not produce
+after <code>ASSISTANT:</code> under greedy decoding. The downstream
+consequences depend on which methods adopt the two-token readout.
+On POPE adversarial F1, the shift to the eight-token readout is 6.13
+points, which exceeds the headline gain of several recent inference-time
+methods. If those methods&rsquo; reported numbers are compared against
+our 82.21 baseline rather than their published baseline, one
+method&rsquo;s +10.81 gain reduces to +2.14 (still positive, still
+meaningful if rerun under the corrected readout) and two others fall
+below 82.21. We do not claim the methods themselves are broken; we
+claim that the published numbers cannot be read at face value without
+a verified token-readout.</p>
+
+<p>The nine inference-time corrections we ran on the corrected baseline
+did not improve adversarial F1. The per-signal analysis indicates that
+the visual-grounding, image-noun, and attention-concentration signals
+these methods assume do not discriminate the cases the adversarial
+split is designed to query. Improving over the corrected adversarial
+baseline may require training-time changes that improve the
+model&rsquo;s discrimination between visually co-occurring objects,
+rather than decoding-time changes alone. The correction itself is a
+one-line change in the evaluation code.</p>
 
 <h2 class="section">Acknowledgments</h2>
 <p>We used Claude (Anthropic) as a coding assistant for experimental
@@ -1190,7 +1498,7 @@ NVIDIA RTX 3050 (4 GB VRAM) for verification runs.</p>
 These were run directly in Python against the LLaMA tokenizer loaded
 from the LLaVA-1.5-7B repository:</p>
 <pre class="code">from transformers import AutoTokenizer
-tok = AutoTokenizer.from_pretrained("D:/models/llava-1.5-7b")
+tok = AutoTokenizer.from_pretrained("llava-hf/llava-1.5-7b-hf")
 
 tok.decode([3582])  # -&gt; 'yes'
 tok.decode([8241])  # -&gt; 'Yes'
@@ -1226,22 +1534,25 @@ that appeared as first tokens across all 9,000 questions in our runs.</p>
 <h2 class="section">Appendix B: Per-Split Confusion Matrices</h2>
 <p>Table B.1 reports full $2 \times 2$ matrices under the eight-token
 rule. The adversarial false-positive rate (FP per negative question =
-182/1500 = 12.1%) is roughly 3.5&times; that of the random split
-(52/1500 = 3.5%), consistent with the co-occurrence design of the
-adversarial negatives.</p>
+182/1500 = 12.1%) is roughly 4.2&times; that of the random split
+(43/1500 = 2.9%), consistent with the co-occurrence design of the
+adversarial negatives. All matrix cells are computed directly from the
+per-question prediction logs in
+<code>experiments/pope_&#123;split&#125;_2tok_vs_8tok.json</code>.</p>
 
 <div class="tbl-wrap">
   <table class="data">
     <thead><tr><th class="num-l">Split</th><th>TP</th><th>TN</th><th>FP</th><th>FN</th></tr></thead>
     <tbody>
       <tr><td class="num-l">Adversarial</td><td>1,174</td><td>1,318</td><td>182</td><td>326</td></tr>
-      <tr><td class="num-l">Popular</td>    <td>1,191</td><td>1,374</td><td>126</td><td>309</td></tr>
-      <tr><td class="num-l">Random</td>     <td>1,190</td><td>1,448</td><td>52</td> <td>310</td></tr>
+      <tr><td class="num-l">Popular</td>    <td>1,191</td><td>1,388</td><td>112</td><td>309</td></tr>
+      <tr><td class="num-l">Random</td>     <td>1,191</td><td>1,457</td><td>43</td> <td>309</td></tr>
     </tbody>
   </table>
   <div class="caption" style="text-align:center;"><span class="label">Table B.1.</span>
   Confusion matrices under eight-token evaluation, full 3,000-question
-  splits.</div>
+  splits. Row sums equal 3,000 for each split; counts are exact, taken
+  from the prediction JSON files.</div>
 </div>
 
 <footer>

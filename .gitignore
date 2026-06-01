@@ -71,3 +71,7 @@ secrets.json
 # --- large outputs that can be regenerated ---
 *.tmp
 tmp/
+
+# --- build / upload archives (regenerable; keep out of the repo) ---
+# e.g. pope_datasets.zip (1.1 GB), ugaa_src.zip, ugaa_analysis.zip, paper zips
+*.zip

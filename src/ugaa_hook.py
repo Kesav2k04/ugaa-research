@@ -1,19 +1,19 @@
 """
-UGAA v5 — Spatial-Attention Certainty-Modulated NO-bias
+UGAA v5 - Spatial-Attention Certainty-Modulated NO-bias
 ========================================================
 
-Diagnosis carried over from v1–v4:
+Diagnosis carried over from v1-v4:
   Baseline VSR: TP=48, TN=18, FP=31, FN=3.  79/100 predictions are "yes"
-  against a true split of 51/49 — a language-prior YES-bias the model
+  against a true split of 51/49 - a language-prior YES-bias the model
   applies to linguistically plausible spatial statements.
 
 Why v4 (VCD with blank image) failed:
-  Blank image logits show yes≈10.9, no≈11.0 — the blank carries slight
+  Blank image logits show yes≈10.9, no≈11.0 - the blank carries slight
   NO-bias, so `score - alpha * (blank_yes - blank_no)` *amplifies* the
   YES side instead of cancelling it.  The blank image is not a clean
   estimate of the language prior.
 
-v5 (this file) — keep the working parts, drop the broken parts:
+v5 (this file) - keep the working parts, drop the broken parts:
   Pass 1: probe LLaVA's own attention; measure spatial-word→patch
           attention concentration as normalized entropy (peaky → certain).
   Pass 2: run model with real image → get yes/no logits.
@@ -74,7 +74,7 @@ def _get_yes_no_logits(
     """
     Single forward pass; returns (logit_yes, logit_no) as float scalars.
     Uses output_scores via generate(max_new_tokens=1) so we get the
-    first-token distribution — most reliable for yes/no questions.
+    first-token distribution - most reliable for yes/no questions.
 
     Both lowercase and capitalised variants are included so that a model
     response of "No" (token 3782) does not register as positive.
@@ -145,9 +145,9 @@ class UGAAHook:
         """
         Returns a scalar certainty in [0, 1].
           1.0 = model's spatial-word attention concentrates on specific patches
-                (high certainty — leave logits alone)
+                (high certainty - leave logits alone)
           0.0 = attention is diffuse / no spatial words found
-                (low certainty — apply maximum NO-bias)
+                (low certainty - apply maximum NO-bias)
         """
         prompt = f"USER: <image>\n{question}\nASSISTANT:"
         inputs = processor(text=prompt, images=image, return_tensors="pt")

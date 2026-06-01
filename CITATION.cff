@@ -8,7 +8,7 @@ authors:
     affiliation: "Sri Krishna College of Technology, Coimbatore"
     email: "kesavk659@gmail.com"
   - family-names: "Thilak"
-    given-names: "Karthikeyan"
+    given-names: "Karthigeyan"
     affiliation: "Sri Eshwar College of Engineering, Coimbatore"
     email: "karthik.suthraye@gmail.com"
 license: MIT
@@ -31,6 +31,6 @@ preferred-citation:
     - family-names: "Jayakumar"
       given-names: "Kesav Kumar"
     - family-names: "Thilak"
-      given-names: "Karthikeyan"
+      given-names: "Karthigeyan"
   year: 2026
   notes: "Preprint."

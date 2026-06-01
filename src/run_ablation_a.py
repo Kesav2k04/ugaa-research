@@ -1,19 +1,19 @@
-# src/run_ablation_a.py — KESAV + KARTHIGEYAN
+# src/run_ablation_a.py - KESAV + KARTHIGEYAN
 # Ablation A: signal-swap on POPE at fixed beta (default 1.0).
 #
 # Five certainty variants, all plugged into the same downstream pipeline:
-#   (i)   entropy    — UGAA: normalized entropy of spatial-word→patch attention
-#   (ii)  magnitude  — mean L1 norm of spatial-word→patch attention (no normalization)
-#   (iii) cls        — CLS-token→patch attention (DAMRO-style, no spatial words)
-#   (iv)  uniform    — constant 0.5 (ablates the modulation; tests pure NO-bias)
-#   (v)   object     — normalized entropy of OBJECT-NOUN→patch attention
+#   (i)   entropy    - UGAA: normalized entropy of spatial-word→patch attention
+#   (ii)  magnitude  - mean L1 norm of spatial-word→patch attention (no normalization)
+#   (iii) cls        - CLS-token→patch attention (DAMRO-style, no spatial words)
+#   (iv)  uniform    - constant 0.5 (ablates the modulation; tests pure NO-bias)
+#   (v)   object     - normalized entropy of OBJECT-NOUN→patch attention
 #                      (uses the noun being asked about, not generic spatial words)
 #                      Hypothesis: object-noun attention concentration reflects whether
 #                      the object is visually grounded, directly predicting hallucination.
 #
 # All variants use the same 8-token yes/no logit extraction.
 # Purpose: isolate contribution of the UGAA signal vs. any uniform NO-bias.
-# Critical finding from runs 1–4: entropy == uniform (both F1=0.8211).
+# Critical finding from runs 1-4: entropy == uniform (both F1=0.8211).
 # The object variant tests whether a more localizable probe token helps.
 #
 # Usage:
@@ -48,8 +48,9 @@ from ugaa_hook import (
 from clip_l_grounding import clip_l_certainty, load_clip_l_components
 from evaluate import compute_f1
 
-MODEL_PATH = "D:/models/llava-1.5-7b"
-DATASET = "datasets/pope/pope_sample_100.json"
+DEFAULT_MODEL_PATH = "llava-hf/llava-1.5-7b-hf"
+DEFAULT_DATASET = "datasets/pope/pope_sample_100.json"
+DEFAULT_OUTPUT_DIR = "experiments"
 DEFAULT_BETA = 1.0
 VISUAL_START = 1
 VISUAL_END = 577
@@ -60,7 +61,7 @@ VARIANTS = ["entropy", "magnitude", "cls", "uniform", "object"]
 POPE_STOPWORDS = {"is", "there", "a", "an", "in", "the", "image"}
 
 # ---------------------------------------------------------------------------
-# CLIP certainty — object presence signal
+# CLIP certainty - object presence signal
 # ---------------------------------------------------------------------------
 # Uses openai/clip-vit-base-patch32 (~290MB fp16) loaded once alongside LLaVA.
 # Signal: max cosine similarity between the object noun and a 4×4 crop grid
@@ -151,16 +152,25 @@ def clip_certainty_for_question(image: Image.Image, question: str, device) -> fl
 # Model loading
 # ---------------------------------------------------------------------------
 
-def load_llava():
-    bnb = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_compute_dtype=torch.float16,
-        bnb_4bit_quant_type="nf4",
-    )
-    model = LlavaForConditionalGeneration.from_pretrained(
-        MODEL_PATH, quantization_config=bnb, device_map="auto"
-    )
-    processor = AutoProcessor.from_pretrained(MODEL_PATH)
+def load_llava(model_path: str, cache_dir: str | None = None,
+               device: str = "cuda"):
+    kwargs = {}
+    if cache_dir:
+        kwargs["cache_dir"] = cache_dir
+    if device == "cuda":
+        bnb = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_quant_type="nf4",
+        )
+        model = LlavaForConditionalGeneration.from_pretrained(
+            model_path, quantization_config=bnb, device_map="auto", **kwargs,
+        )
+    else:
+        model = LlavaForConditionalGeneration.from_pretrained(
+            model_path, torch_dtype=torch.float32, **kwargs,
+        )
+    processor = AutoProcessor.from_pretrained(model_path, **kwargs)
     return model, processor
 
 
@@ -202,7 +212,7 @@ def _probe_attentions(model, processor, image, question):
 def _object_positions(tokens: list, question: str) -> list:
     """Return token positions corresponding to the object noun in the question.
 
-    For POPE: "Is there a [OBJECT] in the image?" — strips POPE_STOPWORDS and
+    For POPE: "Is there a [OBJECT] in the image?" - strips POPE_STOPWORDS and
     matches the remaining content words against token strings.
     """
     words = question.lower().rstrip("?").split()
@@ -280,7 +290,7 @@ def certainty_cls(attentions, tokens, spatial_positions, visual_start, visual_en
 
 
 def certainty_uniform(attentions, tokens, spatial_positions, visual_start, visual_end, question):
-    """Control: constant 0.5 — tests if any result is from modulation vs pure bias."""
+    """Control: constant 0.5 - tests if any result is from modulation vs pure bias."""
     return 0.5
 
 
@@ -346,9 +356,9 @@ def _get_logits_and_gen_attn(model, processor, image, question, device):
 
 
 def _gen_attn_certainty(per_layer, layer_start=14, layer_end=20):
-    """Entropy of mid-layer (14–20) generation-time visual attention.
+    """Entropy of mid-layer (14-20) generation-time visual attention.
 
-    Opus diagnosis: layers 14–20 show peak visual grounding in LLaVA-1.5.
+    Opus diagnosis: layers 14-20 show peak visual grounding in LLaVA-1.5.
     Final layers are dominated by next-token linguistics; averaging all 32 washes signal.
     """
     if not per_layer or len(per_layer) < layer_end:
@@ -368,7 +378,7 @@ def _gen_attn_certainty(per_layer, layer_start=14, layer_end=20):
 import numpy as np
 
 def _make_noise_image():
-    """Uniform random RGB noise image — zero systematic yes/no bias.
+    """Uniform random RGB noise image - zero systematic yes/no bias.
     Gray (v4) had slight NO-bias (blank_no > blank_yes), amplifying YES.
     Random noise has zero mean bias, giving a clean language-prior estimate.
     """
@@ -389,7 +399,7 @@ def infer_vcd_noise(model, processor, image, question, beta, device):
 
 
 # ---------------------------------------------------------------------------
-# Per-question inference — dispatches by variant name
+# Per-question inference - dispatches by variant name
 # ---------------------------------------------------------------------------
 
 def infer_with_variant(model, processor, image, question, variant, beta, device):
@@ -486,16 +496,25 @@ def main():
         default=DEFAULT_BETA,
         help=f"NO-bias strength (default: {DEFAULT_BETA}).",
     )
+    parser.add_argument("--model-path", default=DEFAULT_MODEL_PATH,
+                        help="HF repo id or local path of the VLM.")
+    parser.add_argument("--dataset", default=DEFAULT_DATASET,
+                        help="Path to the POPE sample JSON.")
+    parser.add_argument("--output-dir", default=DEFAULT_OUTPUT_DIR,
+                        help="Where to write the ablation prediction JSONs.")
+    parser.add_argument("--device", default="cuda", choices=["cuda", "cpu"])
+    parser.add_argument("--cache-dir", default=None,
+                        help="HuggingFace cache directory (e.g. D:/models/hf_cache).")
     args = parser.parse_args()
     variants_to_run = ALL_VARIANTS if args.variant == "all" else [args.variant]
 
-    print("Loading LLaVA...")
-    model, processor = load_llava()
+    print(f"Loading LLaVA from {args.model_path}...")
+    model, processor = load_llava(args.model_path, args.cache_dir, args.device)
     print("Model loaded.\n")
 
-    with open(DATASET) as f:
+    with open(args.dataset) as f:
         samples = json.load(f)
-    print(f"Loaded {len(samples)} POPE questions.")
+    print(f"Loaded {len(samples)} POPE questions from {args.dataset}.")
 
     print("Pre-fetching images...")
     images = []
@@ -508,13 +527,13 @@ def main():
             images.append(None)
     print(f"Cached {sum(1 for x in images if x is not None)}/{len(samples)} images.\n")
 
-    os.makedirs("experiments", exist_ok=True)
+    os.makedirs(args.output_dir, exist_ok=True)
     summary = {}
 
     for variant in variants_to_run:
         results = run_variant(variant, samples, images, model, processor, beta=args.beta)
 
-        path = f"experiments/ablation_a_{variant}_b{args.beta}_predictions.json"
+        path = f"{args.output_dir}/ablation_a_{variant}_b{args.beta}_predictions.json"
         with open(path, "w") as f:
             json.dump(results, f, indent=2)
 

@@ -1,0 +1,15 @@
+name: ugaa
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pytorch::pytorch=2.2.*
+  - pytorch::torchvision=0.17.*
+  - pytorch::torchaudio=2.2.*
+  - pytorch::pytorch-cuda=11.8
+  - pip:
+    - -r requirements.txt

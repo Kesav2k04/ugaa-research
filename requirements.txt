@@ -1,84 +1,39 @@
-MY MACHINE - ROG STRIX G15 (Primary inference)
+# Pinned dependencies for the POPE audit and the inference-time
+# correction experiments. Tested on Python 3.10 + CUDA 11.8.
+#
+# Install with:
+#   pip install -r requirements.txt
+#
+# Torch is intentionally not pinned to a CUDA wheel here; install it
+# from https://pytorch.org/get-started/locally/ with the index URL that
+# matches your CUDA version, then run pip install -r requirements.txt.
+# Example:
+#   pip install torch==2.2.* torchvision==0.17.* torchaudio==2.2.* \
+#     --index-url https://download.pytorch.org/whl/cu118
 
-# Step 1: Install Anaconda (free)
-# Download from anaconda.com
-conda create -n ugaa python=3.10 -y
-conda activate ugaa
+# Core ML
+transformers==4.40.1
+tokenizers>=0.15,<0.20
+accelerate>=0.28,<0.30
+bitsandbytes>=0.43,<0.44
+sentencepiece>=0.2.0
+protobuf>=3.20,<5.0
+huggingface_hub>=0.22,<0.25
+safetensors>=0.4.2
 
-# Step 2: PyTorch with CUDA 11.8
-pip install torch torchvision torchaudio \
-  --index-url https://download.pytorch.org/whl/cu118
+# Datasets + image
+datasets>=2.18,<3.0
+Pillow>=10.0,<12.0
+requests>=2.31
 
-# Step 3: Core ML libraries
-pip install transformers==4.40.0
-pip install accelerate bitsandbytes
-pip install peft datasets
-pip install openai-clip
-pip install sentencepiece protobuf
+# Numerics + plots
+numpy>=1.24,<2.0
+pandas>=2.0,<3.0
+scipy>=1.10,<2.0
+scikit-learn>=1.3,<2.0
+matplotlib>=3.7,<4.0
+seaborn>=0.13,<0.15
+tqdm>=4.66
 
-# Step 4: Experiment + viz tools
-pip install jupyter matplotlib seaborn
-pip install numpy pandas tqdm
-pip install scikit-learn
-
-# Step 5: Verify GPU
-python -c "import torch; print(torch.cuda.is_available())"
-# Expected: True
-
-# Step 6: Test model load (4-bit quantized)
-# Run test_load.py (see GitHub repo)
-Models to download (free)
-• Phi-3.5-Vision-Instruct: microsoft/Phi-3.5-vision-instruct (HF)
-• LLaVA-1.5-7B: llava-hf/llava-1.5-7b-hf (HF)
-• CLIP: openai/clip-vit-base-patch32 (HF)
-• All download automatically on first use via HF cache
-
-
-
-FRIEND'S MACHINE — HP Pavilion (Data + eval pipeline)
-
-# Step 1: Same conda setup
-conda create -n ugaa-eval python=3.10 -y
-conda activate ugaa-eval
-
-# Step 2: No heavy GPU libs needed
-pip install torch torchvision --index-url \
-  https://download.pytorch.org/whl/cpu
-
-# Step 3: Data pipeline focus
-pip install pandas numpy matplotlib
-pip install datasets huggingface_hub
-pip install scikit-learn jupyter
-pip install nltk rouge-score
-pip install Pillow requests tqdm
-
-# Step 4: API tools
-# SKIP: pip install openai   (costs money per call)
-# SKIP: pip install google-generativeai  (has free tier but limited)
-
-# Instead install these FREE alternatives:
-pip install rouge-score
-pip install nltk
-pip install bert-score
-pip install evaluate        # HuggingFace evaluate — free, local metrics
-
-Gemini API does have a free tier (15 requests/minute, 1500/day) which is enough for your evaluation. If Karthi wants to use it: go to aistudio.google.com → Get API Key → it's completely free there (not the paid Google Cloud version). That's the one to use.
-
-
-# Step 5: Dataset download scripts
-# POPE: github.com/AoiDragon/POPE
-# VSR: github.com/cambridgeltl/visual-spatial-reasoning
-# GQA: cs.stanford.edu/people/dorarad/gqa/download.html
-
-# SKIP: pip install openai   (costs money per call)
-# SKIP: pip install google-generativeai  (has free tier but limited)
-
-# Instead install these FREE alternatives:
-pip install rouge-score
-pip install nltk
-pip install bert-score
-pip install evaluate        # HuggingFace evaluate — free, local metrics
-
-This machine does NOT run models
-4GB VRAM = data processing only. All inference runs on your ROG or Kaggle. Friend's machine handles: dataset prep, metric calculation (ROUGE, BLEU, F1), result aggregation, paper tables.
-
+# Notebook + utility (optional for figure regeneration)
+jupyter>=1.0

@@ -1,0 +1,75 @@
+{
+  "summary": {
+    "model_path": "llava-hf/llava-v1.6-mistral-7b-hf",
+    "prompt_template": "USER: <image>\n{question} Answer yes or no only.\nASSISTANT:",
+    "tokenizer_class": "LlamaTokenizerFast",
+    "transformers_version": "4.44.2",
+    "torch_version": "2.5.1+cu121",
+    "device_name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+    "split": "adversarial",
+    "n_total": 1,
+    "n_valid": 1,
+    "n_errors": 0,
+    "quantize": "4bit",
+    "yes_tokens_2tok": [
+      3582
+    ],
+    "no_tokens_2tok": [
+      1217
+    ],
+    "yes_tokens_8tok": [
+      3582,
+      8241,
+      4874,
+      3869
+    ],
+    "no_tokens_8tok": [
+      1217,
+      3782,
+      694,
+      1939
+    ],
+    "eval_2token": {
+      "tp": 1,
+      "tn": 0,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "yes_predictions": 1,
+      "yes_rate": 1.0
+    },
+    "eval_8token": {
+      "tp": 0,
+      "tn": 0,
+      "fp": 0,
+      "fn": 1,
+      "f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "yes_predictions": 0,
+      "yes_rate": 0.0
+    },
+    "f1_gap_8tok_minus_2tok": -1.0,
+    "top_token_counts": [
+      {
+        "token_id": 5592,
+        "count": 1,
+        "decoded": "Yes"
+      }
+    ],
+    "runtime_seconds": 3.68,
+    "sec_per_question": 3.677
+  },
+  "results": [
+    {
+      "question_id": "1",
+      "label": "yes",
+      "top_token_id": 5592,
+      "top_token_str": "Yes",
+      "pred_2tok": "yes",
+      "pred_8tok": "no"
+    }
+  ]
+}
