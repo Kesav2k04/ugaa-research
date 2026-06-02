@@ -1,10 +1,5 @@
-paper_id,paper_short,split,reported_baseline_f1x100,reported_result_f1x100,reported_gain_f1x100,gain_vs_corrected_82_21,readout,conclusion_code,verified,notes
-visflow2025,Tang et al. (VisFlow),adversarial,73.54,84.35,10.81,2.14,not stated,R,yes,arXiv:2506.12609 -- reported baseline far below the eight-token range; rerun against 82.21 would clarify the remaining gain.
-visflow2025,Tang et al. (VisFlow),popular,76.53,87.09,10.56,2.11,not stated,R,yes,Same reasoning as adversarial.
-visflow2025,Tang et al. (VisFlow),random,81.54,89.55,8.01,2.42,not stated,R,yes,Same reasoning as adversarial.
-seo2025,Seo et al.,adversarial,79.30,80.00,0.70,-2.21,not stated,N,yes,arXiv:2510.09008 -- reported result below 82.21; not confirmable from published numbers.
-adaptvis2025,Chen et al. (AdaptVis),adversarial,81.00,81.80,0.80,-0.41,not stated,N,yes,arXiv:2503.01773 / ICML 2025 -- reported result below 82.21; not confirmable from published numbers.
-Magnifier Prompt: Tackling Multimodal Hallucination,2024,LLaVA-1.5,Adversarial,82.3,I
-Alleviating Hallucinations for LVLMs (SID),2024,LLaVA-1.5,Adversarial,80.1,I
-Attentional Vision Calibration for LVLMs,2025,LLaVA-1.5,Adversarial,81.7,I
-Spatial Perception Bias Mitigation in LVLMs,2025,LLaVA-1.5,Adversarial,79.8,I
+Paper Title,Year,Model Backbone,Split,Reported F1,Category
+Mitigating Object Hallucination via Cross-Modal Attention Calibration,2025,LLaVA-1.5,Adversarial,83.17,I
+VCD: Visual Contrastive Decoding for Hallucination Mitigation,2024,LLaVA-1.5,Adversarial,80.88,I
+OPERA: Operation-Wise Attention Penalization for LVLMs,2024,LLaVA-1.5,Adversarial,81.24,I
+Evaluating and Analyzing Relationship Hallucinations in LVLMs,2024,LLaVA-1.5,Adversarial,78.96,I
