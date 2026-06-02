@@ -53,9 +53,15 @@ adversarial baseline.
 \item {\bf Theory Assumptions and Proofs}
 \item[] Question: For each theoretical result, does the paper provide the full
 set of assumptions and a complete proof?
-\item[] Answer: \answerNA{}
-\item[] Justification: This paper makes no theoretical claims. All contributions
-are empirical.
+\item[] Answer: \answerYes{}
+\item[] Justification: Theorem~1 (single-token readout equivalence) and
+Corollary~1 (failure mode of the two-token readout) in
+Section~\ref{sec:equiv} state all assumptions explicitly and provide
+complete proofs. The hypothesis $t^\star \in Y \cup N$ is load-bearing, not
+a formality: the InstructBLIP-Vicuna-7B case in Section~\ref{sec:crossmodel}
+demonstrates a real violation in practice, where the parsed span did not
+isolate the answer token and the string-parse readout collapsed to all-yes
+while the single-token logit readout was unaffected.
 \item[] Guidelines:
 \begin{itemize}
     \item The answer NA means that the paper does not include theoretical results.

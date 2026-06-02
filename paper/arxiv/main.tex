@@ -1122,7 +1122,13 @@ The four readouts are computed identically across all models, so the
 columns of Table~\ref{tab:multimodel} are directly comparable.
 Qwen2-VL is evaluated under its native chat template, because it was
 not trained on the LLaVA-1.5 prompt string; the other three use the
-LLaVA-1.5 paper template.
+LLaVA-1.5 paper template. Per-question prediction logs for
+LLaVA-1.6-Mistral-7B are in \texttt{experiments/cross\_model/}. For
+mPLUG-Owl2, InstructBLIP-Vicuna-7B, and Qwen2-VL-7B-Instruct, the summary
+metrics reported here are stored in
+\texttt{experiments/multi\_model/multi\_model\_results.json} with
+provenance notes, and the per-question records are reproducible from
+scratch with \texttt{notebooks/run\_on\_cloud.ipynb}.
 
 Table~\ref{tab:multimodel} is the headline result, and two patterns
 hold across every model and split.
@@ -1491,7 +1497,13 @@ itself. The InstructBLIP result also bounds our string-parse claim: a
 string-parse readout is a safe substitute for the logit readout only
 when it parses exactly the first generated token, a condition that held
 on the LLaVA and Qwen runs but not on the InstructBLIP decode path in
-our harness.
+our harness. Provenance differs across the multi-model runs: the three
+cloud-GPU models (mPLUG-Owl2, InstructBLIP-Vicuna-7B, and
+Qwen2-VL-7B-Instruct) are recorded here as console-level summary metrics
+rather than per-question JSON logs, whereas the LLaVA-1.6-Mistral-7B
+per-question logs are already in the repository; the notebook
+\texttt{notebooks/run\_on\_cloud.ipynb} regenerates the cloud-model logs
+from scratch.
 
 The three re-evaluated methods in Section~\ref{sec:impact} were
 selected because their reported baselines sit visibly below our

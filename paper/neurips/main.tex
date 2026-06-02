@@ -30,6 +30,7 @@
 \usepackage{listings}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage{enumitem}
 \renewcommand{\arraystretch}{1.12}
 \lstset{basicstyle=\ttfamily\small, frame=single,
         backgroundcolor=\color{gray!8}, breaklines=true}
@@ -1052,7 +1053,13 @@ The four readouts are computed identically across all models, so the
 columns of Table~\ref{tab:multimodel} are directly comparable.
 Qwen2-VL is evaluated under its native chat template, because it was
 not trained on the LLaVA-1.5 prompt string; the other three use the
-LLaVA-1.5 paper template.
+LLaVA-1.5 paper template. Per-question prediction logs for
+LLaVA-1.6-Mistral-7B are in \texttt{experiments/cross\_model/}. For
+mPLUG-Owl2, InstructBLIP-Vicuna-7B, and Qwen2-VL-7B-Instruct, the summary
+metrics reported here are stored in
+\texttt{experiments/multi\_model/multi\_model\_results.json} with
+provenance notes, and the per-question records are reproducible from
+scratch with \texttt{notebooks/run\_on\_cloud.ipynb}.
 
 Table~\ref{tab:multimodel} is the headline result, and two patterns
 hold across every model and split.
@@ -1189,108 +1196,11 @@ Form & Tokenization & In dynamic set? \\
 \subsection{Prompt-template robustness}
 \label{sec:crossmodel-template}
 
-The master table fixes one prompt template per model. To check that the
-dynamic readout is stable under a change of template, rather than an
-artifact of the LLaVA-1.5 string, we ran a focused comparison on the
-first 500 POPE adversarial questions of LLaVA-1.6-Mistral under two
-templates: the LLaVA-1.5 paper template
-(\texttt{USER:~<image>$\backslash$n\{q\}~Answer~yes~or~no~only.$\backslash$nASSISTANT:})
-and the model's native chat template via
-\texttt{processor.apply\_chat\_template}. Across all 500 questions in
-each run, the only first tokens generated were id 5592
-(\texttt{Yes}) and id 1770 (\texttt{No}); the LLaMA-2 IDs from the
-main paper never appeared. Table~\ref{tab:crossmodel-eval} reports the
-four readouts described in Section~\ref{sec:standard}; the same
-numbers are plotted in Figure~\ref{fig:crossmodel-readouts} for a
-direct visual comparison.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.85\linewidth]{figures/cross_model_readouts.pdf}
-\caption{POPE adversarial F1 for LLaVA-1.6-Mistral-7B on the first 500
-questions, under four readouts and two prompt templates. The dynamic
-single-token readout and the string-parse readout agree to four
-decimals within each prompt mode; the legacy LLaVA-1.5 eight-token
-readout collapses to zero because the LLaMA-2 IDs are never the argmax
-token on a Mistral-vocabulary model.}
-\label{fig:crossmodel-readouts}
-\end{figure}
-
-\begin{table}[h]
-\caption{Four readouts on the first 500 POPE adversarial questions
-under LLaVA-1.6-Mistral-7B. \emph{legacy\_2tok} and \emph{legacy\_8tok}
-use the LLaMA-2 IDs from the main paper and are reported only to
-illustrate the failure mode of an out-of-vocabulary readout.
-\emph{dynamic\_single} compares max-logits over the tokenizer-derived
-single-token IDs $\{5081, 5592\}$ vs $\{708, 1770\}$.
-\emph{string\_parse} runs greedy decoding for up to 6 tokens and
-parses the first \texttt{yes}/\texttt{no} substring.}
-\label{tab:crossmodel-eval}
-\centering
-\small
-\begin{tabular}{llcccc}
-\toprule
-Prompt template & Readout & F1 & Precision & Recall & Yes-rate \\
-\midrule
-\multirow{4}{*}{Paper template}
- & legacy\_2tok       & 0.6667 & 0.5000 & 1.0000 & 1.000 \\
- & legacy\_8tok       & 0.0000 & 0.0000 & 0.0000 & 0.000 \\
- & dynamic\_single    & 0.8719 & 0.8352 & 0.9120 & 0.546 \\
- & string\_parse      & 0.8719 & 0.8352 & 0.9120 & 0.546 \\
-\midrule
-\multirow{4}{*}{Native chat template}
- & legacy\_2tok       & 0.6925 & 0.5297 & 1.0000 & 0.944 \\
- & legacy\_8tok       & 0.0000 & 0.0000 & 0.0000 & 0.000 \\
- & dynamic\_single    & 0.8621 & 0.9517 & 0.7880 & 0.414 \\
- & string\_parse      & 0.8621 & 0.9517 & 0.7880 & 0.414 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Three observations follow from Table~\ref{tab:crossmodel-eval}, and
-all three are limited to the LLaVA-1.6-Mistral-7B / 500-question
-setting we tested.
-
-\paragraph{The dynamic single-token and string-parse readouts agree
-exactly.} Under either prompt template the dynamic single-token
-readout and the string-parse readout report identical F1, precision,
-recall, and yes-rate to four decimals. The agreement is expected
-under greedy decoding: the dynamic single-token readout compares the
-max of $\{5081, 5592\}$ to the max of $\{708, 1770\}$, and a greedy
-decoder emits whichever single token has the largest logit, which the
-string-parse readout then sees verbatim. The exact match is useful as
-an internal consistency check: a discrepancy between the two would
-signal either a multi-token surface form leaking through the
-generation (none did) or an error in one of the implementations.
-
-\paragraph{Legacy LLaVA-1.5 readouts produce non-results on this
-vocabulary.} The legacy eight-token readout has F1 = 0 under both
-prompt templates: none of the LLaMA-2 IDs 3582, 8241, 4874, 3869 or
-1217, 3782, 694, 1939 are ever the argmax token, so the comparison
-between two zero-mass max-logits resolves the same way on every
-question (here, toward no), and every question is labelled no. The
-legacy two-token readout produces an all-yes or near-all-yes bias for
-the same reason: comparing two never-generated IDs amounts to
-comparing two noise-floor values. This is the cross-model analogue
-of the LLaVA-1.5 finding in the main paper, but with the failure mode
-larger in magnitude because the LLaMA-2 IDs do not belong to the
-Mistral vocabulary at all rather than merely being out-of-template.
-
-\paragraph{Absolute F1 is not directly comparable to LLaVA-1.5.} The
-500-question slice, the different vocabulary, the different prompt
-template, and the different model architecture all change the
-absolute number. We do not claim 0.8719 or 0.8621 corrects any
-published LLaVA-1.6 baseline. The 0.8719 here is the dynamic readout on
-the first 500 adversarial questions; on the full 3{,}000-question
-adversarial split (Table~\ref{tab:multimodel}) the same readout gives
-0.8521, the small difference reflecting the larger sample. The point of the cross-model run is
-narrower: to show that the four-readout framework derived for
-LLaVA-1.5 ports cleanly to a second model when the token sets are
-re-derived from that model's tokenizer, and to show that transferring
-the LLaVA-1.5 IDs literally (as the legacy rows do) is unsafe. Both
-artifacts (\texttt{*\_paper\_template\_token\_audit.json} and
-\texttt{*\_native\_chat\_template\_token\_audit.json}) are in the
-repository for inspection.
+Appendix~\ref{app:template} verifies that the dynamic readout is stable
+across two prompt templates on LLaVA-1.6-Mistral-7B, the LLaVA-1.5 paper
+template and the model's native chat template, on the first 500 POPE
+adversarial questions, and that the legacy LLaVA-1.5 readouts collapse on
+the Mistral vocabulary under both.
 
 %================================================================
 \section{Literature Survey and Community Impact}
@@ -1345,56 +1255,15 @@ Chen~et~al.~\citep{adaptvis2025} (adv.) & 81.00 & 81.80 & $+0.80$  & not stated 
 \end{tabular}
 \end{table}
 
-\subsection{Methodology for filling the scaffold}
-
-For each candidate paper, the survey procedure is:
-
-\begin{enumerate}
-\item Locate the LLaVA-1.5-7B POPE adversarial baseline F1 in the
-      paper's main results table.
-\item If the paper's released code contains a yes/no readout step,
-      check whether it uses logit indices (and which) or a string
-      match.
-\item If the readout is not stated and not in the released code,
-      mark the row as \emph{readout: not stated} and the conclusion
-      as I.
-\item If the readout uses logit indices that include the LLaMA-2 IDs
-      3582 and 1217 only, mark conclusion R; if it uses string
-      matching, mark the conclusion as ``not necessarily affected''
-      (NA in the conclusion column).
-\end{enumerate}
-
-The CSV in \texttt{references/paper\_survey.csv} mirrors
-Table~\ref{tab:survey} and is the canonical place to add rows;
-the build process re-renders the table from the CSV on request.
-
-\subsection{Community impact methodology}
-\label{sec:impact-methodology}
-
-We deliberately do not headline a number of the form ``$N$ papers'
-gains evaporate''. The honest framing has two denominators and one
-numerator:
-
-\begin{itemize}
-\item \textbf{Denominator 1 (verifiable)}: the number of papers in
-      the survey whose readout we can verify either by reading the
-      released code or by direct statement in the paper.
-\item \textbf{Denominator 2 (broader)}: the number of papers we have
-      surveyed in total, including those marked I.
-\item \textbf{Numerator}: among Denominator 1, the number whose
-      reported gain shrinks or reverses sign when measured against
-      the eight-token baseline of 82.21.
-\end{itemize}
-
-Reporting Numerator $/$ Denominator 1 gives a conservative lower
-bound on the share of affected published gains; reporting the size
-of Denominator 2 minus Denominator 1 gives an explicit measure of
-how much of the literature remains indeterminate. As of the present
-version, Denominator 1 = 3, Numerator = 3 (Tang et al.\ shrinks from
-$+10.81$ to $+2.14$, Seo et al.\ reverses to $-2.21$, Chen et al.\
-reverses to $-0.41$), and Denominator 2 = 3. We invite community
-contributions to expand both denominators via pull requests against
-\texttt{references/paper\_survey.csv}.
+As of the present version, Denominator~1 (papers whose readout we can
+verify) $=3$, Numerator (verified gains that shrink or reverse against
+the eight-token baseline of 82.21) $=3$, and Denominator~2 (papers
+surveyed in total) $=3$; the three verified gains are Tang et al.\
+($+10.81 \to +2.14$), Seo et al.\ ($\to -2.21$), and Chen et al.\
+($\to -0.41$). Appendix~\ref{app:survey} states the procedure for filling
+the scaffold and the full definitions of the two denominators and the
+numerator. Community contributions that expand both denominators are
+welcome via pull requests against \texttt{references/paper\_survey.csv}.
 
 %================================================================
 \section{Limitations}
@@ -1420,7 +1289,13 @@ itself. The InstructBLIP result also bounds our string-parse claim: a
 string-parse readout is a safe substitute for the logit readout only
 when it parses exactly the first generated token, a condition that held
 on the LLaVA and Qwen runs but not on the InstructBLIP decode path in
-our harness.
+our harness. Provenance differs across the multi-model runs: the three
+cloud-GPU models (mPLUG-Owl2, InstructBLIP-Vicuna-7B, and
+Qwen2-VL-7B-Instruct) are recorded here as console-level summary metrics
+rather than per-question JSON logs, whereas the LLaVA-1.6-Mistral-7B
+per-question logs are already in the repository; the notebook
+\texttt{notebooks/run\_on\_cloud.ipynb} regenerates the cloud-model logs
+from scratch.
 
 The three re-evaluated methods in Section~\ref{sec:impact} were
 selected because their reported baselines sit visibly below our
@@ -1725,5 +1600,165 @@ Random      & 1{,}191 & 1{,}457 &  43 & 309 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\section{Prompt-Template Robustness on LLaVA-1.6-Mistral-7B}
+\label{app:template}
+
+The master table in Section~\ref{sec:crossmodel} fixes one prompt
+template per model. To check that the dynamic readout is stable under a
+change of template, rather than an artifact of the LLaVA-1.5 string, we
+ran a focused comparison on the first 500 POPE adversarial questions of
+LLaVA-1.6-Mistral under two templates: the LLaVA-1.5 paper template
+(\texttt{USER:~<image>$\backslash$n\{q\}~Answer~yes~or~no~only.$\backslash$nASSISTANT:})
+and the model's native chat template via
+\texttt{processor.apply\_chat\_template}. Across all 500 questions in
+each run, the only first tokens generated were id 5592
+(\texttt{Yes}) and id 1770 (\texttt{No}); the LLaMA-2 IDs from the
+main paper never appeared. Table~\ref{tab:crossmodel-eval} reports the
+four readouts described in Section~\ref{sec:standard}; the same
+numbers are plotted in Figure~\ref{fig:crossmodel-readouts} for a
+direct visual comparison.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\linewidth]{figures/cross_model_readouts.pdf}
+\caption{POPE adversarial F1 for LLaVA-1.6-Mistral-7B on the first 500
+questions, under four readouts and two prompt templates. The dynamic
+single-token readout and the string-parse readout agree to four
+decimals within each prompt mode; the legacy LLaVA-1.5 eight-token
+readout collapses to zero because the LLaMA-2 IDs are never the argmax
+token on a Mistral-vocabulary model.}
+\label{fig:crossmodel-readouts}
+\end{figure}
+
+\begin{table}[h]
+\caption{Four readouts on the first 500 POPE adversarial questions
+under LLaVA-1.6-Mistral-7B. \emph{legacy\_2tok} and \emph{legacy\_8tok}
+use the LLaMA-2 IDs from the main paper and are reported only to
+illustrate the failure mode of an out-of-vocabulary readout.
+\emph{dynamic\_single} compares max-logits over the tokenizer-derived
+single-token IDs $\{5081, 5592\}$ vs $\{708, 1770\}$.
+\emph{string\_parse} runs greedy decoding for up to 6 tokens and
+parses the first \texttt{yes}/\texttt{no} substring.}
+\label{tab:crossmodel-eval}
+\centering
+\small
+\begin{tabular}{llcccc}
+\toprule
+Prompt template & Readout & F1 & Precision & Recall & Yes-rate \\
+\midrule
+\multirow{4}{*}{Paper template}
+ & legacy\_2tok       & 0.6667 & 0.5000 & 1.0000 & 1.000 \\
+ & legacy\_8tok       & 0.0000 & 0.0000 & 0.0000 & 0.000 \\
+ & dynamic\_single    & 0.8719 & 0.8352 & 0.9120 & 0.546 \\
+ & string\_parse      & 0.8719 & 0.8352 & 0.9120 & 0.546 \\
+\midrule
+\multirow{4}{*}{Native chat template}
+ & legacy\_2tok       & 0.6925 & 0.5297 & 1.0000 & 0.944 \\
+ & legacy\_8tok       & 0.0000 & 0.0000 & 0.0000 & 0.000 \\
+ & dynamic\_single    & 0.8621 & 0.9517 & 0.7880 & 0.414 \\
+ & string\_parse      & 0.8621 & 0.9517 & 0.7880 & 0.414 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three observations follow from Table~\ref{tab:crossmodel-eval}, and
+all three are limited to the LLaVA-1.6-Mistral-7B / 500-question
+setting we tested.
+
+\paragraph{The dynamic single-token and string-parse readouts agree
+exactly.} Under either prompt template the dynamic single-token
+readout and the string-parse readout report identical F1, precision,
+recall, and yes-rate to four decimals. The agreement is expected
+under greedy decoding: the dynamic single-token readout compares the
+max of $\{5081, 5592\}$ to the max of $\{708, 1770\}$, and a greedy
+decoder emits whichever single token has the largest logit, which the
+string-parse readout then sees verbatim. The exact match is useful as
+an internal consistency check: a discrepancy between the two would
+signal either a multi-token surface form leaking through the
+generation (none did) or an error in one of the implementations.
+
+\paragraph{Legacy LLaVA-1.5 readouts produce non-results on this
+vocabulary.} The legacy eight-token readout has F1 = 0 under both
+prompt templates: none of the LLaMA-2 IDs 3582, 8241, 4874, 3869 or
+1217, 3782, 694, 1939 are ever the argmax token, so the comparison
+between two zero-mass max-logits resolves the same way on every
+question (here, toward no), and every question is labelled no. The
+legacy two-token readout produces an all-yes or near-all-yes bias for
+the same reason: comparing two never-generated IDs amounts to
+comparing two noise-floor values. This is the cross-model analogue
+of the LLaVA-1.5 finding in the main paper, but with the failure mode
+larger in magnitude because the LLaMA-2 IDs do not belong to the
+Mistral vocabulary at all rather than merely being out-of-template.
+
+\paragraph{Absolute F1 is not directly comparable to LLaVA-1.5.} The
+500-question slice, the different vocabulary, the different prompt
+template, and the different model architecture all change the
+absolute number. We do not claim 0.8719 or 0.8621 corrects any
+published LLaVA-1.6 baseline. The 0.8719 here is the dynamic readout on
+the first 500 adversarial questions; on the full 3{,}000-question
+adversarial split (Table~\ref{tab:multimodel}) the same readout gives
+0.8521, the small difference reflecting the larger sample. The point of the cross-model run is
+narrower: to show that the four-readout framework derived for
+LLaVA-1.5 ports cleanly to a second model when the token sets are
+re-derived from that model's tokenizer, and to show that transferring
+the LLaVA-1.5 IDs literally (as the legacy rows do) is unsafe. Both
+artifacts (\texttt{*\_paper\_template\_token\_audit.json} and
+\texttt{*\_native\_chat\_template\_token\_audit.json}) are in the
+repository for inspection.
+
+\section{Survey Procedure and Community-Impact Denominators}
+\label{app:survey}
+
+This appendix expands Section~\ref{sec:survey} with the procedure for
+filling the survey scaffold (Table~\ref{tab:survey}) and the full
+definitions of the two denominators and the numerator that the main body
+reports.
+
+For each candidate paper, the survey procedure is:
+
+\begin{enumerate}
+\item Locate the LLaVA-1.5-7B POPE adversarial baseline F1 in the
+      paper's main results table.
+\item If the paper's released code contains a yes/no readout step,
+      check whether it uses logit indices (and which) or a string
+      match.
+\item If the readout is not stated and not in the released code,
+      mark the row as \emph{readout: not stated} and the conclusion
+      as I.
+\item If the readout uses logit indices that include the LLaMA-2 IDs
+      3582 and 1217 only, mark conclusion R; if it uses string
+      matching, mark the conclusion as ``not necessarily affected''
+      (NA in the conclusion column).
+\end{enumerate}
+
+The CSV in \texttt{references/paper\_survey.csv} mirrors
+Table~\ref{tab:survey} and is the canonical place to add rows;
+the build process re-renders the table from the CSV on request.
+
+We deliberately do not headline a number of the form ``$N$ papers'
+gains evaporate''. The honest framing has two denominators and one
+numerator:
+
+\begin{itemize}
+\item \textbf{Denominator 1 (verifiable)}: the number of papers in
+      the survey whose readout we can verify either by reading the
+      released code or by direct statement in the paper.
+\item \textbf{Denominator 2 (broader)}: the number of papers we have
+      surveyed in total, including those marked I.
+\item \textbf{Numerator}: among Denominator 1, the number whose
+      reported gain shrinks or reverses sign when measured against
+      the eight-token baseline of 82.21.
+\end{itemize}
+
+Reporting Numerator $/$ Denominator 1 gives a conservative lower
+bound on the share of affected published gains; reporting the size
+of Denominator 2 minus Denominator 1 gives an explicit measure of
+how much of the literature remains indeterminate. As of the present
+version, Denominator 1 = 3, Numerator = 3 (Tang et al.\ shrinks from
+$+10.81$ to $+2.14$, Seo et al.\ reverses to $-2.21$, Chen et al.\
+reverses to $-0.41$), and Denominator 2 = 3. We invite community
+contributions to expand both denominators via pull requests against
+\texttt{references/paper\_survey.csv}.
 
 \end{document}

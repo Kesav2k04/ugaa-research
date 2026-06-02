@@ -16,10 +16,18 @@ TP vs FN, TN vs FP), this script reports:
 
 Bootstrap and Cohen's d are computed in pure numpy; Mann-Whitney
 uses scipy when available and falls back to a pure-python normal-
-approximation otherwise. No GPU is used. Run from the repo root:
+approximation otherwise. No GPU is used.
+
+The number of questions analysed is set by the input JSON, not by this
+script: it reads every per-question record the file contains. The
+--n-questions flag caps how many of those records (in file order) are
+used, so the same input can be analysed at 100, 300, or its full size
+without producing a new file. The default cap is 300; pass 0 to use
+every record in the file. Run from the repo root:
 
     python analysis/diagnostic_stats.py
-    python analysis/diagnostic_stats.py --diagnostic experiments/ugaa_full_3000q_diagnostic.json
+    python analysis/diagnostic_stats.py --n-questions 300
+    python analysis/diagnostic_stats.py --diagnostic experiments/ugaa_full_3000q_diagnostic.json --n-questions 0
 """
 
 from __future__ import annotations
@@ -123,13 +131,17 @@ def bootstrap_ci_diff(a, b, n_boot=10000, seed=42, alpha=0.05):
 # Diagnostic JSON loader / categoriser
 # ---------------------------------------------------------------------------
 
-def load_categories(diag_path: Path):
+def load_categories(diag_path: Path, n_questions: int = 0):
     """Group per-question records by TP/TN/FP/FN/correct/wrong on the
     baseline prediction. Supports the v6 100q schema and the
-    full-3000q schema (which uses the same field names)."""
+    full-3000q schema (which uses the same field names). When
+    n_questions > 0, only the first n_questions records (in file order)
+    are used; 0 means use every record in the file."""
     with open(diag_path) as f:
         diag = json.load(f)
     rows = diag.get("results") or diag.get("records") or []
+    if n_questions and n_questions > 0:
+        rows = rows[:n_questions]
 
     cats = {"correct": [], "wrong": [],
             "TP": [], "TN": [], "FP": [], "FN": []}
@@ -217,6 +229,10 @@ def main():
                         help="Path to diagnostic JSON (default: 100q).")
     parser.add_argument("--n-boot", type=int, default=10000,
                         help="Number of bootstrap resamples (default: 10000).")
+    parser.add_argument("--n-questions", type=int, default=300,
+                        help="Cap on per-question records used, in file "
+                             "order (default: 300; 0 means use all records "
+                             "in the file).")
     args = parser.parse_args()
 
     diag_path = Path(args.diagnostic)
@@ -224,8 +240,11 @@ def main():
         print(f"ERROR: diagnostic JSON not found at {diag_path}")
         return
 
-    cats = load_categories(diag_path)
+    cats = load_categories(diag_path, n_questions=args.n_questions)
+    n_used = sum(len(cats[k]) for k in ("correct", "wrong"))
+    cap_note = "all" if args.n_questions in (0, None) else str(args.n_questions)
     print(f"Diagnostic: {diag_path.relative_to(REPO) if str(diag_path).startswith(str(REPO)) else diag_path}")
+    print(f"Question cap requested: {cap_note}; valid records analysed: {n_used}")
     print(f"Bootstrap resamples: {args.n_boot}")
     print(f"Group sizes: TP={len(cats['TP'])}, TN={len(cats['TN'])}, "
           f"FP={len(cats['FP'])}, FN={len(cats['FN'])}, "
