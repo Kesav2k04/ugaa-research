@@ -38,8 +38,8 @@ side by side.
 | `baseline_spread.pdf` | Reported vs corrected baselines across recent papers | hard-coded values from cited PDFs |
 | `correction_methods_bar.pdf` | F1 of nine inference-time corrections | `experiments/pope_full_adversarial_*_summary.json` |
 | `precision_recall_methods.pdf` | Same on the precision-recall plane | same |
-| `grounding_vs_correct.pdf` | Mean image attention by correctness | `experiments/ugaa_v6_100q_validation.json` |
-| `logit_gap_two_panel.pdf` | Logit-gap mean + density by category | same |
+| `fig7_attention_histogram_3000q.pdf` | Mean image attention by correctness | `experiments/ugaa_full_adversarial_3000q_diagnostic.json` |
+| `fig8_logit_gap_3000q.pdf` | Logit-gap mean + density by category | same |
 
 ## Building the LaTeX
 

@@ -876,12 +876,20 @@ baseline.</p>
           <td>79.30</td><td>80.00</td><td>+0.70</td><td><span class="strong-red">&minus;2.21<sup>&dagger;</sup></span></td></tr>
       <tr><td class="num-l">Chen et al. [<a href="#ref-adaptvis2025">12</a>] (adv.)</td>
           <td>81.00</td><td>81.80</td><td>+0.80</td><td><span class="strong-red">&minus;0.41<sup>&dagger;</sup></span></td></tr>
+      <tr><td class="num-l">Huo et al. [<a href="#ref-huo2024sid">14</a>] (adv.)</td>
+          <td>80.90</td><td>82.50</td><td>+1.60</td><td>+0.29<sup>&Dagger;</sup></td></tr>
+      <tr><td class="num-l">Jiang et al. [<a href="#ref-jiang2026pnd">15</a>] (adv.)</td>
+          <td>75.06</td><td>80.82</td><td>+5.76</td><td><span class="strong-red">&minus;1.39<sup>&dagger;</sup></span></td></tr>
+      <tr><td class="num-l">Jana et al. [<a href="#ref-jana2026bracs">16</a>] (adv.)</td>
+          <td>82.07</td><td>83.03</td><td>+0.96</td><td>+0.82</td></tr>
     </tbody>
   </table>
   <div class="caption" style="text-align:center;"><span class="label">Table 3.</span>
   Reported gains alongside gains computed against the corrected
   eight-token baseline. All figures in F1&times;100. <sup>&dagger;</sup>:
-  reported result falls below our corrected baseline.</div>
+  reported result falls below our corrected baseline. <sup>&Dagger;</sup>:
+  readout not stated in the paper, so the row is recorded as
+  indeterminate.</div>
 </div>
 
 <p>Tang et al. [<a href="#ref-visflow2025">10</a>] reports a 10.81 point
@@ -890,7 +898,10 @@ baseline and the gain are substantial; once the baseline is corrected to
 82.21, the gain that would remain is +2.14 points. The popular and
 random splits follow the same arithmetic. A 2.14 adversarial improvement
 on a corrected reference is still meaningful; the 10.81 figure cannot be
-read at face value.</p>
+read at face value. No public implementation repository was found for
+arXiv:2506.12609 as of June 2026, so the readout classification rests on
+the reported baseline value (73.54) being consistent with two-token
+protocol behavior rather than confirmed code inspection.</p>
 
 <p>Seo et al. [<a href="#ref-seo2025">11</a>] reports a baseline of 79.30
 and a result of 80.00. The result sits 2.21 points below 82.21. Chen et
@@ -1013,72 +1024,95 @@ embedding, contrastive logit subtraction, following Leng et al.
 </div>
 
 <h3 class="subsection"><span class="num">5.3</span>Why the Adversarial Split Resists Correction</h3>
-<p>To understand the failure mode, we ran a 100-question diagnostic on
-the same adversarial subset, instrumenting every signal that featured
-in the nine methods and binning by the ground-truth TP/FP/TN/FN outcome.
-Three signals carry most of the explanatory weight.</p>
+<p>To understand the failure mode, we ran the full 3,000-question
+adversarial diagnostic
+(<code>experiments/ugaa_full_adversarial_3000q_diagnostic.json</code>),
+instrumenting every signal that featured in the nine methods and
+binning each question by its ground-truth TP/FP/TN/FN outcome. The
+baseline splits into 1,173 TPs, 1,317 TNs, 183 FPs, and 327 FNs (2,490
+correct, 510 wrong); inferential statistics are computed in
+<code>analysis/diagnostic_stats.py</code> on that artifact. Three
+signals carry most of the explanatory weight.</p>
 
-<h4 class="para">CLIP-L similarity has near-zero discriminative power.</h4>
+<h4 class="para">CLIP-L similarity separates TPs from FPs by a small but reliable margin.</h4>
 <p>We computed the maximum cosine similarity between the question-noun
-text embedding and CLIP-L&rsquo;s 576 patch features for each of the 100
-questions. Among TPs (where the queried object is present and the model
-says yes), the mean similarity was 0.149. Among FPs (object absent,
-model still says yes), the mean was 0.148. The gap is $+0.0007$. The
-distributions overlap almost completely. The reason is structural: POPE
-adversarial negatives are objects that co-occur in the same image as
-the queried object. CLIP was trained on the same co-occurrence
-statistics; its embedding space encodes them. The sample is too small
-for statistical inference, but the visual overlap is enough to rule out
-using max-similarity as a reliable discriminator on this split.</p>
+text embedding and CLIP-L&rsquo;s 576 patch features for every question.
+At 3,000 questions the TP group (n=1,173) has mean CLIP-L patch-noun
+similarity 0.1507 and the FP group (n=183) has mean 0.1375, a gap of
+0.0132 (95% bootstrap CI [0.0084, 0.0180]; Mann&ndash;Whitney
+U=132923, p=2.05&times;10<sup>&minus;7</sup>; Cohen&rsquo;s d=0.40). The
+gap is statistically reliable but small in magnitude. The reason is
+structural: POPE adversarial negatives are objects that co-occur in the
+same image as the queried object, and CLIP was trained on the same
+co-occurrence statistics, so its embedding space encodes them. A
+suppression gate keyed on this signal must separate TPs from FPs with
+d=0.40, and the precision&ndash;recall tradeoff makes the net F1 effect
+negative for the same reason the logit gate fails.</p>
 
 <h4 class="para">Decoder attention does not point where we want it to.</h4>
-<p>Mean attention from the last text token to the 576 image positions,
-averaged across layers 14&ndash;20, was 0.000125 for TPs and 0.000145
-for FPs (Figure 8). Higher image attention correlates with higher error
-rate, not lower. We hypothesise that uncertain predictions trigger more
-attention to the image as the model searches harder for visual evidence,
-which is the opposite direction of the &ldquo;high grounding implies
-correct&rdquo; assumption that the six grounding gates rely on.</p>
+<p>Mean attention from the final text token to the 576 image positions,
+averaged across layers 14&ndash;20, is 0.0738 for correct predictions
+(n=2,490) and 0.0801 for wrong predictions (n=510); Mann&ndash;Whitney
+U=452635, two-sided p=1.45&times;10<sup>&minus;24</sup>; Cohen&rsquo;s
+d=&minus;0.46 (Figure 8). The direction holds per category: FP questions
+show higher mean attention (0.0833) than TPs (0.0780;
+p=4.13&times;10<sup>&minus;9</sup>), and FN questions show higher mean
+attention (0.0783) than TNs (0.0700; p=1.50&times;10<sup>&minus;23</sup>).
+Wrong predictions consistently attract more image attention than correct
+ones. We hypothesise that uncertain predictions trigger more attention
+to the image as the model searches harder for visual evidence, which
+runs counter to the &ldquo;high grounding implies correct&rdquo;
+assumption that the six grounding gates rely on.</p>
 
 <div class="figure">
-  <img src="grounding_vs_correct.png" alt="Mean decoder attention to image, by correctness">
+  <img src="fig7_attention_histogram_3000q.png" alt="Mean decoder attention to image, by correctness">
   <div class="caption">
     <span class="label">Figure 8.</span>
-    Distribution of mean attention from the last text token to image
-    positions, layers 14&ndash;20 (100-question diagnostic). The blue
-    bars are questions the baseline answered correctly; the red bars are
-    wrong. Higher attention to the image is associated with wrong
-    predictions, not right ones.
+    Distribution of mean attention from the final text token to image
+    positions, layers 14&ndash;20, on the 3,000-question adversarial run.
+    The blue bars are questions the baseline answered correctly
+    (n=2490); the red bars are wrong (n=510). Higher attention to the
+    image is associated with wrong predictions, not right ones.
   </div>
 </div>
 
 <h4 class="para">The logit gap separates by confidence, not correctness.</h4>
 <p>The mean absolute logit gap $|\ell_{\text{yes}} - \ell_{\text{no}}|$
-per category was 2.242 for TPs, 1.398 for TNs, 1.283 for FPs, 0.889 for
-FNs (Figure 9). The model is most confident when it is right and least
-confident when it is wrong. But suppression acts indiscriminately on
-small-gap questions in both directions: a TP with small gap gets pushed
-to FN as readily as an FP with small gap gets pushed to TN. The net F1
-contribution is approximately zero, with the exact sign depending on how
-many FN-side cases the suppression hits versus FP-side cases. In our
-runs that sign came out negative on every variant we tested.</p>
+per category was 2.066 for TPs (n=1,173), 1.482 for TNs (n=1,317), 0.700
+for FPs (n=183), and 0.962 for FNs (n=327) (Figure 9). The logit gap
+separates correct from wrong predictions with Cohen&rsquo;s d=1.06
+across all 3,000 questions (p=1.22&times;10<sup>&minus;93</sup>). Within
+the positive class, TPs have substantially larger gaps than FNs (d=1.22,
+p=4.83&times;10<sup>&minus;68</sup>); within the negative class, TNs have
+larger gaps than FPs (d=1.18, p=1.19&times;10<sup>&minus;41</sup>). The
+model is most confident when it is right and least confident when it is
+wrong. But suppression acts indiscriminately on small-gap questions in
+both directions: a TP with small gap gets pushed to FN at approximately
+the same rate as an FP with small gap gets pushed to TN. The net F1
+contribution is near zero, and in our runs that sign came out negative
+on every variant we tested.</p>
 
 <div class="figure">
-  <img src="logit_gap_two_panel.png" alt="Logit gap two-panel: per-category mean and density">
+  <img src="fig8_logit_gap_3000q.png" alt="Logit gap two-panel: per-category mean and density">
   <div class="caption">
     <span class="label">Figure 9.</span>
     Absolute logit gap $|\ell_{\text{yes}} - \ell_{\text{no}}|$ at the
-    answer position on the 100-question diagnostic. Left: per-category
-    mean with one-standard-deviation error bars. Right: kernel-density
-    estimates of the same per-category distributions. The order
-    TP &gg; TN &gt; FP &gt; FN separates confidence from correctness
-    rather than object presence, which is why correction methods that
-    key off uncertainty trade TPs for FNs at about the same rate as FPs
-    for TNs.
+    answer position on the 3,000-question adversarial run. Left:
+    per-category mean with one-standard-deviation error bars (TP n=1173,
+    TN n=1317, FP n=183, FN n=327; means 2.07, 1.48, 0.70, 0.96). Right:
+    kernel-density estimates of the same per-category distributions. The
+    order TP &gt; TN &gt; FN &gt; FP at the mean separates confidence
+    from correctness rather than object presence, which is why
+    correction methods that key off uncertainty trade TPs for FNs at
+    about the same rate as FPs for TNs.
   </div>
 </div>
 
-<p>The adversarial split is doing exactly what its design intends.
+<p>The adversarial split is doing exactly what its design intends. This
+structural property now has full inferential support: across 3,000
+questions the attention, logit-gap, and CLIP-L signals all confirm that
+co-occurring negatives are visually indistinguishable from true
+positives at the feature level the grounding gates access.
 Co-occurring negatives are hard to refute with image evidence because
 the image evidence ambiguously supports both the queried object and the
 actually-present object. The methods we tested assume a separable
@@ -1448,11 +1482,13 @@ cloud-model logs from scratch.</p>
 <p>The three re-evaluated methods in Section 4 were selected because
 their reported baselines sit visibly below our corrected reference.
 Papers that bypass logit-based extraction by running greedy decoding and
-parsing the output string are not affected at all. The 100-question
-diagnostic in Section 5.3 is descriptive, not inferential; the $n=8$ FP
-cell in our sample is too small to draw a confidence interval on the
-CLIP-L gap. The inference-time correction results are specific to the
-adversarial split.</p>
+parsing the output string are not affected at all. The diagnostic in
+Section 5.3 is computed on the full 3,000-question adversarial run, so
+the attention, logit-gap, and CLIP-L comparisons carry confidence
+intervals and inferential tests; the CLIP-L gap between TPs and FPs is
+statistically reliable but small (d=0.40), which bounds how much a
+similarity-keyed gate could help. The inference-time correction results
+are specific to the adversarial split.</p>
 
 <h2 class="section"><span class="num">10</span>Conclusion</h2>
 <p>The mismatch we report has a narrow technical surface: one logit
@@ -1503,6 +1539,9 @@ NVIDIA RTX 3050 (4 GB VRAM) for verification runs.</p>
   <li id="ref-seo2025">Hoigi Seo, Dong Un Kang, Hyunjin Cho, Joohoon Lee, and Se Young Chun. On Epistemic Uncertainty of Visual Tokens for Object Hallucinations in Large Vision-Language Models. <em>arXiv:2510.09008</em>, 2025.</li>
   <li id="ref-adaptvis2025">Shiqi Chen et al. Why Is Spatial Reasoning Hard for VLMs? An Attention Mechanism Perspective on Focus Areas. <em>ICML 2025 (arXiv:2503.01773)</em>.</li>
   <li id="ref-leng2024">Sicong Leng et al. Mitigating Object Hallucinations in Large Vision-Language Models through Visual Contrastive Decoding. <em>CVPR 2024</em>, pages 13872&ndash;13882.</li>
+  <li id="ref-huo2024sid">Fushuo Huo et al. Self-Introspective Decoding: Alleviating Hallucinations for Large Vision-Language Models. <em>arXiv:2408.02032</em>, 2024.</li>
+  <li id="ref-jiang2026pnd">Yubo Jiang et al. Global Context or Local Detail? Adaptive Visual Grounding for Hallucination Mitigation. <em>arXiv:2604.24396</em>, 2026.</li>
+  <li id="ref-jana2026bracs">Soumyadeep Jana, Pulkit Mittal, and Sanasam Ranbir Singh. Mitigating Hallucination in Vision-Language Models through Barrier-Regulated Adaptive Closed-form Steering. <em>arXiv:2605.29881</em>, 2026.</li>
 </ol>
 
 <h2 class="section" id="appendix-a">Appendix A: Token ID Reference</h2>

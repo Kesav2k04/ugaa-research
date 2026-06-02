@@ -618,6 +618,95 @@ def _phase6_snippet_audit():
     return ok
 
 
+# ---------------------------------------------------------------------------
+# Phase 7: 3,000-question diagnostic assertions (Section 5.3).
+# ---------------------------------------------------------------------------
+
+DIAG_3000Q = REPO / "experiments" / "ugaa_full_adversarial_3000q_diagnostic.json"
+
+
+def _phase7_diagnostic_audit():
+    """Phase 7: pin the Section 5.3 group sizes and signal means to the
+    verified 3,000-question adversarial diagnostic so the inferential
+    statistics quoted in the paper cannot drift. Ranges allow for minor
+    rounding only. Skips cleanly if the artifact is absent."""
+    print()
+    print("Phase 7: 3,000-question diagnostic assertions (Section 5.3)")
+    print("-" * 78)
+    if not DIAG_3000Q.exists():
+        print(f"  no diagnostic artifact ({DIAG_3000Q.name}); skipping.")
+        return True
+
+    with open(DIAG_3000Q) as f:
+        rows = json.load(f)["results"]
+
+    tp = tn = fp = fn = 0
+    g_correct, g_wrong = [], []   # grounding (image attention)
+    gap_correct, gap_wrong = [], []
+    clip_tp, clip_fp = [], []
+    n_valid = 0
+    for r in rows:
+        pred = r.get("baseline_prediction") or r.get("prediction")
+        label = r.get("label")
+        if pred is None or label is None or pred == "error":
+            continue
+        ground = r.get("grounding")
+        gap = r.get("gap_raw")
+        if ground is None or gap is None:
+            continue
+        n_valid += 1
+        ground = float(ground)
+        gap_abs = abs(float(gap))
+        clip = r.get("clip_l_max_sim")
+        if pred == label:
+            g_correct.append(ground); gap_correct.append(gap_abs)
+        else:
+            g_wrong.append(ground); gap_wrong.append(gap_abs)
+        if pred == "yes" and label == "yes":
+            tp += 1
+            if clip is not None: clip_tp.append(float(clip))
+        elif pred == "no" and label == "no":
+            tn += 1
+        elif pred == "yes" and label == "no":
+            fp += 1
+            if clip is not None: clip_fp.append(float(clip))
+        elif pred == "no" and label == "yes":
+            fn += 1
+
+    prec = tp / (tp + fp) if (tp + fp) else 0.0
+    rec = tp / (tp + fn) if (tp + fn) else 0.0
+    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) else 0.0
+
+    def _mean(xs):
+        return sum(xs) / len(xs) if xs else float("nan")
+
+    # (label, value, lo, hi) range checks; integer checks use lo==hi.
+    checks = [
+        ("valid records",      n_valid, 3000, 3000),
+        ("TP count",           tp, 1173, 1173),
+        ("TN count",           tn, 1317, 1317),
+        ("FP count",           fp, 183, 183),
+        ("FN count",           fn, 327, 327),
+        ("overall F1",         f1, 0.820, 0.823),
+        ("mean gap correct",   _mean(gap_correct), 1.70, 1.82),
+        ("mean gap wrong",     _mean(gap_wrong),   0.82, 0.92),
+        ("mean ground correct",_mean(g_correct),   0.070, 0.078),
+        ("mean ground wrong",  _mean(g_wrong),     0.076, 0.085),
+        ("mean clip_l TP",     _mean(clip_tp),     0.145, 0.158),
+        ("mean clip_l FP",     _mean(clip_fp),     0.130, 0.145),
+    ]
+
+    all_ok = True
+    for name, val, lo, hi in checks:
+        ok = lo <= val <= hi
+        flag = "OK " if ok else "BAD"
+        print(f"  [{flag}] {name:22s} value={val:<10.5g} range=[{lo}, {hi}]")
+        if not ok:
+            all_ok = False
+    print("-" * 78)
+    return all_ok
+
+
 def main():
     ok1 = _phase1_paper_claim_audit()
     ok2 = _phase2_correction_audit()
@@ -626,7 +715,8 @@ def main():
     ok4b = _phase4b_multimodel_audit()
     ok5 = _phase5_equivalence_audit()
     ok6 = _phase6_snippet_audit()
-    all_ok = ok1 and ok2 and ok3 and ok4 and ok4b and ok5 and ok6
+    ok7 = _phase7_diagnostic_audit()
+    all_ok = ok1 and ok2 and ok3 and ok4 and ok4b and ok5 and ok6 and ok7
     print()
     print("ALL FACTS VERIFIED" if all_ok else "FACT MISMATCH - DO NOT SUBMIT")
     sys.exit(0 if all_ok else 1)

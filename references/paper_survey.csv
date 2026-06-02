@@ -1,5 +1,9 @@
-Paper Title,Year,Model Backbone,Split,Reported F1,Category
-Mitigating Object Hallucination via Cross-Modal Attention Calibration,2025,LLaVA-1.5,Adversarial,83.17,I
-VCD: Visual Contrastive Decoding for Hallucination Mitigation,2024,LLaVA-1.5,Adversarial,80.88,I
-OPERA: Operation-Wise Attention Penalization for LVLMs,2024,LLaVA-1.5,Adversarial,81.24,I
-Evaluating and Analyzing Relationship Hallucinations in LVLMs,2024,LLaVA-1.5,Adversarial,78.96,I
+paper,arxiv_id,rep_base,rep_res,rep_gain,gain_vs_8221,readout,conclusion
+"Tang et al. (VisFlow adv.)",2506.12609,73.54,84.35,+10.81,+2.14,not stated (no public code as of Jun 2026),R
+"Tang et al. (VisFlow pop.)",2506.12609,76.53,87.09,+10.56,+2.11,not stated (no public code as of Jun 2026),R
+"Tang et al. (VisFlow rand.)",2506.12609,81.54,89.55,+8.01,+2.42,not stated (no public code as of Jun 2026),R
+"Seo et al.",2510.09008,79.30,80.00,+0.70,-2.21,not stated,N
+"Chen et al. / AdaptVis",2503.01773,81.00,81.80,+0.80,-0.41,not stated,N
+"Huo et al. / SID",2408.02032,80.90,82.50,+1.60,+0.29,not stated (greedy; readout unspecified),I
+"Jiang et al. / Active-Look",2604.24396,75.06,80.82,+5.76,-1.39,not stated,N
+"Jana et al. / BRACS",2605.29881,82.07,83.03,+0.96,+0.82,not stated (baseline in eight-token range),R
