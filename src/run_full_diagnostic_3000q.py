@@ -88,7 +88,7 @@ def load_llava(model_path: str, cache_dir, device: str):
         model = LlavaForConditionalGeneration.from_pretrained(
             model_path, torch_dtype=torch.float32, **kwargs,
         )
-    processor = AutoProcessor.from_pretrained(model_path, **kwargs)
+    processor = AutoProcessor.from_pretrained(model_path, use_fast=False, **kwargs)
     return model, processor
 
 
@@ -154,20 +154,35 @@ def diagnostic_one(model, processor, clip_text_model, clip_tok, clip_proj,
     gap_raw = yes_raw - no_raw
     baseline = "yes" if gap_raw > 0 else "no"
 
-    # mean attention layers LAYER_START:LAYER_END from last text token to image patches
+    # mean attention layers LAYER_START:LAYER_END from the generated yes/no
+    # token back to the 576 image-patch positions.
+    # generate() returns attentions[step][layer] where each tensor is either
+    #   [batch, heads, seq, seq]  (prefill / no KV-cache)  or
+    #   [batch, heads, 1,   seq]  (decode step with KV-cache).
+    # In both cases the LAST query row (-1) is the generated token.
     grounding = float("nan")
     try:
-        per_layer = []
-        for layer_attn in out.attentions[0]:
-            a = layer_attn[0].float().cpu()  # [heads, 1, seq]
-            vis = a[:, 0, VISUAL_START:VISUAL_END]
-            per_layer.append(vis.mean(dim=0))
-        if per_layer:
-            layers = per_layer[LAYER_START:LAYER_END]
-            mean_attn = torch.stack(layers).mean(dim=0).mean().item()
-            grounding = float(mean_attn)
+        attns = out.attentions  # (steps, layers, tensor)
+        if attns is not None and len(attns) > 0:
+            per_layer = []
+            for layer_attn in attns[0]:        # first (only) generation step
+                if layer_attn is None:
+                    continue
+                a = layer_attn[0].float().cpu()  # [heads, Q, S]
+                # -1 picks the generated-token row regardless of shape
+                vis = a[:, -1, VISUAL_START:VISUAL_END]  # [heads, 576]
+                per_layer.append(vis.mean(dim=0))         # [576]
+            if len(per_layer) > LAYER_END:
+                layers = per_layer[LAYER_START:LAYER_END]
+                patch_attn = torch.stack(layers).mean(dim=0)  # [576]
+                # sum of mean-attention to image patches (≤1.0 by softmax)
+                grounding = float(patch_attn.sum().item())
+                grounding = min(max(grounding, 0.0), 1.0)
     except Exception:
         pass
+
+    # free the heavy generate output (scores + attentions) immediately
+    del out
 
     # --- CLIP-L max patch-noun similarity ---
     clip_l_max_sim = float("nan")

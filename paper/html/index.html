@@ -382,7 +382,11 @@ footer {
   the corrected reference, run nine inference-time corrections of our
   own on the corrected baseline (none improved it), and report
   per-question signal analysis that characterises why the adversarial
-  split resists logit-level intervention. To test whether the confound
+  split resists logit-level intervention. A 3,000-question signal
+  analysis finds that wrong predictions attract higher image attention
+  than correct ones (Cohen&rsquo;s d=&minus;0.46, p=1.4&times;10<sup>&minus;24</sup>),
+  inverting the assumption that the six grounding-based corrections rely
+  on. To test whether the confound
   is specific to LLaVA-1.5, we repeat the four-readout audit on four
   additional VLMs that span three tokenizer families, 9,000 questions
   each: transferring the LLaVA-1.5 token IDs literally drops F1 to 0.00
