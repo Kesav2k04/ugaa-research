@@ -284,7 +284,7 @@ is stable across hardware.
 | NVIDIA RTX 3050, 4 GB VRAM | (verification only) | partial |
 
 ### Cloud Hardware
-- Kaggle Tesla T4 GPU (mPLUG-Owl2, InstructBLIP, Qwen2-VL)
+- Kaggle Tesla T4x2 GPU (mPLUG-Owl2, InstructBLIP, Qwen2-VL)
 - Approximately 27,000 POPE evaluations across three models and three splits
 
 ### Cloud Accounts
