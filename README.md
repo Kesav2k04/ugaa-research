@@ -283,6 +283,13 @@ is stable across hardware.
 | NVIDIA RTX 3070 Ti, 8 GB VRAM | 0.508 s/q | 76.3 min |
 | NVIDIA RTX 3050, 4 GB VRAM | (verification only) | partial |
 
+### Cloud Hardware
+- Kaggle Tesla T4 GPU (mPLUG-Owl2, InstructBLIP, Qwen2-VL)
+- Approximately 27,000 POPE evaluations across three models and three splits
+
+### Cloud Accounts
+Experiments were distributed across multiple Kaggle sessions to accommodate GPU quota limits.
+
 ## Citing this work
 
 If you find the audit useful, please cite via `CITATION.cff` or the
