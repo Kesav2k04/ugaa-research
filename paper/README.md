@@ -10,7 +10,6 @@ This directory contains the audit documentation associated with:
 
 | File                     | Description                                                                                                            |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| `FIX_CHANGELOG.md`       | Complete record of manuscript revisions, corrections, verification actions, and audit-driven updates.                  |
 | `VERIFICATION_REPORT.md` | Independent verification of reported results against archived experiment artifacts and regenerated evaluation outputs. |
 
 ---
