@@ -100,7 +100,7 @@ argmax token of any question is not in `YES_TOKEN_IDS` or
 |   |-- arxiv/                 arXiv preprint (authors visible)
 |   `-- html/                  arXiv-style HTML mirror with figures and MathJax
 |
-`-- references/                threat-paper bibtex + reading notes
+`-- references/                other-paper bibtex + reading notes
 ```
 
 ## Reproducing the headline numbers
