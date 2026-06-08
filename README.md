@@ -296,7 +296,7 @@ If you find the audit useful, please cite via `CITATION.cff` or the
 BibTeX entry below.
 
 ```bibtex
-@misc{jayakumar2026tokenset,
+@misc{xxxx2026tokenset,
   title  = {Token-Set Choice Confounds {POPE}:
             A Systematic Audit of Yes/No Extraction
             in {VLM} Hallucination Evaluation},
