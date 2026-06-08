@@ -1,12 +1,10 @@
 # References
-
 Reading notes and BibTeX entries for the papers cited in
 *Token-Set Choice Confounds POPE*. Each entry lists what the paper
 does, what it reports for LLaVA-1.5-7B POPE, and what we use it for in
 our own paper.
 
 ## Quick index
-
 | Key | Authors (year) | What they do | Why we cite them |
 |---|---|---|---|
 | `li2023evaluating` | Li, Du, Zhou, Wang, Zhao, Wen (2023) | Introduces the POPE benchmark and its 2-token logit evaluator. | Original benchmark we audit. |
@@ -19,29 +17,25 @@ our own paper.
 | `liang2022holistic` | Liang et al. (2022) | HELM: benchmark-protocol sensitivity. | Frames our finding inside the broader evaluation-sensitivity literature. |
 | `zheng2023judging` | Zheng et al. (2023) | LLM-as-judge ordering effects. | Related class of protocol-sensitivity. |
 | `leng2024mitigating` | Leng et al. (2024) | Visual contrastive decoding (VCD). | Inspires our VCD-noise correction variant. |
-| `visflow2025` | Tang et al. (arXiv:2506.12609, 2025) | Dual-level attention intervention for VLM hallucination. | Threat paper re-evaluated: +10.81 reported, +2.14 vs corrected baseline. |
-| `seo2025` | Seo, Kang, Cho, Lee, Chun (arXiv:2510.09008, 2025) | Epistemic uncertainty over visual tokens. | Threat paper re-evaluated: 80.00 reported, 2.21 below our 82.21. |
-| `adaptvis2025` | Chen et al. (ICML 2025, arXiv:2503.01773) | AdaptVis: confidence-guided attention scaling for spatial reasoning. | Threat paper re-evaluated: 81.80 reported, 0.41 below our 82.21. |
+| `visflow2025` | Tang et al. (arXiv:2506.12609, 2025) | Dual-level attention intervention for VLM hallucination. | Re-evaluated against corrected baseline: +10.81 reported gain reduces to +2.14. |
+| `seo2025` | Seo, Kang, Cho, Lee, Chun (arXiv:2510.09008, 2025) | Epistemic uncertainty over visual tokens. | Re-evaluated against corrected baseline: reported result of 80.00 falls 2.21 points below 82.21. |
+| `adaptvis2025` | Chen et al. (ICML 2025, arXiv:2503.01773) | AdaptVis: confidence-guided attention scaling for spatial reasoning. | Re-evaluated against corrected baseline: reported result of 81.80 falls 0.41 points below 82.21. |
 
 ## BibTeX
-
 The same entries live in `paper/neurips/references.bib` and
 `paper/arxiv/references.bib`. A copy is included here as
 `references.bib` for offline reading.
 
-## Threat paper PDFs
-
-The three threat papers we re-evaluate (`visflow2025`, `seo2025`,
+## PDFs for re-evaluated prior methods
+The three prior methods we re-evaluate in Section 4 (`visflow2025`, `seo2025`,
 `adaptvis2025`) are large arXiv PDFs and are intentionally not included
 in this repository. The arXiv IDs above resolve directly:
-
 - `arXiv:2506.12609` -- Tang et al.
 - `arXiv:2510.09008` -- Seo et al.
 - `arXiv:2503.01773` -- Chen et al.
 
-## How we computed the gap-vs-corrected-baseline column
-
-Each threat paper reports a baseline B_p and a result R_p. Our corrected
+## How we computed the gain-vs-corrected-baseline column
+Each prior method reports a baseline B_p and a result R_p. Our corrected
 adversarial baseline is `B* = 82.21`. The gain that would remain if the
 method were evaluated against B* is simply `R_p - B*` (it is `negative`
 when R_p < B*). The published gain `R_p - B_p` is not directly
