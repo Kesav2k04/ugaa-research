@@ -22,8 +22,7 @@ our own paper.
 | `adaptvis2025` | Chen et al. (ICML 2025, arXiv:2503.01773) | AdaptVis: confidence-guided attention scaling for spatial reasoning. | Re-evaluated against corrected baseline: reported result of 81.80 falls 0.41 points below 82.21. |
 
 ## BibTeX
-The same entries live in `paper/neurips/references.bib` and
-`paper/arxiv/references.bib`. A copy is included here as
+A copy is included here as
 `references.bib` for offline reading.
 
 ## PDFs for re-evaluated prior methods
