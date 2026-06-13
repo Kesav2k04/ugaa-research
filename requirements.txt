@@ -12,7 +12,7 @@
 #     --index-url https://download.pytorch.org/whl/cu118
 
 # Core ML
-transformers==4.40.1
+transformers==5.0.0rc3
 tokenizers>=0.15,<0.20
 accelerate>=0.28,<0.30
 bitsandbytes>=0.43,<0.44
