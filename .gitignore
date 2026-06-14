@@ -11,6 +11,13 @@ env/
 *.egg-info/
 .eggs/
 
+# --- python build artifacts (regenerable; never commit) ---
+build/
+dist/
+pip-wheel-metadata/
+.build_tmp/
+.pip_cache/
+
 # --- ML caches and weights (do not commit; download on setup) ---
 models/
 checkpoints/

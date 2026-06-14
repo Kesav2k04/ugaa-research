@@ -24,9 +24,9 @@ accounts per person.
 
 | Notebook | Purpose | Output |
 |---|---|---|
-| `notebooks/run_on_cloud.ipynb` | Multi-model audit on one model x 3 splits x 1-2 prompt modes | `experiments/multi_model/<model>_pope_<split>_<n>q_<mode>_token_audit.json` |
-| `notebooks/run_full_diagnostic_on_cloud.ipynb` | Full 3000q diagnostic for one POPE split on LLaVA-1.5-7B | `experiments/ugaa_full_<split>_3000q_diagnostic.json` |
-| `notebooks/run_latency_on_cloud.ipynb` | 50-question latency micro-benchmark | `experiments/latency_microbench.json` |
+| `archive/notebooks/run_on_cloud.ipynb` | Multi-model audit on one model x 3 splits x 1-2 prompt modes | `experiments/multi_model/<model>_pope_<split>_<n>q_<mode>_token_audit.json` |
+| `archive/notebooks/run_full_diagnostic_on_cloud.ipynb` | Full 3000q diagnostic for one POPE split on LLaVA-1.5-7B | `experiments/ugaa_full_<split>_3000q_diagnostic.json` |
+| `archive/notebooks/run_latency_on_cloud.ipynb` | 50-question latency micro-benchmark | `experiments/latency_microbench.json` |
 
 Each notebook is self-contained: it clones the repo, downloads POPE
 parquet from `lmms-lab/POPE`, installs deps, runs the script, and

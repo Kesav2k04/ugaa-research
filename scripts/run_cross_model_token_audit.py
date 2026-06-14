@@ -52,7 +52,7 @@ Output:
 
 Run:
 
-    python src/run_cross_model_token_audit.py \\
+    python scripts/run_cross_model_token_audit.py \\
         --model-path llava-hf/llava-v1.6-mistral-7b-hf \\
         --data-dir datasets/pope --output-dir experiments/cross_model \\
         --samples 500 --quantize 4bit --device cuda \\
@@ -69,6 +69,9 @@ import re
 import sys
 import time
 from pathlib import Path
+
+# Project root one level above scripts/ for CWD-independent default paths.
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 # -----------------------------------------------------------------------------
@@ -515,9 +518,9 @@ def main():
     )
     parser.add_argument("--model-path", required=True,
                         help="HF repo id or local path of the second model.")
-    parser.add_argument("--data-dir", default="datasets/pope",
+    parser.add_argument("--data-dir", default=str(PROJECT_ROOT / "datasets" / "pope"),
                         help="Directory containing pope_{split}_full.json.")
-    parser.add_argument("--output-dir", default="experiments/cross_model",
+    parser.add_argument("--output-dir", default=str(PROJECT_ROOT / "experiments" / "cross_model"),
                         help="Where to write the audit JSON(s).")
     parser.add_argument("--split", default="adversarial",
                         choices=["adversarial", "popular", "random"])

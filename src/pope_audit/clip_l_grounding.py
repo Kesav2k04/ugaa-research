@@ -196,8 +196,8 @@ def run_diagnostic(llava_model, processor, samples: list, images: list, n: int =
     Run this before the full eval to verify the feature space is discriminative.
     Returns dict with mean sim per category.
     """
-    from evaluate import compute_f1
-    from ugaa_hook import YES_TOKEN_IDS, NO_TOKEN_IDS, _get_yes_no_logits
+    from pope_audit.evaluate import compute_f1
+    from pope_audit.ugaa_hook import YES_TOKEN_IDS, NO_TOKEN_IDS, _get_yes_no_logits
 
     device = str(llava_model.device)
     text_model, tokenizer, visual_proj = load_clip_l_components(device)

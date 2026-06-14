@@ -3,7 +3,7 @@ run_multi_model_audit.py
 ========================
 
 Full POPE audit on additional LLaMA-family VLMs. The driver is a
-generalisation of src/run_cross_model_token_audit.py: each supported
+generalisation of scripts/run_cross_model_token_audit.py: each supported
 model registers an adapter that knows (i) how to load the model,
 (ii) how to build the prompt template, (iii) how to call generate to
 get first-token logits + a short generated continuation. The four
@@ -20,7 +20,7 @@ Supported model adapters:
 
 Usage:
 
-  python src/run_multi_model_audit.py \\
+  python scripts/run_multi_model_audit.py \\
       --model instructblip \\
       --split adversarial --samples 3000 \\
       --data-dir datasets/pope \\
@@ -45,6 +45,9 @@ import re
 import sys
 import time
 from pathlib import Path
+
+# Project root one level above scripts/ for CWD-independent default paths.
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 # -----------------------------------------------------------------------------
 # Adapter interface
@@ -511,8 +514,8 @@ def main():
                         choices=["adversarial", "popular", "random"])
     parser.add_argument("--samples", type=int, default=500,
                         help="Number of questions to run.")
-    parser.add_argument("--data-dir", default="datasets/pope")
-    parser.add_argument("--output-dir", default="experiments/multi_model")
+    parser.add_argument("--data-dir", default=str(PROJECT_ROOT / "datasets" / "pope"))
+    parser.add_argument("--output-dir", default=str(PROJECT_ROOT / "experiments" / "multi_model"))
     parser.add_argument("--device", default="cuda", choices=["cuda", "cpu"])
     parser.add_argument("--quantize", default="4bit",
                         choices=["4bit", "8bit", "none"])

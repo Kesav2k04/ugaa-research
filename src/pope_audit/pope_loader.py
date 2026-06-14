@@ -34,8 +34,16 @@ def get_ground_truths(data: list) -> list:
     return labels
 
 if __name__ == "__main__":
-    pope_folder = r"G:\AI BASED PROJECT\POPE\output\coco"
-    
+    import sys
+    from pathlib import Path
+
+    # POPE split files in the original line-delimited (JSONL) format.
+    # Defaults to the repo's bundled datasets/pope folder so the demo
+    # runs on any machine; pass a folder path as the first CLI argument
+    # to point at a different POPE export.
+    default_folder = Path(__file__).resolve().parents[2] / "datasets" / "pope"
+    pope_folder = sys.argv[1] if len(sys.argv) > 1 else str(default_folder)
+
     for split in ['adversarial', 'popular', 'random']:
         try:
             data = load_pope_split(pope_folder, split)

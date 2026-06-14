@@ -44,9 +44,11 @@ import sys
 import time
 from pathlib import Path
 
-# Import paths from src/
+# Import paths from src/ and anchor data/output to the repo root so the
+# script runs from any working directory (local, Linux, or cloud GPU).
 HERE = Path(__file__).resolve().parent
-SRC = HERE.parent / "src"
+REPO = HERE.parent
+SRC = REPO / "src"
 sys.path.insert(0, str(SRC))
 
 YES_2TOK = [3582]
@@ -59,13 +61,13 @@ PAPER_TEMPLATE = "USER: <image>\n{question} Answer yes or no only.\nASSISTANT:"
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-path", default="llava-hf/llava-1.5-7b-hf")
-    parser.add_argument("--data-dir", default="datasets/pope")
+    parser.add_argument("--data-dir", default=str(REPO / "datasets" / "pope"))
     parser.add_argument("--split", default="adversarial")
     parser.add_argument("--samples", type=int, default=50)
     parser.add_argument("--parse-max-new-tokens", type=int, default=6)
     parser.add_argument("--device", default="cuda", choices=["cuda", "cpu"])
     parser.add_argument("--cache-dir", default=None)
-    parser.add_argument("--output", default="experiments/latency_microbench.json")
+    parser.add_argument("--output", default=str(REPO / "experiments" / "latency_microbench.json"))
     args = parser.parse_args()
 
     import torch

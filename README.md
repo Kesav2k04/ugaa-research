@@ -54,7 +54,7 @@ prediction = "yes" if yes_score > no_score else "no"
 
 Token-set choice is context-dependent. For any new model-template
 combination we recommend running the diagnostic in
-`src/run_pope_2tok_baseline.py` on a 100-question sample first; if the
+`scripts/run_pope_2tok_baseline.py` on a 100-question sample first; if the
 argmax token of any question is not in `YES_TOKEN_IDS` or
 `NO_TOKEN_IDS`, add it before trusting the rule.
 
@@ -65,42 +65,52 @@ argmax token of any question is not in `YES_TOKEN_IDS` or
 |-- README.md                  this file
 |-- CITATION.cff               machine-readable citation metadata
 |-- LICENSE                    MIT
+|-- pyproject.toml             installable package metadata (pip install -e .)
+|-- MANIFEST.in                sdist contents control
 |-- requirements.txt           pinned Python dependencies
-|-- .gitignore                 excludes model weights, caches, secrets
+|-- environment.yml            conda environment
+|-- .gitignore                 excludes model weights, caches, build, secrets
 |
-|-- src/                       paper-relevant Python modules and runners
-|   |-- evaluate.py            compute_f1 implementation
-|   |-- pope_loader.py         load POPE JSONs
-|   |-- ugaa_hook.py           ugaa_v5 + _get_yes_no_logits helpers
-|   |-- clip_l_grounding.py    CLIP-L per-patch similarity module
-|   |-- run_pope_2tok_baseline.py
-|   |                          diagnostic + 2-tok vs 8-tok comparison
-|   |-- run_pope_eval_full.py  full 3,000q POPE eval driver
-|   |-- run_ablation_a.py      nine inference-time correction methods
-|   `-- archive/               older / experimental scripts (preserved verbatim)
+|-- src/pope_audit/            the installable library (pip package `pope-audit`)
+|   |-- __init__.py            public API (lazy torch import)
+|   |-- evaluate.py            compute_f1 / compute_accuracy / load_pope
+|   |-- pope_loader.py         load POPE splits
+|   |-- ugaa_hook.py           UGAA v5 + _get_yes_no_logits + token-ID constants
+|   `-- clip_l_grounding.py    CLIP-L per-patch similarity module
 |
-|-- scripts/                   data downloaders and one-shot utilities
+|-- scripts/                   runnable drivers + data downloaders
+|   |-- run_pope_2tok_baseline.py   diagnostic + 2-tok vs 8-tok comparison
+|   |-- run_pope_eval_full.py       full 3,000q POPE eval driver
+|   |-- run_ablation_a.py           nine inference-time correction methods
+|   |-- run_full_diagnostic_3000q.py  3,000q per-question diagnostic
+|   |-- run_cross_model_token_audit.py  second-model token audit
+|   |-- run_multi_model_audit.py    four-readout audit across VLMs
+|   `-- download_pope_full.py       fetch POPE questions + images
+|
+|-- analysis/                  paper-claim audit, stats, and figure scripts
+|   |-- fact_audit.py
+|   |-- diagnostic_stats.py
+|   |-- string_parse_equivalence.py
+|   `-- latency_microbench.py
 |
 |-- experiments/               JSON outputs from every run
 |   |-- pope_adversarial_2tok_vs_8tok.json    main result, adv. split
 |   |-- pope_popular_2tok_vs_8tok.json
 |   |-- pope_random_2tok_vs_8tok.json
-|   |-- pope_full_adversarial_baseline_summary.json
-|   |-- pope_full_adversarial_beta1.0_summary.json
-|   |-- pope_full_adversarial_clip_b1.0_summary.json
-|   |-- pope_full_adversarial_clip_b1.5_summary.json
-|   `-- ugaa_v6_100q_validation.json    100q diagnostic (sec. 5.3)
+|   |-- ugaa_full_adversarial_3000q_diagnostic.json   3,000q diagnostic (sec. 5.3)
+|   |-- cross_model/           LLaVA-1.6-Mistral per-question logs
+|   `-- multi_model/           recorded metrics for the four extra VLMs
 |
 |-- datasets/                  POPE questions and image paths (images gitignored)
-|-- analysis/                  exploratory notebooks and plots
-|-- notebooks/
+|-- docs/                      local + cloud setup notes
+|-- references/                other-paper bibtex + survey CSV
+|-- paper/                     paper-side audit docs (LaTeX sources gitignored)
 |
-|-- paper/                     paper sources
-|   |-- neurips/               NeurIPS 2026 submission (anonymous, with checklist)
-|   |-- arxiv/                 arXiv preprint (authors visible)
-|   `-- html/                  arXiv-style HTML mirror with figures and MathJax
-|
-`-- references/                other-paper bibtex + reading notes
+`-- archive/                   initial UGAA research, not needed for reproduction
+    |-- src_legacy/            older / experimental scripts (preserved verbatim)
+    |-- experiments_legacy/    superseded prediction logs
+    |-- notebooks/             cloud runners (run_on_cloud.ipynb reproduces Table 6)
+    `-- misc/                  one-off utilities
 ```
 
 ## Reproducing the headline numbers
@@ -116,6 +126,10 @@ python -m venv .venv
 # source .venv/bin/activate     # macOS / Linux
 
 pip install -r requirements.txt
+
+# (optional) install the audit utilities as an editable package so the
+# scripts can `import pope_audit` from any working directory:
+pip install -e .
 ```
 
 Or, with conda:
@@ -139,12 +153,12 @@ where it lives.
 ### 2. Reproduce the protocol comparison (Table 2 in the paper)
 
 ```bash
-python src/run_pope_2tok_baseline.py --split adversarial \
+python scripts/run_pope_2tok_baseline.py --split adversarial \
     --model-path llava-hf/llava-1.5-7b-hf \
     --data-dir datasets/pope --output-dir experiments
 
-python src/run_pope_2tok_baseline.py --split popular  --output-dir experiments
-python src/run_pope_2tok_baseline.py --split random   --output-dir experiments
+python scripts/run_pope_2tok_baseline.py --split popular  --output-dir experiments
+python scripts/run_pope_2tok_baseline.py --split random   --output-dir experiments
 ```
 
 Expected output files and metrics (eight-token rule, full 3,000-question splits):
@@ -158,17 +172,17 @@ Expected output files and metrics (eight-token rule, full 3,000-question splits)
 ### 3. Reproduce the nine inference-time corrections (Table 4)
 
 ```bash
-python src/run_ablation_a.py --variant all    --beta 1.0 \
+python scripts/run_ablation_a.py --variant all    --beta 1.0 \
     --model-path llava-hf/llava-1.5-7b-hf \
     --dataset datasets/pope/pope_sample_100.json \
     --output-dir experiments
 
 # Full 3,000-question runs for the headline correction methods:
-python src/run_pope_eval_full.py --split adversarial --baseline \
+python scripts/run_pope_eval_full.py --split adversarial --baseline \
     --output-dir experiments
-python src/run_pope_eval_full.py --split adversarial \
+python scripts/run_pope_eval_full.py --split adversarial \
     --variant clip_certainty --beta 1.0 --output-dir experiments
-python src/run_pope_eval_full.py --split adversarial \
+python scripts/run_pope_eval_full.py --split adversarial \
     --variant clip_certainty --beta 1.5 --output-dir experiments
 ```
 
@@ -186,21 +200,21 @@ Expected per-method summary files in `experiments/`:
 To test whether the token-set confound is specific to LLaVA-1.5 or a
 property of the readout protocol itself, run the same four-readout audit
 (`legacy_2tok`, `legacy_8tok`, `dynamic_single`, `string_parse`) on
-other VLMs with `src/run_multi_model_audit.py`. Each model is run on all
+other VLMs with `scripts/run_multi_model_audit.py`. Each model is run on all
 three POPE splits at the full 3,000 questions per split.
 
 ```bash
 # LLaVA-1.6-Mistral (local, 4-bit) -- one split shown; repeat for popular, random
-python src/run_multi_model_audit.py --model llava16_mistral \
+python scripts/run_multi_model_audit.py --model llava16_mistral \
     --split adversarial --samples 3000 \
     --data-dir datasets/pope --output-dir experiments/cross_model \
     --device cuda --quantize 4bit
 
 # InstructBLIP / mPLUG-Owl2 / Qwen2-VL run the same way on a T4 (Kaggle/Colab);
-# see notebooks/run_on_cloud.ipynb for the turnkey cloud runner.
-python src/run_multi_model_audit.py --model instructblip --split adversarial --samples 3000 --output-dir experiments/multi_model --device cuda
-python src/run_multi_model_audit.py --model mplug_owl2   --split adversarial --samples 3000 --output-dir experiments/multi_model --device cuda
-python src/run_multi_model_audit.py --model qwen2_vl     --split adversarial --samples 3000 --output-dir experiments/multi_model --device cuda --prompt-mode native_chat_template
+# see archive/notebooks/run_on_cloud.ipynb for the turnkey cloud runner.
+python scripts/run_multi_model_audit.py --model instructblip --split adversarial --samples 3000 --output-dir experiments/multi_model --device cuda
+python scripts/run_multi_model_audit.py --model mplug_owl2   --split adversarial --samples 3000 --output-dir experiments/multi_model --device cuda
+python scripts/run_multi_model_audit.py --model qwen2_vl     --split adversarial --samples 3000 --output-dir experiments/multi_model --device cuda --prompt-mode native_chat_template
 ```
 
 Measured POPE F1 (3,000 questions per split; LLaVA-1.6 local RTX 3070 Ti,
@@ -235,14 +249,14 @@ and collapsed to an all-yes prediction (0.6667); the single-token logit
 readout is the robust default. Corresponding artifacts:
 
 - `experiments/cross_model/llava16_mistral_pope_{adversarial,popular,random}_3000q_paper_template_token_audit.json` (full per-question records)
-- `experiments/multi_model/multi_model_results.json` (recorded metrics for the four additional models; the three cloud runs are reproducible with `notebooks/run_on_cloud.ipynb`)
+- `experiments/multi_model/multi_model_results.json` (recorded metrics for the four additional models; the three cloud runs are reproducible with `archive/notebooks/run_on_cloud.ipynb`)
 - the original 500-question two-prompt-template comparison remains in `experiments/cross_model/llava-hf_llava-v1.6-mistral-7b-hf_pope_adversarial_500q_*_token_audit.json`
 
 For a CPU-only sanity check that just verifies the dynamic
 single-token IDs derived from the second model's tokenizer:
 
 ```bash
-python src/run_cross_model_token_audit.py \
+python scripts/run_cross_model_token_audit.py \
     --model-path llava-hf/llava-v1.6-mistral-7b-hf \
     --dry-run-tokenizer --cache-dir D:/models/hf_cache
 ```

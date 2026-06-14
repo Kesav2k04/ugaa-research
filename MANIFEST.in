@@ -1,0 +1,69 @@
+# MANIFEST.in — controls what goes into the sdist tarball.
+# The wheel (.whl) is controlled by [tool.setuptools.packages.find]
+# in pyproject.toml and will ONLY contain src/pope_audit/*.
+#
+# This file ensures the sdist ALSO includes essential metadata but
+# EXCLUDES heavy datasets, experiment logs, paper sources, and
+# archived research files.
+
+# ── Include essentials ────────────────────────────────────────────
+include LICENSE
+include README.md
+include CITATION.cff
+include requirements.txt
+include pyproject.toml
+
+# ── Exclude everything that is NOT the installable library ────────
+
+# Archive (old UGAA scripts, legacy experiments, notebooks, misc)
+prune archive
+
+# Experiment prediction logs (paper data — NOT distributable in wheel)
+prune experiments
+
+# Dataset files (POPE images + JSONL, potentially 150 MB+)
+prune datasets
+
+# Paper LaTeX sources and submissions
+prune paper
+
+# Reference bibliography and survey CSV
+prune references
+
+# Analysis scripts (standalone, not part of the library)
+prune analysis
+
+# Runner / download scripts (standalone, not part of the library)
+prune scripts
+
+# Documentation
+prune docs
+
+# Notebooks (already in archive, but belt-and-suspenders)
+prune notebooks
+
+# Old empty src/archive directory
+prune src/archive
+
+# Python bytecode caches
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude *$py.class
+
+# Large binary files
+global-exclude *.zip
+global-exclude *.tar.gz
+global-exclude *.tar.bz2
+
+# OS junk
+global-exclude .DS_Store
+global-exclude Thumbs.db
+
+# Editor / IDE files
+global-exclude *.swp
+global-exclude *.swo
+global-exclude *~
+
+# Backup files
+global-exclude *.bak
+global-exclude *.orig

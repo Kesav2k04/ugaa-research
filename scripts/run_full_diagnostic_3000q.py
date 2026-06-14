@@ -18,7 +18,7 @@ without modification.
 Usage (LLaVA-1.5-7B baseline, full 3,000 adversarial questions on
 the local RTX 3070 Ti):
 
-    python src/run_full_diagnostic_3000q.py \\
+    python scripts/run_full_diagnostic_3000q.py \\
         --split adversarial \\
         --model-path llava-hf/llava-1.5-7b-hf \\
         --data-dir datasets/pope \\
@@ -52,12 +52,15 @@ from transformers import (
     LlavaForConditionalGeneration,
 )
 
-sys.path.insert(0, os.path.dirname(__file__))
-from ugaa_hook import YES_TOKEN_IDS, NO_TOKEN_IDS
+# Resolve the project root one level above scripts/ so the package import
+# and default data/output paths work from any working directory.
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
+from pope_audit.ugaa_hook import YES_TOKEN_IDS, NO_TOKEN_IDS
 
 DEFAULT_MODEL_PATH = "llava-hf/llava-1.5-7b-hf"
-DEFAULT_DATA_DIR = "datasets/pope"
-DEFAULT_OUTPUT_DIR = "experiments"
+DEFAULT_DATA_DIR = str(PROJECT_ROOT / "datasets" / "pope")
+DEFAULT_OUTPUT_DIR = str(PROJECT_ROOT / "experiments")
 
 CLIP_L_NAME = "openai/clip-vit-large-patch14-336"
 LAYER_START = 14

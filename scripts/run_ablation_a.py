@@ -1,4 +1,4 @@
-# src/run_ablation_a.py - KESAV + KARTHIGEYAN
+# scripts/run_ablation_a.py - KESAV + KARTHIGEYAN
 # Ablation A: signal-swap on POPE at fixed beta (default 1.0).
 #
 # Five certainty variants, all plugged into the same downstream pipeline:
@@ -17,8 +17,8 @@
 # The object variant tests whether a more localizable probe token helps.
 #
 # Usage:
-#   python src/run_ablation_a.py [--variant entropy|magnitude|cls|uniform|object|all]
-#   python src/run_ablation_a.py --variant object --beta 1.0
+#   python scripts/run_ablation_a.py [--variant entropy|magnitude|cls|uniform|object|all]
+#   python scripts/run_ablation_a.py --variant object --beta 1.0
 
 import argparse
 import json
@@ -38,19 +38,24 @@ from transformers import (
     LlavaForConditionalGeneration,
 )
 
-sys.path.insert(0, os.path.dirname(__file__))
-from ugaa_hook import (
+from pathlib import Path
+
+# Resolve the project root one level above scripts/ so the package import
+# and default dataset/output paths work from any working directory.
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
+from pope_audit.ugaa_hook import (
     SPATIAL_WORDS,
     YES_TOKEN_IDS as YES_TOKEN_IDS_LOCAL,
     NO_TOKEN_IDS as NO_TOKEN_IDS_LOCAL,
     _get_yes_no_logits,
 )
-from clip_l_grounding import clip_l_certainty, load_clip_l_components
-from evaluate import compute_f1
+from pope_audit.clip_l_grounding import clip_l_certainty, load_clip_l_components
+from pope_audit.evaluate import compute_f1
 
 DEFAULT_MODEL_PATH = "llava-hf/llava-1.5-7b-hf"
-DEFAULT_DATASET = "datasets/pope/pope_sample_100.json"
-DEFAULT_OUTPUT_DIR = "experiments"
+DEFAULT_DATASET = str(PROJECT_ROOT / "datasets" / "pope" / "pope_sample_100.json")
+DEFAULT_OUTPUT_DIR = str(PROJECT_ROOT / "experiments")
 DEFAULT_BETA = 1.0
 VISUAL_START = 1
 VISUAL_END = 577

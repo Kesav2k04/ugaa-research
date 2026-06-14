@@ -1,10 +1,10 @@
-# src/run_pope_2tok_baseline.py
+# scripts/run_pope_2tok_baseline.py
 # Measures the two-token vs eight-token evaluation gap on the full
 # 3000-question POPE. Two-token reads YES={3582}, NO={1217}; eight-token
 # reads YES={3582,8241,4874,3869}, NO={1217,3782,694,1939}.
 #
 # Usage:
-#   python src/run_pope_2tok_baseline.py --split adversarial \
+#   python scripts/run_pope_2tok_baseline.py --split adversarial \
 #       --model-path llava-hf/llava-1.5-7b-hf \
 #       --data-dir datasets/pope --output-dir experiments \
 #       --device cuda --cache-dir D:/models/hf_cache
@@ -22,12 +22,16 @@ from transformers import (
     AutoProcessor, BitsAndBytesConfig, LlavaForConditionalGeneration,
 )
 
-sys.path.insert(0, os.path.dirname(__file__))
-from evaluate import compute_f1
+# Resolve the project root one level above scripts/ so the package import
+# and the default data/output paths work from any working directory, on
+# Windows, Linux, or a cloud GPU instance.
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
+from pope_audit.evaluate import compute_f1
 
 DEFAULT_MODEL_PATH = "llava-hf/llava-1.5-7b-hf"
-DEFAULT_DATA_DIR = "datasets/pope"
-DEFAULT_OUTPUT_DIR = "experiments"
+DEFAULT_DATA_DIR = str(PROJECT_ROOT / "datasets" / "pope")
+DEFAULT_OUTPUT_DIR = str(PROJECT_ROOT / "experiments")
 
 YES_2TOK = [3582]
 NO_2TOK = [1217]

@@ -1,4 +1,4 @@
-# src/run_pope_eval_full.py - KESAV
+# scripts/run_pope_eval_full.py - KESAV
 # Full POPE benchmark evaluation (3000 questions).
 #
 # Supports three modes:
@@ -15,10 +15,10 @@
 # Requires: datasets/pope/pope_{split}_full.json + local image files
 #
 # Usage:
-#   python src/run_pope_eval_full.py --split adversarial --baseline
-#   python src/run_pope_eval_full.py --split adversarial --beta 1.0
-#   python src/run_pope_eval_full.py --split adversarial --variant clip_certainty --beta 1.0
-#   python src/run_pope_eval_full.py --split adversarial --variant clip_certainty --beta 1.5
+#   python scripts/run_pope_eval_full.py --split adversarial --baseline
+#   python scripts/run_pope_eval_full.py --split adversarial --beta 1.0
+#   python scripts/run_pope_eval_full.py --split adversarial --variant clip_certainty --beta 1.0
+#   python scripts/run_pope_eval_full.py --split adversarial --variant clip_certainty --beta 1.5
 #
 # Outputs:
 #   experiments/pope_full_{split}_{tag}_predictions.json
@@ -41,10 +41,15 @@ from transformers import (
     LlavaForConditionalGeneration,
 )
 
-sys.path.insert(0, os.path.dirname(__file__))
-from ugaa_hook import UGAAHook, YES_TOKEN_IDS, NO_TOKEN_IDS, _get_yes_no_logits
-from clip_l_grounding import clip_l_certainty, load_clip_l_components
-from evaluate import compute_f1
+from pathlib import Path
+
+# Resolve the project root one level above scripts/ so the package import
+# and default data/output paths work from any working directory.
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
+from pope_audit.ugaa_hook import UGAAHook, YES_TOKEN_IDS, NO_TOKEN_IDS, _get_yes_no_logits
+from pope_audit.clip_l_grounding import clip_l_certainty, load_clip_l_components
+from pope_audit.evaluate import compute_f1
 
 # ---------------------------------------------------------------------------
 # CLIP certainty - same logic as run_ablation_a.py
@@ -98,8 +103,8 @@ def clip_certainty_for_question(image: Image.Image, question: str, device) -> fl
     return float(torch.sigmoid(torch.tensor(CLIP_SIG_SCALE * (max_sim - CLIP_SIG_CENTER))))
 
 DEFAULT_MODEL_PATH = "llava-hf/llava-1.5-7b-hf"
-DEFAULT_DATA_DIR = "datasets/pope"
-DEFAULT_OUTPUT_DIR = "experiments"
+DEFAULT_DATA_DIR = str(PROJECT_ROOT / "datasets" / "pope")
+DEFAULT_OUTPUT_DIR = str(PROJECT_ROOT / "experiments")
 VISUAL_START = 1
 VISUAL_END = 577
 BASELINE_F1_100 = 0.8041  # 100-sample adversarial baseline (reference)
