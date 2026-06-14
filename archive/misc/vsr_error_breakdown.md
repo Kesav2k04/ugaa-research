@@ -1,3 +1,8 @@
+> **Archived / legacy note.** This file belongs to the earlier UGAA
+> spatial-reasoning (VSR) line of work and is **not** part of the
+> *Token-Set Choice Confounds POPE* paper. It is preserved here for
+> provenance only.
+
 ## VSR Error Analysis – 31 False Positives
 
 | Relation Type | Count | Implication for UGA A |

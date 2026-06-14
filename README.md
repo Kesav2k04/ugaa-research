@@ -5,9 +5,39 @@
 > *Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No
 > Extraction in VLM Hallucination Evaluation* (preprint, 2026).
 
+[![PyPI version](https://img.shields.io/pypi/v/pope-audit.svg)](https://pypi.org/project/pope-audit/)
+[![Python 3.10+](https://img.shields.io/pypi/pyversions/pope-audit.svg)](https://pypi.org/project/pope-audit/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Reproducible](https://img.shields.io/badge/9%2C000%20questions-deterministic-brightgreen.svg)](experiments/)
+
+## Install
+
+The audit utilities ship as a lightweight package on PyPI:
+
+```bash
+pip install pope-audit
+```
+
+```python
+from pope_audit import YES_TOKEN_IDS, NO_TOKEN_IDS, compute_f1
+
+# The eight-token rule for LLaMA-family VLMs on POPE (see below):
+YES_TOKEN_IDS  # [3582, 8241, 4874, 3869]  -> yes, Yes, ' yes', ' Yes'
+NO_TOKEN_IDS   # [1217, 3782,  694, 1939]  -> no,  No,  ' no',  ' No'
+```
+
+`pope-audit` itself depends only on `transformers`, `sentencepiece`, and
+`Pillow`. The GPU stack (`torch`, `bitsandbytes`, ...) is intentionally
+**not** a hard dependency, because the right torch wheel is
+platform/CUDA-specific; install it from
+[pytorch.org](https://pytorch.org/get-started/locally/) first if you want
+to run the model-loading paths. For the full research stack used to
+reproduce the paper, install the extra and clone this repo (see
+[Reproducing the headline numbers](#reproducing-the-headline-numbers)):
+
+```bash
+pip install "pope-audit[research]"
+```
 
 ## TL;DR
 
@@ -258,7 +288,7 @@ single-token IDs derived from the second model's tokenizer:
 ```bash
 python scripts/run_cross_model_token_audit.py \
     --model-path llava-hf/llava-v1.6-mistral-7b-hf \
-    --dry-run-tokenizer --cache-dir D:/models/hf_cache
+    --dry-run-tokenizer --cache-dir ./hf_cache
 ```
 
 See [experiments/cross_model/README.md](experiments/cross_model/README.md)

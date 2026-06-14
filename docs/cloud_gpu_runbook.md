@@ -78,12 +78,12 @@ After each notebook finishes:
 
 1. **Kaggle**: click the notebook's Output tab, download each `.json`.
 2. **Colab**: in the file browser, right-click each `.json` -> Download.
-3. Save the downloaded files to a single folder on your laptop, e.g.
-   `D:\cloud_results\<date>\`.
+3. Save the downloaded files to a single folder on your machine, e.g.
+   `./cloud_results/<date>/`.
 4. Run the pull script to copy them into the right place:
 
 ```powershell
-python scripts/pull_cloud_results.py --dir D:\cloud_results\2026-05-30\
+python scripts/pull_cloud_results.py --dir ./cloud_results/2026-05-30/
 ```
 
 The script categorises by filename pattern and copies into:
@@ -179,7 +179,7 @@ python analysis/make_figures_main.py
 3. Rebuild the three Overleaf ZIPs:
 
 ```powershell
-python -c "from pathlib import Path; import shutil, zipfile; RD=Path('D:/RESEARCH DOCS 2026'); ..."
+python -c "from pathlib import Path; import shutil, zipfile; RD=Path('<your-manuscript-dir>'); ..."
 ```
 
    (Or just re-run the existing zip-build cell from the previous

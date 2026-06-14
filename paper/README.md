@@ -2,7 +2,7 @@
 
 This directory contains the audit documentation associated with:
 
-**Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No Extraction in Vision-Language Model Hallucination Evaluation (2026)**
+**Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No Extraction in VLM Hallucination Evaluation (2026)**
 
 ---
 
@@ -32,6 +32,11 @@ The repository contains:
 * supporting analysis scripts
 
 Researchers can independently validate reported metrics by tracing claims directly to the corresponding JSON artifacts.
+
+The corrected eight-token readout and the F1 helpers are also published as
+the [`pope-audit`](https://pypi.org/project/pope-audit/) package
+(`pip install pope-audit`), so the token-set constants used throughout the
+paper can be imported and checked directly.
 
 ---
 

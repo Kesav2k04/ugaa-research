@@ -1,7 +1,7 @@
 # Cross-model token audit
 
 Per-question token-readout artifacts produced by
-`src/run_cross_model_token_audit.py` against a second LLaMA-family VLM.
+`scripts/run_cross_model_token_audit.py` against a second LLaMA-family VLM.
 
 ## Why the LLaVA-1.5 token IDs are not a generic readout
 
@@ -31,12 +31,12 @@ bypasses the vocabulary-id question entirely.
 ## How to run
 
 ```bash
-python src/run_cross_model_token_audit.py \
+python scripts/run_cross_model_token_audit.py \
     --model-path llava-hf/llava-v1.6-mistral-7b-hf \
     --data-dir datasets/pope \
     --output-dir experiments/cross_model \
     --samples 500 --quantize 4bit --device cuda \
-    --cache-dir D:/models/hf_cache \
+    --cache-dir ./hf_cache \
     --prompt-mode both
 ```
 
@@ -47,9 +47,9 @@ diagnostic if loading fails before inference.
 To verify the dynamic token sets without touching the GPU:
 
 ```bash
-python src/run_cross_model_token_audit.py \
+python scripts/run_cross_model_token_audit.py \
     --model-path llava-hf/llava-v1.6-mistral-7b-hf \
-    --dry-run-tokenizer --cache-dir D:/models/hf_cache
+    --dry-run-tokenizer --cache-dir ./hf_cache
 ```
 
 This writes

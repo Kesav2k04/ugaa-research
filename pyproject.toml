@@ -72,8 +72,9 @@ research = [
 ]
 
 [project.urls]
+Homepage = "https://github.com/Kesav2k04/ugaa-research"
 Repository = "https://github.com/Kesav2k04/ugaa-research"
-Paper = "https://arxiv.org/abs/XXXX.XXXXX"
+Issues = "https://github.com/Kesav2k04/ugaa-research/issues"
 
 # --------------------------------------------------------------------------
 # Package discovery: src-layout

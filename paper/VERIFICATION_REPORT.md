@@ -10,7 +10,7 @@
 | `experiments/pope_random_2tok_vs_8tok.json` | Table 2 / Table 11 random split | 2tok F1 0.8397, 8tok F1 0.8713; 8tok TP 1191 / FP 43 / FN 309 / TN 1457 |
 | `experiments/multi_model/multi_model_results.json` | Table 6 (four models × three splits × four readouts) | Every cell matches the paper exactly |
 | `analysis/diagnostic_stats.py` | Bootstrap parameters for Section 5.3 | n_boot=10000, `np.random.default_rng(42)`, percentile method (lines 112–125) |
-| Regenerated cloud artifacts (D:\RESEARCH DOCS 2026\…) | Secondary verification run provenance | See Regenerated cloud-artifact audit below |
+| Regenerated cloud artifacts (external verification folder) | Secondary verification run provenance | See Regenerated cloud-artifact audit below |
 
 ---
 
@@ -74,10 +74,10 @@ cloud-model original-run transformers versions taken from
    HELM benchmark-sensitivity citation was incorrectly applied to a
    LLaMA-specific calibration claim. Removed during the M1 rewrite.
 
-5. **`run_metadata.json` transformers version conflict.** The file at
-   D:\RESEARCH DOCS 2026\ reports transformers 5.10.1 (Qwen environment),
-   distinct from per-folder metadata. Reconciled in the secondary
-   verification run wording.
+5. **`run_metadata.json` transformers version conflict.** The file in the
+   external verification folder reports transformers 5.10.1 (Qwen
+   environment), distinct from per-folder metadata. Reconciled in the
+   secondary verification run wording.
 
 ---
 
@@ -100,8 +100,9 @@ cloud-model original-run transformers versions taken from
 ## Phase 8.5 validation tasks (V1–V4)
 
 - **V1 (official POPE codebase):** Not present in the repo (only the
-  authors' own `run_pope_eval*.py` scripts). External code not downloaded
-  per instructions. **Not performed.**
+  authors' own legacy `run_pope_eval*.py` scripts under
+  `archive/src_legacy/`). External code not downloaded per instructions.
+  **Not performed.**
 
 - **V2 (quantization sensitivity, LLaVA-1.5 FP16 vs. NF4):** No FP16/BF16
   LLaVA-1.5 run exists in `experiments/`. **Not performed.** The regenerated
