@@ -7,6 +7,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/pope-audit.svg)](https://pypi.org/project/pope-audit/)
 [![Python 3.10+](https://img.shields.io/pypi/pyversions/pope-audit.svg)](https://pypi.org/project/pope-audit/)
+[![HF Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-pope--audit--records-ffce1c.svg)](https://huggingface.co/datasets/kesav2k04/pope-audit-records)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Reproducible](https://img.shields.io/badge/9%2C000%20questions-deterministic-brightgreen.svg)](experiments/)
 
@@ -37,6 +38,17 @@ reproduce the paper, install the extra and clone this repo (see
 
 ```bash
 pip install "pope-audit[research]"
+```
+
+The 9,000 per-question prediction records, diagnostics, and POPE question
+manifests that back every number in the paper are published as a
+companion dataset on the Hugging Face Hub:
+[🤗 `kesav2k04/pope-audit-records`](https://huggingface.co/datasets/kesav2k04/pope-audit-records).
+
+```python
+from datasets import load_dataset
+
+pope = load_dataset("kesav2k04/pope-audit-records", "pope_questions", split="adversarial")
 ```
 
 ## TL;DR
