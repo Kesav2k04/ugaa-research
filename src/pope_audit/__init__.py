@@ -33,7 +33,7 @@ Full (requires torch)::
     from pope_audit.ugaa_hook import YES_TOKEN_IDS, NO_TOKEN_IDS
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 # --------------------------------------------------------------------------
 # Lightweight re-exports: these modules use only stdlib (json, os).
