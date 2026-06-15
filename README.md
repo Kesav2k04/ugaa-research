@@ -112,6 +112,14 @@ argmax token of any question is not in `YES_TOKEN_IDS` or
 |-- requirements.txt           pinned Python dependencies
 |-- environment.yml            conda environment
 |-- .gitignore                 excludes model weights, caches, build, secrets
+|-- pytest.ini                 test framework configuration
+|
+|-- .github/                   CI/CD workflows
+|   `-- workflows/tests.yml    automated evaluation validation
+|
+|-- tests/                     mathematical validation suite
+|   |-- test_evaluation.py     tensor-level parsing and metric robustness
+|   `-- test_pope_loader.py    end-to-end dataset I/O integrity
 |
 |-- src/pope_audit/            the installable library (pip package `pope-audit`)
 |   |-- __init__.py            public API (lazy torch import)
