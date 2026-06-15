@@ -318,6 +318,20 @@ ground truth and the paper sources contain no placeholders, anonymous-
 author text (in the arXiv version), TODO/FIXME, em dashes, corrupted
 characters, or off-by-one Table 7 entries.
 
+## Evaluation Integrity & Testing Architecture
+
+To guarantee the mathematical and structural soundness of the library, `pope-audit` implements an elite-tier verification suite that tests the exact logit execution boundaries described in the paper. The testing architecture strictly enforces:
+
+- **True Logit-Level Integration Testing:** Rather than asserting high-level string equality, the suite generates localized PyTorch tensors mirroring Hugging Face's `return_dict_in_generate=True` multi-dimensional tuple signatures. This proves that the internal extraction layers (`_get_yes_no_logits`) mathematically pool the eight indices properly inside a strict `torch.no_grad()` memory context, perfectly isolating the core research artifact.
+- **End-to-End I/O Robustness:** Uses secure `pytest` `tmp_path` environments to validate dynamic JSONL split detection, label parsing, and metric compilation across community-schema edge cases seamlessly.
+- **Strict Package Isolation:** Local path mapping is natively decoupled via `pytest.ini`. CI/CD validations trigger automatically through GitHub Actions on Ubuntu runners, cleanly injecting runtime dependencies (like `torch`) on-the-fly to guarantee the lightweight `pyproject.toml` remains unpolluted for production deployments.
+
+To run the full 8-test verification sweep locally:
+
+```bash
+pytest tests/ -v
+```
+
 ## Determinism
 
 All runs use:
