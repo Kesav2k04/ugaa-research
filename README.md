@@ -6,12 +6,12 @@
 > Extraction in VLM Hallucination Evaluation* (preprint, 2026).
 
 <p align="center">
-  [![PyPI version](https://img.shields.io/pypi/v/pope-audit.svg)](https://pypi.org/project/pope-audit/)
-  [![Python 3.10+](https://img.shields.io/pypi/pyversions/pope-audit.svg)](https://pypi.org/project/pope-audit/)
-  [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20738626-blue.svg)](https://doi.org/10.5281/zenodo.20738626)
-  [![HF Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-pope--audit--records-ffce1c.svg)](https://huggingface.co/datasets/kesav2k04/pope-audit-records)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-  [![Reproducible](https://img.shields.io/badge/9%2C000%20questions-deterministic-brightgreen.svg)](experiments/)
+  <a href="https://pypi.org/project/pope-audit/"><img src="https://img.shields.io/pypi/v/pope-audit.svg" alt="PyPI version"></a>
+  <a href="https://pypi.org/project/pope-audit/"><img src="https://img.shields.io/pypi/pyversions/pope-audit.svg" alt="Python 3.10+"></a>
+  <a href="https://doi.org/10.5281/zenodo.20738626"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20738626-blue.svg" alt="DOI"></a>
+  <a href="https://huggingface.co/datasets/kesav2k04/pope-audit-records"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-pope--audit--records-ffce1c.svg" alt="HF Dataset"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+  <a href="experiments/"><img src="https://img.shields.io/badge/9%2C000%20questions-deterministic-brightgreen.svg" alt="Reproducible"></a>
 </p>
 
 
