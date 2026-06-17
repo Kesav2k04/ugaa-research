@@ -7,6 +7,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/pope-audit.svg)](https://pypi.org/project/pope-audit/)
 [![Python 3.10+](https://img.shields.io/pypi/pyversions/pope-audit.svg)](https://pypi.org/project/pope-audit/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20738626.svg)](https://doi.org/10.5281/zenodo.20738626)
 [![HF Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-pope--audit--records-ffce1c.svg)](https://huggingface.co/datasets/kesav2k04/pope-audit-records)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Reproducible](https://img.shields.io/badge/9%2C000%20questions-deterministic-brightgreen.svg)](experiments/)
@@ -344,7 +345,7 @@ pytest tests/ -v
 
 All runs use:
 - `torch.manual_seed(42)`
-- `transformers==4.40.1`
+- `transformers>=4.41.2`
 - `bitsandbytes` 4-bit NF4 quantization, fp16 compute dtype
 - `model.generate(max_new_tokens=1, output_scores=True)` with greedy
   decoding
@@ -380,6 +381,8 @@ BibTeX entry below.
             in {VLM} Hallucination Evaluation},
   author = {Jayakumar, Kesav Kumar and Thilak, Karthigeyan},
   year   = {2026},
+  doi    = {10.5281/zenodo.20738626},
+  url    = {https://doi.org/10.5281/zenodo.20738626},
   note   = {Preprint, arXiv identifier to be added on submission.}
 }
 ```

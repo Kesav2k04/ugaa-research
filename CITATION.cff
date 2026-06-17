@@ -12,6 +12,7 @@ authors:
     affiliation: "Sri Eshwar College of Engineering, Coimbatore"
     email: "karthik.suthraye@gmail.com"
 license: MIT
+doi: 10.5281/zenodo.20738626
 repository-code: "https://github.com/Kesav2k04/ugaa-research"
 abstract: >
   We document a token-extraction artifact in the reference POPE
@@ -33,4 +34,5 @@ preferred-citation:
     - family-names: "Thilak"
       given-names: "Karthigeyan"
   year: 2026
+  doi: 10.5281/zenodo.20738626
   notes: "Preprint."
