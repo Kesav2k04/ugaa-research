@@ -5,12 +5,15 @@
 > *Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No
 > Extraction in VLM Hallucination Evaluation* (preprint, 2026).
 
-[![PyPI version](https://img.shields.io/pypi/v/pope-audit.svg)](https://pypi.org/project/pope-audit/)
-[![Python 3.10+](https://img.shields.io/pypi/pyversions/pope-audit.svg)](https://pypi.org/project/pope-audit/)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20738626-blue.svg)](https://doi.org/10.5281/zenodo.20738626)
-[![HF Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-pope--audit--records-ffce1c.svg)](https://huggingface.co/datasets/kesav2k04/pope-audit-records)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Reproducible](https://img.shields.io/badge/9%2C000%20questions-deterministic-brightgreen.svg)](experiments/)
+<p align="center">
+  [![PyPI version](https://img.shields.io/pypi/v/pope-audit.svg)](https://pypi.org/project/pope-audit/)
+  [![Python 3.10+](https://img.shields.io/pypi/pyversions/pope-audit.svg)](https://pypi.org/project/pope-audit/)
+  [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20738626-blue.svg)](https://doi.org/10.5281/zenodo.20738626)
+  [![HF Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-pope--audit--records-ffce1c.svg)](https://huggingface.co/datasets/kesav2k04/pope-audit-records)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+  [![Reproducible](https://img.shields.io/badge/9%2C000%20questions-deterministic-brightgreen.svg)](experiments/)
+</p>
+
 
 ## Install
 
