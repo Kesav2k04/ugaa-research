@@ -39,4 +39,4 @@ preferred-citation:
     - type: url
       value: "https://arxiv.org/abs/2610.25964"
       description: "arXiv:2610.25964 [cs.CV]"
-  notes: "arXiv:2610.25964 [cs.CV]. Accepted as a poster at the VLM4RWD workshop, NeurIPS 2026."
+  notes: "arXiv:2610.25964 [cs.CV]. NeurIPS 2026 VLM4RWD Workshop."

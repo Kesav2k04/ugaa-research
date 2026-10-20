@@ -3,8 +3,7 @@
 > A systematic audit of yes/no token extraction in VLM hallucination
 > evaluation. Companion code, predictions, and figures for the paper
 > *Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No
-> Extraction in VLM Hallucination Evaluation*, accepted as a poster at the
-> VLM4RWD workshop at NeurIPS 2026 ([arXiv:2610.25964](https://arxiv.org/abs/2610.25964)).
+> Extraction in VLM Hallucination Evaluation* (NeurIPS 2026 VLM4RWD Workshop).
 
 <p align="center">
   <a href="https://arxiv.org/abs/2610.25964"><img src="https://img.shields.io/badge/arXiv-2610.25964-b31b1b.svg" alt="arXiv:2610.25964"></a>
