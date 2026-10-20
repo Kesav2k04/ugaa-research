@@ -3,9 +3,12 @@
 > A systematic audit of yes/no token extraction in VLM hallucination
 > evaluation. Companion code, predictions, and figures for the paper
 > *Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No
-> Extraction in VLM Hallucination Evaluation* (preprint, 2026).
+> Extraction in VLM Hallucination Evaluation*, accepted as a poster at the
+> VLM4RWD workshop at NeurIPS 2026 ([arXiv:2610.25964](https://arxiv.org/abs/2610.25964)).
 
 <p align="center">
+  <a href="https://arxiv.org/abs/2610.25964"><img src="https://img.shields.io/badge/arXiv-2610.25964-b31b1b.svg" alt="arXiv:2610.25964"></a>
+  <a href="https://vlm4rwd.github.io/"><img src="https://img.shields.io/badge/NeurIPS%202026-VLM4RWD%20Workshop-4b44ce.svg" alt="VLM4RWD workshop at NeurIPS 2026"></a>
   <a href="https://pypi.org/project/pope-audit/"><img src="https://img.shields.io/pypi/v/pope-audit.svg" alt="PyPI version"></a>
   <a href="https://pypi.org/project/pope-audit/"><img src="https://img.shields.io/pypi/pyversions/pope-audit.svg" alt="Python 3.10+"></a>
   <a href="https://doi.org/10.5281/zenodo.20738626"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20738626-blue.svg" alt="DOI"></a>
@@ -374,21 +377,23 @@ Experiments were distributed across multiple Kaggle sessions to accommodate GPU 
 
 ## Citing this work
 
-If you find the audit useful, please cite via `CITATION.cff` or the
+If you find the audit useful, please cite the paper via `CITATION.cff` or the
 BibTeX entry below.
 
 ```bibtex
-@misc{xxxx2026tokenset,
-  title  = {Token-Set Choice Confounds {POPE}:
-            A Systematic Audit of Yes/No Extraction
-            in {VLM} Hallucination Evaluation},
-  author = {Jayakumar, Kesav Kumar and Thilak, Karthigeyan},
-  year   = {2026},
-  doi    = {10.5281/zenodo.20738626},
-  url    = {https://doi.org/10.5281/zenodo.20738626},
-  note   = {Preprint, arXiv identifier to be added on submission.}
+@misc{jayakumar2026tokensetchoiceconfoundspope,
+      title={Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No Extraction in VLM Hallucination Evaluation},
+      author={Kesav Kumar Jayakumar and Karthigeyan Thilak},
+      year={2026},
+      eprint={2610.25964},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2610.25964},
 }
 ```
+
+The code itself is archived on Zenodo:
+[10.5281/zenodo.20738626](https://doi.org/10.5281/zenodo.20738626).
 
 ## License
 

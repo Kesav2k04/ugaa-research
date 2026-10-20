@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: "Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No Extraction in VLM Hallucination Evaluation"
-message: "If you use this software or the corrected evaluation protocol, please cite the preprint."
+message: "If you use this software or the corrected evaluation protocol, please cite the paper."
 type: software
 authors:
   - family-names: "Jayakumar"
@@ -26,7 +26,7 @@ abstract: >
   contains the diagnostic, the 9,000 prediction records, and a paper
   describing the artifact and its arithmetic.
 preferred-citation:
-  type: misc
+  type: generic
   title: "Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No Extraction in VLM Hallucination Evaluation"
   authors:
     - family-names: "Jayakumar"
@@ -34,5 +34,9 @@ preferred-citation:
     - family-names: "Thilak"
       given-names: "Karthigeyan"
   year: 2026
-  doi: 10.5281/zenodo.20738626
-  notes: "Preprint."
+  url: "https://arxiv.org/abs/2610.25964"
+  identifiers:
+    - type: url
+      value: "https://arxiv.org/abs/2610.25964"
+      description: "arXiv:2610.25964 [cs.CV]"
+  notes: "arXiv:2610.25964 [cs.CV]. Accepted as a poster at the VLM4RWD workshop, NeurIPS 2026."
