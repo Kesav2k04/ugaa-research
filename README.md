@@ -3,11 +3,11 @@
 > A systematic audit of yes/no token extraction in VLM hallucination
 > evaluation. Companion code, predictions, and figures for the paper
 > *Token-Set Choice Confounds POPE: A Systematic Audit of Yes/No
-> Extraction in VLM Hallucination Evaluation* (NeurIPS 2026 VLM4RWD Workshop).
+> Extraction in VLM Hallucination Evaluation* (NeurIPS 2026 VLM4RWD).
 
 <p align="center">
   <a href="https://arxiv.org/abs/2610.25964"><img src="https://img.shields.io/badge/arXiv-2610.25964-b31b1b.svg" alt="arXiv:2610.25964"></a>
-  <a href="https://vlm4rwd.github.io/"><img src="https://img.shields.io/badge/NeurIPS%202026-VLM4RWD%20Workshop-4b44ce.svg" alt="VLM4RWD workshop at NeurIPS 2026"></a>
+  <a href="https://neurips.cc/virtual/2026/loc/sydney/164995"><img src="https://img.shields.io/badge/NeurIPS%202026-VLM4RWD-4b44ce.svg" alt="VLM4RWD at NeurIPS 2026"></a>
   <a href="https://pypi.org/project/pope-audit/"><img src="https://img.shields.io/pypi/v/pope-audit.svg" alt="PyPI version"></a>
   <a href="https://pypi.org/project/pope-audit/"><img src="https://img.shields.io/pypi/pyversions/pope-audit.svg" alt="Python 3.10+"></a>
   <a href="https://doi.org/10.5281/zenodo.20738626"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20738626-blue.svg" alt="DOI"></a>
